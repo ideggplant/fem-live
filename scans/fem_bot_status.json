@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-17T13:36:13",
+  "generated_at": "2026-06-17T13:36:32",
   "date": "2026-06-17",
-  "mode": "TRIGGER_LIVE",
+  "mode": "FADE_CUT",
   "n_positions": 5,
   "positions": [
     {
@@ -14,7 +14,7 @@
       "mode": "surge_trigger",
       "moo_order_id": 2115,
       "target_order_id": 2117,
-      "stop_order_id": 2116,
+      "stop_order_id": null,
       "moc_order_id": null,
       "options_context": null
     },
@@ -168,11 +168,11 @@
     {
       "ticker": "AIXC",
       "bought": 193,
-      "sold": 0,
-      "net": 193,
-      "realized": -0.0,
+      "sold": 193,
+      "net": 0,
+      "realized": -7.72,
       "went_short": false,
-      "open": true
+      "open": false
     },
     {
       "ticker": "ASM",
@@ -212,60 +212,35 @@
     }
   ],
   "fills_totals": {
-    "realized": -78.18,
+    "realized": -85.9,
     "symbols": 5,
     "shorts": 0
   },
   "log_tail": [
-    "13:34:21  INFO       Order 2117 status=PreSubmitted",
-    "13:34:21  INFO       FILL AIXC BOT 78.0@1.68 oid=2115",
-    "13:34:21  INFO       Order 2115 status=Filled filled=193.0 remaining=0.0 avgPx=1.6800",
-    "13:34:21  INFO       Order 2116 status=PreSubmitted",
-    "13:34:21  INFO       Order 2115 status=Filled filled=193.0 remaining=0.0 avgPx=1.6800",
-    "13:34:21  INFO     ANSWER commissionReport {'commissionReport': 1977550898336: ExecId: 0000e0d5.6a334b31.01.01, Commission: 0.000234, Currency: USD, RealizedPnL: , Yield: , YieldRedemptionDate: 0}",
-    "13:34:21  INFO       Order 2117 status=PreSubmitted",
-    "13:34:22  INFO       Order 2117 status=Submitted",
-    "13:34:22  INFO     Status pushed -> fem_bot_status.json",
-    "13:34:37  INFO     REQUEST reqPositions {}",
-    "13:34:37  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:34:53  INFO     REQUEST reqPositions {}",
-    "13:34:53  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:35:08  INFO     gates: regime=NEUTRAL  dilution_flags=90  ledger_levels=8",
-    "13:35:09  INFO     REQUEST reqPositions {}",
-    "13:35:09  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:35:11  INFO     Status pushed -> fem_bot_status.json",
-    "13:35:26  INFO     REQUEST reqPositions {}",
-    "13:35:26  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:35:41  INFO     REQUEST reqPositions {}",
-    "13:35:41  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:35:57  INFO     REQUEST reqPositions {}",
-    "13:35:57  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "13:36:12  INFO     REQUEST reqPositions {}",
-    "13:36:12  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
-  ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "NEUTRAL",
-  "daily_pnl": -75.16970368118287,
-  "entries_today": 5,
-  "open_count": 1,
-  "unrealized_open": 12.51,
-  "grade_mults": {
-    "dump": 2.0,
-    "gap_eat": 0.5,
-    "surge": 1.52,
-    "gap_reclaim": 0.5,
-    "reclaim": 0.5
-  },
-  "benched": [
-    "gap_eat",
-    "gap_reclaim",
-    "reclaim"
-  ],
-  "fading": [
-    "dump",
-    "surge"
-  ],
-  "quarantine": []
+    "13:36:29  INFO     REQUEST reqPositions {}",
+    "13:36:29  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "13:36:29  INFO       x AIXC FADE-CUT: surge never ran (peak +1.3%) and now -7.2% \u2014 cutting 193 sh small, not riding to the stop",
+    "13:36:29  INFO     REQUEST cancelOrder {'orderId': 2116}",
+    "13:36:29  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x002116\\x00'",
+    "13:36:29  INFO     REQUEST cancelOrder {'orderId': 2117}",
+    "13:36:29  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x002117\\x00'",
+    "13:36:29  INFO       cancelled 2 stale working order(s) on AIXC before re-entry",
+    "13:36:29  INFO       Order 2117 status=PendingCancel",
+    "13:36:29  INFO       Order 2116 status=Cancelled",
+    "13:36:29  WARNING  IB [2116] 202: Order Canceled - reason:",
+    "13:36:29  INFO       Order 2117 status=Cancelled",
+    "13:36:29  WARNING  IB [2117] 202: Order Canceled - reason:",
+    "13:36:29  ERROR    IB [2117] 10148: OrderId 2117 that needs to be cancelled cannot be cancelled, state: Cancelled.",
+    "13:36:31  INFO     REQUEST reqPositions {}",
+    "13:36:31  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "13:36:32  INFO     REQUEST placeOrder {'orderId': 2118, 'contract': 1977545374896: 0,AIXC,STK,,0.0,,,SMART,,USD,,,False,,combo:, 'order': 1977545372064: 0,0,0: LMT SELL 193@1.610000 DAY}",
+    "13:36:32  INFO     SENDING placeOrder b'\\x00\\x00\\x01A3\\x002118\\x000\\x00AIXC\\x00STK\\x00\\x000.0\\x00\\x00\\x00SMART\\x00\\x00USD\\x00\\x00\\x00\\x00\\x00SELL\\x00193\\x00LMT\\x001.61\\x00\\x00DAY\\x00\\x00\\x00\\x000\\x00\\x001\\x000\\x000\\x000\\x000\\x000\\x001\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00-1\\x000\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x00\\x000\\x00\\x000\\x000\\x000\\x000\\x00\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x000\\x00\\x00\\x00\\x001.7976931348623157e+308\\x00\\x00\\x00\\x00\\x000\\x000\\x000\\x00\\x00'",
+    "13:36:32  INFO       FLATTEN SELL AIXC x193 cross-LMT cap=1.61",
+    "13:36:32  INFO       Order 2118 status=PreSubmitted",
+    "13:36:32  INFO       Order 2118 status=PreSubmitted",
+    "13:36:32  INFO       FILL AIXC SLD 193.0@1.64 oid=2118",
+    "13:36:32  INFO       Order 2118 status=Filled filled=193.0 remaining=0.0 avgPx=1.6400",
+    "13:36:32  INFO       Order 2118 status=Filled filled=193.0 remaining=0.0 avgPx=1.6400",
+    "13:36:32  INFO     ANSWER commissionReport {'commissionReport': 1977545366112: ExecId: 0000e0d5.6a334b72.01.01, Commission: 1.044734, Currency: USD, RealizedPnL: -9.765313, Yield: , YieldRedemptionDate: 0}"
+  ]
 }
