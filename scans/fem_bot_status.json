@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-18T06:16:52",
+  "generated_at": "2026-06-18T06:16:54",
   "date": "2026-06-18",
-  "mode": "TRIGGER_LIVE",
+  "mode": "GATES_MANIFEST",
   "n_positions": 1,
   "positions": [
     {
@@ -26,17 +26,6 @@
     "shorts": 0
   },
   "log_tail": [
-    "06:16:31  INFO     REQUEST reqPositions {}",
-    "06:16:31  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "06:16:50  INFO     FEM-BOT  mode=trigger  port=7497  date=2026-06-18",
-    "06:16:50  INFO     \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
-    "06:16:50  INFO     MODE: TRIGGER \u2014 entering on live gap-eat fires (not the open)",
-    "06:16:50  INFO            Polling live signals every 15s  |  until 15:45",
-    "06:16:50  INFO     \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
-    "06:16:50  INFO     sent startApi",
-    "06:16:50  INFO     REQUEST startApi {}",
-    "06:16:50  INFO     SENDING startApi b'\\x00\\x00\\x00\\t71\\x002\\x0010\\x00\\x00'",
-    "06:16:50  INFO     ANSWER connectAck {}",
     "06:16:50  INFO       Order 2126 status=PreSubmitted",
     "06:16:50  INFO       Order 2125 status=PreSubmitted",
     "06:16:50  INFO       Order 2124 status=Submitted",
@@ -50,15 +39,42 @@
     "06:16:50  INFO     ANSWER openOrderEnd {}",
     "06:16:52  INFO     REQUEST reqPnL {'reqId': 2127, 'account': 'DU6322719', 'modelCode': ''}",
     "06:16:52  INFO     SENDING reqPnL b'\\x00\\x00\\x00\\x1392\\x002127\\x00DU6322719\\x00\\x00'",
-    "06:16:52  INFO     PnL governor watching account DU6322719"
+    "06:16:52  INFO     PnL governor watching account DU6322719",
+    "06:16:53  INFO     Status pushed -> fem_bot_status.json",
+    "06:16:54  INFO     gates: regime=RISK_ON  dilution_flags=90  ledger_levels=8",
+    "06:16:54  ERROR    *** AUTO-BENCH gap_eat [RISK_ON]: avg_r -0.99 (n=225) \u2014 benched ***",
+    "06:16:54  WARNING    FADING: dump avg-R sliding (slope -0.283, now 0.748) \u2014 watch, may bench soon",
+    "06:16:54  WARNING    FADING: surge avg-R sliding (slope -0.269, now 0.443) \u2014 watch, may bench soon",
+    "06:16:54  ERROR    *** AUTO-BENCH reclaim [RISK_ON]: avg_r -1.0 (n=54) \u2014 benched ***",
+    "06:16:54  ERROR    *** AUTO-BENCH gap_reclaim [RISK_ON]: avg_r -1.0 (n=165) \u2014 benched ***",
+    "06:16:54  INFO       grade-weighted size mults: {'gap_eat': 0.5, 'dump': 2.0, 'surge': 1.27, 'reclaim': 0.5, 'gap_reclaim': 0.5} (regime=RISK_ON)",
+    "06:16:54  INFO       FEM SHORT armed: 238 borrowable names, regimes ('RISK_OFF', 'NEUTRAL', 'RISK_ON', 'NO_DATA'), risk $100",
+    "06:16:54  INFO       SURGE MICRO armed: MICRO_LONG_SCOUT only, sessions ('pre', 'rth'), one attempt/name, risk $35, max chase 1.5%",
+    "06:16:54  INFO       GATES MANIFEST: {\"ladder\": \"T0 67%@2.5%|$75, T1 ratchet\", \"soft_stop\": true, \"giveback\": \"0.04/0.4/tail0.1@0.8/halfbank\", \"short_strength_veto\": 0.03, \"short_clear_road\": 0.05, \"short_attempt_cap\": \"2x/3600s\", \"sector_cap\": 3, \"surge_rest_pullback\": 0.007, \"surge_one_attempt\": true, \"dump_exit_grace_s\": 180, \"liq_cap\": true, \"late_long_cutoff\": \"15:00ET\", \"surge_risk\": 250, \"surge_stop\": 0.06, \"surge_micro\": true, \"surge_micro_sessions\": [\"pre\", \"rth\"], \"surge_micro_risk\": 35.0, \"fem_long\": false, \"rth_only_plans\": true, \"stale_plan_guard\": true}"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "until": "15:45",
-  "trade_surges": true,
-  "governor": {
-    "max_positions": 100,
-    "max_entries": 100,
-    "max_daily_loss": 5000
+  "gates": {
+    "ladder": "T0 67%@2.5%|$75, T1 ratchet",
+    "soft_stop": true,
+    "giveback": "0.04/0.4/tail0.1@0.8/halfbank",
+    "short_strength_veto": 0.03,
+    "short_clear_road": 0.05,
+    "short_attempt_cap": "2x/3600s",
+    "sector_cap": 3,
+    "surge_rest_pullback": 0.007,
+    "surge_one_attempt": true,
+    "dump_exit_grace_s": 180,
+    "liq_cap": true,
+    "late_long_cutoff": "15:00ET",
+    "surge_risk": 250,
+    "surge_stop": 0.06,
+    "surge_micro": true,
+    "surge_micro_sessions": [
+      "pre",
+      "rth"
+    ],
+    "surge_micro_risk": 35.0,
+    "fem_long": false,
+    "rth_only_plans": true,
+    "stale_plan_guard": true
   }
 }
