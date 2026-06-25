@@ -11,16 +11,15 @@
       "live_fire_dump",
       "short_universe_breakdown"
     ],
-    "block": [
-      "options_roundtrip_long",
-      "options_roundtrip_short"
-    ],
+    "block": [],
     "research_only": [
       "live_fire_gap_eat",
       "live_fire_gap_reclaim",
       "live_fire_reclaim",
       "meta_confluence",
       "options_context",
+      "options_roundtrip_long",
+      "options_roundtrip_short",
       "short_mid",
       "timesfm_shadow"
     ],
@@ -149,7 +148,7 @@
       "options_roundtrip_long": {
         "allowed_to_trade": false,
         "panel_id": "options_roundtrip",
-        "permission": "BLOCK",
+        "permission": "RESEARCH_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "MIXED"
@@ -157,7 +156,7 @@
       "options_roundtrip_short": {
         "allowed_to_trade": false,
         "panel_id": "options_roundtrip",
-        "permission": "BLOCK",
+        "permission": "RESEARCH_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "MIXED"
@@ -385,7 +384,7 @@
       "panel_id": "options_roundtrip",
       "panel_name": "Options Roundtrip Lab",
       "permissions": {
-        "BLOCK": 2
+        "RESEARCH_ONLY": 2
       },
       "side": "MIXED",
       "strategies": 2
@@ -520,8 +519,8 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-06-25T13:20:24+00:00",
-  "generated_at_et": "2026-06-25T09:20:24-04:00",
+  "generated_at": "2026-06-25T13:27:24+00:00",
+  "generated_at_et": "2026-06-25T09:27:24-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -626,7 +625,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 17,
+        "ghost_fires": 16,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -741,13 +740,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8952,
-        "ghost_fires": 514,
-        "ghost_graded": 229,
-        "ghost_run_rate": 5.68,
-        "ghost_skip_avg_r": -0.8952,
+        "ghost_avg_target_r": -0.8958,
+        "ghost_fires": 526,
+        "ghost_graded": 256,
+        "ghost_run_rate": 5.86,
+        "ghost_skip_avg_r": -0.8958,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 3.93
+        "ghost_target_hit_rate": 3.91
       },
       "evidence_flags": [
         "skip_verdicts=ACTIONABLE_GOOD_SKIP,TOO_THIN"
@@ -756,7 +755,7 @@
       "panel_name": "Live Fire Dump",
       "permission": "BENCH",
       "reasons": [
-        "ghost evidence negative: n=229, avgR=-0.895"
+        "ghost evidence negative: n=256, avgR=-0.896"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1033,16 +1032,16 @@
     },
     "options_roundtrip_long": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "NO_TRADE_CONTRACT",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "WARN",
-        "panel_status": "WARN",
+        "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1057,14 +1056,12 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [
-        "SOURCE_STALE"
-      ],
+      "evidence_flags": [],
       "panel_id": "options_roundtrip",
       "panel_name": "Options Roundtrip Lab",
-      "permission": "BLOCK",
+      "permission": "RESEARCH_ONLY",
       "reasons": [
-        "required source missing/stale"
+        "research-only or no score evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1073,16 +1070,16 @@
     },
     "options_roundtrip_short": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "NO_TRADE_CONTRACT",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "WARN",
-        "panel_status": "WARN",
+        "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1097,14 +1094,12 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [
-        "SOURCE_STALE"
-      ],
+      "evidence_flags": [],
       "panel_id": "options_roundtrip",
       "panel_name": "Options Roundtrip Lab",
-      "permission": "BLOCK",
+      "permission": "RESEARCH_ONLY",
       "reasons": [
-        "required source missing/stale"
+        "research-only or no score evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1641,20 +1636,6 @@
   },
   "recommendations": [
     {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "options_roundtrip",
-      "reason": "required source missing/stale",
-      "side": "MIXED",
-      "strategy_id": "options_roundtrip_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "options_roundtrip",
-      "reason": "required source missing/stale",
-      "side": "MIXED",
-      "strategy_id": "options_roundtrip_short"
-    },
-    {
       "action": "PROMOTE_OR_ROUTE_REVIEW",
       "evidence": {
         "actual_avg_r": null,
@@ -1741,16 +1722,16 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8952,
-        "ghost_fires": 514,
-        "ghost_graded": 229,
-        "ghost_run_rate": 5.68,
-        "ghost_skip_avg_r": -0.8952,
+        "ghost_avg_target_r": -0.8958,
+        "ghost_fires": 526,
+        "ghost_graded": 256,
+        "ghost_run_rate": 5.86,
+        "ghost_skip_avg_r": -0.8958,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 3.93
+        "ghost_target_hit_rate": 3.91
       },
       "panel_id": "live_fire_dump",
-      "reason": "ghost evidence negative: n=229, avgR=-0.895",
+      "reason": "ghost evidence negative: n=256, avgR=-0.896",
       "side": "SHORT",
       "strategy_id": "live_fire_dump"
     },
@@ -1815,7 +1796,7 @@
     "allowed_short": 3,
     "allowed_to_trade": 4,
     "bench": 2,
-    "block": 2,
+    "block": 0,
     "ghost_good_skip_groups": 3,
     "ghost_opportunity_groups": 0,
     "health_overall": "WARN",
@@ -1823,13 +1804,12 @@
     "permission_counts": {
       "ALLOW_PROBE": 4,
       "BENCH": 2,
-      "BLOCK": 2,
-      "RESEARCH_ONLY": 7,
+      "RESEARCH_ONLY": 9,
       "TRACK_ONLY": 4,
       "WATCH_ONLY": 9
     },
     "registry_overall": "OK",
-    "research_only": 7,
+    "research_only": 9,
     "route_policy_applied": 1,
     "route_policy_invalid": 0,
     "route_policy_overrides": 1,
