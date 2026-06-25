@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T07:11:28",
+  "generated_at": "2026-06-25T07:12:51",
   "date": "2026-06-25",
   "mode": "TRIGGER_LIVE",
   "n_positions": 1,
@@ -36,31 +36,31 @@
     "shorts": 1
   },
   "log_tail": [
-    "07:09:02  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "07:09:20  INFO     REQUEST reqPositions {}",
-    "07:09:20  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "07:09:24  INFO     Status pushed -> fem_bot_status.json",
-    "07:09:40  INFO     REQUEST reqPositions {}",
-    "07:09:40  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "07:10:03  INFO     gates: regime=NEUTRAL  dilution_flags=69  ledger_levels=8",
-    "07:10:03  INFO     REQUEST reqPositions {}",
-    "07:10:03  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "07:10:05  INFO       live dilution XCH: YELLOW",
-    "07:10:25  INFO     REQUEST reqPositions {}",
-    "07:10:25  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "07:10:27  INFO     Status pushed -> fem_bot_status.json",
-    "07:10:30  INFO       PRFX   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
-    "07:10:30  INFO       TECH   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
-    "07:10:31  INFO       SAGT   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
-    "07:10:31  INFO       MIMI   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
-    "07:10:31  INFO       ILLR   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
-    "07:10:31  INFO       IQST   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
     "07:10:47  INFO     REQUEST reqPositions {}",
     "07:10:47  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
     "07:11:07  INFO     REQUEST reqPositions {}",
     "07:11:07  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
     "07:11:28  INFO     REQUEST reqPositions {}",
-    "07:11:28  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "07:11:28  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "07:11:32  INFO     Status pushed -> fem_bot_status.json",
+    "07:11:38  INFO       live dilution PRFX: AMBER",
+    "07:11:41  INFO       live dilution TECH: GREEN",
+    "07:11:42  INFO       TECH surge skip: no clear highway (up/red gap within 5% above)",
+    "07:11:43  INFO       live dilution SAGT: GREEN",
+    "07:11:44  INFO       SAGT surge skip: no clear highway (up/red gap within 5% above)",
+    "07:11:44  INFO       live dilution MIMI: AMBER",
+    "07:11:46  INFO       live dilution ILLR: GREEN",
+    "07:11:49  INFO       live dilution IQST: AMBER",
+    "07:11:50  INFO       IQST surge skip: no clear highway (up/red gap within 5% above)",
+    "07:11:51  INFO       KUST   surge seen \u00e2\u20ac\u201d arming, must hold 60s before entry (no instant chase)",
+    "07:11:51  INFO       FCUV   GATED \u00e2\u20ac\u201d live dilution RED (active offering)",
+    "07:12:08  INFO     gates: regime=NEUTRAL  dilution_flags=69  ledger_levels=8",
+    "07:12:08  INFO     REQUEST reqPositions {}",
+    "07:12:08  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "07:12:28  INFO     REQUEST reqPositions {}",
+    "07:12:28  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "07:12:51  INFO     REQUEST reqPositions {}",
+    "07:12:51  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
   ],
   "heartbeat": true,
   "alive": true,
@@ -88,19 +88,28 @@
   "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
-    "overall": "OK",
+    "overall": "WARN",
     "session": "rth",
-    "generated_at": "2026-06-25T14:11:30+00:00",
-    "generated_at_et": "2026-06-25T10:11:30-04:00",
+    "generated_at": "2026-06-25T14:12:53+00:00",
+    "generated_at_et": "2026-06-25T10:12:53-04:00",
     "summary": {
       "checks": 22,
-      "ok": 22,
-      "warn": 0,
+      "ok": 21,
+      "warn": 1,
       "fail": 0
     },
-    "bad_checks": [],
+    "bad_checks": [
+      {
+        "id": "contract_source_refresh",
+        "label": "Contract source refresh report",
+        "status": "WARN",
+        "detail": "stale during rth: 2734s old, limit 2700s",
+        "path": "fem_contract_source_refresh.json",
+        "age_seconds": 2734
+      }
+    ],
     "next_actions": [
-      "No immediate contract action required."
+      "Run _DAILY\\0A_CONTRACT_SOURCE_REFRESH.bat to refresh stale panel source files, rebuild contracts, and publish."
     ]
   }
 }
