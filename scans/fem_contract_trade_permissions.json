@@ -4,15 +4,20 @@
     "allow_probe": [
       "short_genesis",
       "short_universe",
-      "short_universe_grade"
+      "short_universe_grade",
+      "surge_micro_scout"
     ],
     "bench": [
-      "live_fire_dump",
-      "live_fire_gap_eat",
-      "live_fire_surge",
       "short_universe_breakdown"
     ],
-    "block": [],
+    "block": [
+      "live_fire_gap_eat",
+      "live_fire_gap_reclaim",
+      "live_fire_reclaim",
+      "live_fire_surge",
+      "sma_reclaim_long",
+      "surge_chase"
+    ],
     "research_only": [
       "meta_confluence",
       "options_context",
@@ -32,13 +37,9 @@
       "ath_long",
       "bear_rejection_pending",
       "bull_bounce_pending",
-      "live_fire_gap_reclaim",
-      "live_fire_reclaim",
+      "live_fire_dump",
       "mustard_reload",
-      "sma_reclaim_long",
-      "state_lookup",
-      "surge_chase",
-      "surge_micro_scout"
+      "state_lookup"
     ],
     "weights": {
       "all_time_high_long": {
@@ -84,7 +85,7 @@
       "live_fire_dump": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_dump",
-        "permission": "BENCH",
+        "permission": "WATCH_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "SHORT"
@@ -92,7 +93,7 @@
       "live_fire_gap_eat": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_gap_eat",
-        "permission": "BENCH",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
@@ -100,7 +101,7 @@
       "live_fire_gap_reclaim": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_gap_reclaim",
-        "permission": "WATCH_ONLY",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
@@ -108,7 +109,7 @@
       "live_fire_reclaim": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_reclaim",
-        "permission": "WATCH_ONLY",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
@@ -116,7 +117,7 @@
       "live_fire_surge": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_surge",
-        "permission": "BENCH",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
@@ -228,7 +229,7 @@
       "sma_reclaim_long": {
         "allowed_to_trade": false,
         "panel_id": "sma_reclaim",
-        "permission": "WATCH_ONLY",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
@@ -244,17 +245,17 @@
       "surge_chase": {
         "allowed_to_trade": false,
         "panel_id": "surge_trader",
-        "permission": "WATCH_ONLY",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "side": "LONG"
       },
       "surge_micro_scout": {
-        "allowed_to_trade": false,
+        "allowed_to_trade": true,
         "panel_id": "surge_micro",
-        "permission": "WATCH_ONLY",
-        "risk_multiplier": 0.0,
-        "route_weight": 0.0,
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
         "side": "LONG"
       },
       "timesfm_shadow": {
@@ -296,7 +297,7 @@
       "panel_id": "live_fire_dump",
       "panel_name": "Live Fire Dump",
       "permissions": {
-        "BENCH": 1
+        "WATCH_ONLY": 1
       },
       "side": "SHORT",
       "strategies": 1
@@ -307,7 +308,7 @@
       "panel_id": "live_fire_gap_eat",
       "panel_name": "Live Fire Gap Eat",
       "permissions": {
-        "BENCH": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -318,7 +319,7 @@
       "panel_id": "live_fire_gap_reclaim",
       "panel_name": "Live Fire Gap Reclaim",
       "permissions": {
-        "WATCH_ONLY": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -329,7 +330,7 @@
       "panel_id": "live_fire_reclaim",
       "panel_name": "Live Fire Reclaim",
       "permissions": {
-        "WATCH_ONLY": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -340,7 +341,7 @@
       "panel_id": "live_fire_surge",
       "panel_name": "Live Fire Surge",
       "permissions": {
-        "BENCH": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -467,7 +468,7 @@
       "panel_id": "sma_reclaim",
       "panel_name": "SMA Reclaim",
       "permissions": {
-        "WATCH_ONLY": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -484,12 +485,14 @@
       "strategies": 3
     },
     "surge_micro": {
-      "allowed_strategies": [],
-      "max_route_weight": 0.0,
+      "allowed_strategies": [
+        "surge_micro_scout"
+      ],
+      "max_route_weight": 0.25,
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permissions": {
-        "WATCH_ONLY": 1
+        "ALLOW_PROBE": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -500,7 +503,7 @@
       "panel_id": "surge_trader",
       "panel_name": "Surge Trader",
       "permissions": {
-        "WATCH_ONLY": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -517,14 +520,15 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-06-25T03:55:39+00:00",
-  "generated_at_et": "2026-06-24T23:55:39-04:00",
+  "generated_at": "2026-06-25T11:50:23+00:00",
+  "generated_at_et": "2026-06-25T07:50:23-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
-    "health_overall": "OK",
+    "health_overall": "WARN",
     "panel_registry_schema": "fem_contract_panel_registry.v1",
-    "panel_score_schema": "fem_contract_panel_score/v1"
+    "panel_score_schema": "fem_contract_panel_score/v1",
+    "route_policy_schema": "fem_contract_route_policy.v1"
   },
   "permissions": {
     "all_time_high_long": {
@@ -534,7 +538,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -572,7 +576,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -610,7 +614,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -622,7 +626,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 28,
+        "ghost_fires": 15,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -648,7 +652,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -660,7 +664,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 8,
+        "ghost_fires": 19,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -686,7 +690,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -721,12 +725,12 @@
     },
     "live_fire_dump": {
       "allowed_to_trade": false,
-      "confidence": "GHOST_NEGATIVE",
+      "confidence": "THIN_OR_MIXED",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -737,22 +741,22 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8106,
-        "ghost_fires": 1147,
-        "ghost_graded": 873,
-        "ghost_run_rate": 14.43,
-        "ghost_skip_avg_r": -0.8422,
-        "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 7.1
+        "ghost_avg_target_r": null,
+        "ghost_fires": 41,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
+        "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "skip_verdicts=ACTIONABLE_GOOD_SKIP,EARLY_GOOD_SKIP"
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_dump",
       "panel_name": "Live Fire Dump",
-      "permission": "BENCH",
+      "permission": "WATCH_ONLY",
       "reasons": [
-        "ghost evidence negative: n=873, avgR=-0.811"
+        "evidence exists but is too thin or mixed for bot permission"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -761,38 +765,38 @@
     },
     "live_fire_gap_eat": {
       "allowed_to_trade": false,
-      "confidence": "SKIP_PROTECTIVE",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
+        "actual_realized_pnl": null,
         "actual_trades": 0,
-        "ghost_avg_target_r": -1.0,
-        "ghost_fires": 16,
-        "ghost_graded": 16,
-        "ghost_run_rate": 6.25,
-        "ghost_skip_avg_r": -1.0,
-        "ghost_skip_verdict": "EARLY_GOOD_SKIP",
-        "ghost_target_hit_rate": 0.0
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "skip_verdicts=EARLY_GOOD_SKIP,TOO_THIN"
+        "PANEL_SCORE_MISSING"
       ],
       "panel_id": "live_fire_gap_eat",
       "panel_name": "Live Fire Gap Eat",
-      "permission": "BENCH",
+      "permission": "BLOCK",
       "reasons": [
-        "skipped group was protective: EARLY_GOOD_SKIP, avgR=-1.0"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -801,38 +805,38 @@
     },
     "live_fire_gap_reclaim": {
       "allowed_to_trade": false,
-      "confidence": "THIN_OR_MIXED",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
+        "actual_realized_pnl": null,
         "actual_trades": 0,
-        "ghost_avg_target_r": -1.0,
-        "ghost_fires": 3,
-        "ghost_graded": 3,
-        "ghost_run_rate": 0.0,
-        "ghost_skip_avg_r": -1.0,
-        "ghost_skip_verdict": "TOO_THIN",
-        "ghost_target_hit_rate": 0.0
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "skip_verdicts=TOO_THIN"
+        "PANEL_SCORE_MISSING"
       ],
       "panel_id": "live_fire_gap_reclaim",
       "panel_name": "Live Fire Gap Reclaim",
-      "permission": "WATCH_ONLY",
+      "permission": "BLOCK",
       "reasons": [
-        "evidence exists but is too thin or mixed for bot permission"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -841,38 +845,38 @@
     },
     "live_fire_reclaim": {
       "allowed_to_trade": false,
-      "confidence": "THIN_OR_MIXED",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
+        "actual_realized_pnl": null,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.3333,
-        "ghost_fires": 4,
-        "ghost_graded": 4,
-        "ghost_run_rate": 25.0,
-        "ghost_skip_avg_r": -0.1111,
-        "ghost_skip_verdict": "TOO_THIN",
-        "ghost_target_hit_rate": 25.0
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "skip_verdicts=TOO_THIN"
+        "PANEL_SCORE_MISSING"
       ],
       "panel_id": "live_fire_reclaim",
       "panel_name": "Live Fire Reclaim",
-      "permission": "WATCH_ONLY",
+      "permission": "BLOCK",
       "reasons": [
-        "evidence exists but is too thin or mixed for bot permission"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -881,38 +885,38 @@
     },
     "live_fire_surge": {
       "allowed_to_trade": false,
-      "confidence": "GHOST_NEGATIVE",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
+        "actual_realized_pnl": null,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.7781,
-        "ghost_fires": 927,
-        "ghost_graded": 625,
-        "ghost_run_rate": 17.12,
-        "ghost_skip_avg_r": -0.7922,
-        "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 8.32
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "skip_verdicts=ACTIONABLE_GOOD_SKIP,TOO_THIN"
+        "PANEL_SCORE_MISSING"
       ],
       "panel_id": "live_fire_surge",
       "panel_name": "Live Fire Surge",
-      "permission": "BENCH",
+      "permission": "BLOCK",
       "reasons": [
-        "ghost evidence negative: n=625, avgR=-0.778"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -926,7 +930,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
@@ -964,7 +968,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1002,7 +1006,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
@@ -1040,7 +1044,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
@@ -1078,7 +1082,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
@@ -1116,7 +1120,7 @@
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1154,7 +1158,7 @@
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1192,7 +1196,7 @@
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1230,7 +1234,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_ok": true,
@@ -1270,7 +1274,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_ok": true,
@@ -1311,7 +1315,7 @@
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1349,7 +1353,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_ok": true,
@@ -1390,7 +1394,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_ok": true,
@@ -1426,22 +1430,22 @@
     },
     "sma_reclaim_long": {
       "allowed_to_trade": false,
-      "confidence": "THIN_OR_MIXED",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
-        "actual_avg_r": -0.2252,
-        "actual_closed": 2,
-        "actual_realized_pnl": -37.79,
-        "actual_trades": 2,
+        "actual_avg_r": null,
+        "actual_closed": 0,
+        "actual_realized_pnl": null,
+        "actual_trades": 0,
         "ghost_avg_target_r": null,
         "ghost_fires": 0,
         "ghost_graded": 0,
@@ -1450,12 +1454,14 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "PANEL_SCORE_MISSING"
+      ],
       "panel_id": "sma_reclaim",
       "panel_name": "SMA Reclaim",
-      "permission": "WATCH_ONLY",
+      "permission": "BLOCK",
       "reasons": [
-        "evidence exists but is too thin or mixed for bot permission"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1469,7 +1475,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "OK",
         "publisher_ok": true,
         "score_ok": true,
@@ -1502,22 +1508,22 @@
     },
     "surge_chase": {
       "allowed_to_trade": false,
-      "confidence": "THIN_OR_MIXED",
+      "confidence": "CONTRACT_BROKEN",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
-        "actual_closed": 2,
-        "actual_realized_pnl": 12.9,
-        "actual_trades": 2,
+        "actual_closed": 0,
+        "actual_realized_pnl": null,
+        "actual_trades": 0,
         "ghost_avg_target_r": null,
         "ghost_fires": 0,
         "ghost_graded": 0,
@@ -1526,12 +1532,14 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "PANEL_SCORE_MISSING"
+      ],
       "panel_id": "surge_trader",
       "panel_name": "Surge Trader",
-      "permission": "WATCH_ONLY",
+      "permission": "BLOCK",
       "reasons": [
-        "evidence exists but is too thin or mixed for bot permission"
+        "required score missing"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1539,23 +1547,24 @@
       "strategy_id": "surge_chase"
     },
     "surge_micro_scout": {
-      "allowed_to_trade": false,
-      "confidence": "THIN_OR_MIXED",
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
-        "panel_status": "OK",
+        "health_overall": "WARN",
+        "panel_status": "WARN",
+        "policy_override": true,
         "publisher_ok": true,
-        "score_ok": true,
+        "score_ok": false,
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
-        "actual_closed": 1,
-        "actual_realized_pnl": -32.82,
-        "actual_trades": 1,
+        "actual_closed": 0,
+        "actual_realized_pnl": null,
+        "actual_trades": 0,
         "ghost_avg_target_r": null,
         "ghost_fires": 0,
         "ghost_graded": 0,
@@ -1564,15 +1573,37 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "PANEL_SCORE_MISSING",
+        "route_policy_override:ALLOW_PROBE"
+      ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
-      "permission": "WATCH_ONLY",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-02",
+        "guardrails": [
+          "Existing fem_auto_trade surge micro sizing still applies.",
+          "Existing overhead-gap and clear-highway filters still apply.",
+          "Review after the expiry date or after at least 20 routed attempts."
+        ],
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "CONTRACT_BROKEN",
+          "permission": "BLOCK",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates."
+      },
       "reasons": [
-        "evidence exists but is too thin or mixed for bot permission"
+        "operator route policy override: Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
+        "required score missing"
       ],
-      "risk_multiplier": 0.0,
-      "route_weight": 0.0,
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
       "side": "LONG",
       "strategy_id": "surge_micro_scout"
     },
@@ -1583,7 +1614,7 @@
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
-        "health_overall": "OK",
+        "health_overall": "WARN",
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_ok": true,
@@ -1616,6 +1647,48 @@
     }
   },
   "recommendations": [
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "live_fire_gap_eat",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "live_fire_gap_eat"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "live_fire_gap_reclaim",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "live_fire_gap_reclaim"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "live_fire_reclaim",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "live_fire_reclaim"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "live_fire_surge",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "live_fire_surge"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "sma_reclaim",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "sma_reclaim_long"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "surge_trader",
+      "reason": "required score missing",
+      "side": "LONG",
+      "strategy_id": "surge_chase"
+    },
     {
       "action": "PROMOTE_OR_ROUTE_REVIEW",
       "evidence": {
@@ -1703,66 +1776,6 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8106,
-        "ghost_fires": 1147,
-        "ghost_graded": 873,
-        "ghost_run_rate": 14.43,
-        "ghost_skip_avg_r": -0.8422,
-        "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 7.1
-      },
-      "panel_id": "live_fire_dump",
-      "reason": "ghost evidence negative: n=873, avgR=-0.811",
-      "side": "SHORT",
-      "strategy_id": "live_fire_dump"
-    },
-    {
-      "action": "KEEP_BENCHED_OR_TIGHTEN",
-      "evidence": {
-        "actual_avg_r": null,
-        "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
-        "ghost_avg_target_r": -1.0,
-        "ghost_fires": 16,
-        "ghost_graded": 16,
-        "ghost_run_rate": 6.25,
-        "ghost_skip_avg_r": -1.0,
-        "ghost_skip_verdict": "EARLY_GOOD_SKIP",
-        "ghost_target_hit_rate": 0.0
-      },
-      "panel_id": "live_fire_gap_eat",
-      "reason": "skipped group was protective: EARLY_GOOD_SKIP, avgR=-1.0",
-      "side": "LONG",
-      "strategy_id": "live_fire_gap_eat"
-    },
-    {
-      "action": "KEEP_BENCHED_OR_TIGHTEN",
-      "evidence": {
-        "actual_avg_r": null,
-        "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
-        "ghost_avg_target_r": -0.7781,
-        "ghost_fires": 927,
-        "ghost_graded": 625,
-        "ghost_run_rate": 17.12,
-        "ghost_skip_avg_r": -0.7922,
-        "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 8.32
-      },
-      "panel_id": "live_fire_surge",
-      "reason": "ghost evidence negative: n=625, avgR=-0.778",
-      "side": "LONG",
-      "strategy_id": "live_fire_surge"
-    },
-    {
-      "action": "KEEP_BENCHED_OR_TIGHTEN",
-      "evidence": {
-        "actual_avg_r": null,
-        "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
         "ghost_avg_target_r": -0.105,
         "ghost_fires": 162,
         "ghost_graded": 162,
@@ -1777,31 +1790,67 @@
       "strategy_id": "short_universe_breakdown"
     }
   ],
+  "route_policy": {
+    "enabled": true,
+    "health_overall": "WARN",
+    "kill_switch": false,
+    "overrides": {
+      "surge_micro_scout": {
+        "active": true,
+        "allowed_to_trade": true,
+        "applied": true,
+        "blocked_by_health": false,
+        "errors": [],
+        "expires_et": "2026-07-02",
+        "permission": "ALLOW_PROBE",
+        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
+        "status": "APPLIED",
+        "strategy_id": "surge_micro_scout"
+      }
+    },
+    "policy_schema": "fem_contract_route_policy.v1",
+    "schema": "fem_contract_route_policy_application.v1",
+    "summary": {
+      "applied": 1,
+      "disabled": 0,
+      "expired": 0,
+      "health_blocked": 0,
+      "invalid": 0,
+      "overrides": 1
+    },
+    "trade_date": "2026-06-25"
+  },
   "schema": "fem_contract_trade_permissions.v1",
   "summary": {
     "allow_full": 0,
-    "allow_probe": 3,
-    "allowed_long": 0,
+    "allow_probe": 4,
+    "allowed_long": 1,
     "allowed_short": 3,
-    "allowed_to_trade": 3,
-    "bench": 4,
-    "block": 0,
-    "ghost_good_skip_groups": 9,
+    "allowed_to_trade": 4,
+    "bench": 1,
+    "block": 6,
+    "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
-    "health_overall": "OK",
-    "panel_score_strategies": 22,
+    "health_overall": "WARN",
+    "panel_score_strategies": 15,
     "permission_counts": {
-      "ALLOW_PROBE": 3,
-      "BENCH": 4,
+      "ALLOW_PROBE": 4,
+      "BENCH": 1,
+      "BLOCK": 6,
       "RESEARCH_ONLY": 6,
       "TRACK_ONLY": 4,
-      "WATCH_ONLY": 11
+      "WATCH_ONLY": 7
     },
-    "registry_overall": "OK",
+    "registry_overall": "WARN",
     "research_only": 6,
+    "route_policy_applied": 1,
+    "route_policy_invalid": 0,
+    "route_policy_overrides": 1,
     "strategies": 28,
     "track_only": 4,
-    "watch_only": 11
+    "watch_only": 7
   },
-  "trade_date": "2026-06-24"
+  "trade_date": "2026-06-25"
 }
