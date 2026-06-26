@@ -3,10 +3,9 @@
     "CONTRACT": 1,
     "DECISION_ACCOUNTING": 1,
     "EVIDENCE": 1,
-    "EXECUTION": 1,
-    "RESEARCH": 1,
+    "MISC": 1,
     "ROUTE_POLICY": 1,
-    "RUNTIME": 2
+    "RUNTIME": 1
   },
   "certification_path": [
     {
@@ -38,60 +37,120 @@
   "first_action": {
     "blocks_live_trust": true,
     "blocks_normal_learning": false,
-    "can_auto_run": false,
+    "can_auto_run": true,
     "category": "RUNTIME",
     "certification_effect": "required_for_live_trust",
     "check_ids": [
-      "runtime_drift_restart_required"
+      "live_readiness_not_ready"
     ],
-    "command": "_DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat; _DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+    "command": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
     "evidence": [
-      "FAIL Runtime process restart required: 3 runtime role(s) started before watched code changed; restart_queue=3"
+      "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=3/1/5, bot_mode=EOD_FLATTENED, positions=0"
     ],
     "evidence_count": 1,
-    "group_id": "restart_stale_runtime",
-    "priority": 10,
-    "recovery_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-    "root_cause": "Runtime processes were started before watched code changed, so disk fixes may not be active in the live loop.",
+    "group_id": "restore_live_readiness",
+    "priority": 15,
+    "recovery_action": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+    "root_cause": "The live readiness light is false, so the bot/runtime state cannot be trusted for current trading.",
     "severity": "FAIL",
-    "title": "Restart stale live windows"
+    "title": "Restore live readiness"
   },
-  "generated_at": "2026-06-26T02:52:36.755119+00:00",
-  "generated_at_et": "2026-06-25T22:52:36.755119-04:00",
+  "generated_at": "2026-06-26T12:23:34.422564+00:00",
+  "generated_at_et": "2026-06-26T08:23:34.422564-04:00",
   "inputs": {
-    "certification_generated_at": "2026-06-26T02:43:43.209109+00:00",
-    "health_generated_at": "2026-06-26T02:43:46+00:00",
-    "live_readiness_generated_at": "2026-06-25T19:06:57+00:00",
-    "remediation_plan_generated_at": "2026-06-25T23:28:54+00:00",
-    "runtime_generated_at": "2026-06-25T19:06:51+00:00"
+    "certification_generated_at": "2026-06-26T12:23:33.572694+00:00",
+    "health_generated_at": "2026-06-26T12:23:28+00:00",
+    "live_readiness_generated_at": "2026-06-26T12:23:22+00:00",
+    "remediation_plan_generated_at": "2026-06-26T12:23:28+00:00",
+    "runtime_generated_at": "2026-06-26T12:23:20+00:00"
   },
   "negative_checks": [
     {
-      "detail": "123 ERROR breach(es) in current validator output",
+      "detail": "stale during pre: 82570s old, limit 2700s",
+      "id": "contract_source_refresh",
+      "label": "Contract source refresh report",
+      "status": "WARN"
+    },
+    {
+      "detail": "stale during pre: 34784s old, limit 2700s",
+      "id": "contract_daily_certification",
+      "label": "Contract daily spine certification",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 34783s old, limit 2700s",
+      "id": "contract_promotion_gate",
+      "label": "Contract promotion/demotion gate",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 34250s old, limit 2700s",
+      "id": "contract_live_trust_recovery",
+      "label": "Contract live trust recovery",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 34250s old, limit 2700s",
+      "id": "contract_live_trust_executor",
+      "label": "Contract live trust executor",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 33861s old, limit 2700s",
+      "id": "contract_ai_learning_layer",
+      "label": "Contract AI learning hypothesis ledger",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 32351s old, limit 2700s",
+      "id": "contract_auction_truth_shadow",
+      "label": "Contract auction truth shadow score",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during pre: 1466s old, limit 720s",
+      "id": "live_signals",
+      "label": "Live signals feed",
+      "status": "WARN"
+    },
+    {
+      "detail": "stale during pre: 1406s old, limit 720s",
+      "id": "live_regime",
+      "label": "Live regime feed",
+      "status": "WARN"
+    },
+    {
+      "detail": "stale during pre: 1296s old, limit 720s",
+      "id": "bot_status",
+      "label": "Bot status feed",
+      "status": "WARN"
+    },
+    {
+      "detail": "stale during pre: 1295s old, limit 1200s",
+      "id": "auto_trade_log",
+      "label": "Auto-trade log",
+      "status": "WARN"
+    },
+    {
+      "detail": "trading bot process not detected during tradable session",
+      "id": "runtime_processes",
+      "label": "Runtime processes",
+      "status": "FAIL"
+    },
+    {
+      "detail": "10 ERROR breach(es) in current validator output",
       "id": "contract_break_errors",
       "label": "Contract validator errors",
       "status": "FAIL"
     },
     {
-      "detail": "39 adverse fill warning(s)",
-      "id": "fill_reconcile_warnings",
-      "label": "Adverse fill slippage warnings",
-      "status": "WARN"
-    },
-    {
-      "detail": "0 open unguarded, 2 partial-open trace(s)",
-      "id": "exit_reconcile_open_risk",
-      "label": "Open exit coverage risk",
+      "detail": "10 active panel registry failure(s)",
+      "id": "panel_registry_contracts",
+      "label": "Panel registry contract failures",
       "status": "FAIL"
     },
     {
-      "detail": "1 skipped/ghost group(s) show positive forward evidence",
-      "id": "ghost_ledger_opportunities",
-      "label": "Skipped ghost opportunity groups",
-      "status": "WARN"
-    },
-    {
-      "detail": "6 strategy permission(s) are blocked by contract failures",
+      "detail": "25 strategy permission(s) are blocked by contract failures",
       "id": "trade_permissions_blocked",
       "label": "Blocked strategy permissions",
       "status": "WARN"
@@ -103,75 +162,45 @@
       "status": "WARN"
     },
     {
-      "detail": "2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-      "id": "route_readiness_warnings",
-      "label": "Allowed bot route readiness warnings",
-      "status": "WARN"
-    },
-    {
-      "detail": "inferred_duplicate_needs_explicit=76, pending_new=28",
-      "id": "decision_obligation_warnings",
-      "label": "Inferred duplicate/pending pick accounting",
-      "status": "WARN"
-    },
-    {
-      "detail": "2896 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-      "id": "decision_obligation_time_order_warnings",
-      "label": "Decision obligation timestamp ordering warnings",
-      "status": "WARN"
-    },
-    {
-      "detail": "236 live-fire pick(s) were posthoc accounted; candidate_traces=236",
-      "id": "live_fire_accounting_backfilled",
-      "label": "Live-fire decisions backfilled after runtime silence",
-      "status": "WARN"
-    },
-    {
-      "detail": "3 runtime role(s) started before watched code changed; restart_queue=3",
-      "id": "runtime_drift_restart_required",
-      "label": "Runtime process restart required",
+      "detail": "3 required runtime role(s) missing during pre",
+      "id": "runtime_drift_missing_required",
+      "label": "Required runtime process missing",
       "status": "FAIL"
     },
     {
-      "detail": "live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=TRIGGER_LIVE, positions=100",
+      "detail": "live_ready=False, checks ok/warn/fail=3/1/5, bot_mode=EOD_FLATTENED, positions=0",
       "id": "live_readiness_not_ready",
       "label": "Live readiness blocked",
       "status": "FAIL"
     },
     {
-      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=20, hard_safety=10, positions=123, context=98785f9175922512",
+      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=15, hard_safety=6, positions=0, context=5fe6c4915c56c98f",
       "id": "session_context_dirty_data",
       "label": "Session provenance dirty-data warning",
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, actual_trades=61, ghost_graded=54023, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+      "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=51133, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
       "id": "score_provenance_quarantine",
       "label": "Score provenance partition guard",
       "status": "WARN"
     },
     {
-      "detail": "experiment/review evidence=54084, experiment_strategies=24, review_strategies=0",
+      "detail": "experiment/review evidence=51133, experiment_strategies=22, review_strategies=0",
       "id": "score_partitions_no_normal",
       "label": "Normal score leaderboard empty",
       "status": "WARN"
     },
     {
-      "detail": "30 score-consuming strategy route(s) locked to research/display; normal=0, experiment=24, review=0",
+      "detail": "29 score-consuming strategy route(s) locked to research/display; normal=0, experiment=22, review=0",
       "id": "score_consumer_lock_active",
       "label": "Score consumer lock active",
       "status": "WARN"
     },
     {
-      "detail": "missed=1576, no_decision=805, slow_decisions=963, slow_orders=39, order_after_peak=2",
+      "detail": "missed=5, no_decision=0, slow_decisions=12, slow_orders=0, order_after_peak=0",
       "id": "latency_missed_move_warnings",
       "label": "Latency / missed move warnings",
-      "status": "WARN"
-    },
-    {
-      "detail": "242 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
-      "id": "order_permission_pre_lock_review",
-      "label": "Pre-lock orders now disallowed",
       "status": "WARN"
     },
     {
@@ -181,37 +210,16 @@
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=61",
+      "detail": "partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=0",
       "id": "evidence_cleanliness_quarantine",
       "label": "Evidence cleanliness quarantine",
       "status": "WARN"
     }
   ],
-  "next_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-  "operator_read": "First recovery action: Restart stale live windows.",
+  "next_action": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+  "operator_read": "First recovery action: Restore live readiness.",
   "overall": "FAIL",
   "recovery_groups": [
-    {
-      "blocks_live_trust": true,
-      "blocks_normal_learning": false,
-      "can_auto_run": false,
-      "category": "RUNTIME",
-      "certification_effect": "required_for_live_trust",
-      "check_ids": [
-        "runtime_drift_restart_required"
-      ],
-      "command": "_DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat; _DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
-      "evidence": [
-        "FAIL Runtime process restart required: 3 runtime role(s) started before watched code changed; restart_queue=3"
-      ],
-      "evidence_count": 1,
-      "group_id": "restart_stale_runtime",
-      "priority": 10,
-      "recovery_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-      "root_cause": "Runtime processes were started before watched code changed, so disk fixes may not be active in the live loop.",
-      "severity": "FAIL",
-      "title": "Restart stale live windows"
-    },
     {
       "blocks_live_trust": true,
       "blocks_normal_learning": false,
@@ -223,7 +231,7 @@
       ],
       "command": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
       "evidence": [
-        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=TRIGGER_LIVE, positions=100"
+        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=3/1/5, bot_mode=EOD_FLATTENED, positions=0"
       ],
       "evidence_count": 1,
       "group_id": "restore_live_readiness",
@@ -244,7 +252,7 @@
       ],
       "command": null,
       "evidence": [
-        "FAIL Contract validator errors: 123 ERROR breach(es) in current validator output"
+        "FAIL Contract validator errors: 10 ERROR breach(es) in current validator output"
       ],
       "evidence_count": 1,
       "group_id": "repair_contract_breaks",
@@ -253,29 +261,6 @@
       "root_cause": "Validator errors mean the Panel -> Score chain still has broken trace links.",
       "severity": "FAIL",
       "title": "Repair explicit lifecycle contract breaks"
-    },
-    {
-      "blocks_live_trust": true,
-      "blocks_normal_learning": true,
-      "can_auto_run": true,
-      "category": "EXECUTION",
-      "certification_effect": "required_for_normal_certification",
-      "check_ids": [
-        "fill_reconcile_warnings",
-        "exit_reconcile_open_risk"
-      ],
-      "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat; _DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
-      "evidence": [
-        "WARN Adverse fill slippage warnings: 39 adverse fill warning(s)",
-        "FAIL Open exit coverage risk: 0 open unguarded, 2 partial-open trace(s)"
-      ],
-      "evidence_count": 2,
-      "group_id": "repair_execution_reconciliation",
-      "priority": 30,
-      "recovery_action": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
-      "root_cause": "Partial/open exits and adverse fills can make realized edge untrustworthy.",
-      "severity": "FAIL",
-      "title": "Repair fill and exit reconciliation"
     },
     {
       "blocks_live_trust": false,
@@ -288,21 +273,19 @@
         "score_provenance_quarantine",
         "score_partitions_no_normal",
         "score_consumer_lock_active",
-        "order_permission_pre_lock_review",
         "bot_gate_enforcement_disabled",
         "evidence_cleanliness_quarantine"
       ],
       "command": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat; _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat; _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat; _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
       "evidence": [
-        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=20, hard_safety=10, positions=123, context=98785f9175922512",
-        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=61, ghost_graded=54023, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "WARN Normal score leaderboard empty: experiment/review evidence=54084, experiment_strategies=24, review_strategies=0",
-        "WARN Score consumer lock active: 30 score-consuming strategy route(s) locked to research/display; normal=0, experiment=24, review=0",
-        "WARN Pre-lock orders now disallowed: 242 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
+        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=15, hard_safety=6, positions=0, context=5fe6c4915c56c98f",
+        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=0, ghost_graded=51133, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "WARN Normal score leaderboard empty: experiment/review evidence=51133, experiment_strategies=22, review_strategies=0",
+        "WARN Score consumer lock active: 29 score-consuming strategy route(s) locked to research/display; normal=0, experiment=22, review=0",
         "WARN Bot gate enforcement disabled: permission_enforce=False, health_enforce=False, block_unknown=False, allows_fire_override=True",
-        "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=61"
+        "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=0"
       ],
-      "evidence_count": 7,
+      "evidence_count": 6,
       "group_id": "restore_normal_evidence_profile",
       "priority": 40,
       "recovery_action": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
@@ -317,21 +300,13 @@
       "category": "DECISION_ACCOUNTING",
       "certification_effect": "required_for_clean_forward_day",
       "check_ids": [
-        "route_readiness_warnings",
-        "decision_obligation_warnings",
-        "decision_obligation_time_order_warnings",
-        "live_fire_accounting_backfilled",
         "latency_missed_move_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat; _DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
       "evidence": [
-        "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-        "WARN Inferred duplicate/pending pick accounting: inferred_duplicate_needs_explicit=76, pending_new=28",
-        "WARN Decision obligation timestamp ordering warnings: 2896 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "WARN Live-fire decisions backfilled after runtime silence: 236 live-fire pick(s) were posthoc accounted; candidate_traces=236",
-        "WARN Latency / missed move warnings: missed=1576, no_decision=805, slow_decisions=963, slow_orders=39, order_after_peak=2"
+        "WARN Latency / missed move warnings: missed=5, no_decision=0, slow_decisions=12, slow_orders=0, order_after_peak=0"
       ],
-      "evidence_count": 5,
+      "evidence_count": 1,
       "group_id": "repair_real_time_decision_accounting",
       "priority": 50,
       "recovery_action": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
@@ -351,7 +326,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "WARN Blocked strategy permissions: 6 strategy permission(s) are blocked by contract failures",
+        "WARN Blocked strategy permissions: 25 strategy permission(s) are blocked by contract failures",
         "WARN Invalid route-policy override: 1 route-policy override(s) were invalid"
       ],
       "evidence_count": 2,
@@ -366,182 +341,87 @@
       "blocks_live_trust": false,
       "blocks_normal_learning": false,
       "can_auto_run": false,
-      "category": "RESEARCH",
-      "certification_effect": "research_only_until_normal_day",
+      "category": "MISC",
+      "certification_effect": "operator_review",
       "check_ids": [
-        "ghost_ledger_opportunities"
+        "contract_source_refresh",
+        "contract_daily_certification",
+        "contract_promotion_gate",
+        "contract_live_trust_recovery",
+        "contract_live_trust_executor",
+        "contract_ai_learning_layer",
+        "contract_auction_truth_shadow",
+        "live_signals",
+        "live_regime",
+        "bot_status",
+        "auto_trade_log",
+        "runtime_processes",
+        "panel_registry_contracts",
+        "runtime_drift_missing_required"
       ],
       "command": null,
       "evidence": [
-        "WARN Skipped ghost opportunity groups: 1 skipped/ghost group(s) show positive forward evidence"
+        "WARN Contract source refresh report: stale during pre: 82570s old, limit 2700s",
+        "FAIL Contract daily spine certification: stale during pre: 34784s old, limit 2700s",
+        "FAIL Contract promotion/demotion gate: stale during pre: 34783s old, limit 2700s",
+        "FAIL Contract live trust recovery: stale during pre: 34250s old, limit 2700s",
+        "FAIL Contract live trust executor: stale during pre: 34250s old, limit 2700s",
+        "FAIL Contract AI learning hypothesis ledger: stale during pre: 33861s old, limit 2700s",
+        "FAIL Contract auction truth shadow score: stale during pre: 32351s old, limit 2700s",
+        "WARN Live signals feed: stale during pre: 1466s old, limit 720s",
+        "WARN Live regime feed: stale during pre: 1406s old, limit 720s",
+        "WARN Bot status feed: stale during pre: 1296s old, limit 720s",
+        "WARN Auto-trade log: stale during pre: 1295s old, limit 1200s",
+        "FAIL Runtime processes: trading bot process not detected during tradable session",
+        "FAIL Panel registry contract failures: 10 active panel registry failure(s)",
+        "FAIL Required runtime process missing: 3 required runtime role(s) missing during pre"
       ],
-      "evidence_count": 1,
-      "group_id": "review_positive_skips",
-      "priority": 70,
-      "recovery_action": "After plumbing is fresh, inspect fem_contract_ghost_ledger.json for loosening candidates.",
-      "root_cause": "Some skipped/ghost groups show positive evidence, but this only becomes actionable after contract trust is restored.",
-      "severity": "WARN",
-      "title": "Review positive skipped opportunities"
+      "evidence_count": 14,
+      "group_id": "misc_health_followup",
+      "priority": 90,
+      "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
+      "root_cause": "A health check was not mapped to a specific recovery group.",
+      "severity": "FAIL",
+      "title": "Miscellaneous health follow-up"
     }
   ],
   "restart_queue": [
     {
-      "detail": "Trade bot started before watched code changed",
+      "detail": "Trade bot is not running during pre",
       "label": "Trade bot",
-      "processes": [
-        {
-          "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --until 15:45",
-          "name": "py.exe",
-          "process_id": 28916,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T17:48:44+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_auto_trade.py --mode trigger --until 15:45",
-          "name": "python.exe",
-          "process_id": 17740,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T17:48:44+00:00",
-          "status": "FAIL"
-        }
-      ],
+      "processes": [],
       "role": "trade_bot"
     },
     {
-      "detail": "Live runner started before watched code changed",
+      "detail": "Live runner is not running during pre",
       "label": "Live runner",
-      "processes": [
-        {
-          "command_line": "py  -3.12 fem_live_runner.py",
-          "name": "py.exe",
-          "process_id": 12912,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_runner.py",
-          "name": "python.exe",
-          "process_id": 24300,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        }
-      ],
+      "processes": [],
       "role": "live_runner"
     },
     {
-      "detail": "Live fire grader started before watched code changed",
+      "detail": "Live fire grader is not running during pre",
       "label": "Live fire grader",
-      "processes": [
-        {
-          "command_line": "cmd  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && py -3.12 fem_live_fire_grade.py --loop 60\"",
-          "name": "cmd.exe",
-          "process_id": 22764,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "py  -3.12 fem_live_fire_grade.py --loop 60",
-          "name": "py.exe",
-          "process_id": 28204,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_fire_grade.py --loop 60",
-          "name": "python.exe",
-          "process_id": 12324,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        }
-      ],
+      "processes": [],
       "role": "live_fire_grade"
     },
     {
-      "detail": "Trade bot started before watched code changed",
+      "detail": "Trade bot is not running during pre",
       "label": "Trade bot",
-      "latest_watched_file": "fem_contract_runtime.py",
-      "latest_watched_mtime_utc": "2026-06-25T18:22:48+00:00",
-      "missing_required": false,
-      "process_count": 2,
-      "processes": [
-        {
-          "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --until 15:45",
-          "name": "py.exe",
-          "process_id": 28916,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T17:48:44+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_auto_trade.py --mode trigger --until 15:45",
-          "name": "python.exe",
-          "process_id": 17740,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T17:48:44+00:00",
-          "status": "FAIL"
-        }
-      ],
-      "restart_required": true,
+      "latest_watched_file": "fem_auto_trade.py",
+      "latest_watched_mtime_utc": "2026-06-26T11:43:04+00:00",
+      "missing_required": true,
+      "process_count": 0,
+      "processes": [],
+      "restart_required": false,
       "role": "trade_bot",
-      "running": true,
+      "running": false,
       "status": "FAIL",
       "watched_files": [
         {
           "exists": true,
-          "mtime_utc": "2026-06-25T17:40:23+00:00",
+          "mtime_utc": "2026-06-26T11:43:04+00:00",
           "path": "fem_auto_trade.py",
-          "size_bytes": 329676
+          "size_bytes": 329566
         },
         {
           "exists": true,
@@ -552,43 +432,16 @@
       ]
     },
     {
-      "detail": "Live runner started before watched code changed",
+      "detail": "Live runner is not running during pre",
       "label": "Live runner",
       "latest_watched_file": "fem_contract_runtime.py",
       "latest_watched_mtime_utc": "2026-06-25T18:22:48+00:00",
-      "missing_required": false,
-      "process_count": 2,
-      "processes": [
-        {
-          "command_line": "py  -3.12 fem_live_runner.py",
-          "name": "py.exe",
-          "process_id": 12912,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_runner.py",
-          "name": "python.exe",
-          "process_id": 24300,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        }
-      ],
-      "restart_required": true,
+      "missing_required": true,
+      "process_count": 0,
+      "processes": [],
+      "restart_required": false,
       "role": "live_runner",
-      "running": true,
+      "running": false,
       "status": "FAIL",
       "watched_files": [
         {
@@ -616,92 +469,25 @@
           "size_bytes": 12001
         }
       ]
-    },
-    {
-      "detail": "Live fire grader started before watched code changed",
-      "label": "Live fire grader",
-      "latest_watched_file": "fem_contract_runtime.py",
-      "latest_watched_mtime_utc": "2026-06-25T18:22:48+00:00",
-      "missing_required": false,
-      "process_count": 3,
-      "processes": [
-        {
-          "command_line": "cmd  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && py -3.12 fem_live_fire_grade.py --loop 60\"",
-          "name": "cmd.exe",
-          "process_id": 22764,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "py  -3.12 fem_live_fire_grade.py --loop 60",
-          "name": "py.exe",
-          "process_id": 28204,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        },
-        {
-          "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_fire_grade.py --loop 60",
-          "name": "python.exe",
-          "process_id": 12324,
-          "stale_files": [
-            {
-              "mtime_utc": "2026-06-25T18:22:48+00:00",
-              "path": "fem_contract_runtime.py"
-            }
-          ],
-          "started_utc": "2026-06-25T16:27:06+00:00",
-          "status": "FAIL"
-        }
-      ],
-      "restart_required": true,
-      "role": "live_fire_grade",
-      "running": true,
-      "status": "FAIL",
-      "watched_files": [
-        {
-          "exists": true,
-          "mtime_utc": "2026-06-24T15:13:20+00:00",
-          "path": "fem_live_fire_grade.py",
-          "size_bytes": 12521
-        },
-        {
-          "exists": true,
-          "mtime_utc": "2026-06-25T18:22:48+00:00",
-          "path": "fem_contract_runtime.py",
-          "size_bytes": 12001
-        }
-      ]
     }
   ],
   "schema": "fem_contract_live_trust_recovery.v1",
   "summary": {
-    "auto_runnable_groups": 5,
-    "blocks_live_trust": 4,
-    "blocks_normal_learning": 5,
+    "auto_runnable_groups": 4,
+    "blocks_live_trust": 2,
+    "blocks_normal_learning": 4,
     "daily_certification": "EXPERIMENT_ONLY",
-    "fail_groups": 4,
-    "health_fail": 4,
+    "fail_groups": 3,
+    "health_fail": 11,
     "health_overall": "FAIL",
-    "health_warn": 16,
+    "health_warn": 14,
     "live_ready": false,
-    "manual_groups": 3,
-    "negative_checks": 20,
-    "recovery_groups": 8,
+    "manual_groups": 2,
+    "negative_checks": 25,
+    "recovery_groups": 6,
     "remediation_plan_overall": "FAIL",
-    "restart_queue": 6,
-    "warn_groups": 4
+    "restart_queue": 5,
+    "warn_groups": 3
   },
-  "trade_date": "2026-06-25"
+  "trade_date": "2026-06-26"
 }
