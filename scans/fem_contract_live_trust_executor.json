@@ -1,0 +1,499 @@
+{
+  "allowed_bats": [
+    "0H_CONTRACT_FILL_RECONCILE.bat",
+    "0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+    "0J_CONTRACT_EXIT_RECONCILE.bat",
+    "0K_CONTRACT_REALIZED_RESULT.bat",
+    "0N0_CONTRACT_ROUTE_POLICY.bat",
+    "0N_CONTRACT_TRADE_PERMISSIONS.bat",
+    "0P_CONTRACT_ROUTE_READINESS.bat",
+    "0Q_CONTRACT_LATENCY_AUDIT.bat",
+    "0R_CONTRACT_DECISION_OBLIGATION.bat",
+    "0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+    "0T_CONTRACT_RUNTIME_DRIFT.bat",
+    "0V_CONTRACT_LIVE_READINESS.bat",
+    "0W_CONTRACT_SESSION_CONTEXT.bat",
+    "0X_CONTRACT_SCORE_PROVENANCE.bat",
+    "0Y_CONTRACT_SCORE_PARTITIONS.bat",
+    "0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat"
+  ],
+  "code_version": "unknown",
+  "generated_at": "2026-06-26T02:52:37+00:00",
+  "generated_at_et": "2026-06-25T22:52:37-04:00",
+  "manual_blockers": [
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": false,
+      "check_ids": [
+        "runtime_drift_restart_required"
+      ],
+      "group_id": "restart_stale_runtime",
+      "recovery_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "severity": "FAIL",
+      "title": "Restart stale live windows"
+    },
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": true,
+      "check_ids": [
+        "contract_break_errors"
+      ],
+      "group_id": "repair_contract_breaks",
+      "recovery_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
+      "severity": "FAIL",
+      "title": "Repair explicit lifecycle contract breaks"
+    }
+  ],
+  "mode": "DRY_RUN",
+  "operator_read": "Safe steps are ready, but manual live-trust blockers remain; the executor will not restart trading windows.",
+  "overall": "WARN",
+  "post_refresh": [],
+  "results": [
+    {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "executed": false,
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "status": "READY",
+      "title": "Restore live readiness",
+      "valid": true
+    },
+    {
+      "batch_name": "0H_CONTRACT_FILL_RECONCILE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat",
+      "command_text": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat",
+      "executed": false,
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "status": "READY",
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "command_text": "_DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "executed": false,
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "status": "READY",
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0J_CONTRACT_EXIT_RECONCILE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+      "command_text": "_DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+      "executed": false,
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "status": "READY",
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0K_CONTRACT_REALIZED_RESULT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
+      "command_text": "_DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
+      "executed": false,
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "status": "READY",
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
+      "command_text": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
+      "executed": false,
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "status": "READY",
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "command_text": "_DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "executed": false,
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "status": "READY",
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "command_text": "_DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "executed": false,
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "status": "READY",
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "command_text": "_DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "executed": false,
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "status": "READY",
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "command_text": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "executed": false,
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "status": "READY",
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "command_text": "_DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "executed": false,
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "status": "READY",
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "command_text": "_DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "executed": false,
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "status": "READY",
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0P_CONTRACT_ROUTE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
+      "command_text": "_DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
+      "executed": false,
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "status": "READY",
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0N0_CONTRACT_ROUTE_POLICY.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat",
+      "command_text": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat",
+      "executed": false,
+      "group_id": "clean_route_policy_permissions",
+      "invalid_reason": null,
+      "reason": "Run route policy and trade permissions, then inspect invalid overrides.",
+      "source_groups": [
+        "clean_route_policy_permissions"
+      ],
+      "status": "READY",
+      "title": "Clean route policy and permission ambiguity",
+      "valid": true
+    },
+    {
+      "batch_name": "0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "command_text": "_DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "executed": false,
+      "group_id": "clean_route_policy_permissions",
+      "invalid_reason": null,
+      "reason": "Run route policy and trade permissions, then inspect invalid overrides.",
+      "source_groups": [
+        "clean_route_policy_permissions"
+      ],
+      "status": "READY",
+      "title": "Clean route policy and permission ambiguity",
+      "valid": true
+    }
+  ],
+  "schema": "fem_contract_live_trust_executor.v1",
+  "selected_steps": [
+    {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "title": "Restore live readiness",
+      "valid": true
+    },
+    {
+      "batch_name": "0H_CONTRACT_FILL_RECONCILE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat",
+      "command_text": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat",
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "command_text": "_DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat",
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0J_CONTRACT_EXIT_RECONCILE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+      "command_text": "_DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0K_CONTRACT_REALIZED_RESULT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
+      "command_text": "_DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
+      "group_id": "repair_execution_reconciliation",
+      "invalid_reason": null,
+      "reason": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+      "source_groups": [
+        "repair_execution_reconciliation"
+      ],
+      "title": "Repair fill and exit reconciliation",
+      "valid": true
+    },
+    {
+      "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
+      "command_text": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "command_text": "_DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat",
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "command_text": "_DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat",
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "command_text": "_DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
+      "group_id": "restore_normal_evidence_profile",
+      "invalid_reason": null,
+      "reason": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
+      "source_groups": [
+        "restore_normal_evidence_profile"
+      ],
+      "title": "Return from experiment profile to normal evidence",
+      "valid": true
+    },
+    {
+      "batch_name": "0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "command_text": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat",
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "command_text": "_DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat",
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "command_text": "_DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0P_CONTRACT_ROUTE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
+      "command_text": "_DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
+      "group_id": "repair_real_time_decision_accounting",
+      "invalid_reason": null,
+      "reason": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "source_groups": [
+        "repair_real_time_decision_accounting"
+      ],
+      "title": "Make live picks accountable in real time",
+      "valid": true
+    },
+    {
+      "batch_name": "0N0_CONTRACT_ROUTE_POLICY.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat",
+      "command_text": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat",
+      "group_id": "clean_route_policy_permissions",
+      "invalid_reason": null,
+      "reason": "Run route policy and trade permissions, then inspect invalid overrides.",
+      "source_groups": [
+        "clean_route_policy_permissions"
+      ],
+      "title": "Clean route policy and permission ambiguity",
+      "valid": true
+    },
+    {
+      "batch_name": "0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "command_text": "_DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
+      "group_id": "clean_route_policy_permissions",
+      "invalid_reason": null,
+      "reason": "Run route policy and trade permissions, then inspect invalid overrides.",
+      "source_groups": [
+        "clean_route_policy_permissions"
+      ],
+      "title": "Clean route policy and permission ambiguity",
+      "valid": true
+    }
+  ],
+  "summary": {
+    "dry_run": true,
+    "executed_steps": 0,
+    "failed_steps": 0,
+    "groups": [
+      "clean_route_policy_permissions",
+      "repair_execution_reconciliation",
+      "repair_real_time_decision_accounting",
+      "restore_live_readiness",
+      "restore_normal_evidence_profile"
+    ],
+    "hard_manual_blockers": 2,
+    "invalid_steps": 0,
+    "manual_blockers": 2,
+    "post_refresh_steps": 0,
+    "ready_steps": 15,
+    "recovery_generated_at": "2026-06-26T02:52:36.755119+00:00",
+    "recovery_groups": 8,
+    "recovery_overall": "FAIL",
+    "selected_steps": 15,
+    "total_auto_steps": 15
+  },
+  "trade_date": "2026-06-25"
+}
