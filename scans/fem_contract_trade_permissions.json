@@ -6,6 +6,7 @@
     "block": [
       "all_time_high_long",
       "ath_long",
+      "dilution_short",
       "dump_short",
       "gap_reject_short",
       "meta_confluence",
@@ -80,6 +81,16 @@
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
         "side": "MIXED"
+      },
+      "dilution_short": {
+        "allowed_to_trade": false,
+        "panel_id": "dilution_short_candidate",
+        "permission": "BLOCK",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
+        "score_consumer_locked": true,
+        "score_partition": "UNTAGGED",
+        "side": "SHORT"
       },
       "dump_short": {
         "allowed_to_trade": false,
@@ -365,6 +376,17 @@
       "side": "LONG",
       "strategies": 2
     },
+    "dilution_short_candidate": {
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
+      "panel_id": "dilution_short_candidate",
+      "panel_name": "Dilution Short Candidate",
+      "permissions": {
+        "BLOCK": 1
+      },
+      "side": "SHORT",
+      "strategies": 1
+    },
     "gap_reject_short": {
       "allowed_strategies": [],
       "max_route_weight": 0.0,
@@ -620,8 +642,8 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-06-26T16:43:00+00:00",
-  "generated_at_et": "2026-06-26T12:43:00-04:00",
+  "generated_at": "2026-06-26T16:46:20+00:00",
+  "generated_at_et": "2026-06-26T12:46:20-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -816,6 +838,52 @@
       "route_weight": 0.0,
       "side": "MIXED",
       "strategy_id": "bull_bounce_pending"
+    },
+    "dilution_short": {
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
+      "contract": {
+        "bot_required": false,
+        "bot_route_ok": true,
+        "dashboard_ok": true,
+        "health_overall": "FAIL",
+        "normal_score_eligible": false,
+        "panel_status": "OK",
+        "publisher_ok": true,
+        "score_consumer_locked": true,
+        "score_consumer_reason": "no score evidence",
+        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_ok": true,
+        "score_partition": "UNTAGGED",
+        "source_ok": true
+      },
+      "evidence": {
+        "actual_avg_r": null,
+        "actual_closed": 0,
+        "actual_realized_pnl": null,
+        "actual_trades": 0,
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
+      },
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED"
+      ],
+      "panel_id": "dilution_short_candidate",
+      "panel_name": "Dilution Short Candidate",
+      "permission": "BLOCK",
+      "reasons": [
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+      ],
+      "risk_multiplier": 0.0,
+      "route_weight": 0.0,
+      "side": "SHORT",
+      "strategy_id": "dilution_short"
     },
     "dump_short": {
       "allowed_to_trade": false,
@@ -2072,6 +2140,13 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "dilution_short_candidate",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "dilution_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "live_fire_dump",
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "SHORT",
@@ -2218,13 +2293,13 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 17,
+    "block": 18,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 22,
     "permission_counts": {
-      "BLOCK": 17,
+      "BLOCK": 18,
       "TRACK_ONLY": 14
     },
     "registry_overall": "FAIL",
@@ -2234,12 +2309,12 @@
     "route_policy_overrides": 1,
     "score_consumer_allowed": 0,
     "score_consumer_lock_overall": "WARN",
-    "score_consumer_locked": 31,
+    "score_consumer_locked": 32,
     "score_partition_counts": {
       "EXPERIMENT": 22,
-      "UNTAGGED": 9
+      "UNTAGGED": 10
     },
-    "strategies": 31,
+    "strategies": 32,
     "track_only": 14,
     "watch_only": 0
   },
