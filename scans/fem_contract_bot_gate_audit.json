@@ -1,7 +1,7 @@
 {
   "chokepoints": {
     "place_bracket": {
-      "end_line": 3385,
+      "end_line": 3993,
       "missing": [],
       "present": true,
       "required_checks": {
@@ -12,11 +12,11 @@
         "_trade_permission_sized_quantity(": true,
         "self.placeOrder(": true
       },
-      "start_line": 3276,
+      "start_line": 3884,
       "structurally_gated": true
     },
     "place_short_bracket": {
-      "end_line": 3524,
+      "end_line": 4132,
       "missing": [],
       "present": true,
       "required_checks": {
@@ -27,7 +27,7 @@
         "_trade_permission_sized_quantity(": true,
         "self.placeOrder(": true
       },
-      "start_line": 3417,
+      "start_line": 4025,
       "structurally_gated": true
     }
   },
@@ -36,91 +36,172 @@
     {
       "call": "app.place_short_bracket(",
       "has_strategy_id": true,
-      "line": 4746,
+      "line": 5436,
       "snippet": "app.place_short_bracket(ss, sq, se_lmt, sst, stg, strategy_id='short_genesis') _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'short genesis candidate accepted and short bracket placed', order_id=spid, stop_order_id=ssid, target_order_id=stid, strategy_id='short_genesis', qty=sq,"
     },
     {
       "call": "app.place_short_bracket(",
       "has_strategy_id": true,
-      "line": 4882,
+      "line": 5572,
       "snippet": "app.place_short_bracket(ss, sq, se_lmt, sst, stg, strategy_id=strategy_id) _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'short universe candidate accepted and short bracket placed', order_id=spid, stop_order_id=ssid, target_order_id=stid, strategy_id=strategy_id, qty=sq,"
     },
     {
       "call": "app.place_short_bracket(",
       "has_strategy_id": true,
-      "line": 5002,
+      "line": 5692,
       "snippet": "app.place_short_bracket( ds_sym, dq, de_lmt, ds, dt, strategy_id='dilution_short') _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'dilution short accepted on VWAP rejection', order_id=spid, stop_order_id=ssid, target_order_id=stid, strategy_id='dilution_short', qty=dq, entry=de_lmt, stop=ds, target=dt, vwap=vwap, recent_5m_high=recent_high, )"
     },
     {
       "call": "app.place_short_bracket(",
       "has_strategy_id": true,
-      "line": 5142,
+      "line": 5832,
       "snippet": "app.place_short_bracket(fs, fq, fe_lmt, fst, ftg, strategy_id=_stag) _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'FEM short candidate accepted and short bracket placed', order_id=fpid, stop_order_id=fsid, target_order_id=ftid, strategy_id=_stag, qty=fq, entry=fe_lmt, stop=fst, targe"
     },
     {
       "call": "app.place_bracket(",
       "has_strategy_id": true,
-      "line": 5266,
+      "line": 5956,
       "snippet": "app.place_bracket(ls, lq, le, lst, ltg, strategy_id='bull_bounce_long') _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'FEM long candidate accepted and long bracket placed', order_id=lpid, stop_order_id=lsid, target_order_id=ltid, strategy_id='bull_bounce_long', qty=lq, en"
     },
     {
       "call": "app.place_bracket(",
       "has_strategy_id": true,
-      "line": 5422,
+      "line": 6112,
       "snippet": "app.place_bracket(rs, rq, re_, rst, rtg, strategy_id='sma_reclaim_long') _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'SMA reclaim candidate accepted and long bracket placed', order_id=rpid, stop_order_id=rsid, target_order_id=rtid, strategy_id='sma_reclaim_long', qty=rq, entry=re_, stop=rst,"
     },
     {
       "call": "app.place_bracket(",
       "has_strategy_id": true,
-      "line": 5655,
+      "line": 6345,
       "snippet": "app.place_bracket(ms, m_qty, m_entry_lmt, m_stop, m_tp1, scale_frac=SURGE_MICRO_SCALE_FRAC, strategy_id=SURGE_MICRO_STRATEGY_ID) _contract_accept_fire( cf, 'ORDER_ACCEPTED', 'surge micro candidate accepted and long bracket placed', order_id=mpid, stop_order_id=msid, target_or"
     },
     {
       "call": "app.place_short_bracket(",
       "has_strategy_id": true,
-      "line": 5807,
+      "line": 6497,
       "snippet": "app.place_short_bracket(sym, s_qty, s_entry_lmt, s_stop, s_target, strategy_id=_dump_strategy) _contract_accept_fire( f, 'ORDER_ACCEPTED', 'dump fire accepted and short bracket placed', order_id=pid, stop_order_id=sid, target_order_id=tid, strategy_id=_dump_strategy, qty=s_qty,"
     },
     {
       "call": "app.place_bracket(",
       "has_strategy_id": true,
-      "line": 6025,
+      "line": 6715,
       "snippet": "app.place_bracket(sym, qty, entry_lmt, stop, target, scale_frac=sc, strategy_id=_strat) _contract_accept_fire( f, 'ORDER_ACCEPTED', 'fire accepted and long bracket placed', order_id=pid, stop_order_id=sid, target_order_id=tid, strategy_id=_strat, qty=qty, entry=entry_lmt, stop=stop, ta"
     }
   ],
+  "entry_gate_pipeline": {
+    "end_line": 1515,
+    "missing": [],
+    "present": true,
+    "required_checks": {
+      "_daily_pnl_guard_gate(": true,
+      "_entry_gate_router_gate(": true,
+      "_route_lock_gate(": true,
+      "_source_freshness_gate(": true
+    },
+    "start_line": 1399,
+    "structurally_gated": true
+  },
   "failures": [],
   "flags": {
     "CONTRACT_HEALTH_BLOCK_FAIL": {
-      "comment": "# Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. To revert: restore env-driven default above.",
-      "line": 81,
+      "comment": "#Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. To revert: restore env-driven default above.",
+      "env_controlled": false,
+      "expression": "False",
+      "line": 82,
       "name": "CONTRACT_HEALTH_BLOCK_FAIL",
       "present": true,
       "value": false
     },
     "CONTRACT_HEALTH_ENFORCE": {
-      "comment": "# Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Was crashing bot on GRRR short with ContractHealthBlocked exception even after _allows_fire override. To revert: restore env-driven default above.",
-      "line": 80,
+      "comment": "#Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Was crashing bot on GRRR short with ContractHealthBlocked exception even after _allows_fire override. To revert: restore env-driven default above.",
+      "env_controlled": false,
+      "expression": "False",
+      "line": 81,
       "name": "CONTRACT_HEALTH_ENFORCE",
       "present": true,
       "value": false
     },
+    "DAILY_PNL_GUARD_ENFORCE": {
+      "comment": null,
+      "env_controlled": true,
+      "expression": "os.environ.get('FEM_DAILY_PNL_GUARD_ENFORCE', '1').strip().lower() not in ('0', 'false', 'no', 'off')",
+      "line": 1830,
+      "name": "DAILY_PNL_GUARD_ENFORCE",
+      "present": true,
+      "value": true
+    },
+    "GATE_ROUTER_ENFORCE": {
+      "comment": null,
+      "env_controlled": true,
+      "expression": "os.environ.get('FEM_GATE_ROUTER_ENFORCE', '1').strip().lower() not in ('0', 'false', 'no', 'off')",
+      "line": 94,
+      "name": "GATE_ROUTER_ENFORCE",
+      "present": true,
+      "value": true
+    },
+    "PROFIT_LOCK_ENABLED": {
+      "comment": "#Jun22: stop the daily \"up green, slowly leak it back\" loop.",
+      "env_controlled": false,
+      "expression": "True",
+      "line": 1829,
+      "name": "PROFIT_LOCK_ENABLED",
+      "present": true,
+      "value": true
+    },
+    "ROUTE_LOCK_ENFORCE": {
+      "comment": null,
+      "env_controlled": true,
+      "expression": "os.environ.get('FEM_ROUTE_LOCK_ENFORCE', '1').strip().lower() not in ('0', 'false', 'no', 'off')",
+      "line": 90,
+      "name": "ROUTE_LOCK_ENFORCE",
+      "present": true,
+      "value": true
+    },
+    "SOURCE_FRESHNESS_ENFORCE": {
+      "comment": null,
+      "env_controlled": true,
+      "expression": "os.environ.get('FEM_SOURCE_FRESHNESS_ENFORCE', '1').strip().lower() not in ('0', 'false', 'no', 'off')",
+      "line": 88,
+      "name": "SOURCE_FRESHNESS_ENFORCE",
+      "present": true,
+      "value": true
+    },
     "TRADE_PERMISSION_BLOCK_UNKNOWN": {
-      "comment": "# Jun25 (Gill): HARD OFF.",
-      "line": 93,
+      "comment": "#Jun25 (Gill): HARD OFF.",
+      "env_controlled": false,
+      "expression": "False",
+      "line": 103,
       "name": "TRADE_PERMISSION_BLOCK_UNKNOWN",
       "present": true,
       "value": false
     },
     "TRADE_PERMISSION_ENFORCE": {
-      "comment": "# Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Same crash class as ContractHealthBlocked: place_bracket called _trade_permission_gate directly, bypassed the earlier _allows_fire override, raised TradePermissionBlocked, crashed bot on sma_reclaim_long. T",
-      "line": 92,
+      "comment": "#Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Same crash class as ContractHealthBlocked: place_bracket called _trade_permission_gate directly, bypassed the earlier _allows_fire override, raised TradePermissionBlocked, crashed bot on sma_reclaim_long. To",
+      "env_controlled": false,
+      "expression": "False",
+      "line": 102,
       "name": "TRADE_PERMISSION_ENFORCE",
       "present": true,
       "value": false
     }
   },
-  "generated_at": "2026-06-27T01:17:30+00:00",
-  "generated_at_et": "2026-06-26T21:17:30-04:00",
+  "gate_router_entry_enforcement": {
+    "end_line": 1217,
+    "missing": [],
+    "present": true,
+    "required_checks": {
+      "LIVE_DILUTION_RED_LONG_BLOCK": true,
+      "MIN_DAILY_VOLUME": true,
+      "MISSING_OR_INVALID_PRICE": true,
+      "STOP_GEOMETRY": true,
+      "ZERO_SIZE": true,
+      "_gate_router_block(": true
+    },
+    "start_line": 1106,
+    "structurally_gated": true
+  },
+  "generated_at": "2026-06-28T16:22:35+00:00",
+  "generated_at_et": "2026-06-28T12:22:35-04:00",
   "inputs": {
     "bot_exists": true,
     "bot_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_auto_trade.py",
@@ -137,7 +218,7 @@
       "runs_trigger": true
     }
   },
-  "operator_read": "Bot gate audit found no active daily entry bypass, but enforcement switches are disabled/overridden; treat resulting trades as experiment evidence until those switches are restored.",
+  "operator_read": "Bot gate audit found no active entry bypass. Route lock, source freshness, daily P&L guard, and route-specific hard gates are mechanically active; warnings are legacy/contract-health caveats.",
   "overall": "WARN",
   "raw_place_order_counts": {
     "ENTRY_CHOKEPOINT": 6,
@@ -148,149 +229,157 @@
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "set_gap_target",
-      "line": 2038,
+      "line": 2646,
       "snippet": "ntent( sid, sym, 'SELL', 'GAP_OVERHEAD_PROTECTIVE_STOP', qty=int(cur_qty), order_type=stp.orderType, stop_price=stp_px, position_side='LONG', ts=ts, detail='protect remainder after overhead-gap target', gap_lo=gap_lo, ) app.placeOrder(tid, c, tgt) app.placeOrder(sid, c, stp) return tid, sid def _sell_partial(app, sym, qty, last_px, intent='PARTIAL_BANK', ts=None, detail=None): \"\"\"Jun10 ladder: bank a partial NOW with a marketable cross-LMT (the order style that filled reliably all day), not a resting limit. Returns"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "set_gap_target",
-      "line": 2039,
+      "line": 2647,
       "snippet": "'GAP_OVERHEAD_PROTECTIVE_STOP', qty=int(cur_qty), order_type=stp.orderType, stop_price=stp_px, position_side='LONG', ts=ts, detail='protect remainder after overhead-gap target', gap_lo=gap_lo, ) app.placeOrder(tid, c, tgt) app.placeOrder(sid, c, stp) return tid, sid def _sell_partial(app, sym, qty, last_px, intent='PARTIAL_BANK', ts=None, detail=None): \"\"\"Jun10 ladder: bank a partial NOW with a marketable cross-LMT (the order style that filled reliably all day), not a resting limit. Returns order id or None.\"\"\" if "
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "_sell_partial",
-      "line": 2059,
+      "line": 2667,
       "snippet": ".transmit = True _log_exit_intent( oid, sym, 'SELL', intent, qty=int(qty), order_type=o.orderType, limit_price=o.lmtPrice, position_side='LONG', ts=ts, detail=detail or 'software partial sell', last_price=last_px, ) app.placeOrder(oid, app.stock_contract(sym), o) return oid def _buy_partial(app, sym, qty, last_px, intent='PARTIAL_COVER', ts=None, detail=None): \"\"\"Jun11: short-side mirror of _sell_partial \u00e2\u20ac\u201d cover a partial NOW with a marketable cross-LMT BUY. Returns order id or None.\"\"\" if qty <= 0 or not last_px"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "_buy_partial",
-      "line": 2079,
+      "line": 2687,
       "snippet": "transmit = True _log_exit_intent( oid, sym, 'BUY', intent, qty=int(qty), order_type=o.orderType, limit_price=o.lmtPrice, position_side='SHORT', ts=ts, detail=detail or 'software partial cover', last_price=last_px, ) app.placeOrder(oid, app.stock_contract(sym), o) return oid def _replace_stop(app, sym, qty, stop_px, old_id=None, action='SELL', intent='STOP_REPLACE', ts=None, detail=None): \"\"\"Jun10 ladder: (re)place the protective stop for the CURRENT remainder at the CURRENT ratchet level. Cancels the old stop first"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "_replace_stop",
-      "line": 2110,
+      "line": 2718,
       "snippet": "sid, sym, action, intent, qty=int(qty), order_type=o.orderType, stop_price=stop_px, position_side=('SHORT' if action == 'BUY' else 'LONG'), ts=ts, replaces_order_id=old_id, detail=detail or 'protective stop replacement', ) app.placeOrder(sid, app.stock_contract(sym), o) return sid def apply_ledger_levels(sym, gates, entry, stop, t1): \"\"\"#4: prefer the trade-today ledger's entry/stop/target for the bracket.\"\"\" lv = gates.get('levels', {}).get(sym) if lv: return (lv.get('entry') or entry, lv.get('stop') or stop, lv.g"
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_bracket",
-      "line": 3380,
+      "line": 3988,
       "snippet": "osition_side='LONG', parent_order_id=parent_id, strategy_id=strategy_id or 'UNTAGGED_LONG', entry_order_id=parent_id, detail='native bracket child target', oca_group=oca, scale_frac=scale_frac, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_exit_stop(self, symbol, qty, stop_px, side='LONG', intent='STOP_REPAIR', ts=None, detail=None): \"\"\"One-off protective stop repair for an already-open position.\"\"\" oid"
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_bracket",
-      "line": 3381,
+      "line": 3989,
       "snippet": ", strategy_id=strategy_id or 'UNTAGGED_LONG', entry_order_id=parent_id, detail='native bracket child target', oca_group=oca, scale_frac=scale_frac, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_exit_stop(self, symbol, qty, stop_px, side='LONG', intent='STOP_REPAIR', ts=None, detail=None): \"\"\"One-off protective stop repair for an already-open position.\"\"\" oid = self.next_id() c = self.stock_contra"
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_bracket",
-      "line": 3382,
+      "line": 3990,
       "snippet": "UNTAGGED_LONG', entry_order_id=parent_id, detail='native bracket child target', oca_group=oca, scale_frac=scale_frac, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_exit_stop(self, symbol, qty, stop_px, side='LONG', intent='STOP_REPAIR', ts=None, detail=None): \"\"\"One-off protective stop repair for an already-open position.\"\"\" oid = self.next_id() c = self.stock_contract(symbol) action = 'SELL' if str("
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "place_exit_stop",
-      "line": 3396,
+      "line": 4004,
       "snippet": "p_px) _log_exit_intent( oid, symbol, action, intent, qty=int(abs(qty)), order_type=order.orderType, stop_price=stop_px, position_side=side, ts=ts, detail=detail or 'one-off protective stop repair', ) self.placeOrder(oid, c, order) self._order_sym[oid] = symbol log.info(f' >>> EXIT-REPAIR {symbol}: {action} STP x{int(abs(qty))} @ {round(float(stop_px), 2)} oid={oid}') return oid def place_exit_target(self, symbol, qty, target_px, side='LONG', intent='TARGET_REPAIR', ts=None, detail=None): \"\"\"One-off target repair fo"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "place_exit_target",
-      "line": 3412,
+      "line": 4020,
       "snippet": "target_px) _log_exit_intent( oid, symbol, action, intent, qty=int(abs(qty)), order_type=order.orderType, limit_price=target_px, position_side=side, ts=ts, detail=detail or 'one-off target repair', ) self.placeOrder(oid, c, order) self._order_sym[oid] = symbol log.info(f' >>> EXIT-REPAIR {symbol}: {action} LMT x{int(abs(qty))} @ {round(float(target_px), 2)} oid={oid}') return oid def place_short_bracket(self, symbol, qty, entry_lmt, stop_px, target_px, strategy_id=None): \"\"\"Native IB short bracket: parent SELL SHT L"
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_short_bracket",
-      "line": 3519,
+      "line": 4127,
       "snippet": "get_px, position_side='SHORT', parent_order_id=parent_id, strategy_id=strategy_id or 'UNTAGGED_SHORT', entry_order_id=parent_id, detail='native short bracket child cover target', oca_group=oca, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_trail_stop(self, symbol, qty, be_price, trail_pct, order_id=None, ts=None, side='LONG'): \"\"\"Runner exit: a trailing stop that starts at breakeven and trails up by trai"
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_short_bracket",
-      "line": 3520,
+      "line": 4128,
       "snippet": "ent_order_id=parent_id, strategy_id=strategy_id or 'UNTAGGED_SHORT', entry_order_id=parent_id, detail='native short bracket child cover target', oca_group=oca, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_trail_stop(self, symbol, qty, be_price, trail_pct, order_id=None, ts=None, side='LONG'): \"\"\"Runner exit: a trailing stop that starts at breakeven and trails up by trail_pct. If order_id is given, MODIFIES that "
     },
     {
       "classification": "ENTRY_CHOKEPOINT",
       "function": "place_short_bracket",
-      "line": 3521,
+      "line": 4129,
       "snippet": "gy_id=strategy_id or 'UNTAGGED_SHORT', entry_order_id=parent_id, detail='native short bracket child cover target', oca_group=oca, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_trail_stop(self, symbol, qty, be_price, trail_pct, order_id=None, ts=None, side='LONG'): \"\"\"Runner exit: a trailing stop that starts at breakeven and trails up by trail_pct. If order_id is given, MODIFIES that order in place (re-using the e"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "place_trail_stop",
-      "line": 3540,
+      "line": 4148,
       "snippet": ", 'RUNNER_TRAILING_STOP', qty=qty, order_type=o.orderType, stop_price=be_price, position_side=side, ts=ts, replaces_order_id=order_id, detail='runner trailing stop', trailing_percent=trail_pct, ) self.placeOrder(oid, self.stock_contract(symbol), o) return oid # \u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090\u00e2\u2022\u0090 # MODE: MOO \u00e2\u20ac\u201d submit "
     },
     {
       "classification": "ENTRY_LEGACY_MOO",
       "function": "mode_moo",
-      "line": 3636,
+      "line": 4244,
       "snippet": "top_px': t.get('stop'), 'target_px': t.get('t1'), 'order_type': getattr(order, 'orderType', 'MOO'), 'source_mode': 'moo', 'contract_health': health, 'trade_permission': permission, }) app.placeOrder(oid, contract, order) log.info(f' -> {t[\"symbol\"]} MOO orderId={oid}') _optctx = _options_snapshot(t['symbol']) _optline = _options_log_line(t['symbol'], 'LONG') if _optline: log.info(f' OPTIONS {t[\"symbol\"]}: {_optline}') day_state.setdefault(t['symbol'], {}).update({ 'moo_"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "mode_monitor",
-      "line": 3742,
+      "line": 4350,
       "snippet": "\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac if t1 is not None and not has_target: oid = app.next_id() contract = app.stock_contract(sym) order = app.limit_order('SELL', qty, t1) app.placeOrder(oid, contract, order) log.info(f' -> T1 LIMIT SELL {sym} at {t1:.4f} orderId={oid}') day_state[sym]['target_order_id'] = oid save_state(state) time.sleep(0.3) # \u00e2\u201d\u20ac\u00e2\u201d\u20ac place stop order if not yet placed \u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "mode_monitor",
-      "line": 3753,
+      "line": 4361,
       "snippet": "\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac\u00e2\u201d\u20ac if stop is not None and not has_stop: oid = app.next_id() contract = app.stock_contract(sym) order = app.stop_order('SELL', qty, stop) app.placeOrder(oid, contract, order) log.info(f' -> STOP MKT SELL {sym} at {stop:.4f} orderId={oid}') day_state[sym]['stop_order_id'] = oid save_state(state) time.sleep(0.3) write_bot_status('MONITORING') log.info(f' Next poll in {MONITOR_INTERVAL}s ' f'(m"
     },
     {
       "classification": "EXIT_OR_FLATTEN",
       "function": "_exit_open_positions",
-      "line": 3891,
+      "line": 4499,
       "snippet": "etattr(o, 'lmtPrice', None), position_side=('LONG' if qty > 0 else 'SHORT'), ts=ts, detail=detail or tag, use_midprice=use_midprice, cap=cap, avg_cost=p.get('avg_cost'), ) app.placeOrder(oid, app.stock_contract(sym), o) log.info(f' FLATTEN {action} {sym} x{q} {tag} cap={cap}') n += 1; time.sleep(0.2) return n def _flatten_all(app, midpoint=None): \"\"\"Cancel every working order, then exit every open position (long OR short). Two-stage: (1) a MIDPRICE pass that fills at the bid/ask midpoint to save"
     }
   ],
   "schema": "fem_contract_bot_gate_audit.v1",
-  "session": "closed",
+  "session": "rth",
   "summary": {
+    "active_entry_enforcement": true,
     "allows_fire_override": false,
     "chokepoints_structurally_gated": true,
     "contract_health_enforce": false,
+    "daily_pnl_guard_enforce": true,
     "direct_place_order_calls": 18,
     "entry_bracket_call_sites": 9,
     "entry_callsite_missing_strategy_id": 0,
+    "entry_gate_pipeline_structurally_gated": true,
     "failures": 0,
+    "gate_router_enforce": true,
+    "gate_router_entry_structurally_gated": true,
     "legacy_moo_active_in_daily_launcher": false,
     "legacy_moo_entry_sites": 1,
+    "profit_lock_enabled": true,
+    "route_lock_enforce": true,
+    "source_freshness_enforce": true,
     "trade_permission_block_unknown": false,
     "trade_permission_enforce": false,
     "trigger_launcher_active": true,
     "unknown_direct_place_order_calls": 0,
     "warnings": 4
   },
-  "trade_date": "2026-06-26",
+  "trade_date": "2026-06-28",
   "warnings": [
     {
-      "code": "TRADE_PERMISSION_ENFORCEMENT_DISABLED",
-      "comment": "# Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Same crash class as ContractHealthBlocked: place_bracket called _trade_permission_gate directly, bypassed the earlier _allows_fire override, raised TradePermissionBlocked, crashed bot on sma_reclaim_long. T",
-      "detail": "TRADE_PERMISSION_ENFORCE is False; score/permission locks are visible but not mechanically blocking entries",
-      "line": 92
+      "code": "LEGACY_TRADE_PERMISSION_DISABLED",
+      "comment": "#Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Same crash class as ContractHealthBlocked: place_bracket called _trade_permission_gate directly, bypassed the earlier _allows_fire override, raised TradePermissionBlocked, crashed bot on sma_reclaim_long. To",
+      "detail": "legacy TRADE_PERMISSION_ENFORCE is False, but route lock/source freshness/daily P&L/gate-router enforcement are active",
+      "line": 102
     },
     {
       "code": "CONTRACT_HEALTH_ENFORCEMENT_DISABLED",
-      "comment": "# Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Was crashing bot on GRRR short with ContractHealthBlocked exception even after _allows_fire override. To revert: restore env-driven default above.",
+      "comment": "#Jun25 (Gill): HARD OFF \u2014 was env-driven default ON. Was crashing bot on GRRR short with ContractHealthBlocked exception even after _allows_fire override. To revert: restore env-driven default above.",
       "detail": "CONTRACT_HEALTH_ENFORCE is False; contract health does not mechanically stop new entries",
-      "line": 80
+      "line": 81
     },
     {
       "code": "UNKNOWN_STRATEGY_FAIL_OPEN",
-      "comment": "# Jun25 (Gill): HARD OFF.",
+      "comment": "#Jun25 (Gill): HARD OFF.",
       "detail": "TRADE_PERMISSION_BLOCK_UNKNOWN is False; an unmapped strategy can fail open if enforcement is re-enabled",
-      "line": 93
+      "line": 103
     },
     {
       "active_in_daily_launcher": false,
@@ -301,7 +390,7 @@
         {
           "classification": "ENTRY_LEGACY_MOO",
           "function": "mode_moo",
-          "line": 3636,
+          "line": 4244,
           "snippet": "top_px': t.get('stop'), 'target_px': t.get('t1'), 'order_type': getattr(order, 'orderType', 'MOO'), 'source_mode': 'moo', 'contract_health': health, 'trade_permission': permission, }) app.placeOrder(oid, contract, order) log.info(f' -> {t[\"symbol\"]} MOO orderId={oid}') _optctx = _options_snapshot(t['symbol']) _optline = _options_log_line(t['symbol'], 'LONG') if _optline: log.info(f' OPTIONS {t[\"symbol\"]}: {_optline}') day_state.setdefault(t['symbol'], {}).update({ 'moo_"
         }
       ]
