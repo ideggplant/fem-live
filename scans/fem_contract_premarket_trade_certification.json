@@ -1,0 +1,266 @@
+{
+  "broker_mode": "offline",
+  "checks": [
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh strategy registry completed.",
+      "status": "OK",
+      "step_id": "strategy_resolver"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh trade permissions completed.",
+      "status": "OK",
+      "step_id": "trade_permissions"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh gate router completed.",
+      "status": "OK",
+      "step_id": "gate_router"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh route readiness completed.",
+      "status": "OK",
+      "step_id": "route_readiness"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh live gate conformance completed.",
+      "status": "OK",
+      "step_id": "live_gate_conformance"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh broker/order safety reconcile completed.",
+      "status": "OK",
+      "step_id": "live_broker_reconcile"
+    },
+    {
+      "code": "REFRESH_STEP_OK",
+      "detail": "Refresh live runtime readiness completed.",
+      "status": "OK",
+      "step_id": "live_readiness"
+    },
+    {
+      "code": "GATE_CONFORMANCE_WARN",
+      "detail": "No hard conformance break found, but refresh/known-risk warnings remain. Review before open.",
+      "status": "WARN",
+      "warnings": 5
+    },
+    {
+      "code": "GATES_IN",
+      "detail": "Route lock, gate router, source freshness, and giveback guard are confirmed on.",
+      "status": "OK"
+    },
+    {
+      "allowed_routes": [
+        "surge_micro_scout"
+      ],
+      "code": "ALLOWED_ROUTES_PRESENT",
+      "detail": "1 route(s) allowed: surge_micro_scout",
+      "status": "OK"
+    },
+    {
+      "allowed_routes": [
+        "surge_micro_scout"
+      ],
+      "code": "PERMISSION_MANIFEST_ALLOWED_ROUTES",
+      "detail": "Permission manifest allows 1 route(s).",
+      "status": "OK"
+    },
+    {
+      "code": "ROUTE_READINESS_OK",
+      "detail": "Allowed route wiring is ready.",
+      "status": "OK",
+      "summary": {
+        "allowed_routes": 1,
+        "bot_silent": 0,
+        "decision_seen": 1,
+        "event_stream_present": true,
+        "events_today": 10,
+        "fail": 0,
+        "missing_bot_code": 0,
+        "missing_registry": 0,
+        "no_decision_after_pick": 0,
+        "ok": 1,
+        "order_seen": 0,
+        "ready_idle": 0,
+        "source_missing": 0,
+        "stale_source": 0,
+        "warn": 0
+      }
+    },
+    {
+      "code": "BROKER_RECONCILE_OFFLINE",
+      "detail": "Order safety files are clean, but this did not inspect live IBKR orders/positions.",
+      "overall": "OK",
+      "status": "WARN",
+      "summary": {
+        "breach_codes": {},
+        "broker_connected": false,
+        "cancel_candidates": 0,
+        "cancel_failed": 0,
+        "cancelled": 0,
+        "invalid_entry_like_orders": 0,
+        "open_orders": 0,
+        "order_fail": 0,
+        "order_ok": 0,
+        "order_warn": 0,
+        "orphan_exit_orders": 0,
+        "position_fail": 0,
+        "position_ok": 0,
+        "position_warn": 0,
+        "positions": 0,
+        "unprotected_positions": 0
+      }
+    },
+    {
+      "code": "LIVE_RUNTIME_NOT_STARTED",
+      "detail": "Live runtime is not fully up yet; run the startup routine before final certification.",
+      "status": "WARN",
+      "summary": {
+        "checks": 9,
+        "fail": 8,
+        "live_ready": false,
+        "ok": 0,
+        "warn": 1
+      }
+    },
+    {
+      "code": "CONTRACT_HEALTH_HAS_UNRELATED_FAILURES",
+      "detail": "Contract health still has failures; certificate only hard-blocks live gate/order safety failures.",
+      "overall": "FAIL",
+      "status": "WARN"
+    }
+  ],
+  "generated_at": "2026-06-28T19:47:23+00:00",
+  "generated_at_et": "2026-06-28T15:47:23-04:00",
+  "next_actions": [
+    {
+      "action": "Review gate conformance warnings; stale weekend sources usually clear after morning refresh.",
+      "severity": "REVIEW"
+    },
+    {
+      "action": "Offline check passed files only; rerun without --broker-mode offline before trusting live orders.",
+      "severity": "REVIEW"
+    },
+    {
+      "action": "Before the final morning go/no-go, start 4_LIVE and 5_TRADE_BOT, then rerun with --require-live-runtime.",
+      "severity": "REVIEW"
+    },
+    {
+      "action": "Contract health still has failures; certificate only hard-blocks live gate/order safety failures.",
+      "severity": "REVIEW"
+    }
+  ],
+  "operator_read": "TRADE_TOMORROW: YES_WITH_REVIEW. Allowed route(s): surge_micro_scout. Review: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.",
+  "refresh_steps": [
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_resolver.py",
+      "finished_at": "2026-06-28T19:47:18+00:00",
+      "id": "strategy_resolver",
+      "label": "Refresh strategy registry",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:18+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "FEM CONTRACT STRATEGY RESOLVER 2026-06-28 overall=WARN strategies=36 registered=35 pending_registry=0 unresolved=0 bot_allowed=0\nEvery visible strategy id has an explicit registry fate.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_resolver.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_registry.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_resolver_2026-06-28.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_registry_2026-06-28.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.py --date 2026-06-29",
+      "finished_at": "2026-06-28T19:47:18+00:00",
+      "id": "trade_permissions",
+      "label": "Refresh trade permissions",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:18+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "FEM CONTRACT TRADE PERMISSIONS 2026-06-29 strategies=35 full=0 probe=1 benched=0 blocked=13 research=0 track=21\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.py --date 2026-06-29",
+      "finished_at": "2026-06-28T19:47:18+00:00",
+      "id": "gate_router",
+      "label": "Refresh gate router",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:18+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "FEM CONTRACT GATE ROUTER 2026-06-29: gates=24 routes=35 events=0 symbols=0 modes={'HARD': 15, 'SHADOW': 9}\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_spine_gate_context.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.py",
+      "finished_at": "2026-06-28T19:47:20+00:00",
+      "id": "route_readiness",
+      "label": "Refresh route readiness",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:18+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "FEM ROUTE READINESS 2026-06-28 overall=OK routes=1 ok=1 warn=0 fail=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.py --date 2026-06-29",
+      "finished_at": "2026-06-28T19:47:20+00:00",
+      "id": "live_gate_conformance",
+      "label": "Refresh live gate conformance",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:20+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "==========================================================================\nFEM LIVE GATE CONFORMANCE\n==========================================================================\noverall=WARN failures=0 warnings=5 orders=0 fills=0\ngates route_lock=True gate_router=True source_fresh=True daily_guard=True legacy_permission=False\nNo hard conformance break found, but refresh/known-risk warnings remain. Review before open.\n\nWARNINGS\n- SOURCE_DATE_MISMATCH: bot_gate_audit is not stamped for 2026-06-29\n- SOURCE_DATE_MISMATCH: panel_registry is not stamped for 2026-06-29\n- SOURCE_DATE_MISMATCH: strategy_ownership is not stamped for 2026-06-29\n- LEGACY_TRADE_PERMISSION_DISABLED: TRADE_PERMISSION_ENFORCE is false, but route-lock and gate-router enforcement are active. This is the known crash-avoidance configuration.\n- UNKNOWN_PERMISSION_FAIL_OPEN_FLAG: TRADE_PERMISSION_BLOCK_UNKNOWN is false. Route-lock/gate-router must remain on to prevent unmapped strategy leaks.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_live_gate_conformance_2026-06-29.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.py --date 2026-06-29 --offline",
+      "finished_at": "2026-06-28T19:47:20+00:00",
+      "id": "live_broker_reconcile",
+      "label": "Refresh broker/order safety reconcile",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:20+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "FEM LIVE BROKER RECONCILE 2026-06-29 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.py",
+      "finished_at": "2026-06-28T19:47:23+00:00",
+      "id": "live_readiness",
+      "label": "Refresh live runtime readiness",
+      "returncode": 0,
+      "started_at": "2026-06-28T19:47:20+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "live_readiness: overall=FAIL session=rth ok/warn/fail=0/1/8\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nNEXT: Start TWS paper account and confirm API port 7497 is enabled.\nNEXT: Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.\nNEXT: Start or restart _DAILY\\4_LIVE.bat / LIVE_RUN.bat so fem_live_signals.json refreshes.\nNEXT: Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+    }
+  ],
+  "require_live_runtime": false,
+  "schema": "fem_contract_premarket_trade_certification.v1",
+  "session_now": "rth",
+  "source_files": {
+    "broker_reconcile": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
+    "contract_health": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_health.json",
+    "gate_conformance": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.json",
+    "gate_router": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.json",
+    "live_readiness": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json",
+    "route_readiness": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.json",
+    "trade_permissions": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.json"
+  },
+  "summary": {
+    "allowed_route_list": [
+      "surge_micro_scout"
+    ],
+    "allowed_routes": 1,
+    "broker_overall": "OK",
+    "checks": 15,
+    "failures": 0,
+    "gate_overall": "WARN",
+    "live_readiness_overall": "FAIL",
+    "route_readiness_overall": "OK",
+    "warnings": 4
+  },
+  "target_trade_date": "2026-06-29",
+  "trade_tomorrow": "YES_WITH_REVIEW",
+  "verdict": "YES_WITH_REVIEW"
+}
