@@ -1,94 +1,108 @@
 {
-  "broker_mode": "live",
-  "dry_run": false,
-  "generated_at": "2026-06-29T13:08:54+00:00",
-  "generated_at_et": "2026-06-29T09:08:54-04:00",
+  "broker_mode": "offline",
+  "dry_run": true,
+  "generated_at": "2026-06-29T20:35:18+00:00",
+  "generated_at_et": "2026-06-29T16:35:18-04:00",
   "morning_mode": "none",
-  "operator_read": "START_TRADING_DAY: STARTED_WITH_REVIEW. Session pre started, but final certificate says YES_WITH_REVIEW; review dashboard before trusting trades.",
+  "operator_read": "START_TRADING_DAY: DRY_RUN_OK. Sequence is wired; no live windows were started. Certification verdict: YES_WITH_REVIEW.",
   "schema": "fem_contract_start_trading_day.v1",
-  "session": "pre",
+  "session": "ah",
   "source_files": {
     "broker_reconcile": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
+    "fem_swing_timesfm_loop": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8BD_FEM_SWING_TIMESFM_OVERLAY.bat",
     "gate_conformance": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.json",
     "live_readiness": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json",
     "mustard_shadow_loop": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8BB_MUSTARD_X_SHADOW_LOOP.bat",
     "premarket_certification": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json",
     "surge_micro_loop": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8A_SURGE_MICRO_PLAN.bat"
   },
-  "start_verdict": "STARTED_WITH_REVIEW",
-  "started_at": "2026-06-29T13:08:43+00:00",
+  "start_verdict": "DRY_RUN_OK",
+  "started_at": "2026-06-29T20:34:45+00:00",
   "steps": [
     {
-      "at": "2026-06-29T13:08:43+00:00",
-      "detail": "TWS paper API port is reachable.",
+      "at": "2026-06-29T20:34:45+00:00",
+      "detail": "broker mode is offline; live TWS port was not required.",
       "id": "tws_paper",
       "label": "TWS paper port 7497",
-      "status": "OK"
+      "status": "WARN"
     },
     {
-      "at": "2026-06-29T13:08:43+00:00",
+      "at": "2026-06-29T20:34:45+00:00",
       "detail": "Skipped by --morning none.",
       "id": "morning_refresh",
       "label": "Morning refresh",
       "status": "SKIPPED"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-06-29 --broker-mode live",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-06-29 --broker-mode offline",
       "detail": "returncode=0",
-      "finished_at": "2026-06-29T13:08:51+00:00",
+      "finished_at": "2026-06-29T20:35:01+00:00",
       "id": "pre_start_certification",
       "label": "Pre-start trade certification",
       "returncode": 0,
-      "started_at": "2026-06-29T13:08:43+00:00",
+      "started_at": "2026-06-29T20:34:45+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: YES_WITH_REVIEW. Allowed route(s): surge_micro_scout. Review: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\ntarget=2026-06-29 verdict=YES_WITH_REVIEW failures=0 warnings=4 allowed_routes=1 broker_mode=live\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- REVIEW: Allowed route wiring has warnings.\n- REVIEW: Live runtime readiness has warnings.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n- REVIEW: For the final morning check after the bot is running, rerun with --require-live-runtime.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-06-29.json"
+      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: YES_WITH_REVIEW. Allowed route(s): surge_micro_scout. Review: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\ntarget=2026-06-29 verdict=YES_WITH_REVIEW failures=0 warnings=4 allowed_routes=1 broker_mode=offline\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- REVIEW: Offline check passed files only; rerun without --broker-mode offline before trusting live orders.\n- REVIEW: Before the final morning go/no-go, start 4_LIVE and 5_TRADE_BOT, then rerun with --require-live-runtime.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-06-29.json"
     },
     {
-      "at": "2026-06-29T13:08:52+00:00",
-      "detail": "Live support stack already appears to be running.",
+      "at": "2026-06-29T20:35:01+00:00",
+      "detail": "Would start 4_LIVE.bat if live support processes were not already visible.",
       "id": "start_live_stack",
       "label": "Start live stack",
-      "status": "OK"
+      "status": "DRY_RUN"
     },
     {
-      "at": "2026-06-29T13:08:52+00:00",
-      "detail": "Surge Micro plan loop already appears to be running.",
+      "at": "2026-06-29T20:35:02+00:00",
+      "detail": "Would start 8A_SURGE_MICRO_PLAN.bat for research-only surge tracking.",
       "id": "start_surge_micro",
       "label": "Start Surge Micro plan loop",
-      "session": "pre",
-      "status": "OK"
+      "session": "ah",
+      "status": "DRY_RUN"
     },
     {
-      "at": "2026-06-29T13:08:53+00:00",
-      "detail": "Mustard X shadow loop already appears to be running.",
+      "at": "2026-06-29T20:35:03+00:00",
+      "detail": "Would start 8BB_MUSTARD_X_SHADOW_LOOP.bat for shadow-only Mustard tracking.",
       "id": "start_mustard_shadow",
       "label": "Start Mustard X shadow loop",
-      "session": "pre",
-      "status": "OK"
+      "session": "ah",
+      "status": "DRY_RUN"
     },
     {
-      "at": "2026-06-29T13:08:54+00:00",
-      "detail": "A trade bot process already appears to be running.",
+      "at": "2026-06-29T20:35:04+00:00",
+      "detail": "Would start 8BD_FEM_SWING_TIMESFM_OVERLAY.bat for shadow-only swing tracking.",
+      "id": "start_fem_swing_timesfm",
+      "label": "Start FEM Swing TimesFM loop",
+      "session": "ah",
+      "status": "DRY_RUN"
+    },
+    {
+      "at": "2026-06-29T20:35:04+00:00",
+      "detail": "Would start 5B_TRADE_BOT_AH.bat for ah.",
       "id": "start_trade_bot",
       "label": "Start trade bot",
-      "session": "pre",
-      "status": "OK"
+      "session": "ah",
+      "status": "DRY_RUN"
     },
     {
-      "at": "2026-06-29T13:08:54+00:00",
-      "detail": "Skipped by --skip-final-cert.",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-06-29 --broker-mode offline",
+      "detail": "returncode=0",
+      "finished_at": "2026-06-29T20:35:18+00:00",
       "id": "final_certification",
       "label": "Final trade certification",
-      "status": "SKIPPED"
+      "returncode": 0,
+      "started_at": "2026-06-29T20:35:04+00:00",
+      "status": "OK",
+      "stderr_tail": "",
+      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: YES_WITH_REVIEW. Allowed route(s): surge_micro_scout. Review: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\ntarget=2026-06-29 verdict=YES_WITH_REVIEW failures=0 warnings=4 allowed_routes=1 broker_mode=offline\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- REVIEW: Offline check passed files only; rerun without --broker-mode offline before trusting live orders.\n- REVIEW: Before the final morning go/no-go, start 4_LIVE and 5_TRADE_BOT, then rerun with --require-live-runtime.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-06-29.json"
     }
   ],
   "summary": {
     "failures": 0,
     "final_certification_verdict": "YES_WITH_REVIEW",
     "pre_certification_verdict": "YES_WITH_REVIEW",
-    "steps": 8,
-    "warnings_or_skips": 2
+    "steps": 9,
+    "warnings_or_skips": 7
   },
   "target_trade_date": "2026-06-29",
   "trade_certification_verdict": "YES_WITH_REVIEW"
