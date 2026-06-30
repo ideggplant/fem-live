@@ -1,7 +1,7 @@
 {
   "code_version": "unknown",
-  "generated_at": "2026-06-29T23:27:16.702856+00:00",
-  "generated_at_et": "2026-06-29T19:27:16.702856-04:00",
+  "generated_at": "2026-06-30T12:26:39.275287+00:00",
+  "generated_at_et": "2026-06-30T08:26:39.275304-04:00",
   "schema": "fem_contract_strategy_registry.v1",
   "source": "fem_contract_strategy_resolver",
   "strategies": [
@@ -258,7 +258,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -342,7 +342,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -353,8 +353,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 2557,
-        "score_ghost_graded": 2417,
+        "score_ghost_fires": 3112,
+        "score_ghost_graded": 2698,
         "simulated_traces": 0
       },
       "strategy_id": "live_fire_dump"
@@ -382,7 +382,7 @@
       "owner_panel_id": "live_fire_gap_eat",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_eat",
       "source": "panel_registry",
       "stats": {
@@ -422,7 +422,7 @@
       "owner_panel_id": "live_fire_gap_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -462,7 +462,7 @@
       "owner_panel_id": "live_fire_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -502,7 +502,7 @@
       "owner_panel_id": "live_fire_surge",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_surge",
       "source": "panel_registry",
       "stats": {
@@ -513,8 +513,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 6841,
-        "score_ghost_graded": 6105,
+        "score_ghost_fires": 10212,
+        "score_ghost_graded": 8561,
         "simulated_traces": 0
       },
       "strategy_id": "live_fire_surge"
@@ -578,14 +578,23 @@
         "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "A-Book Proven MOO",
       "owner_panel_id": "abook_moo",
       "phase": "PAPER_LIVE",
-      "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-07",
+        "max_risk_dollars": 100,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Explicit probe for the historically profitable FEM A-book morning MOO slice, filtered to fem>=90 or T1-STRONG_LONG.",
+        "risk_multiplier": 1.0
+      },
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "operator_probe::abook_moo",
-      "source": "panel_registry",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -905,35 +914,29 @@
       "strategy_id": "options_roundtrip_short"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Genesis",
       "owner_panel_id": "short_genesis",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_genesis",
       "source": "panel_registry",
       "stats": {
@@ -951,35 +954,29 @@
       "strategy_id": "short_genesis"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -997,35 +994,29 @@
       "strategy_id": "short_mid"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -1131,35 +1122,29 @@
       "strategy_id": "short_universe_gapdown_cont"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -1265,35 +1250,29 @@
       "strategy_id": "short_universe_vwap_reject"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "SMA Reclaim",
       "owner_panel_id": "sma_reclaim",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::sma_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -1346,35 +1325,29 @@
       "strategy_id": "state_lookup"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Surge Trader",
       "owner_panel_id": "surge_trader",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::surge_trader",
       "source": "panel_registry",
       "stats": {
@@ -1385,8 +1358,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 6841,
-        "score_ghost_graded": 6105,
+        "score_ghost_fires": 10212,
+        "score_ghost_graded": 8561,
         "simulated_traces": 0
       },
       "strategy_id": "surge_chase"
@@ -1415,14 +1388,23 @@
         "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "Surge Micro",
       "owner_panel_id": "surge_micro",
       "phase": "PAPER_LIVE",
-      "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-02",
+        "max_risk_dollars": 75,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
+        "risk_multiplier": 0.25
+      },
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "paper_live::surge_micro",
-      "source": "panel_registry",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -1812,7 +1794,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -1896,7 +1878,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -1907,8 +1889,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 2557,
-        "score_ghost_graded": 2417,
+        "score_ghost_fires": 3112,
+        "score_ghost_graded": 2698,
         "simulated_traces": 0
       },
       "strategy_id": "live_fire_dump"
@@ -1936,7 +1918,7 @@
       "owner_panel_id": "live_fire_gap_eat",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_eat",
       "source": "panel_registry",
       "stats": {
@@ -1976,7 +1958,7 @@
       "owner_panel_id": "live_fire_gap_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -2016,7 +1998,7 @@
       "owner_panel_id": "live_fire_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -2056,7 +2038,7 @@
       "owner_panel_id": "live_fire_surge",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_surge",
       "source": "panel_registry",
       "stats": {
@@ -2067,8 +2049,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 6841,
-        "score_ghost_graded": 6105,
+        "score_ghost_fires": 10212,
+        "score_ghost_graded": 8561,
         "simulated_traces": 0
       },
       "strategy_id": "live_fire_surge"
@@ -2132,14 +2114,23 @@
         "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "A-Book Proven MOO",
       "owner_panel_id": "abook_moo",
       "phase": "PAPER_LIVE",
-      "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-07",
+        "max_risk_dollars": 100,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Explicit probe for the historically profitable FEM A-book morning MOO slice, filtered to fem>=90 or T1-STRONG_LONG.",
+        "risk_multiplier": 1.0
+      },
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "operator_probe::abook_moo",
-      "source": "panel_registry",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -2459,35 +2450,29 @@
       "strategy_id": "options_roundtrip_short"
     },
     "short_genesis": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Genesis",
       "owner_panel_id": "short_genesis",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_genesis",
       "source": "panel_registry",
       "stats": {
@@ -2505,35 +2490,29 @@
       "strategy_id": "short_genesis"
     },
     "short_mid": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -2551,35 +2530,29 @@
       "strategy_id": "short_mid"
     },
     "short_universe": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -2685,35 +2658,29 @@
       "strategy_id": "short_universe_gapdown_cont"
     },
     "short_universe_grade": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
-        "bot_decision",
-        "entry_price",
         "is_live",
         "is_simulated",
         "overhead_supply",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Short Universe",
       "owner_panel_id": "short_universe",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_universe",
       "source": "panel_registry",
       "stats": {
@@ -2819,35 +2786,29 @@
       "strategy_id": "short_universe_vwap_reject"
     },
     "sma_reclaim_long": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "SMA Reclaim",
       "owner_panel_id": "sma_reclaim",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::sma_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -2900,35 +2861,29 @@
       "strategy_id": "state_lookup"
     },
     "surge_chase": {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Surge Trader",
       "owner_panel_id": "surge_trader",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::surge_trader",
       "source": "panel_registry",
       "stats": {
@@ -2939,8 +2894,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 6841,
-        "score_ghost_graded": 6105,
+        "score_ghost_fires": 10212,
+        "score_ghost_graded": 8561,
         "simulated_traces": 0
       },
       "strategy_id": "surge_chase"
@@ -2969,14 +2924,23 @@
         "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "Surge Micro",
       "owner_panel_id": "surge_micro",
       "phase": "PAPER_LIVE",
-      "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-02",
+        "max_risk_dollars": 75,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
+        "risk_multiplier": 0.25
+      },
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "paper_live::surge_micro",
-      "source": "panel_registry",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -3112,5 +3076,5 @@
       "strategy_id": "value_area_fortress"
     }
   },
-  "trade_date": "2026-06-29"
+  "trade_date": "2026-06-30"
 }
