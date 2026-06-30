@@ -2,15 +2,16 @@
   "blocking_live_trading_gates": [
     "CONTRACT_ERRORS_CLEAR",
     "RUNTIME_READY",
+    "EXECUTION_COVERAGE_CLEAN",
     "BOT_ENFORCEMENT_ON"
   ],
   "blocking_normal_scoring_gates": [
     "ARTIFACTS_FRESH",
     "CONTRACT_ERRORS_CLEAR",
+    "EXECUTION_COVERAGE_CLEAN",
     "DECISION_ACCOUNTING_CLEAN",
     "EVIDENCE_NORMAL_ALLOWED",
-    "BOT_ENFORCEMENT_ON",
-    "ROUTE_POLICY_CLEAN"
+    "BOT_ENFORCEMENT_ON"
   ],
   "code_version": "unknown",
   "gates": [
@@ -18,15 +19,24 @@
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Contract source refresh report: stale during pre: 82570s old, limit 2700s",
-        "FAIL Contract daily spine certification: stale during pre: 34784s old, limit 2700s",
-        "FAIL Contract promotion/demotion gate: stale during pre: 34783s old, limit 2700s",
-        "FAIL Contract live trust recovery: stale during pre: 34250s old, limit 2700s",
-        "FAIL Contract live trust executor: stale during pre: 34250s old, limit 2700s",
-        "FAIL Contract AI learning hypothesis ledger: stale during pre: 33861s old, limit 2700s",
-        "FAIL Contract auction truth shadow score: stale during pre: 32351s old, limit 2700s"
+        "FAIL Contract dashboard payload: stale during ah: 80508s old, limit 2700s",
+        "FAIL Contract breach ledger: stale during ah: 385847s old, limit 2700s",
+        "FAIL Contract accountability queue: stale during ah: 385829s old, limit 2700s",
+        "WARN Contract source refresh report: stale during ah: 23077s old, limit 2700s",
+        "FAIL Contract fill reconciliation: stale during ah: 82493s old, limit 2700s",
+        "FAIL Contract exit reconciliation: stale during ah: 82492s old, limit 2700s",
+        "FAIL Contract bot route readiness audit: stale during ah: 36797s old, limit 2700s",
+        "FAIL Contract decision obligation audit: stale during ah: 385797s old, limit 2700s",
+        "FAIL Contract live-fire accounting backfill: stale during ah: 385799s old, limit 2700s",
+        "FAIL Contract runtime drift audit: stale during ah: 36794s old, limit 2700s",
+        "FAIL Contract live readiness: stale during ah: 36793s old, limit 720s",
+        "FAIL Contract session context / dirty-data guard: stale during ah: 385788s old, limit 720s",
+        "FAIL Contract score provenance / score partition guard: stale during ah: 14974s old, limit 720s",
+        "FAIL Contract score partitioned leaderboards: stale during ah: 385787s old, limit 720s",
+        "FAIL Contract latency/missed-move audit: stale during ah: 76257s old, limit 2700s",
+        "FAIL Contract order sizing audit: stale during ah: 385793s old, limit 2700s"
       ],
-      "evidence_count": 7,
+      "evidence_count": 28,
       "gate_id": "ARTIFACTS_FRESH",
       "label": "Contract artifacts are fresh",
       "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -39,30 +49,30 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
-        "FAIL Contract validator errors: 10 ERROR breach(es) in current validator output",
-        "FAIL Panel registry contract failures: 10 active panel registry failure(s)"
+        "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=10"
       ],
-      "evidence_count": 2,
+      "evidence_count": 1,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
       "label": "No explicit contract break errors",
       "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated lifecycle breach.",
       "priority": 20,
-      "severity": "FAIL",
+      "severity": "WARN",
       "source": "fem_contract_health.json",
-      "status": "OPEN"
+      "status": "REVIEW"
     },
     {
       "blocking_live_trading": true,
       "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Bot status feed: stale during pre: 1296s old, limit 720s",
-        "FAIL Runtime processes: trading bot process not detected during tradable session",
-        "FAIL Required runtime process missing: 3 required runtime role(s) missing during pre",
-        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=3/1/5, bot_mode=EOD_FLATTENED, positions=0",
+        "FAIL Contract runtime drift audit: stale during ah: 36794s old, limit 2700s",
+        "FAIL Contract live readiness: stale during ah: 36793s old, limit 720s",
+        "WARN Bot status feed: stale during ah: 13761s old, limit 720s",
+        "FAIL Required runtime process missing: 1 required runtime role(s) missing during ah",
+        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=1/3/5, bot_mode=EOD_FLATTENED, positions=0",
         "FAIL Runtime drift overall:",
         "FAIL Live readiness overall:"
       ],
-      "evidence_count": 6,
+      "evidence_count": 7,
       "gate_id": "RUNTIME_READY",
       "label": "Live/bot runtime matches disk code",
       "next_action": "Restart stale/missing runtime windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
@@ -72,34 +82,40 @@
       "status": "OPEN"
     },
     {
-      "blocking_live_trading": false,
-      "blocking_normal_scoring": false,
+      "blocking_live_trading": true,
+      "blocking_normal_scoring": true,
       "evidence": [
-        "Fill and exit reconcile checks are clean."
+        "FAIL Contract fill reconciliation: stale during ah: 82493s old, limit 2700s",
+        "FAIL Contract exit reconciliation: stale during ah: 82492s old, limit 2700s"
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "gate_id": "EXECUTION_COVERAGE_CLEAN",
       "label": "Orders, fills, and exits are reconcilable",
-      "next_action": "No action required.",
+      "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
       "priority": 40,
-      "severity": "OK",
+      "severity": "FAIL",
       "source": "fill/exit reconcile reports",
-      "status": "CLOSED"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Latency / missed move warnings: missed=5, no_decision=0, slow_decisions=12, slow_orders=0, order_after_peak=0"
+        "FAIL Contract bot route readiness audit: stale during ah: 36797s old, limit 2700s",
+        "FAIL Contract decision obligation audit: stale during ah: 385797s old, limit 2700s",
+        "FAIL Contract live-fire accounting backfill: stale during ah: 385799s old, limit 2700s",
+        "FAIL Contract latency/missed-move audit: stale during ah: 76257s old, limit 2700s",
+        "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=1, stale_source=1, source_missing=0",
+        "WARN Latency / missed move warnings: missed=10258, no_decision=5665, slow_decisions=626, slow_orders=0, order_after_peak=0"
       ],
-      "evidence_count": 1,
+      "evidence_count": 6,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
       "priority": 50,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "decision obligation/live-fire/latency reports",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": false,
@@ -128,9 +144,9 @@
       "blocking_normal_scoring": true,
       "evidence": [
         "trade_permission_enforce=False",
-        "contract_health_enforce=False",
+        "contract_health_enforce=True",
         "trade_permission_block_unknown=False",
-        "allows_fire_override=True",
+        "allows_fire_override=False",
         "failures=0"
       ],
       "evidence_count": 5,
@@ -144,22 +160,22 @@
     },
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": true,
+      "blocking_normal_scoring": false,
       "evidence": [
         "route_policy_enabled=True",
-        "route_policy_invalid=1",
-        "allowed_to_trade=0",
+        "route_policy_invalid=0",
+        "allowed_to_trade=3",
         "allow_full=0",
-        "allow_probe=0"
+        "allow_probe=3"
       ],
       "evidence_count": 5,
       "gate_id": "ROUTE_POLICY_CLEAN",
       "label": "Route policy and trade permissions are unambiguous",
-      "next_action": "Run _DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat and _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat; inspect invalid/blocked routes.",
+      "next_action": "No action required.",
       "priority": 80,
-      "severity": "WARN",
+      "severity": "OK",
       "source": "fem_contract_route_policy.json + fem_contract_trade_permissions.json",
-      "status": "REVIEW"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": false,
@@ -197,21 +213,30 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-06-26T12:23:29+00:00",
-  "generated_at_et": "2026-06-26T08:23:29-04:00",
+  "generated_at": "2026-06-30T23:33:38+00:00",
+  "generated_at_et": "2026-06-30T19:33:38-04:00",
   "next_gate": {
     "blocking_live_trading": false,
     "blocking_normal_scoring": true,
     "evidence": [
-      "WARN Contract source refresh report: stale during pre: 82570s old, limit 2700s",
-      "FAIL Contract daily spine certification: stale during pre: 34784s old, limit 2700s",
-      "FAIL Contract promotion/demotion gate: stale during pre: 34783s old, limit 2700s",
-      "FAIL Contract live trust recovery: stale during pre: 34250s old, limit 2700s",
-      "FAIL Contract live trust executor: stale during pre: 34250s old, limit 2700s",
-      "FAIL Contract AI learning hypothesis ledger: stale during pre: 33861s old, limit 2700s",
-      "FAIL Contract auction truth shadow score: stale during pre: 32351s old, limit 2700s"
+      "FAIL Contract dashboard payload: stale during ah: 80508s old, limit 2700s",
+      "FAIL Contract breach ledger: stale during ah: 385847s old, limit 2700s",
+      "FAIL Contract accountability queue: stale during ah: 385829s old, limit 2700s",
+      "WARN Contract source refresh report: stale during ah: 23077s old, limit 2700s",
+      "FAIL Contract fill reconciliation: stale during ah: 82493s old, limit 2700s",
+      "FAIL Contract exit reconciliation: stale during ah: 82492s old, limit 2700s",
+      "FAIL Contract bot route readiness audit: stale during ah: 36797s old, limit 2700s",
+      "FAIL Contract decision obligation audit: stale during ah: 385797s old, limit 2700s",
+      "FAIL Contract live-fire accounting backfill: stale during ah: 385799s old, limit 2700s",
+      "FAIL Contract runtime drift audit: stale during ah: 36794s old, limit 2700s",
+      "FAIL Contract live readiness: stale during ah: 36793s old, limit 720s",
+      "FAIL Contract session context / dirty-data guard: stale during ah: 385788s old, limit 720s",
+      "FAIL Contract score provenance / score partition guard: stale during ah: 14974s old, limit 720s",
+      "FAIL Contract score partitioned leaderboards: stale during ah: 385787s old, limit 720s",
+      "FAIL Contract latency/missed-move audit: stale during ah: 76257s old, limit 2700s",
+      "FAIL Contract order sizing audit: stale during ah: 385793s old, limit 2700s"
     ],
-    "evidence_count": 7,
+    "evidence_count": 28,
     "gate_id": "ARTIFACTS_FRESH",
     "label": "Contract artifacts are fresh",
     "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -223,10 +248,10 @@
   "operator_read": "Spine is not closed. First rebuild the stale contract artifacts so every later verdict is based on current data.",
   "overall": "FAIL",
   "schema": "fem_contract_spine_closure.v1",
-  "session": "pre",
+  "session": "ah",
   "spine_stage": "BOOTSTRAP",
   "summary": {
-    "blocking_live_trading": 3,
+    "blocking_live_trading": 4,
     "blocking_normal_scoring": 6,
     "closed_gates": 3,
     "closure_percent": 30.0,
@@ -236,11 +261,11 @@
     "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
-    "open_gates": 5,
+    "open_gates": 6,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
-    "review_gates": 2
+    "review_gates": 1
   },
-  "trade_date": "2026-06-26"
+  "trade_date": "2026-06-30"
 }
