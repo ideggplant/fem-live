@@ -32,13 +32,12 @@
     "refresh_runtime_audits",
     "repair_contract_breaks",
     "repair_decision_accounting",
-    "restore_bot_enforcement",
     "keep_evidence_quarantined",
     "clean_route_policy",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-06-26T12:23:28+00:00",
-  "generated_at_et": "2026-06-26T08:23:28-04:00",
+  "generated_at": "2026-06-30T23:33:13+00:00",
+  "generated_at_et": "2026-06-30T19:33:13-04:00",
   "groups": [
     {
       "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
@@ -47,13 +46,39 @@
       "can_auto_run": true,
       "category": "ARTIFACT_REFRESH",
       "check_ids": [
-        "contract_source_refresh"
+        "contract_dashboard",
+        "contract_breaks",
+        "contract_accountability",
+        "contract_source_refresh",
+        "contract_fill_reconcile",
+        "contract_exit_reconcile",
+        "contract_route_readiness",
+        "contract_decision_obligation",
+        "contract_live_fire_accounting",
+        "contract_session_context",
+        "contract_score_provenance",
+        "contract_score_partitions",
+        "contract_latency_audit",
+        "contract_order_sizing_audit",
+        "contract_realized_result",
+        "contract_exit_rules_learning"
       ],
       "command": "_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
       "evidence": [
-        "stale during pre: 82570s old, limit 2700s"
+        "stale during ah: 80508s old, limit 2700s",
+        "stale during ah: 385847s old, limit 2700s",
+        "stale during ah: 385829s old, limit 2700s",
+        "stale during ah: 23077s old, limit 2700s",
+        "stale during ah: 82493s old, limit 2700s",
+        "stale during ah: 82492s old, limit 2700s",
+        "stale during ah: 36797s old, limit 2700s",
+        "stale during ah: 385797s old, limit 2700s",
+        "stale during ah: 385799s old, limit 2700s",
+        "stale during ah: 385788s old, limit 720s",
+        "stale during ah: 14974s old, limit 720s",
+        "stale during ah: 385787s old, limit 720s"
       ],
-      "evidence_count": 1,
+      "evidence_count": 15,
       "group_id": "rebuild_contract_artifacts",
       "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun this plan.",
       "priority": 10,
@@ -68,17 +93,15 @@
       "can_auto_run": false,
       "category": "RUNTIME",
       "check_ids": [
-        "runtime_processes",
         "runtime_drift_missing_required",
         "live_readiness_not_ready"
       ],
       "command": null,
       "evidence": [
-        "trading bot process not detected during tradable session",
-        "3 required runtime role(s) missing during pre",
-        "live_ready=False, checks ok/warn/fail=3/1/5, bot_mode=EOD_FLATTENED, positions=0"
+        "1 required runtime role(s) missing during ah",
+        "live_ready=False, checks ok/warn/fail=1/3/5, bot_mode=EOD_FLATTENED, positions=0"
       ],
-      "evidence_count": 3,
+      "evidence_count": 2,
       "group_id": "restart_runtime_windows",
       "next_action": "Restart the windows named in fem_contract_runtime_drift.json, then run _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
       "priority": 20,
@@ -93,13 +116,17 @@
       "can_auto_run": true,
       "category": "RUNTIME",
       "check_ids": [
+        "contract_runtime_drift",
+        "contract_live_readiness",
         "bot_status"
       ],
       "command": "_DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat; _DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
       "evidence": [
-        "stale during pre: 1296s old, limit 720s"
+        "stale during ah: 36794s old, limit 2700s",
+        "stale during ah: 36793s old, limit 720s",
+        "stale during ah: 13761s old, limit 720s"
       ],
-      "evidence_count": 1,
+      "evidence_count": 3,
       "group_id": "refresh_runtime_audits",
       "next_action": "Run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
       "priority": 25,
@@ -114,15 +141,13 @@
       "can_auto_run": false,
       "category": "CONTRACT",
       "check_ids": [
-        "contract_break_errors",
         "panel_registry_contracts"
       ],
       "command": null,
       "evidence": [
-        "10 ERROR breach(es) in current validator output",
-        "10 active panel registry failure(s)"
+        "3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=10"
       ],
-      "evidence_count": 2,
+      "evidence_count": 1,
       "group_id": "repair_contract_breaks",
       "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
       "priority": 35,
@@ -137,41 +162,21 @@
       "can_auto_run": true,
       "category": "DECISION_ACCOUNTING",
       "check_ids": [
+        "route_readiness_warnings",
         "latency_missed_move_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "evidence": [
-        "missed=5, no_decision=0, slow_decisions=12, slow_orders=0, order_after_peak=0"
+        "2 allowed route readiness warning(s); bot_silent=1, stale_source=1, source_missing=0",
+        "missed=10258, no_decision=5665, slow_decisions=626, slow_orders=0, order_after_peak=0"
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "group_id": "repair_decision_accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat after fresh data.",
       "priority": 40,
       "root_cause": "Backfilled or inferred decisions are useful for study, but they are not the same as a live contract link.",
       "severity": "WARN",
       "title": "Make picks produce explicit bot accounting in real time"
-    },
-    {
-      "batch_path": null,
-      "blocks_live_trading": true,
-      "blocks_normal_scoring": true,
-      "can_auto_run": false,
-      "category": "BOT_GATES",
-      "check_ids": [
-        "bot_gate_enforcement_disabled"
-      ],
-      "command": null,
-      "evidence": [
-        "permission_enforce=False, health_enforce=False, block_unknown=False, allows_fire_override=True",
-        "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=False, block_unknown=False, allows_fire_override=True"
-      ],
-      "evidence_count": 2,
-      "group_id": "restore_bot_enforcement",
-      "next_action": "Turn enforcement switches back on when the experiment is over: TRADE_PERMISSION_ENFORCE, CONTRACT_HEALTH_ENFORCE, and TRADE_PERMISSION_BLOCK_UNKNOWN.",
-      "priority": 45,
-      "root_cause": "Orders placed while enforcement switches are off are experiment evidence by definition.",
-      "severity": "WARN",
-      "title": "Restore bot permission enforcement before normal scoring"
     },
     {
       "batch_path": null,
@@ -189,9 +194,9 @@
       "command": null,
       "evidence": [
         "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=15, hard_safety=6, positions=0, context=5fe6c4915c56c98f",
-        "partition=EXPERIMENT, actual_trades=0, ghost_graded=51133, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "partition=EXPERIMENT, actual_trades=12, ghost_graded=75793, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "experiment/review evidence=51133, experiment_strategies=22, review_strategies=0",
-        "29 score-consuming strategy route(s) locked to research/display; normal=0, experiment=22, review=0",
+        "38 score-consuming strategy route(s) locked to research/display; normal=0, experiment=27, review=0",
         "partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=0",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
@@ -215,16 +220,14 @@
       "can_auto_run": true,
       "category": "ROUTE_POLICY",
       "check_ids": [
-        "trade_permissions_blocked",
-        "route_policy_invalid"
+        "trade_permissions_blocked"
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "25 strategy permission(s) are blocked by contract failures",
-        "1 route-policy override(s) were invalid",
+        "10 strategy permission(s) are blocked by contract failures",
         "TRADE_PERMISSION_ROUTE_POLICY_INVALID: 1 invalid route-policy override(s) were present"
       ],
-      "evidence_count": 3,
+      "evidence_count": 2,
       "group_id": "clean_route_policy",
       "next_action": "Run _DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat, inspect fem_contract_route_policy.json, then rebuild trade permissions.",
       "priority": 60,
@@ -239,28 +242,34 @@
       "can_auto_run": false,
       "category": "MISC",
       "check_ids": [
+        "contract_order_permission_audit",
+        "contract_bot_gate_audit",
+        "contract_evidence_cleanliness",
+        "contract_strategy_backfill",
+        "contract_strategy_enforcement",
         "contract_daily_certification",
         "contract_promotion_gate",
         "contract_live_trust_recovery",
         "contract_live_trust_executor",
-        "contract_ai_learning_layer",
         "contract_auction_truth_shadow",
-        "live_signals",
-        "live_regime",
-        "auto_trade_log"
+        "auto_trade_log",
+        "contract_break_ledger_stale",
+        "bot_gate_legacy_permission_warning"
       ],
       "command": null,
       "evidence": [
-        "stale during pre: 34784s old, limit 2700s",
-        "stale during pre: 34783s old, limit 2700s",
-        "stale during pre: 34250s old, limit 2700s",
-        "stale during pre: 33861s old, limit 2700s",
-        "stale during pre: 32351s old, limit 2700s",
-        "stale during pre: 1466s old, limit 720s",
-        "stale during pre: 1406s old, limit 720s",
-        "stale during pre: 1295s old, limit 1200s"
+        "stale during ah: 385786s old, limit 2700s",
+        "stale during ah: 80510s old, limit 2700s",
+        "stale during ah: 385784s old, limit 2700s",
+        "stale during ah: 385778s old, limit 2700s",
+        "stale during ah: 385777s old, limit 2700s",
+        "stale during ah: 385776s old, limit 2700s",
+        "stale during ah: 385775s old, limit 2700s",
+        "stale during ah: 13682s old, limit 1200s",
+        "fem_contract_breaks.json is stamped 2026-06-26, not 2026-06-30; ignoring stale breach counts for current health",
+        "active route/source/gate/P&L enforcement is on; legacy_permission_enforce=False, legacy_block_unknown=False"
       ],
-      "evidence_count": 8,
+      "evidence_count": 10,
       "group_id": "misc_contract_followup",
       "next_action": "Inspect fem_contract_health.json for remaining checks.",
       "priority": 90,
@@ -276,13 +285,39 @@
     "can_auto_run": true,
     "category": "ARTIFACT_REFRESH",
     "check_ids": [
-      "contract_source_refresh"
+      "contract_dashboard",
+      "contract_breaks",
+      "contract_accountability",
+      "contract_source_refresh",
+      "contract_fill_reconcile",
+      "contract_exit_reconcile",
+      "contract_route_readiness",
+      "contract_decision_obligation",
+      "contract_live_fire_accounting",
+      "contract_session_context",
+      "contract_score_provenance",
+      "contract_score_partitions",
+      "contract_latency_audit",
+      "contract_order_sizing_audit",
+      "contract_realized_result",
+      "contract_exit_rules_learning"
     ],
     "command": "_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
     "evidence": [
-      "stale during pre: 82570s old, limit 2700s"
+      "stale during ah: 80508s old, limit 2700s",
+      "stale during ah: 385847s old, limit 2700s",
+      "stale during ah: 385829s old, limit 2700s",
+      "stale during ah: 23077s old, limit 2700s",
+      "stale during ah: 82493s old, limit 2700s",
+      "stale during ah: 82492s old, limit 2700s",
+      "stale during ah: 36797s old, limit 2700s",
+      "stale during ah: 385797s old, limit 2700s",
+      "stale during ah: 385799s old, limit 2700s",
+      "stale during ah: 385788s old, limit 720s",
+      "stale during ah: 14974s old, limit 720s",
+      "stale during ah: 385787s old, limit 720s"
     ],
-    "evidence_count": 1,
+    "evidence_count": 15,
     "group_id": "rebuild_contract_artifacts",
     "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun this plan.",
     "priority": 10,
@@ -293,19 +328,19 @@
   "operator_read": "First rebuild the stale contract artifacts. Until that is fresh, many downstream failures are probably noisy or duplicated.",
   "overall": "FAIL",
   "schema": "fem_contract_remediation_plan.v1",
-  "session": "pre",
+  "session": "ah",
   "summary": {
     "auto_runnable": 4,
-    "blocks_live_trading": 4,
-    "blocks_normal_scoring": 7,
+    "blocks_live_trading": 3,
+    "blocks_normal_scoring": 6,
     "evidence_overall": "WARN",
     "evidence_partition": "EXPERIMENT",
     "fail_groups": 4,
-    "groups": 9,
+    "groups": 8,
     "health_overall": "FAIL",
-    "manual": 5,
+    "manual": 4,
     "normal_evidence_allowed": false,
-    "warn_groups": 5
+    "warn_groups": 4
   },
-  "trade_date": "2026-06-26"
+  "trade_date": "2026-06-30"
 }
