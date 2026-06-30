@@ -38,6 +38,23 @@
       "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
       "risk_multiplier": 0.25,
       "route_weight": 0.25
+    },
+    "surge_watch_probe": {
+      "allowed_to_trade": true,
+      "enabled": true,
+      "expires_et": "2026-07-07",
+      "guardrails": [
+        "Separate strategy id; do not merge with surge_micro_scout performance.",
+        "Bot caps this lane at 1 new entry per pass and 2 per day.",
+        "Only first-hour WATCH_ONLY rows with score, relative-volume, risk-on, and reachable target checks can enter.",
+        "Review after expiry or after at least 20 routed attempts."
+      ],
+      "operator_approved_probe": true,
+      "max_risk_dollars": 15,
+      "permission": "ALLOW_PROBE",
+      "reason": "Tiny watch-only surge probe for first-hour cheap-name candidates that were repeatedly missed by the non-trade verdict bucket.",
+      "risk_multiplier": 0.05,
+      "route_weight": 0.05
     }
   },
   "owner": "Gill",
