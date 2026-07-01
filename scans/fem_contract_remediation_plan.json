@@ -21,7 +21,6 @@
   ],
   "code_version": "unknown",
   "execution_order": [
-    "restart_runtime_windows",
     "repair_exit_and_fill_coverage",
     "repair_contract_breaks",
     "repair_decision_accounting",
@@ -29,32 +28,9 @@
     "clean_route_policy",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-07-01T14:42:54+00:00",
-  "generated_at_et": "2026-07-01T10:42:54-04:00",
+  "generated_at": "2026-07-01T15:24:06+00:00",
+  "generated_at_et": "2026-07-01T11:24:06-04:00",
   "groups": [
-    {
-      "batch_path": null,
-      "blocks_live_trading": true,
-      "blocks_normal_scoring": false,
-      "can_auto_run": false,
-      "category": "RUNTIME",
-      "check_ids": [
-        "runtime_drift_restart_required",
-        "live_readiness_not_ready"
-      ],
-      "command": null,
-      "evidence": [
-        "1 runtime role(s) started before watched code changed; restart_queue=1",
-        "live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=TRIGGER_LIVE, positions=4"
-      ],
-      "evidence_count": 2,
-      "group_id": "restart_runtime_windows",
-      "next_action": "Restart the windows named in fem_contract_runtime_drift.json, then run _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-      "priority": 20,
-      "root_cause": "Open bot/live processes can keep running old imported code even after files are fixed.",
-      "severity": "FAIL",
-      "title": "Restart stale or missing live runtime windows"
-    },
     {
       "batch_path": null,
       "blocks_live_trading": true,
@@ -88,8 +64,8 @@
       ],
       "command": null,
       "evidence": [
-        "28 ERROR breach(es) in current validator output",
-        "3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=14"
+        "36 ERROR breach(es) in current validator output",
+        "3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=13"
       ],
       "evidence_count": 2,
       "group_id": "repair_contract_breaks",
@@ -107,16 +83,18 @@
       "category": "DECISION_ACCOUNTING",
       "check_ids": [
         "route_readiness_warnings",
+        "decision_obligation_warnings",
         "decision_obligation_time_order_warnings",
         "latency_missed_move_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "evidence": [
         "2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-        "743 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "missed=719, no_decision=0, slow_decisions=100, slow_orders=5, order_after_peak=3"
+        "inferred_duplicate_needs_explicit=0, pending_new=20",
+        "1084 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "missed=1357, no_decision=68, slow_decisions=199, slow_orders=6, order_after_peak=4"
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "group_id": "repair_decision_accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat after fresh data.",
       "priority": 40,
@@ -139,14 +117,14 @@
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=11, context=a97309b6e4295662",
-        "partition=EXPERIMENT, actual_trades=33, ghost_graded=71988, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "experiment/review evidence=72021, experiment_strategies=28, review_strategies=0",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=14, context=3caa1e479a08529b",
+        "partition=EXPERIMENT, actual_trades=42, ghost_graded=72989, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "experiment/review evidence=73031, experiment_strategies=28, review_strategies=0",
         "39 score-consuming strategy route(s) locked to research/display; normal=0, experiment=28, review=0",
         "3 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=72021, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=73031, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 39 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 3 historical order(s) predate the current permission lock and would be blocked or track-only now"
@@ -209,40 +187,38 @@
   "next_action": {
     "batch_path": null,
     "blocks_live_trading": true,
-    "blocks_normal_scoring": false,
-    "can_auto_run": false,
-    "category": "RUNTIME",
+    "blocks_normal_scoring": true,
+    "can_auto_run": true,
+    "category": "EXECUTION_SAFETY",
     "check_ids": [
-      "runtime_drift_restart_required",
-      "live_readiness_not_ready"
+      "exit_reconcile_open_risk"
     ],
-    "command": null,
+    "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
     "evidence": [
-      "1 runtime role(s) started before watched code changed; restart_queue=1",
-      "live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=TRIGGER_LIVE, positions=4"
+      "5 open unguarded, 0 partial-open trace(s)"
     ],
-    "evidence_count": 2,
-    "group_id": "restart_runtime_windows",
-    "next_action": "Restart the windows named in fem_contract_runtime_drift.json, then run _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-    "priority": 20,
-    "root_cause": "Open bot/live processes can keep running old imported code even after files are fixed.",
+    "evidence_count": 1,
+    "group_id": "repair_exit_and_fill_coverage",
+    "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
+    "priority": 30,
+    "root_cause": "Open/partial exits and adverse fills can make realized edge look better or worse than it really was.",
     "severity": "FAIL",
-    "title": "Restart stale or missing live runtime windows"
+    "title": "Repair fill and exit coverage before grading"
   },
-  "operator_read": "First action: Restart stale or missing live runtime windows.",
+  "operator_read": "First action: Repair fill and exit coverage before grading.",
   "overall": "FAIL",
   "schema": "fem_contract_remediation_plan.v1",
   "session": "rth",
   "summary": {
     "auto_runnable": 3,
-    "blocks_live_trading": 3,
+    "blocks_live_trading": 2,
     "blocks_normal_scoring": 5,
     "evidence_overall": "FAIL",
     "evidence_partition": "UNTAGGED",
-    "fail_groups": 3,
-    "groups": 7,
+    "fail_groups": 2,
+    "groups": 6,
     "health_overall": "FAIL",
-    "manual": 4,
+    "manual": 3,
     "normal_evidence_allowed": false,
     "warn_groups": 4
   },
