@@ -19,13 +19,24 @@
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Contract source refresh report: stale during rth: 4409s old, limit 2700s",
-        "FAIL Contract daily spine certification: stale during rth: 4119s old, limit 2700s",
-        "FAIL Contract live trust recovery: stale during rth: 4118s old, limit 2700s",
-        "FAIL Contract live trust executor: stale during rth: 4118s old, limit 2700s",
-        "FAIL Contract auction truth shadow score: stale during rth: 4095s old, limit 2700s"
+        "FAIL Contract dashboard payload: stale during rth: 3365s old, limit 2700s",
+        "FAIL Contract breach ledger: stale during rth: 3437s old, limit 2700s",
+        "FAIL Contract accountability queue: stale during rth: 3364s old, limit 2700s",
+        "WARN Contract source refresh report: stale during rth: 7693s old, limit 2700s",
+        "FAIL Contract fill reconciliation: stale during rth: 3370s old, limit 2700s",
+        "FAIL Contract exit reconciliation: stale during rth: 3369s old, limit 2700s",
+        "FAIL Contract ghost/skipped trade ledger: stale during rth: 3435s old, limit 2700s",
+        "FAIL Contract bot route readiness audit: stale during rth: 3120s old, limit 2700s",
+        "FAIL Contract decision obligation audit: stale during rth: 3308s old, limit 2700s",
+        "FAIL Contract live-fire accounting backfill: stale during rth: 3319s old, limit 2700s",
+        "FAIL Contract live readiness: stale during rth: 855s old, limit 720s",
+        "FAIL Contract session context / dirty-data guard: stale during rth: 854s old, limit 720s",
+        "FAIL Contract score provenance / score partition guard: stale during rth: 854s old, limit 720s",
+        "FAIL Contract score partitioned leaderboards: stale during rth: 853s old, limit 720s",
+        "FAIL Contract latency/missed-move audit: stale during rth: 3298s old, limit 2700s",
+        "FAIL Contract order sizing audit: stale during rth: 3291s old, limit 2700s"
       ],
-      "evidence_count": 5,
+      "evidence_count": 28,
       "gate_id": "ARTIFACTS_FRESH",
       "label": "Contract artifacts are fresh",
       "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -53,48 +64,55 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": false,
       "evidence": [
+        "FAIL Contract live readiness: stale during rth: 855s old, limit 720s",
         "WARN Live readiness overall:"
       ],
-      "evidence_count": 1,
+      "evidence_count": 2,
       "gate_id": "RUNTIME_READY",
       "label": "Live/bot runtime matches disk code",
       "next_action": "Restart stale/missing runtime windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
       "priority": 30,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "fem_contract_runtime_drift.json + fem_contract_live_readiness.json",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
+        "FAIL Contract fill reconciliation: stale during rth: 3370s old, limit 2700s",
+        "FAIL Contract exit reconciliation: stale during rth: 3369s old, limit 2700s",
         "WARN Open exit coverage risk: 3 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
       ],
-      "evidence_count": 1,
+      "evidence_count": 3,
       "gate_id": "EXECUTION_COVERAGE_CLEAN",
       "label": "Orders, fills, and exits are reconcilable",
       "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
       "priority": 40,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "fill/exit reconcile reports",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
+        "FAIL Contract bot route readiness audit: stale during rth: 3120s old, limit 2700s",
+        "FAIL Contract decision obligation audit: stale during rth: 3308s old, limit 2700s",
+        "FAIL Contract live-fire accounting backfill: stale during rth: 3319s old, limit 2700s",
+        "FAIL Contract latency/missed-move audit: stale during rth: 3298s old, limit 2700s",
         "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
         "WARN Decision obligation timestamp ordering warnings: 2637 accounted pick(s) had accounting timestamps earlier than pick timestamps",
         "WARN Latency / missed move warnings: missed=3290, no_decision=0, slow_decisions=381, slow_orders=6, order_after_peak=4"
       ],
-      "evidence_count": 3,
+      "evidence_count": 7,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
       "priority": 50,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "decision obligation/live-fire/latency reports",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": false,
@@ -192,19 +210,30 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-07-01T17:13:32+00:00",
-  "generated_at_et": "2026-07-01T13:13:32-04:00",
+  "generated_at": "2026-07-01T18:08:44+00:00",
+  "generated_at_et": "2026-07-01T14:08:44-04:00",
   "next_gate": {
     "blocking_live_trading": false,
     "blocking_normal_scoring": true,
     "evidence": [
-      "WARN Contract source refresh report: stale during rth: 4409s old, limit 2700s",
-      "FAIL Contract daily spine certification: stale during rth: 4119s old, limit 2700s",
-      "FAIL Contract live trust recovery: stale during rth: 4118s old, limit 2700s",
-      "FAIL Contract live trust executor: stale during rth: 4118s old, limit 2700s",
-      "FAIL Contract auction truth shadow score: stale during rth: 4095s old, limit 2700s"
+      "FAIL Contract dashboard payload: stale during rth: 3365s old, limit 2700s",
+      "FAIL Contract breach ledger: stale during rth: 3437s old, limit 2700s",
+      "FAIL Contract accountability queue: stale during rth: 3364s old, limit 2700s",
+      "WARN Contract source refresh report: stale during rth: 7693s old, limit 2700s",
+      "FAIL Contract fill reconciliation: stale during rth: 3370s old, limit 2700s",
+      "FAIL Contract exit reconciliation: stale during rth: 3369s old, limit 2700s",
+      "FAIL Contract ghost/skipped trade ledger: stale during rth: 3435s old, limit 2700s",
+      "FAIL Contract bot route readiness audit: stale during rth: 3120s old, limit 2700s",
+      "FAIL Contract decision obligation audit: stale during rth: 3308s old, limit 2700s",
+      "FAIL Contract live-fire accounting backfill: stale during rth: 3319s old, limit 2700s",
+      "FAIL Contract live readiness: stale during rth: 855s old, limit 720s",
+      "FAIL Contract session context / dirty-data guard: stale during rth: 854s old, limit 720s",
+      "FAIL Contract score provenance / score partition guard: stale during rth: 854s old, limit 720s",
+      "FAIL Contract score partitioned leaderboards: stale during rth: 853s old, limit 720s",
+      "FAIL Contract latency/missed-move audit: stale during rth: 3298s old, limit 2700s",
+      "FAIL Contract order sizing audit: stale during rth: 3291s old, limit 2700s"
     ],
-    "evidence_count": 5,
+    "evidence_count": 28,
     "gate_id": "ARTIFACTS_FRESH",
     "label": "Contract artifacts are fresh",
     "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -229,11 +258,11 @@
     "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
-    "open_gates": 3,
+    "open_gates": 6,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
-    "review_gates": 4
+    "review_gates": 1
   },
   "trade_date": "2026-07-01"
 }
