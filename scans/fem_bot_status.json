@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T08:22:09",
+  "generated_at": "2026-07-01T08:23:14",
   "date": "2026-07-01",
   "mode": "TRIGGER_LIVE",
   "n_positions": 14,
@@ -360,13 +360,6 @@
     "shorts": 1
   },
   "log_tail": [
-    "08:19:32  INFO       KDK    gated - universal daily liquidity: day volume 308,900 < 750,000",
-    "08:19:48  INFO     REQUEST reqPositions {}",
-    "08:19:48  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "08:20:05  INFO     REQUEST reqPositions {}",
-    "08:20:05  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "08:20:24  INFO     REQUEST reqPositions {}",
-    "08:20:24  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
     "08:20:35  INFO     Status pushed -> fem_bot_status.json",
     "08:20:58  INFO     REQUEST reqPositions {}",
     "08:20:58  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
@@ -384,16 +377,23 @@
     "08:21:48  INFO       CTNT   gated - universal daily liquidity: day volume 529,468 < 750,000",
     "08:21:49  INFO       DAR    gated - universal daily liquidity: day volume 648,966 < 750,000",
     "08:22:06  INFO     REQUEST reqPositions {}",
-    "08:22:06  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "08:22:06  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:22:12  INFO     Status pushed -> fem_bot_status.json",
+    "08:22:28  INFO     REQUEST reqPositions {}",
+    "08:22:28  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:22:47  INFO     REQUEST reqPositions {}",
+    "08:22:47  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:23:05  INFO     REQUEST reqPositions {}",
+    "08:23:05  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
   ],
   "heartbeat": true,
   "alive": true,
   "halted": false,
   "regime": "RISK_ON",
-  "daily_pnl": -60.086900293716425,
+  "daily_pnl": -58.20207554090881,
   "entries_today": 14,
   "open_count": 5,
-  "unrealized_open": -14.95,
+  "unrealized_open": -11.74,
   "daily_pnl_guard": {
     "schema": "fem_daily_pnl_guard.v1",
     "generated_at": "2026-07-01T15:12:00+00:00",
@@ -431,47 +431,15 @@
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "rth",
-    "generated_at": "2026-07-01T15:22:10+00:00",
-    "generated_at_et": "2026-07-01T11:22:10-04:00",
+    "generated_at": "2026-07-01T15:23:16+00:00",
+    "generated_at_et": "2026-07-01T11:23:16-04:00",
     "summary": {
       "checks": 61,
-      "ok": 41,
-      "warn": 12,
-      "fail": 8
+      "ok": 45,
+      "warn": 13,
+      "fail": 3
     },
     "bad_checks": [
-      {
-        "id": "contract_session_context",
-        "label": "Contract session context / dirty-data guard",
-        "status": "FAIL",
-        "detail": "stale during rth: 2361s old, limit 720s",
-        "path": "fem_contract_session_context.json",
-        "age_seconds": 2361
-      },
-      {
-        "id": "contract_score_provenance",
-        "label": "Contract score provenance / score partition guard",
-        "status": "FAIL",
-        "detail": "stale during rth: 2361s old, limit 720s",
-        "path": "fem_contract_score_provenance.json",
-        "age_seconds": 2361
-      },
-      {
-        "id": "contract_score_partitions",
-        "label": "Contract score partitioned leaderboards",
-        "status": "FAIL",
-        "detail": "stale during rth: 2360s old, limit 720s",
-        "path": "fem_contract_score_partitions.json",
-        "age_seconds": 2360
-      },
-      {
-        "id": "contract_score_consumer_lock",
-        "label": "Contract score consumer lock",
-        "status": "FAIL",
-        "detail": "stale during rth: 820s old, limit 720s",
-        "path": "fem_contract_score_consumer_lock.json",
-        "age_seconds": 820
-      },
       {
         "id": "contract_break_errors",
         "label": "Contract validator errors",
@@ -503,14 +471,46 @@
         "detail": "10 strategy permission(s) are blocked by contract failures",
         "path": null,
         "age_seconds": null
+      },
+      {
+        "id": "route_readiness_warnings",
+        "label": "Allowed bot route readiness warnings",
+        "status": "WARN",
+        "detail": "2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
+        "path": null,
+        "age_seconds": null
+      },
+      {
+        "id": "decision_obligation_time_order_warnings",
+        "label": "Decision obligation timestamp ordering warnings",
+        "status": "WARN",
+        "detail": "1054 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "path": null,
+        "age_seconds": null
+      },
+      {
+        "id": "live_fire_accounting_backfilled",
+        "label": "Live-fire decisions backfilled after runtime silence",
+        "status": "WARN",
+        "detail": "1 live-fire pick(s) were posthoc accounted; candidate_traces=1",
+        "path": null,
+        "age_seconds": null
+      },
+      {
+        "id": "session_context_dirty_data",
+        "label": "Session provenance dirty-data warning",
+        "status": "WARN",
+        "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=14, context=3caa1e479a08529b",
+        "path": null,
+        "age_seconds": null
       }
     ],
     "next_actions": [
-      "Run _DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat and inspect fem_contract_session_context.json.",
       "Keep today's fills tagged by session_context_id/gate_profile_id; do not blend them into normal panel scores without review.",
-      "Run _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat and inspect fem_contract_score_provenance.json.",
       "Treat today's panel score as experiment/review evidence until fem_contract_score_provenance.json says normal_score_eligible=true.",
-      "Run _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat and inspect fem_contract_score_partitions.json."
+      "Use the Experiment leaderboard for research only; normal panel leaderboard has no eligible evidence for this session.",
+      "Score consumer lock is active: use locked experiment/review rows for research only, not normal bot edge.",
+      "Open fem_contract_live_fire_accounting.json; those picks were backfilled after the fact and need a forward runtime suppression hook."
     ]
   }
 }
