@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T08:40:34",
+  "generated_at": "2026-07-01T08:41:54",
   "date": "2026-07-01",
   "mode": "TRIGGER_LIVE",
   "n_positions": 14,
@@ -360,16 +360,6 @@
     "shorts": 1
   },
   "log_tail": [
-    "08:39:28  INFO       CTRI   gated - universal daily liquidity: day volume 213,748 < 750,000",
-    "08:39:30  INFO       ERO    gated - universal daily liquidity: day volume 285,756 < 750,000",
-    "08:39:30  INFO       EXTR   gated - universal daily liquidity: day volume 417,013 < 750,000",
-    "08:39:31  INFO       HLNE   gated - universal daily liquidity: day volume 176,138 < 750,000",
-    "08:39:34  INFO       LEU    gated - universal daily liquidity: day volume 215,823 < 750,000",
-    "08:39:39  INFO       PAYC   gated - universal daily liquidity: day volume 331,221 < 750,000",
-    "08:39:41  INFO       SHMD   gated - universal daily liquidity: day volume 253,039 < 750,000",
-    "08:39:41  INFO       SKE    gated - universal daily liquidity: day volume 152,599 < 750,000",
-    "08:39:42  INFO       TRU    gated - universal daily liquidity: day volume 559,764 < 750,000",
-    "08:39:43  INFO       TW     gated - universal daily liquidity: day volume 412,663 < 750,000",
     "08:39:47  INFO       VEEV   gated - universal daily liquidity: day volume 669,474 < 750,000",
     "08:39:47  INFO       VOYA   gated - universal daily liquidity: day volume 126,558 < 750,000",
     "08:39:49  INFO       VUZI   gated - universal daily liquidity: day volume 226,759 < 750,000",
@@ -384,16 +374,26 @@
     "08:40:08  INFO       MMYT   gated - universal daily liquidity: day volume 342,003 < 750,000",
     "08:40:29  INFO     gates: regime=RISK_ON  dilution_flags=57  ledger_levels=8",
     "08:40:31  INFO     REQUEST reqPositions {}",
-    "08:40:31  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "08:40:31  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:40:37  INFO     Status pushed -> fem_bot_status.json",
+    "08:40:39  INFO       HRB    gated - universal daily liquidity: day volume 353,849 < 750,000",
+    "08:40:54  INFO     REQUEST reqPositions {}",
+    "08:40:54  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:41:16  INFO     REQUEST reqPositions {}",
+    "08:41:16  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:41:33  INFO     REQUEST reqPositions {}",
+    "08:41:33  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "08:41:53  INFO     REQUEST reqPositions {}",
+    "08:41:53  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
   ],
   "heartbeat": true,
   "alive": true,
   "halted": false,
   "regime": "RISK_ON",
-  "daily_pnl": -65.39779064038085,
+  "daily_pnl": -60.79319140293883,
   "entries_today": 14,
   "open_count": 4,
-  "unrealized_open": -14.63,
+  "unrealized_open": -5.98,
   "daily_pnl_guard": {
     "schema": "fem_daily_pnl_guard.v1",
     "generated_at": "2026-07-01T15:12:00+00:00",
@@ -431,30 +431,22 @@
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "rth",
-    "generated_at": "2026-07-01T15:40:35+00:00",
-    "generated_at_et": "2026-07-01T11:40:35-04:00",
+    "generated_at": "2026-07-01T15:41:55+00:00",
+    "generated_at_et": "2026-07-01T11:41:55-04:00",
     "summary": {
       "checks": 61,
-      "ok": 43,
+      "ok": 44,
       "warn": 15,
-      "fail": 3
+      "fail": 2
     },
     "bad_checks": [
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during rth: 3654s old, limit 2700s",
+        "detail": "stale during rth: 3735s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 3654
-      },
-      {
-        "id": "contract_score_consumer_lock",
-        "label": "Contract score consumer lock",
-        "status": "FAIL",
-        "detail": "stale during rth: 762s old, limit 720s",
-        "path": "fem_contract_score_consumer_lock.json",
-        "age_seconds": 762
+        "age_seconds": 3735
       },
       {
         "id": "contract_break_errors",
@@ -503,6 +495,14 @@
         "detail": "inferred_duplicate_needs_explicit=0, pending_new=20",
         "path": null,
         "age_seconds": null
+      },
+      {
+        "id": "decision_obligation_time_order_warnings",
+        "label": "Decision obligation timestamp ordering warnings",
+        "status": "WARN",
+        "detail": "1084 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "path": null,
+        "age_seconds": null
       }
     ],
     "next_actions": [
@@ -510,7 +510,7 @@
       "Keep today's fills tagged by session_context_id/gate_profile_id; do not blend them into normal panel scores without review.",
       "Treat today's panel score as experiment/review evidence until fem_contract_score_provenance.json says normal_score_eligible=true.",
       "Use the Experiment leaderboard for research only; normal panel leaderboard has no eligible evidence for this session.",
-      "Run _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat and inspect fem_contract_score_consumer_lock.json."
+      "Score consumer lock is active: use locked experiment/review rows for research only, not normal bot edge."
     ]
   }
 }
