@@ -1,5 +1,14 @@
 {
-  "action_queue": [],
+  "action_queue": [
+    {
+      "breach_code": "NON_BOT_STRATEGY_HAS_ORDER_EVIDENCE",
+      "detail": "orders exist for a non-bot strategy; pre-lock evidence is review-only, forward evidence is fatal",
+      "next_action": "Historical/pre-lock order evidence stays in review; do not promote it into normal score.",
+      "severity": "WARN",
+      "status": "WARN",
+      "strategy_id": "short_genesis"
+    }
+  ],
   "code_version": "unknown",
   "consumer_lock_breaches": [],
   "consumer_lock_rows": [
@@ -272,7 +281,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "EXPERIMENT_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
       "status": "OK",
@@ -284,7 +293,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "UNTAGGED_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "UNTAGGED",
       "status": "OK",
@@ -296,7 +305,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "EXPERIMENT_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
       "status": "OK",
@@ -332,7 +341,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "EXPERIMENT_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
       "status": "OK",
@@ -368,7 +377,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "EXPERIMENT_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
       "status": "OK",
@@ -392,7 +401,7 @@
       "bot_score_allowed": false,
       "breaches": [],
       "consumption_permission": "EXPERIMENT_ONLY",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
       "status": "OK",
@@ -473,29 +482,32 @@
     }
   ],
   "forward_order_breaches": [],
-  "generated_at": "2026-07-01T17:13:37.636214+00:00",
-  "generated_at_et": "2026-07-01T13:13:37.636214-04:00",
+  "generated_at": "2026-07-01T18:20:27.266375+00:00",
+  "generated_at_et": "2026-07-01T14:20:27.266375-04:00",
   "inputs": {
-    "consumer_lock_generated_at": "2026-07-01T17:13:29+00:00",
-    "order_permission_generated_at": "2026-07-01T17:13:29+00:00",
-    "partitions_generated_at": "2026-07-01T17:13:28+00:00",
-    "registry_generated_at": "2026-07-01T17:13:36.847874+00:00",
-    "score_generated_at": "2026-07-01T17:05:59+00:00"
+    "consumer_lock_generated_at": "2026-07-01T18:19:45+00:00",
+    "order_permission_generated_at": "2026-07-01T18:20:24+00:00",
+    "partitions_generated_at": "2026-07-01T18:19:44+00:00",
+    "registry_generated_at": "2026-07-01T18:20:26.385124+00:00",
+    "score_generated_at": "2026-07-01T18:19:32+00:00"
   },
-  "non_normal_order_reviews": [],
-  "normal_partition_leaks": [],
-  "operator_read": "0ZM registry enforcement is clean: score, order, and consumer-lock rows obey the canonical strategy fates.",
-  "order_rows": [
+  "non_normal_order_reviews": [
     {
       "breach_codes": [
         "PRE_LOCK_CURRENTLY_DISALLOWED"
       ],
-      "breaches": [],
+      "breaches": [
+        {
+          "code": "NON_BOT_STRATEGY_HAS_ORDER_EVIDENCE",
+          "detail": "orders exist for a non-bot strategy; pre-lock evidence is review-only, forward evidence is fatal",
+          "severity": "WARN"
+        }
+      ],
       "fail": 0,
-      "next_action": "Orders exist for a bot-allowed strategy; keep verifying permission and score locks forward.",
+      "next_action": "Historical/pre-lock order evidence stays in review; do not promote it into normal score.",
       "orders": 3,
       "pre_lock_disallowed_orders": 3,
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "sample_orders": [
@@ -533,7 +545,68 @@
           "symbol": "NKE"
         }
       ],
-      "status": "OK",
+      "status": "WARN",
+      "strategy_id": "short_genesis",
+      "warn": 3
+    }
+  ],
+  "normal_partition_leaks": [],
+  "operator_read": "0ZM found review-only registry pressure, but no forward order or normal-score leak: experimental evidence remains quarantined by the consumer lock.",
+  "order_rows": [
+    {
+      "breach_codes": [
+        "PRE_LOCK_CURRENTLY_DISALLOWED"
+      ],
+      "breaches": [
+        {
+          "code": "NON_BOT_STRATEGY_HAS_ORDER_EVIDENCE",
+          "detail": "orders exist for a non-bot strategy; pre-lock evidence is review-only, forward evidence is fatal",
+          "severity": "WARN"
+        }
+      ],
+      "fail": 0,
+      "next_action": "Historical/pre-lock order evidence stays in review; do not promote it into normal score.",
+      "orders": 3,
+      "pre_lock_disallowed_orders": 3,
+      "registry_bot_allowed": false,
+      "registry_phase": "PAPER_LIVE",
+      "registry_score_mode": "NORMAL",
+      "sample_orders": [
+        {
+          "breach_code": "PRE_LOCK_CURRENTLY_DISALLOWED",
+          "order_id": 3691,
+          "order_ts_et": "2026-07-01T10:01:55-04:00",
+          "score_consumer_locked": true,
+          "score_partition": "EXPERIMENT",
+          "severity": "WARN",
+          "side": "SHORT",
+          "source_section": "review_rows",
+          "symbol": "NKE"
+        },
+        {
+          "breach_code": "PRE_LOCK_CURRENTLY_DISALLOWED",
+          "order_id": 3692,
+          "order_ts_et": "2026-07-01T10:01:55-04:00",
+          "score_consumer_locked": true,
+          "score_partition": "EXPERIMENT",
+          "severity": "WARN",
+          "side": "SHORT",
+          "source_section": "review_rows",
+          "symbol": "NKE"
+        },
+        {
+          "breach_code": "PRE_LOCK_CURRENTLY_DISALLOWED",
+          "order_id": 3693,
+          "order_ts_et": "2026-07-01T10:01:55-04:00",
+          "score_consumer_locked": true,
+          "score_partition": "EXPERIMENT",
+          "severity": "WARN",
+          "side": "SHORT",
+          "source_section": "review_rows",
+          "symbol": "NKE"
+        }
+      ],
+      "status": "WARN",
       "strategy_id": "short_genesis",
       "warn": 3
     },
@@ -684,7 +757,7 @@
       "warn": 0
     }
   ],
-  "overall": "OK",
+  "overall": "WARN",
   "registry_coverage": [
     {
       "bot_allowed": false,
@@ -929,7 +1002,7 @@
       "strategy_id": "options_roundtrip_short"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": true,
       "has_score_row": true,
@@ -940,7 +1013,7 @@
       "strategy_id": "short_genesis"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": false,
       "has_score_row": false,
@@ -951,7 +1024,7 @@
       "strategy_id": "short_mid"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": false,
       "has_score_row": true,
@@ -984,7 +1057,7 @@
       "strategy_id": "short_universe_gapdown_cont"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": false,
       "has_score_row": true,
@@ -1017,7 +1090,7 @@
       "strategy_id": "short_universe_vwap_reject"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": false,
       "has_score_row": true,
@@ -1039,7 +1112,7 @@
       "strategy_id": "state_lookup"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "has_consumer_lock": true,
       "has_order_row": false,
       "has_score_row": true,
@@ -1190,7 +1263,7 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 4381,
+        "ghost_fires": 4376,
         "ghost_graded": 4374,
         "ghost_runners": 3574
       },
@@ -1212,7 +1285,7 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 354,
+        "ghost_fires": 359,
         "ghost_graded": 321,
         "ghost_runners": 211
       },
@@ -1241,7 +1314,7 @@
       "next_action": "Experiment evidence is visible and locked out of bot score consumption.",
       "normal_score_eligible": false,
       "panel_name": "Short Universe",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
@@ -1263,7 +1336,7 @@
       "next_action": "Experiment evidence is visible and locked out of bot score consumption.",
       "normal_score_eligible": false,
       "panel_name": "Short Universe",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "score_partition": "EXPERIMENT",
@@ -1388,7 +1461,7 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 19,
+        "ghost_fires": 17,
         "ghost_graded": 0,
         "ghost_runners": 0
       },
@@ -1454,7 +1527,7 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 10,
+        "ghost_fires": 8,
         "ghost_graded": 0,
         "ghost_runners": 0
       },
@@ -1498,9 +1571,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 1295,
-        "ghost_graded": 1111,
-        "ghost_runners": 115
+        "ghost_fires": 1656,
+        "ghost_graded": 1496,
+        "ghost_runners": 128
       },
       "next_action": "Evidence may stay visible, but only in experiment/shadow/research partitions until promotion.",
       "normal_score_eligible": false,
@@ -1520,9 +1593,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 105,
-        "ghost_graded": 84,
-        "ghost_runners": 3
+        "ghost_fires": 153,
+        "ghost_graded": 136,
+        "ghost_runners": 7
       },
       "next_action": "Evidence may stay visible, but only in experiment/shadow/research partitions until promotion.",
       "normal_score_eligible": false,
@@ -1542,8 +1615,8 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 34,
-        "ghost_graded": 19,
+        "ghost_fires": 102,
+        "ghost_graded": 66,
         "ghost_runners": 0
       },
       "next_action": "Evidence may stay visible, but only in experiment/shadow/research partitions until promotion.",
@@ -1556,7 +1629,7 @@
       "side": "LONG",
       "status": "OK",
       "strategy_id": "live_fire_gap_reclaim",
-      "verdict": "WATCH"
+      "verdict": "CUT_GHOST"
     },
     {
       "breaches": [],
@@ -1564,8 +1637,8 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 12,
-        "ghost_graded": 12,
+        "ghost_fires": 13,
+        "ghost_graded": 13,
         "ghost_runners": 5
       },
       "next_action": "Evidence may stay visible, but only in experiment/shadow/research partitions until promotion.",
@@ -1586,9 +1659,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 3161,
-        "ghost_graded": 2625,
-        "ghost_runners": 352
+        "ghost_fires": 4554,
+        "ghost_graded": 4019,
+        "ghost_runners": 421
       },
       "next_action": "Evidence may stay visible, but only in experiment/shadow/research partitions until promotion.",
       "normal_score_eligible": false,
@@ -1615,7 +1688,7 @@
       "next_action": "Score row obeys the current registry fate.",
       "normal_score_eligible": false,
       "panel_name": "Short Genesis",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "score_partition": "UNTAGGED_PANEL_SCORE",
@@ -1659,7 +1732,7 @@
       "next_action": "Score row obeys the current registry fate.",
       "normal_score_eligible": false,
       "panel_name": "SMA Reclaim",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "score_partition": "UNTAGGED_PANEL_SCORE",
@@ -1674,14 +1747,14 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_fires": 3161,
-        "ghost_graded": 2625,
-        "ghost_runners": 352
+        "ghost_fires": 4554,
+        "ghost_graded": 4019,
+        "ghost_runners": 421
       },
       "next_action": "Score row obeys the current registry fate.",
       "normal_score_eligible": false,
       "panel_name": "Surge Trader",
-      "registry_bot_allowed": true,
+      "registry_bot_allowed": false,
       "registry_phase": "PAPER_LIVE",
       "registry_score_mode": "NORMAL",
       "score_partition": "UNTAGGED_PANEL_SCORE",
@@ -1697,8 +1770,8 @@
         "actual_realized_pnl": -51.98,
         "actual_trades": 30,
         "ghost_fires": 30,
-        "ghost_graded": 18,
-        "ghost_runners": 16
+        "ghost_graded": 19,
+        "ghost_runners": 17
       },
       "next_action": "Score row obeys the current registry fate.",
       "normal_score_eligible": false,
@@ -1741,15 +1814,15 @@
     "consumer_lock_ok": 39,
     "consumer_locks": 39,
     "forward_order_breaches": 0,
-    "historical_order_reviews": 0,
-    "non_normal_order_review_strategies": 0,
+    "historical_order_reviews": 3,
+    "non_normal_order_review_strategies": 1,
     "normal_partition_leaks": 0,
     "order_fail": 0,
-    "order_ok": 3,
+    "order_ok": 2,
     "order_strategies": 3,
-    "order_warn": 0,
+    "order_warn": 1,
     "registry_breaches": 0,
-    "review_warnings": 0,
+    "review_warnings": 1,
     "score_fail": 0,
     "score_ok": 28,
     "score_rows": 28,
