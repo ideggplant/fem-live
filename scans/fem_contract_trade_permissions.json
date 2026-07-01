@@ -4,7 +4,8 @@
     "allow_probe": [
       "moo_ticket",
       "surge_micro_scout",
-      "surge_watch_probe"
+      "surge_watch_probe",
+      "trapped_short"
     ],
     "bench": [],
     "block": [
@@ -16,8 +17,7 @@
       "options_roundtrip_short",
       "short_mid",
       "surge_probe",
-      "timesfm_shadow",
-      "value_area_fortress"
+      "timesfm_shadow"
     ],
     "research_only": [],
     "track_only": [
@@ -45,7 +45,8 @@
       "short_universe_vwap_reject",
       "sma_reclaim_long",
       "state_lookup",
-      "surge_chase"
+      "surge_chase",
+      "value_area_fortress"
     ],
     "watch_only": [],
     "weights": {
@@ -419,10 +420,20 @@
         "score_partition": "UNTAGGED",
         "side": "MIXED"
       },
+      "trapped_short": {
+        "allowed_to_trade": true,
+        "panel_id": "state_lookup",
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
+        "score_consumer_locked": true,
+        "score_partition": "UNTAGGED",
+        "side": "MIXED"
+      },
       "value_area_fortress": {
         "allowed_to_trade": false,
         "panel_id": "value_area_fortress",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -668,15 +679,18 @@
       "strategies": 1
     },
     "state_lookup": {
-      "allowed_strategies": [],
-      "max_route_weight": 0.0,
+      "allowed_strategies": [
+        "trapped_short"
+      ],
+      "max_route_weight": 0.25,
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
       "permissions": {
+        "ALLOW_PROBE": 1,
         "TRACK_ONLY": 3
       },
       "side": "MIXED",
-      "strategies": 3
+      "strategies": 4
     },
     "surge_micro": {
       "allowed_strategies": [
@@ -731,14 +745,14 @@
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
     }
   },
-  "generated_at": "2026-06-30T23:29:37+00:00",
-  "generated_at_et": "2026-06-30T19:29:37-04:00",
+  "generated_at": "2026-07-01T02:07:24+00:00",
+  "generated_at_et": "2026-06-30T22:07:24-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -762,7 +776,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -808,7 +822,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -854,7 +868,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -900,7 +914,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -946,7 +960,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -992,7 +1006,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1038,7 +1052,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1084,7 +1098,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1130,7 +1144,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1141,13 +1155,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9048,
-        "ghost_fires": 3360,
-        "ghost_graded": 2829,
-        "ghost_run_rate": 6.04,
+        "ghost_avg_target_r": -0.9036,
+        "ghost_fires": 3432,
+        "ghost_graded": 2876,
+        "ghost_run_rate": 6.15,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 3.57
+        "ghost_target_hit_rate": 3.62
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -1176,7 +1190,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1222,7 +1236,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1268,7 +1282,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1314,7 +1328,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1325,13 +1339,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8865,
-        "ghost_fires": 7872,
-        "ghost_graded": 6460,
-        "ghost_run_rate": 9.43,
+        "ghost_avg_target_r": -0.8886,
+        "ghost_fires": 8142,
+        "ghost_graded": 6585,
+        "ghost_run_rate": 9.28,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 4.26
+        "ghost_target_hit_rate": 4.18
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -1360,7 +1374,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1407,7 +1421,7 @@
         "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
@@ -1478,7 +1492,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1524,7 +1538,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1570,7 +1584,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1616,7 +1630,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1662,7 +1676,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1708,7 +1722,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1754,7 +1768,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1800,7 +1814,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1846,7 +1860,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1892,7 +1906,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1938,7 +1952,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1984,7 +1998,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2030,7 +2044,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2076,7 +2090,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2122,7 +2136,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2168,7 +2182,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2214,7 +2228,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2260,7 +2274,7 @@
         "panel_status": "WARN",
         "publisher_ok": false,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2271,13 +2285,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.8865,
-        "ghost_fires": 7872,
-        "ghost_graded": 6460,
-        "ghost_run_rate": 9.43,
+        "ghost_avg_target_r": -0.8886,
+        "ghost_fires": 8142,
+        "ghost_graded": 6585,
+        "ghost_run_rate": 9.28,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 4.26
+        "ghost_target_hit_rate": 4.18
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2308,7 +2322,7 @@
         "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
@@ -2378,7 +2392,7 @@
         "panel_status": "WARN",
         "publisher_ok": false,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": false,
         "score_partition": "UNTAGGED",
@@ -2426,7 +2440,7 @@
         "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
@@ -2497,7 +2511,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumer_reason": "no score evidence",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2531,23 +2545,96 @@
       "side": "MIXED",
       "strategy_id": "timesfm_shadow"
     },
-    "value_area_fortress": {
-      "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+    "trapped_short": {
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
+        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumer_reason": "no score evidence",
+        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
+        "score_ok": true,
+        "score_partition": "UNTAGGED",
+        "source_ok": true
+      },
+      "evidence": {
+        "actual_avg_r": null,
+        "actual_closed": 0,
+        "actual_realized_pnl": null,
+        "actual_trades": 0,
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
+      },
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED",
+        "route_policy_override:ALLOW_PROBE",
+        "explicit_operator_probe_score_lock_escape"
+      ],
+      "panel_id": "state_lookup",
+      "panel_name": "State Lookup",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-07",
+        "guardrails": [
+          "Only State Lookup BEAR_REJECTION_CONFIRMED may use this route.",
+          "Do not route BEAR_REJECTION_PENDING through trapped_short.",
+          "Do not open gap_reject_short, live_fire_dump, dump_short, or broad short_universe from this override.",
+          "Existing borrowability, position cap, giveback guard, and broker safety checks still apply.",
+          "Review after expiry or after at least 20 routed attempts."
+        ],
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "SCORE_CONSUMER_LOCK",
+          "permission": "BLOCK",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate."
+      },
+      "reasons": [
+        "operator route policy override: Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate.",
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+      ],
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
+      "side": "MIXED",
+      "strategy_id": "trapped_short"
+    },
+    "value_area_fortress": {
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
+      "contract": {
+        "bot_required": false,
+        "bot_route_ok": true,
+        "dashboard_ok": true,
+        "health_overall": "FAIL",
+        "normal_score_eligible": false,
+        "panel_status": "OK",
+        "publisher_ok": true,
+        "score_consumer_locked": true,
+        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2563,14 +2650,14 @@
         "ghost_target_hit_rate": 4.91
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2641,13 +2728,6 @@
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
       "strategy_id": "timesfm_shadow"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "value_area_fortress",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "value_area_fortress"
     }
   ],
   "route_policy": {
@@ -2702,53 +2782,69 @@
         "route_weight": 0.05,
         "status": "APPLIED",
         "strategy_id": "surge_watch_probe"
+      },
+      "trapped_short": {
+        "active": true,
+        "allowed_to_trade": true,
+        "applied": true,
+        "blocked_by_health": false,
+        "errors": [],
+        "expires_et": "2026-07-07",
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate.",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
+        "status": "APPLIED",
+        "strategy_id": "trapped_short"
       }
     },
     "policy_schema": "fem_contract_route_policy.v1",
     "schema": "fem_contract_route_policy_application.v1",
     "summary": {
-      "applied": 3,
+      "applied": 4,
       "disabled": 0,
       "expired": 0,
       "health_blocked": 0,
       "invalid": 0,
-      "overrides": 3
+      "overrides": 4
     },
-    "trade_date": "2026-06-30"
+    "trade_date": "2026-07-01"
   },
   "schema": "fem_contract_trade_permissions.v1",
   "summary": {
     "allow_full": 0,
-    "allow_probe": 3,
+    "allow_probe": 4,
     "allowed_long": 3,
     "allowed_short": 0,
-    "allowed_to_trade": 3,
+    "allowed_to_trade": 4,
     "bench": 0,
-    "block": 10,
+    "block": 9,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 27,
     "permission_counts": {
-      "ALLOW_PROBE": 3,
-      "BLOCK": 10,
-      "TRACK_ONLY": 25
+      "ALLOW_PROBE": 4,
+      "BLOCK": 9,
+      "TRACK_ONLY": 26
     },
     "registry_overall": "WARN",
     "research_only": 0,
-    "route_policy_applied": 3,
+    "route_policy_applied": 4,
     "route_policy_invalid": 0,
-    "route_policy_overrides": 3,
+    "route_policy_overrides": 4,
     "score_consumer_allowed": 0,
     "score_consumer_lock_overall": "WARN",
-    "score_consumer_locked": 38,
+    "score_consumer_locked": 39,
     "score_partition_counts": {
       "EXPERIMENT": 27,
-      "UNTAGGED": 11
+      "UNTAGGED": 12
     },
-    "strategies": 38,
-    "track_only": 25,
+    "strategies": 39,
+    "track_only": 26,
     "watch_only": 0
   },
-  "trade_date": "2026-06-30"
+  "trade_date": "2026-07-01"
 }
