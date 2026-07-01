@@ -1,6 +1,12 @@
 {
   "auto_run_sequence": [
     {
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
+      "command": "_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
+      "group_id": "rebuild_contract_artifacts",
+      "reason": "Rebuild stale contract artifacts first"
+    },
+    {
       "batch_path": null,
       "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
       "group_id": "repair_exit_and_fill_coverage",
@@ -21,6 +27,7 @@
   ],
   "code_version": "unknown",
   "execution_order": [
+    "rebuild_contract_artifacts",
     "repair_exit_and_fill_coverage",
     "repair_contract_breaks",
     "repair_decision_accounting",
@@ -28,9 +35,30 @@
     "clean_route_policy",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-07-01T16:04:47+00:00",
-  "generated_at_et": "2026-07-01T12:04:47-04:00",
+  "generated_at": "2026-07-01T17:13:32+00:00",
+  "generated_at_et": "2026-07-01T13:13:32-04:00",
   "groups": [
+    {
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
+      "blocks_live_trading": false,
+      "blocks_normal_scoring": true,
+      "can_auto_run": true,
+      "category": "ARTIFACT_REFRESH",
+      "check_ids": [
+        "contract_source_refresh"
+      ],
+      "command": "_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
+      "evidence": [
+        "stale during rth: 4409s old, limit 2700s"
+      ],
+      "evidence_count": 1,
+      "group_id": "rebuild_contract_artifacts",
+      "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun this plan.",
+      "priority": 10,
+      "root_cause": "Many downstream errors are based on stale JSON, so interpretation is noisy until the full contract pipeline is fresh.",
+      "severity": "FAIL",
+      "title": "Rebuild stale contract artifacts first"
+    },
     {
       "batch_path": null,
       "blocks_live_trading": true,
@@ -87,8 +115,8 @@
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "evidence": [
         "2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-        "1653 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "missed=2011, no_decision=0, slow_decisions=264, slow_orders=6, order_after_peak=4"
+        "2637 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "missed=3290, no_decision=0, slow_decisions=381, slow_orders=6, order_after_peak=4"
       ],
       "evidence_count": 3,
       "group_id": "repair_decision_accounting",
@@ -114,15 +142,15 @@
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=14, context=3caa1e479a08529b",
-        "partition=EXPERIMENT, actual_trades=42, ghost_graded=74485, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "experiment/review evidence=74527, experiment_strategies=28, review_strategies=0",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=3, context=a76d8ff580be4f45",
+        "partition=EXPERIMENT, actual_trades=42, ghost_graded=77250, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "experiment/review evidence=77292, experiment_strategies=28, review_strategies=0",
         "39 score-consuming strategy route(s) locked to research/display; normal=0, experiment=28, review=0",
         "3 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=42",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=74527, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=77292, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 39 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 3 historical order(s) predate the current permission lock and would be blocked or track-only now"
@@ -160,66 +188,75 @@
     {
       "batch_path": null,
       "blocks_live_trading": false,
-      "blocks_normal_scoring": false,
+      "blocks_normal_scoring": true,
       "can_auto_run": false,
       "category": "MISC",
       "check_ids": [
+        "contract_daily_certification",
+        "contract_live_trust_recovery",
+        "contract_live_trust_executor",
+        "contract_auction_truth_shadow",
         "contract_break_warnings",
+        "live_readiness_warn",
         "bot_gate_legacy_permission_warning",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
-        "485 warning breach(es) in current validator output",
+        "stale during rth: 4119s old, limit 2700s",
+        "stale during rth: 4118s old, limit 2700s",
+        "stale during rth: 4095s old, limit 2700s",
+        "825 warning breach(es) in current validator output",
+        "checks ok/warn/fail=8/1/0",
         "active route/source/gate/P&L enforcement is on; legacy_permission_enforce=False, legacy_block_unknown=False",
         "3 high-pressure exit rule group(s) need review"
       ],
-      "evidence_count": 3,
+      "evidence_count": 7,
       "group_id": "misc_contract_followup",
       "next_action": "Inspect fem_contract_health.json for remaining checks.",
       "priority": 90,
       "root_cause": "These checks did not map to a higher-level remediation bucket yet.",
-      "severity": "WARN",
+      "severity": "FAIL",
       "title": "Review remaining contract checks"
     }
   ],
   "next_action": {
-    "batch_path": null,
-    "blocks_live_trading": true,
+    "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
+    "blocks_live_trading": false,
     "blocks_normal_scoring": true,
     "can_auto_run": true,
-    "category": "EXECUTION_SAFETY",
+    "category": "ARTIFACT_REFRESH",
     "check_ids": [
-      "exit_reconcile_open_risk"
+      "contract_source_refresh"
     ],
-    "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+    "command": "_DAILY\\0D_RUN_CONTRACT_PIPELINE.bat",
     "evidence": [
-      "3 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
+      "stale during rth: 4409s old, limit 2700s"
     ],
     "evidence_count": 1,
-    "group_id": "repair_exit_and_fill_coverage",
-    "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
-    "priority": 30,
-    "root_cause": "Open/partial exits and adverse fills can make realized edge look better or worse than it really was.",
-    "severity": "WARN",
-    "title": "Repair fill and exit coverage before grading"
+    "group_id": "rebuild_contract_artifacts",
+    "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun this plan.",
+    "priority": 10,
+    "root_cause": "Many downstream errors are based on stale JSON, so interpretation is noisy until the full contract pipeline is fresh.",
+    "severity": "FAIL",
+    "title": "Rebuild stale contract artifacts first"
   },
-  "operator_read": "First action: Repair fill and exit coverage before grading.",
+  "operator_read": "First rebuild the stale contract artifacts. Until that is fresh, many downstream failures are probably noisy or duplicated.",
   "overall": "FAIL",
   "schema": "fem_contract_remediation_plan.v1",
   "session": "rth",
   "summary": {
-    "auto_runnable": 3,
+    "auto_runnable": 4,
     "blocks_live_trading": 2,
-    "blocks_normal_scoring": 5,
+    "blocks_normal_scoring": 7,
     "evidence_overall": "WARN",
     "evidence_partition": "EXPERIMENT",
-    "fail_groups": 1,
-    "groups": 6,
-    "health_overall": "WARN",
+    "fail_groups": 3,
+    "groups": 7,
+    "health_overall": "FAIL",
     "manual": 3,
     "normal_evidence_allowed": false,
-    "warn_groups": 5
+    "warn_groups": 4
   },
   "trade_date": "2026-07-01"
 }
