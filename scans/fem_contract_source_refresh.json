@@ -1,42 +1,292 @@
 {
   "all_known": false,
   "dry_run": false,
-  "generated_at": "2026-07-01T02:41:57+00:00",
-  "generated_at_et": "2026-06-30T22:41:57-04:00",
+  "generated_at": "2026-07-01T12:16:09+00:00",
+  "generated_at_et": "2026-07-01T08:16:09-04:00",
   "include_research": false,
-  "panels": [],
+  "panels": [
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_sma_reclaim_long.py"
+          ],
+          "elapsed_seconds": 191.0,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "SMA-reclaim long signals 2026-07-01: 4",
+            "  PATH   entry  10.87 stop  10.25 tgt   11.8 x161   (ATR 4.8%) MIXED_RECLAIM ch=69",
+            "  SAIL   entry  14.64 stop  13.53 tgt  16.31 x90    (ATR 6.3%) LATE_RECLAIM ch=49",
+            "  SHLS   entry    9.9 stop   8.87 tgt  11.45 x97    (ATR 8.6%) MIXED_RECLAIM ch=69",
+            "  MBLY   entry   9.68 stop   9.06 tgt  10.61 x161   (ATR 5.4%) LATE_RECLAIM ch=45"
+          ],
+          "timeout_seconds": 600
+        }
+      ],
+      "display_name": "SMA Reclaim",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:13:45+00:00",
+          "path": "sma_reclaim_today.json",
+          "size_bytes": 2511
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:13:45+00:00",
+          "path": "sma_reclaim_ledger.jsonl",
+          "size_bytes": 73553
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-06-30T13:53:22+00:00",
+          "path": "sma_reclaim_today.json",
+          "size_bytes": 1277
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-06-30T13:53:22+00:00",
+          "path": "sma_reclaim_ledger.jsonl",
+          "size_bytes": 71146
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "sma_reclaim",
+      "primary_source": "sma_reclaim_today.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_sma_reclaim_long.py"
+          ]
+        ],
+        "expected_files": [
+          "sma_reclaim_today.json",
+          "sma_reclaim_ledger.jsonl"
+        ],
+        "notes": "Rebuilds the bot's SMA reclaim source file and forward-test ledger.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
+          ],
+          "elapsed_seconds": 144.33,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "  [  1/238] # SHORT SCREENER - 2026-06-12 - 237 NAMES  (+0 fires so far)",
+            "  [ 15/238] AUGO    (+0 fires so far)",
+            "  [ 30/238] XPEV    (+0 fires so far)",
+            "  [ 45/238] CRK     (+0 fires so far)",
+            "  [ 60/238] VST     (+0 fires so far)",
+            "  [ 75/238] BILL    (+0 fires so far)",
+            "  [ 90/238] BSY     (+0 fires so far)",
+            "  [105/238] EMBJ    (+0 fires so far)",
+            "  [120/238] TTD     (+0 fires so far)",
+            "  [135/238] GWRE    (+0 fires so far)",
+            "  [150/238] LEU     (+0 fires so far)",
+            "  [165/238] MSTR    (+0 fires so far)",
+            "  [180/238] MP      (+0 fires so far)",
+            "  [195/238] IOT     (+0 fires so far)",
+            "  [210/238] EPAM    (+0 fires so far)",
+            "  [225/238] PI      (+0 fires so far)",
+            "short-universe: 238 names today, +0 new fires, 9121 total in archive",
+            "  vwap_reject    fired=3994 resolved=1688 win=40.0 avgR=0.001 -> FLAT",
+            "  breakdown      fired=729 resolved=184 win=33.7 avgR=-0.158 -> BAD",
+            "  gapdown_cont   fired=636 resolved=259 win=40.5 avgR=0.014 -> FLAT",
+            "  lower_high     fired=3762 resolved=1281 win=39.0 avgR=-0.026 -> FLAT",
+            "  CHAMPION -> none yet (no setup has n>=10 + positive avgR) \u2014 still gathering"
+          ],
+          "timeout_seconds": 900
+        }
+      ],
+      "display_name": "Short Universe",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:16:09+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17273
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:16:09+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 2047489
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T00:52:19+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17274
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T00:52:19+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 2047489
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "short_universe",
+      "primary_source": "_DAILY/fem_short_universe_grade.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
+          ]
+        ],
+        "expected_files": [
+          "_DAILY/fem_short_universe_grade.json",
+          "_DAILY/short_universe_fires.jsonl"
+        ],
+        "notes": "Refreshes the live bot's short-universe bridge source.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_surge_micro_plan.py",
+            "--max",
+            "30"
+          ],
+          "elapsed_seconds": 0.33,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan.json",
+            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan_dashboard.json",
+            "day=2026-07-01 raw=0 planned=12 scout=0 starter=0 late=0",
+            "TC     SCREENER_LOW_QUALITY score=15.0 fire=1.85 move=233.51 rv=3.06 tp1=2.0562 need=11.15% qty=291 risk=$34.99",
+            "EHGO   SCREENER_LOW_QUALITY score= 9.0 fire=1.3 move=64.62 rv=4.34 tp1=1.4449 need=11.15% qty=414 risk=$34.98",
+            "CANF   SCREENER_LOW_QUALITY score= 9.0 fire=2.97 move=44.44 rv=111.5 tp1=3.267 need=10.0% qty=404 risk=$65.99",
+            "DXF    SCREENER_LOW_QUALITY score= 0.0 fire=0.3659 move=164.14 rv=4.38 tp1=0.3805 need=4.0% qty=0 risk=$0.0",
+            "JEM    SCREENER_LOW_QUALITY score= 0.0 fire=3.97 move=120.65 rv=0.06 tp1=4.345 need=9.45% qty=160 risk=$34.94",
+            "GSUN   SCREENER_LOW_QUALITY score= 0.0 fire=0.334 move=74.61 rv=1008.32 tp1=0.3474 need=4.0% qty=0 risk=$0.0",
+            "ELAB   SCREENER_LOW_QUALITY score= 0.0 fire=1.21 move=21.38 rv=51.9 tp1=1.3715 need=13.35% qty=743 risk=$62.93",
+            "KUST   SCREENER_LOW_QUALITY score= 0.0 fire=1.08 move=15.74 rv=5.58 tp1=1.2099 need=12.03% qty=462 risk=$34.93"
+          ],
+          "timeout_seconds": 420
+        }
+      ],
+      "display_name": "Surge Micro",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:16:09+00:00",
+          "path": "fem_surge_micro_plan.json",
+          "size_bytes": 67873
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T12:15:48+00:00",
+          "path": "fem_surge_micro_plan.json",
+          "size_bytes": 67873
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "surge_micro",
+      "primary_source": "fem_surge_micro_plan.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_surge_micro_plan.py",
+            "--max",
+            "30"
+          ]
+        ],
+        "expected_files": [
+          "fem_surge_micro_plan.json"
+        ],
+        "notes": "Rebuilds the small-risk surge plan from the latest live fires.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    }
+  ],
   "publish_result": null,
-  "registry_generated_at": "2026-07-01T02:07:24+00:00",
-  "registry_overall_before": "WARN",
+  "registry_generated_at": "2026-07-01T12:10:33+00:00",
+  "registry_overall_before": "FAIL",
   "registry_summary_before": {
-    "active_fail": 0,
-    "active_warn": 2,
+    "active_fail": 11,
+    "active_warn": 7,
     "bot_required": 6,
     "bot_routed": 6,
-    "fresh_sourced": 25,
+    "fresh_sourced": 1,
     "panels": 27,
     "scored": 20,
-    "sourced": 26,
-    "stale_source_panels": 9,
-    "stale_sources": 9,
+    "sourced": 8,
+    "stale_source_panels": 19,
+    "stale_sources": 37,
     "status_counts": {
-      "FAIL": 0,
-      "OK": 21,
-      "RESEARCH": 4,
-      "WARN": 2
+      "FAIL": 11,
+      "OK": 5,
+      "RESEARCH": 3,
+      "WARN": 8
     }
   },
-  "requested_panels": [],
+  "requested_panels": [
+    "sma_reclaim",
+    "short_universe",
+    "surge_micro"
+  ],
   "schema": "fem_contract_source_refresh.v1",
   "summary": {
-    "active_warn_before": 2,
-    "attempted": 0,
+    "active_warn_before": 7,
+    "attempted": 3,
     "failed": 0,
     "publish_status": "NOT_REQUESTED",
-    "selected": 0,
+    "selected": 3,
     "skipped": 0,
-    "stale_source_panels_before": 9,
-    "succeeded": 0
+    "stale_source_panels_before": 19,
+    "succeeded": 3
   },
-  "trade_date": "2026-06-30"
+  "trade_date": "2026-07-01"
 }
