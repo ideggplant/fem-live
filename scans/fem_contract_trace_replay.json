@@ -1,8 +1,8 @@
 {
   "code_version": "unknown",
-  "generated_at": "2026-07-01T14:37:50+00:00",
-  "generated_at_et": "2026-07-01T10:37:50-04:00",
-  "operator_read": "Trace replay found 13 trace(s) with broken lifecycle links.",
+  "generated_at": "2026-07-01T14:42:56+00:00",
+  "generated_at_et": "2026-07-01T10:42:56-04:00",
+  "operator_read": "Trace replay found 15 trace(s) with broken lifecycle links.",
   "overall": "FAIL",
   "query": {
     "limit": 24,
@@ -2664,45 +2664,64 @@
       "break_count": 1,
       "breaks": [
         {
-          "breach_code": "FILL_MISSING",
-          "detail": "parent order has no matching entry execution",
-          "severity": "ERROR",
-          "state": "FILL"
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "severity": "WARNING",
+          "state": "FRESHNESS_CHECK"
         }
       ],
-      "event_count": 0,
-      "failure_detail": "parent order has no matching entry execution",
-      "failure_link": "FILL",
-      "is_live": true,
-      "is_simulated": false,
-      "operator_read": "MUD surge_watch_probe broke at FILL: parent order has no matching entry execution",
-      "order_id": "3713",
+      "event_count": 5,
+      "failure_detail": "stale fire after restart/poll delay",
+      "failure_link": "FRESHNESS_CHECK",
+      "is_live": false,
+      "is_simulated": true,
+      "operator_read": "UUUU live_fire_dump broke at FRESHNESS_CHECK: stale fire after restart/poll delay",
+      "order_id": null,
       "realized_pnl": null,
       "realized_r": null,
-      "reason": "accepted trace, no rejection",
-      "reason_code": "ACCEPTED",
-      "side": "LONG",
+      "reason": "fire exceeded freshness timeout",
+      "reason_code": "STALE_FIRE",
+      "side": "SHORT",
       "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:11:59-04:00",
-      "state": "BROKEN",
+      "source_timestamp": "2026-07-01T10:33:06-04:00",
+      "state": "PENDING",
       "steps": [
         {
           "breach_code": null,
-          "detail": "source event found for MUD",
+          "detail": "live fire emitted",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 14.595,
+                "fire_min": 633,
+                "graded": false,
+                "kind": "dump",
+                "last": 14.595,
+                "move_pct": 0.2,
+                "regime": null,
+                "side": "SHORT",
+                "stop": 14.7194,
+                "target": 14.3462
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:MUD:LONG:surge:701T1011590400:d475d0f9",
-            "entry": 10.405,
-            "fire_min": 611,
+            "contract_trace_id": "2026-07-01:live_fire:UUUU:SHORT:dump:701T1033060400:e84f28e1",
+            "entry": 14.595,
+            "fire_min": 633,
             "graded": false,
-            "kind": "surge",
-            "move_pct": 6.18,
-            "regime": "RISK_ON",
-            "rel_vol": 0.44,
-            "stop": null,
-            "t": "2026-07-01T10:11:59-04:00",
-            "target": null,
-            "ticker": "MUD"
+            "kind": "dump",
+            "move_pct": 0.2,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 14.7194,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 14.3462,
+            "ticker": "UUUU"
           },
           "severity": null,
           "source": "live_fires",
@@ -2711,13 +2730,30 @@
         },
         {
           "breach_code": null,
-          "detail": "source contains pick geometry",
+          "detail": "fire contains entry reference",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 14.595,
+                "gated": null,
+                "kind": "dump",
+                "regime": null,
+                "score": null,
+                "stop": 14.7194,
+                "target": 14.3462,
+                "ticker": "UUUU"
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "entry_price": 10.405,
-            "pick_id": "3f921506dba2",
+            "entry_price": 14.595,
+            "pick_id": "4342d4bc5f89",
             "score": null,
-            "side": "LONG",
+            "side": "SHORT",
             "source": {
               "_type": "object",
               "keys": [
@@ -2732,10 +2768,10 @@
               ],
               "size": 12
             },
-            "stop_price": 9.7807,
-            "strategy_id": "surge_watch_probe",
-            "symbol": "MUD",
-            "target_price": 10.9253
+            "stop_price": 14.7194,
+            "strategy_id": "live_fire_dump",
+            "symbol": "UUUU",
+            "target_price": 14.3462
           },
           "severity": null,
           "source": "live_fires",
@@ -2743,98 +2779,149 @@
           "status": "OK"
         },
         {
-          "breach_code": null,
-          "detail": "source age 39s",
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "age_sec": 184.451337,
+                "fire_at": "2026-07-01T10:33:06-04:00",
+                "fresh": false,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "stale fire after restart/poll delay",
+                "reason_code": "FRESHNESS_EXPIRED"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "age_seconds": 38.649329,
-            "max_age_seconds": 1200,
-            "order_ts": "2026-07-01T10:12:37-04:00",
-            "source_ts": "2026-07-01T10:11:59-04:00"
+            "age_sec": 184.451337,
+            "fire_at": "2026-07-01T10:33:06-04:00",
+            "fresh": false,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "stale fire after restart/poll delay",
+            "reason_code": "FRESHNESS_EXPIRED"
           },
           "severity": null,
-          "source": "live_fires",
+          "source": "fem_auto_trade",
           "state": "FRESHNESS_CHECK",
-          "status": "OK"
+          "status": "BREACH"
         },
         {
           "breach_code": null,
-          "detail": "bot accepted and emitted an order strategy tag",
+          "detail": "bot rejected fire with explicit reason",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "accepted": false,
+                "age_sec": 184.451337,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "order_id": 3713,
-            "role": "PROTECTIVE_STOP",
-            "side": "LONG",
-            "strategy_id": "surge_watch_probe",
-            "symbol": "MUD",
-            "ts": "2026-07-01T10:12:37.649329-04:00"
+            "accepted": false,
+            "age_sec": 184.451337,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
           },
           "severity": null,
-          "source": "order_strategy",
+          "source": "fem_auto_trade",
           "state": "BOT_DECISION",
           "status": "OK"
         },
         {
           "breach_code": null,
-          "detail": "accepted trace, no rejection",
+          "detail": "fire exceeded freshness timeout",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "age_sec": 184.451337,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "OK"
+            }
+          ],
           "extra": {},
           "payload": {
-            "reason_code": "ACCEPTED",
-            "rejected": false
+            "age_sec": 184.451337,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
           },
           "severity": null,
-          "source": "order_strategy",
+          "source": "fem_auto_trade",
           "state": "REJECTION_REASON",
           "status": "OK"
         },
         {
           "breach_code": null,
-          "detail": "broker parent order 3713 submitted",
+          "detail": "no order expected after untraded/rejected fire",
           "extra": {},
-          "payload": {
-            "broker": "IBKR",
-            "broker_order_id": "3713",
-            "order_action": "BUY",
-            "order_type": "LMT",
-            "quantity": 2,
-            "stop_price": 10.111,
-            "strategy_id": "surge_watch_probe",
-            "submitted_at": "2026-07-01T10:12:37-04:00",
-            "submitted_price": 10.4405,
-            "target_price": 10.9092
-          },
-          "severity": null,
-          "source": "order_strategy",
-          "state": "ORDER",
-          "status": "OK"
-        },
-        {
-          "breach_code": "FILL_MISSING",
-          "detail": "parent order has no matching entry execution",
-          "extra": {},
-          "payload": {
-            "order_id": "3713"
-          },
+          "payload": {},
           "severity": null,
           "source": null,
-          "state": "FILL",
-          "status": "BREACH"
+          "state": "ORDER",
+          "status": "DEAD_END"
         },
         {
           "breach_code": null,
-          "detail": "exit unknown because entry fill is missing",
+          "detail": "no fill expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "FILL",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no exit expected after untraded/rejected fire",
           "extra": {},
           "payload": {},
           "severity": null,
           "source": null,
           "state": "EXIT",
-          "status": "PENDING"
+          "status": "DEAD_END"
         },
         {
           "breach_code": null,
-          "detail": "result unknown because entry fill is missing",
+          "detail": "fire is not mature/graded yet; ghost result pending",
           "extra": {},
-          "payload": {},
+          "payload": {
+            "contract_trace_id": "2026-07-01:live_fire:UUUU:SHORT:dump:701T1033060400:e84f28e1",
+            "entry": 14.595,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.2,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 14.7194,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 14.3462,
+            "ticker": "UUUU"
+          },
           "severity": null,
           "source": null,
           "state": "REALIZED_RESULT",
@@ -2842,7 +2929,7 @@
         },
         {
           "breach_code": null,
-          "detail": "panel score source exists",
+          "detail": "panel score waits on ghost or realized result",
           "extra": {
             "strategy": {
               "_type": "object",
@@ -2869,77 +2956,80 @@
               "size": 5
             }
           },
-          "payload": {
-            "matched_strategy": true,
-            "matched_symbol": true,
-            "score": {
-              "_type": "object",
-              "keys": [
-                "actual",
-                "ghost",
-                "panel_name",
-                "strategy_id",
-                "symbol"
-              ],
-              "size": 5
-            },
-            "score_type": "contract_panel_score_symbol",
-            "scoreboard_file": "fem_contract_panel_score.json"
-          },
+          "payload": {},
           "severity": null,
-          "source": "panel_scoreboard",
+          "source": null,
           "state": "PANEL_SCORE",
-          "status": "OK"
+          "status": "PENDING"
         }
       ],
-      "strategy_id": "surge_watch_probe",
-      "symbol": "MUD",
-      "trace_id": "2026-07-01:surge_watch_probe:MUD:LONG:ORDER:3713",
+      "strategy_id": "live_fire_dump",
+      "symbol": "UUUU",
+      "trace_id": "2026-07-01:live_fire:UUUU:SHORT:dump:701T1033060400:e84f28e1",
       "verdict": "BROKEN"
     },
     {
       "break_count": 1,
       "breaks": [
         {
-          "breach_code": "FILL_MISSING",
-          "detail": "parent order has no matching entry execution",
-          "severity": "ERROR",
-          "state": "FILL"
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "severity": "WARNING",
+          "state": "FRESHNESS_CHECK"
         }
       ],
-      "event_count": 0,
-      "failure_detail": "parent order has no matching entry execution",
-      "failure_link": "FILL",
-      "is_live": true,
-      "is_simulated": false,
-      "operator_read": "MUD surge_watch_probe broke at FILL: parent order has no matching entry execution",
-      "order_id": "3714",
+      "event_count": 5,
+      "failure_detail": "stale fire after restart/poll delay",
+      "failure_link": "FRESHNESS_CHECK",
+      "is_live": false,
+      "is_simulated": true,
+      "operator_read": "VERA live_fire_dump broke at FRESHNESS_CHECK: stale fire after restart/poll delay",
+      "order_id": null,
       "realized_pnl": null,
       "realized_r": null,
-      "reason": "accepted trace, no rejection",
-      "reason_code": "ACCEPTED",
-      "side": "LONG",
+      "reason": "fire exceeded freshness timeout",
+      "reason_code": "STALE_FIRE",
+      "side": "SHORT",
       "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:11:59-04:00",
-      "state": "BROKEN",
+      "source_timestamp": "2026-07-01T10:33:06-04:00",
+      "state": "PENDING",
       "steps": [
         {
           "breach_code": null,
-          "detail": "source event found for MUD",
+          "detail": "live fire emitted",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 42.87,
+                "fire_min": 633,
+                "graded": false,
+                "kind": "dump",
+                "last": 42.87,
+                "move_pct": 0.05,
+                "regime": null,
+                "side": "SHORT",
+                "stop": 43.5018,
+                "target": 41.6064
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:MUD:LONG:surge:701T1011590400:d475d0f9",
-            "entry": 10.405,
-            "fire_min": 611,
+            "contract_trace_id": "2026-07-01:live_fire:VERA:SHORT:dump:701T1033060400:544b71ff",
+            "entry": 42.87,
+            "fire_min": 633,
             "graded": false,
-            "kind": "surge",
-            "move_pct": 6.18,
-            "regime": "RISK_ON",
-            "rel_vol": 0.44,
-            "stop": null,
-            "t": "2026-07-01T10:11:59-04:00",
-            "target": null,
-            "ticker": "MUD"
+            "kind": "dump",
+            "move_pct": 0.05,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 43.5018,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 41.6064,
+            "ticker": "VERA"
           },
           "severity": null,
           "source": "live_fires",
@@ -2948,13 +3038,30 @@
         },
         {
           "breach_code": null,
-          "detail": "source contains pick geometry",
+          "detail": "fire contains entry reference",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 42.87,
+                "gated": null,
+                "kind": "dump",
+                "regime": null,
+                "score": null,
+                "stop": 43.5018,
+                "target": 41.6064,
+                "ticker": "VERA"
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "entry_price": 10.405,
-            "pick_id": "3f921506dba2",
+            "entry_price": 42.87,
+            "pick_id": "6ebd6d55a019",
             "score": null,
-            "side": "LONG",
+            "side": "SHORT",
             "source": {
               "_type": "object",
               "keys": [
@@ -2969,10 +3076,10 @@
               ],
               "size": 12
             },
-            "stop_price": 9.7807,
-            "strategy_id": "surge_watch_probe",
-            "symbol": "MUD",
-            "target_price": 10.9253
+            "stop_price": 43.5018,
+            "strategy_id": "live_fire_dump",
+            "symbol": "VERA",
+            "target_price": 41.6064
           },
           "severity": null,
           "source": "live_fires",
@@ -2980,98 +3087,149 @@
           "status": "OK"
         },
         {
-          "breach_code": null,
-          "detail": "source age 39s",
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "age_sec": 184.695391,
+                "fire_at": "2026-07-01T10:33:06-04:00",
+                "fresh": false,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "stale fire after restart/poll delay",
+                "reason_code": "FRESHNESS_EXPIRED"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "age_seconds": 38.658338,
-            "max_age_seconds": 1200,
-            "order_ts": "2026-07-01T10:12:37-04:00",
-            "source_ts": "2026-07-01T10:11:59-04:00"
+            "age_sec": 184.695391,
+            "fire_at": "2026-07-01T10:33:06-04:00",
+            "fresh": false,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "stale fire after restart/poll delay",
+            "reason_code": "FRESHNESS_EXPIRED"
           },
           "severity": null,
-          "source": "live_fires",
+          "source": "fem_auto_trade",
           "state": "FRESHNESS_CHECK",
-          "status": "OK"
+          "status": "BREACH"
         },
         {
           "breach_code": null,
-          "detail": "bot accepted and emitted an order strategy tag",
+          "detail": "bot rejected fire with explicit reason",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "accepted": false,
+                "age_sec": 184.695391,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
           "extra": {},
           "payload": {
-            "order_id": 3714,
-            "role": "TARGET",
-            "side": "LONG",
-            "strategy_id": "surge_watch_probe",
-            "symbol": "MUD",
-            "ts": "2026-07-01T10:12:37.658338-04:00"
+            "accepted": false,
+            "age_sec": 184.695391,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
           },
           "severity": null,
-          "source": "order_strategy",
+          "source": "fem_auto_trade",
           "state": "BOT_DECISION",
           "status": "OK"
         },
         {
           "breach_code": null,
-          "detail": "accepted trace, no rejection",
+          "detail": "fire exceeded freshness timeout",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:10+00:00",
+              "payload": {
+                "age_sec": 184.695391,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "OK"
+            }
+          ],
           "extra": {},
           "payload": {
-            "reason_code": "ACCEPTED",
-            "rejected": false
+            "age_sec": 184.695391,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
           },
           "severity": null,
-          "source": "order_strategy",
+          "source": "fem_auto_trade",
           "state": "REJECTION_REASON",
           "status": "OK"
         },
         {
           "breach_code": null,
-          "detail": "broker parent order 3714 submitted",
+          "detail": "no order expected after untraded/rejected fire",
           "extra": {},
-          "payload": {
-            "broker": "IBKR",
-            "broker_order_id": "3714",
-            "order_action": "BUY",
-            "order_type": "LMT",
-            "quantity": 2,
-            "stop_price": 10.111,
-            "strategy_id": "surge_watch_probe",
-            "submitted_at": "2026-07-01T10:12:37-04:00",
-            "submitted_price": 10.4405,
-            "target_price": 10.9092
-          },
-          "severity": null,
-          "source": "order_strategy",
-          "state": "ORDER",
-          "status": "OK"
-        },
-        {
-          "breach_code": "FILL_MISSING",
-          "detail": "parent order has no matching entry execution",
-          "extra": {},
-          "payload": {
-            "order_id": "3714"
-          },
+          "payload": {},
           "severity": null,
           "source": null,
-          "state": "FILL",
-          "status": "BREACH"
+          "state": "ORDER",
+          "status": "DEAD_END"
         },
         {
           "breach_code": null,
-          "detail": "exit unknown because entry fill is missing",
+          "detail": "no fill expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "FILL",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no exit expected after untraded/rejected fire",
           "extra": {},
           "payload": {},
           "severity": null,
           "source": null,
           "state": "EXIT",
-          "status": "PENDING"
+          "status": "DEAD_END"
         },
         {
           "breach_code": null,
-          "detail": "result unknown because entry fill is missing",
+          "detail": "fire is not mature/graded yet; ghost result pending",
           "extra": {},
-          "payload": {},
+          "payload": {
+            "contract_trace_id": "2026-07-01:live_fire:VERA:SHORT:dump:701T1033060400:544b71ff",
+            "entry": 42.87,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.05,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 43.5018,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 41.6064,
+            "ticker": "VERA"
+          },
           "severity": null,
           "source": null,
           "state": "REALIZED_RESULT",
@@ -3079,7 +3237,7 @@
         },
         {
           "breach_code": null,
-          "detail": "panel score source exists",
+          "detail": "panel score waits on ghost or realized result",
           "extra": {
             "strategy": {
               "_type": "object",
@@ -3106,10 +3264,303 @@
               "size": 5
             }
           },
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "PANEL_SCORE",
+          "status": "PENDING"
+        }
+      ],
+      "strategy_id": "live_fire_dump",
+      "symbol": "VERA",
+      "trace_id": "2026-07-01:live_fire:VERA:SHORT:dump:701T1033060400:544b71ff",
+      "verdict": "BROKEN"
+    },
+    {
+      "break_count": 1,
+      "breaks": [
+        {
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "severity": "WARNING",
+          "state": "FRESHNESS_CHECK"
+        }
+      ],
+      "event_count": 5,
+      "failure_detail": "stale fire after restart/poll delay",
+      "failure_link": "FRESHNESS_CHECK",
+      "is_live": false,
+      "is_simulated": true,
+      "operator_read": "WHR live_fire_dump broke at FRESHNESS_CHECK: stale fire after restart/poll delay",
+      "order_id": null,
+      "realized_pnl": null,
+      "realized_r": null,
+      "reason": "fire exceeded freshness timeout",
+      "reason_code": "STALE_FIRE",
+      "side": "SHORT",
+      "source_kind": "live_fires",
+      "source_timestamp": "2026-07-01T10:33:06-04:00",
+      "state": "PENDING",
+      "steps": [
+        {
+          "breach_code": null,
+          "detail": "live fire emitted",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 39.67,
+                "fire_min": 633,
+                "graded": false,
+                "kind": "dump",
+                "last": 39.67,
+                "move_pct": 0.3,
+                "regime": null,
+                "side": "SHORT",
+                "stop": 40.07,
+                "target": 38.87
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
+          "extra": {},
           "payload": {
-            "matched_strategy": true,
-            "matched_symbol": true,
-            "score": {
+            "contract_trace_id": "2026-07-01:live_fire:WHR:SHORT:dump:701T1033060400:87139ff0",
+            "entry": 39.67,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.3,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 40.07,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 38.87,
+            "ticker": "WHR"
+          },
+          "severity": null,
+          "source": "live_fires",
+          "state": "PANEL",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire contains entry reference",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 39.67,
+                "gated": null,
+                "kind": "dump",
+                "regime": null,
+                "score": null,
+                "stop": 40.07,
+                "target": 38.87,
+                "ticker": "WHR"
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "entry_price": 39.67,
+            "pick_id": "b5a0f6b61a9e",
+            "score": null,
+            "side": "SHORT",
+            "source": {
+              "_type": "object",
+              "keys": [
+                "contract_trace_id",
+                "entry",
+                "fire_min",
+                "graded",
+                "kind",
+                "move_pct",
+                "regime",
+                "rel_vol"
+              ],
+              "size": 12
+            },
+            "stop_price": 40.07,
+            "strategy_id": "live_fire_dump",
+            "symbol": "WHR",
+            "target_price": 38.87
+          },
+          "severity": null,
+          "source": "live_fires",
+          "state": "PICK",
+          "status": "OK"
+        },
+        {
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "age_sec": 184.953979,
+                "fire_at": "2026-07-01T10:33:06-04:00",
+                "fresh": false,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "stale fire after restart/poll delay",
+                "reason_code": "FRESHNESS_EXPIRED"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "age_sec": 184.953979,
+            "fire_at": "2026-07-01T10:33:06-04:00",
+            "fresh": false,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "stale fire after restart/poll delay",
+            "reason_code": "FRESHNESS_EXPIRED"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "FRESHNESS_CHECK",
+          "status": "BREACH"
+        },
+        {
+          "breach_code": null,
+          "detail": "bot rejected fire with explicit reason",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "accepted": false,
+                "age_sec": 184.953979,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "accepted": false,
+            "age_sec": 184.953979,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "BOT_DECISION",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire exceeded freshness timeout",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "age_sec": 184.953979,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "OK"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "age_sec": 184.953979,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "REJECTION_REASON",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "no order expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "ORDER",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no fill expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "FILL",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no exit expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "EXIT",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire is not mature/graded yet; ghost result pending",
+          "extra": {},
+          "payload": {
+            "contract_trace_id": "2026-07-01:live_fire:WHR:SHORT:dump:701T1033060400:87139ff0",
+            "entry": 39.67,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.3,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 40.07,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 38.87,
+            "ticker": "WHR"
+          },
+          "severity": null,
+          "source": null,
+          "state": "REALIZED_RESULT",
+          "status": "PENDING"
+        },
+        {
+          "breach_code": null,
+          "detail": "panel score waits on ghost or realized result",
+          "extra": {
+            "strategy": {
+              "_type": "object",
+              "keys": [
+                "actual",
+                "ghost",
+                "panel_name",
+                "side",
+                "strategy_id",
+                "symbols",
+                "verdict"
+              ],
+              "size": 7
+            },
+            "symbol": {
               "_type": "object",
               "keys": [
                 "actual",
@@ -3119,19 +3570,326 @@
                 "symbol"
               ],
               "size": 5
-            },
-            "score_type": "contract_panel_score_symbol",
-            "scoreboard_file": "fem_contract_panel_score.json"
+            }
           },
+          "payload": {},
           "severity": null,
-          "source": "panel_scoreboard",
+          "source": null,
           "state": "PANEL_SCORE",
-          "status": "OK"
+          "status": "PENDING"
         }
       ],
-      "strategy_id": "surge_watch_probe",
-      "symbol": "MUD",
-      "trace_id": "2026-07-01:surge_watch_probe:MUD:LONG:ORDER:3714",
+      "strategy_id": "live_fire_dump",
+      "symbol": "WHR",
+      "trace_id": "2026-07-01:live_fire:WHR:SHORT:dump:701T1033060400:87139ff0",
+      "verdict": "BROKEN"
+    },
+    {
+      "break_count": 1,
+      "breaks": [
+        {
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "severity": "WARNING",
+          "state": "FRESHNESS_CHECK"
+        }
+      ],
+      "event_count": 5,
+      "failure_detail": "stale fire after restart/poll delay",
+      "failure_link": "FRESHNESS_CHECK",
+      "is_live": false,
+      "is_simulated": true,
+      "operator_read": "WOLF live_fire_dump broke at FRESHNESS_CHECK: stale fire after restart/poll delay",
+      "order_id": null,
+      "realized_pnl": null,
+      "realized_r": null,
+      "reason": "fire exceeded freshness timeout",
+      "reason_code": "STALE_FIRE",
+      "side": "SHORT",
+      "source_kind": "live_fires",
+      "source_timestamp": "2026-07-01T10:33:06-04:00",
+      "state": "PENDING",
+      "steps": [
+        {
+          "breach_code": null,
+          "detail": "live fire emitted",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 46.005,
+                "fire_min": 633,
+                "graded": false,
+                "kind": "dump",
+                "last": 46.005,
+                "move_pct": 0.67,
+                "regime": null,
+                "side": "SHORT",
+                "stop": 47.094,
+                "target": 43.827
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "contract_trace_id": "2026-07-01:live_fire:WOLF:SHORT:dump:701T1033060400:2e54f5db",
+            "entry": 46.005,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.67,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 47.094,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 43.827,
+            "ticker": "WOLF"
+          },
+          "severity": null,
+          "source": "live_fires",
+          "state": "PANEL",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire contains entry reference",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:35:40+00:00",
+              "payload": {
+                "entry": 46.005,
+                "gated": null,
+                "kind": "dump",
+                "regime": null,
+                "score": null,
+                "stop": 47.094,
+                "target": 43.827,
+                "ticker": "WOLF"
+              },
+              "source": "fem_live_fire_grade",
+              "status": "OBSERVED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "entry_price": 46.005,
+            "pick_id": "91810d518181",
+            "score": null,
+            "side": "SHORT",
+            "source": {
+              "_type": "object",
+              "keys": [
+                "contract_trace_id",
+                "entry",
+                "fire_min",
+                "graded",
+                "kind",
+                "move_pct",
+                "regime",
+                "rel_vol"
+              ],
+              "size": 12
+            },
+            "stop_price": 47.094,
+            "strategy_id": "live_fire_dump",
+            "symbol": "WOLF",
+            "target_price": 43.827
+          },
+          "severity": null,
+          "source": "live_fires",
+          "state": "PICK",
+          "status": "OK"
+        },
+        {
+          "breach_code": "FRESHNESS_EXPIRED",
+          "detail": "stale fire after restart/poll delay",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "age_sec": 185.188048,
+                "fire_at": "2026-07-01T10:33:06-04:00",
+                "fresh": false,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "stale fire after restart/poll delay",
+                "reason_code": "FRESHNESS_EXPIRED"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "age_sec": 185.188048,
+            "fire_at": "2026-07-01T10:33:06-04:00",
+            "fresh": false,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "stale fire after restart/poll delay",
+            "reason_code": "FRESHNESS_EXPIRED"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "FRESHNESS_CHECK",
+          "status": "BREACH"
+        },
+        {
+          "breach_code": null,
+          "detail": "bot rejected fire with explicit reason",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "accepted": false,
+                "age_sec": 185.188048,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "REJECTED"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "accepted": false,
+            "age_sec": 185.188048,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "BOT_DECISION",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire exceeded freshness timeout",
+          "events": [
+            {
+              "emitted_at": "2026-07-01T14:36:11+00:00",
+              "payload": {
+                "age_sec": 185.188048,
+                "kind": "dump",
+                "max_age_sec": 180,
+                "reason": "fire exceeded freshness timeout",
+                "reason_code": "STALE_FIRE"
+              },
+              "source": "fem_auto_trade",
+              "status": "OK"
+            }
+          ],
+          "extra": {},
+          "payload": {
+            "age_sec": 185.188048,
+            "kind": "dump",
+            "max_age_sec": 180,
+            "reason": "fire exceeded freshness timeout",
+            "reason_code": "STALE_FIRE"
+          },
+          "severity": null,
+          "source": "fem_auto_trade",
+          "state": "REJECTION_REASON",
+          "status": "OK"
+        },
+        {
+          "breach_code": null,
+          "detail": "no order expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "ORDER",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no fill expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "FILL",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "no exit expected after untraded/rejected fire",
+          "extra": {},
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "EXIT",
+          "status": "DEAD_END"
+        },
+        {
+          "breach_code": null,
+          "detail": "fire is not mature/graded yet; ghost result pending",
+          "extra": {},
+          "payload": {
+            "contract_trace_id": "2026-07-01:live_fire:WOLF:SHORT:dump:701T1033060400:2e54f5db",
+            "entry": 46.005,
+            "fire_min": 633,
+            "graded": false,
+            "kind": "dump",
+            "move_pct": 0.67,
+            "regime": null,
+            "rel_vol": null,
+            "stop": 47.094,
+            "t": "2026-07-01T10:33:06-04:00",
+            "target": 43.827,
+            "ticker": "WOLF"
+          },
+          "severity": null,
+          "source": null,
+          "state": "REALIZED_RESULT",
+          "status": "PENDING"
+        },
+        {
+          "breach_code": null,
+          "detail": "panel score waits on ghost or realized result",
+          "extra": {
+            "strategy": {
+              "_type": "object",
+              "keys": [
+                "actual",
+                "ghost",
+                "panel_name",
+                "side",
+                "strategy_id",
+                "symbols",
+                "verdict"
+              ],
+              "size": 7
+            },
+            "symbol": {
+              "_type": "object",
+              "keys": [
+                "actual",
+                "ghost",
+                "panel_name",
+                "strategy_id",
+                "symbol"
+              ],
+              "size": 5
+            }
+          },
+          "payload": {},
+          "severity": null,
+          "source": null,
+          "state": "PANEL_SCORE",
+          "status": "PENDING"
+        }
+      ],
+      "strategy_id": "live_fire_dump",
+      "symbol": "WOLF",
+      "trace_id": "2026-07-01:live_fire:WOLF:SHORT:dump:701T1033060400:2e54f5db",
       "verdict": "BROKEN"
     },
     {
@@ -6134,20 +6892,20 @@
     {
       "break_count": 0,
       "breaks": [],
-      "event_count": 7,
+      "event_count": 5,
       "failure_detail": null,
       "failure_link": null,
       "is_live": false,
       "is_simulated": true,
-      "operator_read": "SLNH live_fire_dump replay reached REJECTED_OR_GHOST.",
+      "operator_read": "BMNR live_fire_surge replay reached REJECTED_OR_GHOST.",
       "order_id": null,
       "realized_pnl": null,
       "realized_r": null,
-      "reason": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
-      "reason_code": "SHORT_PRICE_FLOOR",
-      "side": "SHORT",
+      "reason": "surge trading disabled",
+      "reason_code": "SURGE_TRADING_DISABLED",
+      "side": "LONG",
       "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:33:00-04:00",
+      "source_timestamp": "2026-07-01T10:38:35-04:00",
       "state": "PENDING",
       "steps": [
         {
@@ -6155,33 +6913,16 @@
           "detail": "live fire emitted",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:03+00:00",
+              "emitted_at": "2026-07-01T14:39:10+00:00",
               "payload": {
-                "bar_close": 1.275,
-                "bar_high": 1.33,
-                "bar_low": 1.265,
-                "bar_open": 1.33,
-                "bar_volume": 435702,
-                "baseline_vol": 28466.3,
-                "gated": false,
-                "kind": "dump",
-                "last": 1.275,
-                "side": "SHORT"
-              },
-              "source": "fem_live_runner",
-              "status": "OBSERVED"
-            },
-            {
-              "emitted_at": "2026-07-01T14:33:17+00:00",
-              "payload": {
-                "entry": 1.275,
-                "fire_min": 633,
+                "entry": 14.0393,
+                "fire_min": 638,
                 "graded": false,
-                "kind": "dump",
-                "last": 1.275,
-                "move_pct": -4.14,
+                "kind": "surge",
+                "last": 14.0393,
+                "move_pct": 5.58,
                 "regime": "NEUTRAL",
-                "side": "SHORT",
+                "rel_vol": 0.3,
                 "stop": null,
                 "target": null
               },
@@ -6191,18 +6932,18 @@
           ],
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:SLNH:SHORT:dump:701T1033000400:630dc2ee",
-            "entry": 1.275,
-            "fire_min": 633,
+            "contract_trace_id": "2026-07-01:live_fire:BMNR:LONG:surge:701T1038350400:b468e092",
+            "entry": 14.0393,
+            "fire_min": 638,
             "graded": false,
-            "kind": "dump",
-            "move_pct": -4.14,
+            "kind": "surge",
+            "move_pct": 5.58,
             "regime": "NEUTRAL",
-            "rel_vol": 15.3,
+            "rel_vol": 0.3,
             "stop": null,
-            "t": "2026-07-01T10:33:00-04:00",
+            "t": "2026-07-01T10:38:35-04:00",
             "target": null,
-            "ticker": "SLNH"
+            "ticker": "BMNR"
           },
           "severity": null,
           "source": "live_fires",
@@ -6214,31 +6955,16 @@
           "detail": "fire contains entry reference",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:03+00:00",
+              "emitted_at": "2026-07-01T14:39:10+00:00",
               "payload": {
-                "entry": null,
-                "gated": false,
-                "kind": "dump",
-                "regime": "NEUTRAL",
-                "score": null,
-                "stop": null,
-                "target": null,
-                "ticker": "SLNH"
-              },
-              "source": "fem_live_runner",
-              "status": "OBSERVED"
-            },
-            {
-              "emitted_at": "2026-07-01T14:33:17+00:00",
-              "payload": {
-                "entry": 1.275,
+                "entry": 14.0393,
                 "gated": null,
-                "kind": "dump",
+                "kind": "surge",
                 "regime": "NEUTRAL",
                 "score": null,
                 "stop": null,
                 "target": null,
-                "ticker": "SLNH"
+                "ticker": "BMNR"
               },
               "source": "fem_live_fire_grade",
               "status": "OBSERVED"
@@ -6246,10 +6972,10 @@
           ],
           "extra": {},
           "payload": {
-            "entry_price": 1.275,
-            "pick_id": "48441d139c01",
+            "entry_price": 14.0393,
+            "pick_id": "2d5f95f1ccf8",
             "score": null,
-            "side": "SHORT",
+            "side": "LONG",
             "source": {
               "_type": "object",
               "keys": [
@@ -6264,10 +6990,10 @@
               ],
               "size": 12
             },
-            "stop_price": 1.3515,
-            "strategy_id": "live_fire_dump",
-            "symbol": "SLNH",
-            "target_price": 1.2112
+            "stop_price": 13.1969,
+            "strategy_id": "live_fire_surge",
+            "symbol": "BMNR",
+            "target_price": 14.7413
           },
           "severity": null,
           "source": "live_fires",
@@ -6279,12 +7005,12 @@
           "detail": "fresh enough for bot decision",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:17+00:00",
+              "emitted_at": "2026-07-01T14:39:08+00:00",
               "payload": {
-                "age_sec": 17.738561,
-                "fire_at": "2026-07-01T10:33:00-04:00",
+                "age_sec": 33.244483,
+                "fire_at": "2026-07-01T10:38:35-04:00",
                 "fresh": true,
-                "kind": "dump",
+                "kind": "surge",
                 "max_age_sec": 180,
                 "reason": "fresh enough for bot decision",
                 "reason_code": null
@@ -6295,10 +7021,10 @@
           ],
           "extra": {},
           "payload": {
-            "age_sec": 17.738561,
-            "fire_at": "2026-07-01T10:33:00-04:00",
+            "age_sec": 33.244483,
+            "fire_at": "2026-07-01T10:38:35-04:00",
             "fresh": true,
-            "kind": "dump",
+            "kind": "surge",
             "max_age_sec": 180,
             "reason": "fresh enough for bot decision",
             "reason_code": null
@@ -6313,14 +7039,12 @@
           "detail": "bot rejected fire with explicit reason",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:18+00:00",
+              "emitted_at": "2026-07-01T14:39:08+00:00",
               "payload": {
                 "accepted": false,
-                "kind": "dump",
-                "min_short_price": 5.0,
-                "price": 1.275,
-                "reason": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
-                "reason_code": "SHORT_PRICE_FLOOR"
+                "kind": "surge",
+                "reason": "surge trading disabled",
+                "reason_code": "SURGE_TRADING_DISABLED"
               },
               "source": "fem_auto_trade",
               "status": "REJECTED"
@@ -6329,11 +7053,9 @@
           "extra": {},
           "payload": {
             "accepted": false,
-            "kind": "dump",
-            "min_short_price": 5.0,
-            "price": 1.275,
-            "reason": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
-            "reason_code": "SHORT_PRICE_FLOOR"
+            "kind": "surge",
+            "reason": "surge trading disabled",
+            "reason_code": "SURGE_TRADING_DISABLED"
           },
           "severity": null,
           "source": "fem_auto_trade",
@@ -6342,16 +7064,14 @@
         },
         {
           "breach_code": null,
-          "detail": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
+          "detail": "surge trading disabled",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:18+00:00",
+              "emitted_at": "2026-07-01T14:39:09+00:00",
               "payload": {
-                "kind": "dump",
-                "min_short_price": 5.0,
-                "price": 1.275,
-                "reason": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
-                "reason_code": "SHORT_PRICE_FLOOR"
+                "kind": "surge",
+                "reason": "surge trading disabled",
+                "reason_code": "SURGE_TRADING_DISABLED"
               },
               "source": "fem_auto_trade",
               "status": "OK"
@@ -6359,11 +7079,9 @@
           ],
           "extra": {},
           "payload": {
-            "kind": "dump",
-            "min_short_price": 5.0,
-            "price": 1.275,
-            "reason": "dump short below minimum short price floor; sub-5 probe rejected: below sub-5 probe minimum price",
-            "reason_code": "SHORT_PRICE_FLOOR"
+            "kind": "surge",
+            "reason": "surge trading disabled",
+            "reason_code": "SURGE_TRADING_DISABLED"
           },
           "severity": null,
           "source": "fem_auto_trade",
@@ -6405,18 +7123,18 @@
           "detail": "fire is not mature/graded yet; ghost result pending",
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:SLNH:SHORT:dump:701T1033000400:630dc2ee",
-            "entry": 1.275,
-            "fire_min": 633,
+            "contract_trace_id": "2026-07-01:live_fire:BMNR:LONG:surge:701T1038350400:b468e092",
+            "entry": 14.0393,
+            "fire_min": 638,
             "graded": false,
-            "kind": "dump",
-            "move_pct": -4.14,
+            "kind": "surge",
+            "move_pct": 5.58,
             "regime": "NEUTRAL",
-            "rel_vol": 15.3,
+            "rel_vol": 0.3,
             "stop": null,
-            "t": "2026-07-01T10:33:00-04:00",
+            "t": "2026-07-01T10:38:35-04:00",
             "target": null,
-            "ticker": "SLNH"
+            "ticker": "BMNR"
           },
           "severity": null,
           "source": null,
@@ -6459,20 +7177,20 @@
           "status": "PENDING"
         }
       ],
-      "strategy_id": "live_fire_dump",
-      "symbol": "SLNH",
-      "trace_id": "2026-07-01:live_fire:SLNH:SHORT:dump:701T1033000400:630dc2ee",
+      "strategy_id": "live_fire_surge",
+      "symbol": "BMNR",
+      "trace_id": "2026-07-01:live_fire:BMNR:LONG:surge:701T1038350400:b468e092",
       "verdict": "REJECTED_OR_GHOST"
     },
     {
       "break_count": 0,
       "breaks": [],
-      "event_count": 5,
+      "event_count": 4,
       "failure_detail": null,
       "failure_link": null,
       "is_live": false,
       "is_simulated": true,
-      "operator_read": "ATEC live_fire_surge replay reached REJECTED_OR_GHOST.",
+      "operator_read": "CAG live_fire_surge replay reached REJECTED_OR_GHOST.",
       "order_id": null,
       "realized_pnl": null,
       "realized_r": null,
@@ -6480,7 +7198,7 @@
       "reason_code": "SURGE_TRADING_DISABLED",
       "side": "LONG",
       "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:32:13-04:00",
+      "source_timestamp": "2026-07-01T10:38:35-04:00",
       "state": "PENDING",
       "steps": [
         {
@@ -6488,14 +7206,14 @@
           "detail": "live fire emitted",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:16+00:00",
+              "emitted_at": "2026-07-01T14:39:11+00:00",
               "payload": {
-                "entry": 9.095,
-                "fire_min": 632,
+                "entry": 14.335,
+                "fire_min": 638,
                 "graded": false,
                 "kind": "surge",
-                "last": 9.095,
-                "move_pct": 5.2,
+                "last": 14.335,
+                "move_pct": 6.54,
                 "regime": "NEUTRAL",
                 "rel_vol": 0.26,
                 "stop": null,
@@ -6507,18 +7225,18 @@
           ],
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:ATEC:LONG:surge:701T1032130400:cf398884",
-            "entry": 9.095,
-            "fire_min": 632,
+            "contract_trace_id": "2026-07-01:live_fire:CAG:LONG:surge:701T1038350400:9bbc1dd5",
+            "entry": 14.335,
+            "fire_min": 638,
             "graded": false,
             "kind": "surge",
-            "move_pct": 5.2,
+            "move_pct": 6.54,
             "regime": "NEUTRAL",
             "rel_vol": 0.26,
             "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
+            "t": "2026-07-01T10:38:35-04:00",
             "target": null,
-            "ticker": "ATEC"
+            "ticker": "CAG"
           },
           "severity": null,
           "source": "live_fires",
@@ -6530,16 +7248,16 @@
           "detail": "fire contains entry reference",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:16+00:00",
+              "emitted_at": "2026-07-01T14:39:11+00:00",
               "payload": {
-                "entry": 9.095,
+                "entry": 14.335,
                 "gated": null,
                 "kind": "surge",
                 "regime": "NEUTRAL",
                 "score": null,
                 "stop": null,
                 "target": null,
-                "ticker": "ATEC"
+                "ticker": "CAG"
               },
               "source": "fem_live_fire_grade",
               "status": "OBSERVED"
@@ -6547,8 +7265,8 @@
           ],
           "extra": {},
           "payload": {
-            "entry_price": 9.095,
-            "pick_id": "d0c70d25525e",
+            "entry_price": 14.335,
+            "pick_id": "bcd42be47459",
             "score": null,
             "side": "LONG",
             "source": {
@@ -6565,10 +7283,10 @@
               ],
               "size": 12
             },
-            "stop_price": 8.5493,
+            "stop_price": 13.4749,
             "strategy_id": "live_fire_surge",
-            "symbol": "ATEC",
-            "target_price": 9.5498
+            "symbol": "CAG",
+            "target_price": 15.0518
           },
           "severity": null,
           "source": "live_fires",
@@ -6577,44 +7295,22 @@
         },
         {
           "breach_code": null,
-          "detail": "fresh enough for bot decision",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:18+00:00",
-              "payload": {
-                "age_sec": 65.551796,
-                "fire_at": "2026-07-01T10:32:13-04:00",
-                "fresh": true,
-                "kind": "surge",
-                "max_age_sec": 180,
-                "reason": "fresh enough for bot decision",
-                "reason_code": null
-              },
-              "source": "fem_auto_trade",
-              "status": "OK"
-            }
-          ],
+          "detail": "untraded fire; freshness must be evaluated when bot sees it",
           "extra": {},
           "payload": {
-            "age_sec": 65.551796,
-            "fire_at": "2026-07-01T10:32:13-04:00",
-            "fresh": true,
-            "kind": "surge",
-            "max_age_sec": 180,
-            "reason": "fresh enough for bot decision",
-            "reason_code": null
+            "fire_at": "2026-07-01T10:38:35-04:00"
           },
           "severity": null,
-          "source": "fem_auto_trade",
+          "source": "live_fires",
           "state": "FRESHNESS_CHECK",
-          "status": "OK"
+          "status": "PENDING"
         },
         {
           "breach_code": null,
           "detail": "bot rejected fire with explicit reason",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:19+00:00",
+              "emitted_at": "2026-07-01T14:39:11+00:00",
               "payload": {
                 "accepted": false,
                 "kind": "surge",
@@ -6642,7 +7338,7 @@
           "detail": "surge trading disabled",
           "events": [
             {
-              "emitted_at": "2026-07-01T14:33:19+00:00",
+              "emitted_at": "2026-07-01T14:39:11+00:00",
               "payload": {
                 "kind": "surge",
                 "reason": "surge trading disabled",
@@ -6698,18 +7394,18 @@
           "detail": "fire is not mature/graded yet; ghost result pending",
           "extra": {},
           "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:ATEC:LONG:surge:701T1032130400:cf398884",
-            "entry": 9.095,
-            "fire_min": 632,
+            "contract_trace_id": "2026-07-01:live_fire:CAG:LONG:surge:701T1038350400:9bbc1dd5",
+            "entry": 14.335,
+            "fire_min": 638,
             "graded": false,
             "kind": "surge",
-            "move_pct": 5.2,
+            "move_pct": 6.54,
             "regime": "NEUTRAL",
             "rel_vol": 0.26,
             "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
+            "t": "2026-07-01T10:38:35-04:00",
             "target": null,
-            "ticker": "ATEC"
+            "ticker": "CAG"
           },
           "severity": null,
           "source": null,
@@ -6753,619 +7449,29 @@
         }
       ],
       "strategy_id": "live_fire_surge",
-      "symbol": "ATEC",
-      "trace_id": "2026-07-01:live_fire:ATEC:LONG:surge:701T1032130400:cf398884",
-      "verdict": "REJECTED_OR_GHOST"
-    },
-    {
-      "break_count": 0,
-      "breaks": [],
-      "event_count": 5,
-      "failure_detail": null,
-      "failure_link": null,
-      "is_live": false,
-      "is_simulated": true,
-      "operator_read": "FIS live_fire_surge replay reached REJECTED_OR_GHOST.",
-      "order_id": null,
-      "realized_pnl": null,
-      "realized_r": null,
-      "reason": "surge trading disabled",
-      "reason_code": "SURGE_TRADING_DISABLED",
-      "side": "LONG",
-      "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:32:13-04:00",
-      "state": "PENDING",
-      "steps": [
-        {
-          "breach_code": null,
-          "detail": "live fire emitted",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:16+00:00",
-              "payload": {
-                "entry": 40.86,
-                "fire_min": 632,
-                "graded": false,
-                "kind": "surge",
-                "last": 40.86,
-                "move_pct": 5.02,
-                "regime": "NEUTRAL",
-                "rel_vol": 0.15,
-                "stop": null,
-                "target": null
-              },
-              "source": "fem_live_fire_grade",
-              "status": "OBSERVED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:FIS:LONG:surge:701T1032130400:b79f8090",
-            "entry": 40.86,
-            "fire_min": 632,
-            "graded": false,
-            "kind": "surge",
-            "move_pct": 5.02,
-            "regime": "NEUTRAL",
-            "rel_vol": 0.15,
-            "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
-            "target": null,
-            "ticker": "FIS"
-          },
-          "severity": null,
-          "source": "live_fires",
-          "state": "PANEL",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "fire contains entry reference",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:17+00:00",
-              "payload": {
-                "entry": 40.86,
-                "gated": null,
-                "kind": "surge",
-                "regime": "NEUTRAL",
-                "score": null,
-                "stop": null,
-                "target": null,
-                "ticker": "FIS"
-              },
-              "source": "fem_live_fire_grade",
-              "status": "OBSERVED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "entry_price": 40.86,
-            "pick_id": "a337bbe822ce",
-            "score": null,
-            "side": "LONG",
-            "source": {
-              "_type": "object",
-              "keys": [
-                "contract_trace_id",
-                "entry",
-                "fire_min",
-                "graded",
-                "kind",
-                "move_pct",
-                "regime",
-                "rel_vol"
-              ],
-              "size": 12
-            },
-            "stop_price": 38.4084,
-            "strategy_id": "live_fire_surge",
-            "symbol": "FIS",
-            "target_price": 42.903
-          },
-          "severity": null,
-          "source": "live_fires",
-          "state": "PICK",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "fresh enough for bot decision",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:24+00:00",
-              "payload": {
-                "age_sec": 71.738579,
-                "fire_at": "2026-07-01T10:32:13-04:00",
-                "fresh": true,
-                "kind": "surge",
-                "max_age_sec": 180,
-                "reason": "fresh enough for bot decision",
-                "reason_code": null
-              },
-              "source": "fem_auto_trade",
-              "status": "OK"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "age_sec": 71.738579,
-            "fire_at": "2026-07-01T10:32:13-04:00",
-            "fresh": true,
-            "kind": "surge",
-            "max_age_sec": 180,
-            "reason": "fresh enough for bot decision",
-            "reason_code": null
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "FRESHNESS_CHECK",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "bot rejected fire with explicit reason",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:26+00:00",
-              "payload": {
-                "accepted": false,
-                "kind": "surge",
-                "reason": "surge trading disabled",
-                "reason_code": "SURGE_TRADING_DISABLED"
-              },
-              "source": "fem_auto_trade",
-              "status": "REJECTED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "accepted": false,
-            "kind": "surge",
-            "reason": "surge trading disabled",
-            "reason_code": "SURGE_TRADING_DISABLED"
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "BOT_DECISION",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "surge trading disabled",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:26+00:00",
-              "payload": {
-                "kind": "surge",
-                "reason": "surge trading disabled",
-                "reason_code": "SURGE_TRADING_DISABLED"
-              },
-              "source": "fem_auto_trade",
-              "status": "OK"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "kind": "surge",
-            "reason": "surge trading disabled",
-            "reason_code": "SURGE_TRADING_DISABLED"
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "REJECTION_REASON",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "no order expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "ORDER",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "no fill expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "FILL",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "no exit expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "EXIT",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "fire is not mature/graded yet; ghost result pending",
-          "extra": {},
-          "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:FIS:LONG:surge:701T1032130400:b79f8090",
-            "entry": 40.86,
-            "fire_min": 632,
-            "graded": false,
-            "kind": "surge",
-            "move_pct": 5.02,
-            "regime": "NEUTRAL",
-            "rel_vol": 0.15,
-            "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
-            "target": null,
-            "ticker": "FIS"
-          },
-          "severity": null,
-          "source": null,
-          "state": "REALIZED_RESULT",
-          "status": "PENDING"
-        },
-        {
-          "breach_code": null,
-          "detail": "panel score waits on ghost or realized result",
-          "extra": {
-            "strategy": {
-              "_type": "object",
-              "keys": [
-                "actual",
-                "ghost",
-                "panel_name",
-                "side",
-                "strategy_id",
-                "symbols",
-                "verdict"
-              ],
-              "size": 7
-            },
-            "symbol": {
-              "_type": "object",
-              "keys": [
-                "actual",
-                "ghost",
-                "panel_name",
-                "strategy_id",
-                "symbol"
-              ],
-              "size": 5
-            }
-          },
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "PANEL_SCORE",
-          "status": "PENDING"
-        }
-      ],
-      "strategy_id": "live_fire_surge",
-      "symbol": "FIS",
-      "trace_id": "2026-07-01:live_fire:FIS:LONG:surge:701T1032130400:b79f8090",
-      "verdict": "REJECTED_OR_GHOST"
-    },
-    {
-      "break_count": 0,
-      "breaks": [],
-      "event_count": 5,
-      "failure_detail": null,
-      "failure_link": null,
-      "is_live": false,
-      "is_simulated": true,
-      "operator_read": "RAAQ live_fire_surge replay reached REJECTED_OR_GHOST.",
-      "order_id": null,
-      "realized_pnl": null,
-      "realized_r": null,
-      "reason": "universal daily liquidity floor: day volume 664,979 < 750,000",
-      "reason_code": "MIN_DAILY_VOLUME",
-      "side": "LONG",
-      "source_kind": "live_fires",
-      "source_timestamp": "2026-07-01T10:32:13-04:00",
-      "state": "PENDING",
-      "steps": [
-        {
-          "breach_code": null,
-          "detail": "live fire emitted",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:16+00:00",
-              "payload": {
-                "entry": 11.35,
-                "fire_min": 632,
-                "graded": false,
-                "kind": "surge",
-                "last": 11.35,
-                "move_pct": 5.09,
-                "regime": "NEUTRAL",
-                "rel_vol": 3.46,
-                "stop": null,
-                "target": null
-              },
-              "source": "fem_live_fire_grade",
-              "status": "OBSERVED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:RAAQ:LONG:surge:701T1032130400:f602747f",
-            "entry": 11.35,
-            "fire_min": 632,
-            "graded": false,
-            "kind": "surge",
-            "move_pct": 5.09,
-            "regime": "NEUTRAL",
-            "rel_vol": 3.46,
-            "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
-            "target": null,
-            "ticker": "RAAQ"
-          },
-          "severity": null,
-          "source": "live_fires",
-          "state": "PANEL",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "fire contains entry reference",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:16+00:00",
-              "payload": {
-                "entry": 11.35,
-                "gated": null,
-                "kind": "surge",
-                "regime": "NEUTRAL",
-                "score": null,
-                "stop": null,
-                "target": null,
-                "ticker": "RAAQ"
-              },
-              "source": "fem_live_fire_grade",
-              "status": "OBSERVED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "entry_price": 11.35,
-            "pick_id": "5762ed8a742a",
-            "score": null,
-            "side": "LONG",
-            "source": {
-              "_type": "object",
-              "keys": [
-                "contract_trace_id",
-                "entry",
-                "fire_min",
-                "graded",
-                "kind",
-                "move_pct",
-                "regime",
-                "rel_vol"
-              ],
-              "size": 12
-            },
-            "stop_price": 10.669,
-            "strategy_id": "live_fire_surge",
-            "symbol": "RAAQ",
-            "target_price": 11.9175
-          },
-          "severity": null,
-          "source": "live_fires",
-          "state": "PICK",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "fresh enough for bot decision",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:19+00:00",
-              "payload": {
-                "age_sec": 66.260503,
-                "fire_at": "2026-07-01T10:32:13-04:00",
-                "fresh": true,
-                "kind": "surge",
-                "max_age_sec": 180,
-                "reason": "fresh enough for bot decision",
-                "reason_code": null
-              },
-              "source": "fem_auto_trade",
-              "status": "OK"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "age_sec": 66.260503,
-            "fire_at": "2026-07-01T10:32:13-04:00",
-            "fresh": true,
-            "kind": "surge",
-            "max_age_sec": 180,
-            "reason": "fresh enough for bot decision",
-            "reason_code": null
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "FRESHNESS_CHECK",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "bot rejected fire with explicit reason",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:19+00:00",
-              "payload": {
-                "accepted": false,
-                "daily_min": 750000,
-                "kind": "surge",
-                "reason": "universal daily liquidity floor: day volume 664,979 < 750,000",
-                "reason_code": "MIN_DAILY_VOLUME"
-              },
-              "source": "fem_auto_trade",
-              "status": "REJECTED"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "accepted": false,
-            "daily_min": 750000,
-            "kind": "surge",
-            "reason": "universal daily liquidity floor: day volume 664,979 < 750,000",
-            "reason_code": "MIN_DAILY_VOLUME"
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "BOT_DECISION",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "universal daily liquidity floor: day volume 664,979 < 750,000",
-          "events": [
-            {
-              "emitted_at": "2026-07-01T14:33:19+00:00",
-              "payload": {
-                "daily_min": 750000,
-                "kind": "surge",
-                "reason": "universal daily liquidity floor: day volume 664,979 < 750,000",
-                "reason_code": "MIN_DAILY_VOLUME"
-              },
-              "source": "fem_auto_trade",
-              "status": "OK"
-            }
-          ],
-          "extra": {},
-          "payload": {
-            "daily_min": 750000,
-            "kind": "surge",
-            "reason": "universal daily liquidity floor: day volume 664,979 < 750,000",
-            "reason_code": "MIN_DAILY_VOLUME"
-          },
-          "severity": null,
-          "source": "fem_auto_trade",
-          "state": "REJECTION_REASON",
-          "status": "OK"
-        },
-        {
-          "breach_code": null,
-          "detail": "no order expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "ORDER",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "no fill expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "FILL",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "no exit expected after untraded/rejected fire",
-          "extra": {},
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "EXIT",
-          "status": "DEAD_END"
-        },
-        {
-          "breach_code": null,
-          "detail": "fire is not mature/graded yet; ghost result pending",
-          "extra": {},
-          "payload": {
-            "contract_trace_id": "2026-07-01:live_fire:RAAQ:LONG:surge:701T1032130400:f602747f",
-            "entry": 11.35,
-            "fire_min": 632,
-            "graded": false,
-            "kind": "surge",
-            "move_pct": 5.09,
-            "regime": "NEUTRAL",
-            "rel_vol": 3.46,
-            "stop": null,
-            "t": "2026-07-01T10:32:13-04:00",
-            "target": null,
-            "ticker": "RAAQ"
-          },
-          "severity": null,
-          "source": null,
-          "state": "REALIZED_RESULT",
-          "status": "PENDING"
-        },
-        {
-          "breach_code": null,
-          "detail": "panel score waits on ghost or realized result",
-          "extra": {
-            "strategy": {
-              "_type": "object",
-              "keys": [
-                "actual",
-                "ghost",
-                "panel_name",
-                "side",
-                "strategy_id",
-                "symbols",
-                "verdict"
-              ],
-              "size": 7
-            },
-            "symbol": {
-              "_type": "object",
-              "keys": [
-                "actual",
-                "ghost",
-                "panel_name",
-                "strategy_id",
-                "symbol"
-              ],
-              "size": 5
-            }
-          },
-          "payload": {},
-          "severity": null,
-          "source": null,
-          "state": "PANEL_SCORE",
-          "status": "PENDING"
-        }
-      ],
-      "strategy_id": "live_fire_surge",
-      "symbol": "RAAQ",
-      "trace_id": "2026-07-01:live_fire:RAAQ:LONG:surge:701T1032130400:f602747f",
+      "symbol": "CAG",
+      "trace_id": "2026-07-01:live_fire:CAG:LONG:surge:701T1038350400:9bbc1dd5",
       "verdict": "REJECTED_OR_GHOST"
     }
   ],
   "schema": "fem_contract_trace_replay.v1",
   "summary": {
-    "available_traces": 1136,
-    "event_rows_loaded": 371,
+    "available_traces": 1241,
+    "event_rows_loaded": 465,
     "failure_link_counts": {
-      "FILL": 6,
-      "FRESHNESS_CHECK": 5,
-      "NONE": 11,
+      "FILL": 4,
+      "FRESHNESS_CHECK": 9,
+      "NONE": 9,
       "PANEL": 2
     },
-    "live_traces": 12,
+    "live_traces": 10,
     "matched_traces": 24,
-    "order_traces": 12,
+    "order_traces": 10,
     "replayed_traces": 24,
-    "simulated_traces": 12,
+    "simulated_traces": 14,
     "verdict_counts": {
-      "BROKEN": 13,
-      "REJECTED_OR_GHOST": 7,
+      "BROKEN": 15,
+      "REJECTED_OR_GHOST": 5,
       "TRADED_CLOSED": 1,
       "TRADED_OPEN_OR_PARTIAL": 3
     }
