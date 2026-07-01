@@ -7,15 +7,15 @@
     "normal_panel_score": "BLOCK",
     "panel_promotion": "BLOCK"
   },
-  "generated_at": "2026-07-01T16:04:51.377406+00:00",
-  "generated_at_et": "2026-07-01T12:04:51.377406-04:00",
+  "generated_at": "2026-07-01T17:13:37.988789+00:00",
+  "generated_at_et": "2026-07-01T13:13:37.988789-04:00",
   "inputs": {
-    "closure_generated_at": "2026-07-01T16:04:47+00:00",
-    "enforcement_generated_at": "2026-07-01T16:04:51.110836+00:00",
-    "evidence_generated_at": "2026-07-01T16:04:46+00:00",
-    "health_generated_at": "2026-07-01T16:04:47+00:00",
-    "lock_generated_at": "2026-07-01T16:04:45+00:00",
-    "partitions_generated_at": "2026-07-01T16:04:44+00:00"
+    "closure_generated_at": "2026-07-01T17:13:32+00:00",
+    "enforcement_generated_at": "2026-07-01T17:13:37.636214+00:00",
+    "evidence_generated_at": "2026-07-01T17:13:30+00:00",
+    "health_generated_at": "2026-07-01T17:13:31+00:00",
+    "lock_generated_at": "2026-07-01T17:13:29+00:00",
+    "partitions_generated_at": "2026-07-01T17:13:28+00:00"
   },
   "next_action": "Run 0ZO promotion gate for research ranking only; keep all promotions blocked.",
   "operator_read": "Daily spine is experiment-only: keep evidence visible for research, but do not train normal edge or promote panels.",
@@ -23,6 +23,7 @@
   "reason_counts": {
     "EVIDENCE_PARTITION_EXPERIMENT": 1,
     "HEALTH_WARNINGS_PRESENT": 1,
+    "NONCRITICAL_HEALTH_FAILURE": 4,
     "NO_NORMAL_LEADERBOARD": 1,
     "REVIEW_FLAGS_PRESENT": 1,
     "SPINE_BLOCKS_NORMAL_SCORING": 1
@@ -44,10 +45,38 @@
     },
     {
       "code": "SPINE_BLOCKS_NORMAL_SCORING",
-      "detail": "5 closure gate(s) block normal scoring",
+      "detail": "6 closure gate(s) block normal scoring",
       "effect": "experiment_only",
       "severity": "WARN",
       "source": "fem_contract_spine_closure"
+    },
+    {
+      "code": "NONCRITICAL_HEALTH_FAILURE",
+      "detail": "contract_daily_certification: stale during rth: 4119s old, limit 2700s",
+      "effect": "review_only",
+      "severity": "WARN",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "NONCRITICAL_HEALTH_FAILURE",
+      "detail": "contract_live_trust_recovery: stale during rth: 4118s old, limit 2700s",
+      "effect": "review_only",
+      "severity": "WARN",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "NONCRITICAL_HEALTH_FAILURE",
+      "detail": "contract_live_trust_executor: stale during rth: 4118s old, limit 2700s",
+      "effect": "review_only",
+      "severity": "WARN",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "NONCRITICAL_HEALTH_FAILURE",
+      "detail": "contract_auction_truth_shadow: stale during rth: 4095s old, limit 2700s",
+      "effect": "review_only",
+      "severity": "WARN",
+      "source": "fem_contract_health"
     },
     {
       "code": "REVIEW_FLAGS_PRESENT",
@@ -58,7 +87,7 @@
     },
     {
       "code": "HEALTH_WARNINGS_PRESENT",
-      "detail": "15 warning check(s) present",
+      "detail": "17 warning check(s) present",
       "effect": "partial_review",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -66,7 +95,7 @@
   ],
   "schema": "fem_contract_daily_certification.v1",
   "severity_counts": {
-    "WARN": 5
+    "WARN": 9
   },
   "summary": {
     "actual_realized_pnl": -66.39,
@@ -75,14 +104,14 @@
     "evidence_partition": "EXPERIMENT",
     "experiment_actual_trades": 42,
     "experiment_learning_allowed": true,
-    "experiment_reasons": 3,
-    "health_fail": 0,
-    "health_overall": "WARN",
-    "health_warn": 15,
+    "experiment_reasons": 7,
+    "health_fail": 4,
+    "health_overall": "FAIL",
+    "health_warn": 17,
     "normal_actual_trades": 0,
     "normal_learning_allowed": false,
     "partial_reasons": 2,
-    "reason_count": 5,
+    "reason_count": 9,
     "rejecting_reasons": 0,
     "review_required": true
   },
