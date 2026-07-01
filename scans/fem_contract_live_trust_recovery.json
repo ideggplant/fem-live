@@ -1,6 +1,5 @@
 {
   "category_counts": {
-    "CONTRACT": 1,
     "DECISION_ACCOUNTING": 1,
     "EVIDENCE": 1,
     "EXECUTION": 1,
@@ -37,39 +36,39 @@
   "first_action": {
     "blocks_live_trust": true,
     "blocks_normal_learning": true,
-    "can_auto_run": false,
-    "category": "CONTRACT",
+    "can_auto_run": true,
+    "category": "EXECUTION",
     "certification_effect": "required_for_normal_certification",
     "check_ids": [
-      "contract_break_errors"
+      "exit_reconcile_open_risk"
     ],
-    "command": null,
+    "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat; _DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
     "evidence": [
-      "FAIL Contract validator errors: 36 ERROR breach(es) in current validator output"
+      "WARN Open exit coverage risk: 3 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
     ],
     "evidence_count": 1,
-    "group_id": "repair_contract_breaks",
-    "priority": 20,
-    "recovery_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
-    "root_cause": "Validator errors mean the Panel -> Score chain still has broken trace links.",
-    "severity": "FAIL",
-    "title": "Repair explicit lifecycle contract breaks"
+    "group_id": "repair_execution_reconciliation",
+    "priority": 30,
+    "recovery_action": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+    "root_cause": "Partial/open exits and adverse fills can make realized edge untrustworthy.",
+    "severity": "WARN",
+    "title": "Repair fill and exit reconciliation"
   },
-  "generated_at": "2026-07-01T15:24:13.057796+00:00",
-  "generated_at_et": "2026-07-01T11:24:13.057796-04:00",
+  "generated_at": "2026-07-01T16:04:52.003805+00:00",
+  "generated_at_et": "2026-07-01T12:04:52.003805-04:00",
   "inputs": {
-    "certification_generated_at": "2026-07-01T15:24:12.610113+00:00",
-    "health_generated_at": "2026-07-01T15:24:06+00:00",
-    "live_readiness_generated_at": "2026-07-01T15:24:01+00:00",
-    "remediation_plan_generated_at": "2026-07-01T15:24:06+00:00",
-    "runtime_generated_at": "2026-07-01T15:23:59+00:00"
+    "certification_generated_at": "2026-07-01T16:04:51.377406+00:00",
+    "health_generated_at": "2026-07-01T16:04:47+00:00",
+    "live_readiness_generated_at": "2026-07-01T16:04:43+00:00",
+    "remediation_plan_generated_at": "2026-07-01T16:04:47+00:00",
+    "runtime_generated_at": "2026-07-01T16:04:41+00:00"
   },
   "negative_checks": [
     {
-      "detail": "36 ERROR breach(es) in current validator output",
-      "id": "contract_break_errors",
-      "label": "Contract validator errors",
-      "status": "FAIL"
+      "detail": "485 warning breach(es) in current validator output",
+      "id": "contract_break_warnings",
+      "label": "Contract validator warnings",
+      "status": "WARN"
     },
     {
       "detail": "3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=13",
@@ -78,10 +77,10 @@
       "status": "WARN"
     },
     {
-      "detail": "5 open unguarded, 0 partial-open trace(s)",
+      "detail": "3 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk",
       "id": "exit_reconcile_open_risk",
       "label": "Open exit coverage risk",
-      "status": "FAIL"
+      "status": "WARN"
     },
     {
       "detail": "10 strategy permission(s) are blocked by contract failures",
@@ -96,13 +95,7 @@
       "status": "WARN"
     },
     {
-      "detail": "inferred_duplicate_needs_explicit=0, pending_new=20",
-      "id": "decision_obligation_warnings",
-      "label": "Inferred duplicate/pending pick accounting",
-      "status": "WARN"
-    },
-    {
-      "detail": "1084 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+      "detail": "1653 accounted pick(s) had accounting timestamps earlier than pick timestamps",
       "id": "decision_obligation_time_order_warnings",
       "label": "Decision obligation timestamp ordering warnings",
       "status": "WARN"
@@ -114,13 +107,13 @@
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, actual_trades=42, ghost_graded=72989, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+      "detail": "partition=EXPERIMENT, actual_trades=42, ghost_graded=74485, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
       "id": "score_provenance_quarantine",
       "label": "Score provenance partition guard",
       "status": "WARN"
     },
     {
-      "detail": "experiment/review evidence=73031, experiment_strategies=28, review_strategies=0",
+      "detail": "experiment/review evidence=74527, experiment_strategies=28, review_strategies=0",
       "id": "score_partitions_no_normal",
       "label": "Normal score leaderboard empty",
       "status": "WARN"
@@ -132,7 +125,7 @@
       "status": "WARN"
     },
     {
-      "detail": "missed=1357, no_decision=68, slow_decisions=199, slow_orders=6, order_after_peak=4",
+      "detail": "missed=2011, no_decision=0, slow_decisions=264, slow_orders=6, order_after_peak=4",
       "id": "latency_missed_move_warnings",
       "label": "Latency / missed move warnings",
       "status": "WARN"
@@ -150,10 +143,10 @@
       "status": "WARN"
     },
     {
-      "detail": "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
-      "id": "evidence_cleanliness_failed",
-      "label": "Evidence cleanliness failed",
-      "status": "FAIL"
+      "detail": "partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=42",
+      "id": "evidence_cleanliness_quarantine",
+      "label": "Evidence cleanliness quarantine",
+      "status": "WARN"
     },
     {
       "detail": "3 high-pressure exit rule group(s) need review",
@@ -162,31 +155,10 @@
       "status": "WARN"
     }
   ],
-  "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
-  "operator_read": "First recovery action: Repair explicit lifecycle contract breaks.",
-  "overall": "FAIL",
+  "next_action": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
+  "operator_read": "First recovery action: Repair fill and exit reconciliation.",
+  "overall": "WARN",
   "recovery_groups": [
-    {
-      "blocks_live_trust": true,
-      "blocks_normal_learning": true,
-      "can_auto_run": false,
-      "category": "CONTRACT",
-      "certification_effect": "required_for_normal_certification",
-      "check_ids": [
-        "contract_break_errors"
-      ],
-      "command": null,
-      "evidence": [
-        "FAIL Contract validator errors: 36 ERROR breach(es) in current validator output"
-      ],
-      "evidence_count": 1,
-      "group_id": "repair_contract_breaks",
-      "priority": 20,
-      "recovery_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
-      "root_cause": "Validator errors mean the Panel -> Score chain still has broken trace links.",
-      "severity": "FAIL",
-      "title": "Repair explicit lifecycle contract breaks"
-    },
     {
       "blocks_live_trust": true,
       "blocks_normal_learning": true,
@@ -198,14 +170,14 @@
       ],
       "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat; _DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
       "evidence": [
-        "FAIL Open exit coverage risk: 5 open unguarded, 0 partial-open trace(s)"
+        "WARN Open exit coverage risk: 3 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
       ],
       "evidence_count": 1,
       "group_id": "repair_execution_reconciliation",
       "priority": 30,
       "recovery_action": "Run fill reconcile, exit-intent backfill, exit reconcile, and realized-result after closed positions settle.",
       "root_cause": "Partial/open exits and adverse fills can make realized edge untrustworthy.",
-      "severity": "FAIL",
+      "severity": "WARN",
       "title": "Repair fill and exit reconciliation"
     },
     {
@@ -219,17 +191,19 @@
         "score_provenance_quarantine",
         "score_partitions_no_normal",
         "score_consumer_lock_active",
-        "order_permission_pre_lock_review"
+        "order_permission_pre_lock_review",
+        "evidence_cleanliness_quarantine"
       ],
       "command": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat; _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat; _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat; _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
       "evidence": [
         "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=13, hard_safety=7, positions=14, context=3caa1e479a08529b",
-        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=42, ghost_graded=72989, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "WARN Normal score leaderboard empty: experiment/review evidence=73031, experiment_strategies=28, review_strategies=0",
+        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=42, ghost_graded=74485, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "WARN Normal score leaderboard empty: experiment/review evidence=74527, experiment_strategies=28, review_strategies=0",
         "WARN Score consumer lock active: 39 score-consuming strategy route(s) locked to research/display; normal=0, experiment=28, review=0",
-        "WARN Pre-lock orders now disallowed: 3 historical order(s) predate the current score/permission lock and would be blocked or track-only now"
+        "WARN Pre-lock orders now disallowed: 3 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
+        "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=42"
       ],
-      "evidence_count": 5,
+      "evidence_count": 6,
       "group_id": "restore_normal_evidence_profile",
       "priority": 40,
       "recovery_action": "When the experiment ends, restore permission/health enforcement, rebuild score provenance, and require a fresh normal session.",
@@ -245,18 +219,16 @@
       "certification_effect": "required_for_clean_forward_day",
       "check_ids": [
         "route_readiness_warnings",
-        "decision_obligation_warnings",
         "decision_obligation_time_order_warnings",
         "latency_missed_move_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat; _DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
       "evidence": [
         "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-        "WARN Inferred duplicate/pending pick accounting: inferred_duplicate_needs_explicit=0, pending_new=20",
-        "WARN Decision obligation timestamp ordering warnings: 1084 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "WARN Latency / missed move warnings: missed=1357, no_decision=68, slow_decisions=199, slow_orders=6, order_after_peak=4"
+        "WARN Decision obligation timestamp ordering warnings: 1653 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=2011, no_decision=0, slow_decisions=264, slow_orders=6, order_after_peak=4"
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "group_id": "repair_real_time_decision_accounting",
       "priority": 50,
       "recovery_action": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
@@ -292,16 +264,16 @@
       "category": "MISC",
       "certification_effect": "operator_review",
       "check_ids": [
+        "contract_break_warnings",
         "panel_registry_contracts",
         "bot_gate_legacy_permission_warning",
-        "evidence_cleanliness_failed",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
+        "WARN Contract validator warnings: 485 warning breach(es) in current validator output",
         "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=13",
         "WARN Bot gate legacy permission warning: active route/source/gate/P&L enforcement is on; legacy_permission_enforce=False, legacy_block_unknown=False",
-        "FAIL Evidence cleanliness failed: hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "WARN Exit-rules learning review queue: 3 high-pressure exit rule group(s) need review"
       ],
       "evidence_count": 4,
@@ -309,7 +281,7 @@
       "priority": 90,
       "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
       "root_cause": "A health check was not mapped to a specific recovery group.",
-      "severity": "FAIL",
+      "severity": "WARN",
       "title": "Miscellaneous health follow-up"
     }
   ],
@@ -317,20 +289,20 @@
   "schema": "fem_contract_live_trust_recovery.v1",
   "summary": {
     "auto_runnable_groups": 4,
-    "blocks_live_trust": 2,
-    "blocks_normal_learning": 5,
+    "blocks_live_trust": 1,
+    "blocks_normal_learning": 4,
     "daily_certification": "EXPERIMENT_ONLY",
-    "fail_groups": 3,
-    "health_fail": 3,
-    "health_overall": "FAIL",
-    "health_warn": 13,
+    "fail_groups": 0,
+    "health_fail": 0,
+    "health_overall": "WARN",
+    "health_warn": 15,
     "live_ready": true,
-    "manual_groups": 2,
-    "negative_checks": 16,
-    "recovery_groups": 6,
+    "manual_groups": 1,
+    "negative_checks": 15,
+    "recovery_groups": 5,
     "remediation_plan_overall": "FAIL",
     "restart_queue": 0,
-    "warn_groups": 3
+    "warn_groups": 5
   },
   "trade_date": "2026-07-01"
 }
