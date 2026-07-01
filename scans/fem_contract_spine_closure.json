@@ -6,7 +6,6 @@
     "BOT_ENFORCEMENT_ON"
   ],
   "blocking_normal_scoring_gates": [
-    "ARTIFACTS_FRESH",
     "CONTRACT_ERRORS_CLEAR",
     "EXECUTION_COVERAGE_CLEAN",
     "DECISION_ACCOUNTING_CLEAN",
@@ -17,28 +16,25 @@
   "gates": [
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": true,
+      "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Contract source refresh report: stale during rth: 8225s old, limit 2700s",
-        "FAIL Contract daily spine certification: stale during rth: 51559s old, limit 2700s",
-        "FAIL Contract promotion/demotion gate: stale during rth: 51559s old, limit 2700s",
-        "FAIL Contract auction truth shadow score: stale during rth: 51554s old, limit 2700s"
+        "Health found no stale or missing contract artifacts."
       ],
-      "evidence_count": 4,
+      "evidence_count": 1,
       "gate_id": "ARTIFACTS_FRESH",
       "label": "Contract artifacts are fresh",
-      "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
+      "next_action": "No action required.",
       "priority": 10,
-      "severity": "FAIL",
+      "severity": "OK",
       "source": "fem_contract_health.json",
-      "status": "OPEN"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
         "FAIL Contract validator errors: 28 ERROR breach(es) in current validator output",
-        "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=15"
+        "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=14"
       ],
       "evidence_count": 2,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -87,8 +83,8 @@
       "blocking_normal_scoring": true,
       "evidence": [
         "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
-        "WARN Decision obligation timestamp ordering warnings: 684 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "WARN Latency / missed move warnings: missed=654, no_decision=0, slow_decisions=100, slow_orders=5, order_after_peak=3"
+        "WARN Decision obligation timestamp ordering warnings: 743 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=719, no_decision=0, slow_decisions=100, slow_orders=5, order_after_peak=3"
       ],
       "evidence_count": 3,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
@@ -105,7 +101,7 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=69926, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=72021, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 39 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 3 historical order(s) predate the current permission lock and would be blocked or track-only now",
@@ -194,43 +190,41 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-07-01T14:37:49+00:00",
-  "generated_at_et": "2026-07-01T10:37:49-04:00",
+  "generated_at": "2026-07-01T14:42:54+00:00",
+  "generated_at_et": "2026-07-01T10:42:54-04:00",
   "next_gate": {
-    "blocking_live_trading": false,
+    "blocking_live_trading": true,
     "blocking_normal_scoring": true,
     "evidence": [
-      "WARN Contract source refresh report: stale during rth: 8225s old, limit 2700s",
-      "FAIL Contract daily spine certification: stale during rth: 51559s old, limit 2700s",
-      "FAIL Contract promotion/demotion gate: stale during rth: 51559s old, limit 2700s",
-      "FAIL Contract auction truth shadow score: stale during rth: 51554s old, limit 2700s"
+      "FAIL Contract validator errors: 28 ERROR breach(es) in current validator output",
+      "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=14"
     ],
-    "evidence_count": 4,
-    "gate_id": "ARTIFACTS_FRESH",
-    "label": "Contract artifacts are fresh",
-    "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
-    "priority": 10,
+    "evidence_count": 2,
+    "gate_id": "CONTRACT_ERRORS_CLEAR",
+    "label": "No explicit contract break errors",
+    "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated lifecycle breach.",
+    "priority": 20,
     "severity": "FAIL",
     "source": "fem_contract_health.json",
     "status": "OPEN"
   },
-  "operator_read": "Spine is not closed. First rebuild the stale contract artifacts so every later verdict is based on current data.",
+  "operator_read": "Spine is not closed. First open gate: No explicit contract break errors.",
   "overall": "FAIL",
   "schema": "fem_contract_spine_closure.v1",
   "session": "rth",
   "spine_stage": "BOOTSTRAP",
   "summary": {
     "blocking_live_trading": 4,
-    "blocking_normal_scoring": 6,
-    "closed_gates": 3,
-    "closure_percent": 30.0,
+    "blocking_normal_scoring": 5,
+    "closed_gates": 4,
+    "closure_percent": 40.0,
     "evidence_overall": "FAIL",
     "evidence_partition": "UNTAGGED",
     "gates": 10,
     "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
-    "open_gates": 6,
+    "open_gates": 5,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
