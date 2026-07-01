@@ -15,15 +15,15 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-01T14:54:46+00:00",
-  "generated_at_et": "2026-07-01T10:54:46-04:00",
+  "generated_at": "2026-07-01T15:11:54+00:00",
+  "generated_at_et": "2026-07-01T11:11:54-04:00",
   "inputs": {
-    "exit_intent_rows": 44,
-    "order_strategy_rows": 36,
+    "exit_intent_rows": 47,
+    "order_strategy_rows": 39,
     "strategy_registry_rows": 39,
     "trade_permission_rows": 39
   },
-  "mode": "AUDIT_ONLY",
+  "mode": "ENFORCE",
   "open_orders": [
     {
       "action": "SELL",
@@ -504,9 +504,57 @@
       "status": "PreSubmitted",
       "stop_price": 3.07,
       "symbol": "ALT"
+    },
+    {
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "MISSING_TARGET_REPAIR",
+      "exit_strategy_id": "surge_micro_scout",
+      "limit_price": 3.58,
+      "oca_group": "",
+      "order_id": "3734",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": 92.0,
+      "quantity": 64.0,
+      "raw": {
+        "action": "SELL",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 3.58,
+        "oca_group": "",
+        "order_id": 3734,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 441124090,
+        "quantity": 64.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "ALT",
+        "tif": "DAY",
+        "trail_stop_price": 2.58,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "ALT"
     }
   ],
-  "operator_read": "Order safety is OK: 10 working order(s) and 6 live position(s) reconciled against the spine.",
+  "operator_read": "Order safety is OK: 11 working order(s) and 6 live position(s) reconciled against the spine.",
   "overall": "OK",
   "positions": [
     {
@@ -529,7 +577,7 @@
       ]
     },
     {
-      "avg_cost": 3.2308725652173913,
+      "avg_cost": 3.23087255,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -537,12 +585,15 @@
       ],
       "qty": 92.0,
       "related_exit_orders": [
-        "3733"
+        "3733",
+        "3734"
       ],
       "severity": "OK",
       "side": "LONG",
       "symbol": "ALT",
-      "target_orders": []
+      "target_orders": [
+        "3734"
+      ]
     },
     {
       "avg_cost": 8.749603,
@@ -627,9 +678,9 @@
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 10,
+    "open_orders": 11,
     "order_fail": 0,
-    "order_ok": 10,
+    "order_ok": 11,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
