@@ -2,7 +2,6 @@
   "bot_route_manifest": {
     "allow_full": [],
     "allow_probe": [
-      "moo_ticket",
       "surge_micro_scout",
       "surge_watch_probe",
       "trapped_short",
@@ -14,6 +13,7 @@
       "dump_short",
       "meta_confluence",
       "micro_clock_buy_zone",
+      "moo_ticket",
       "options_context",
       "options_roundtrip_long",
       "options_roundtrip_short",
@@ -204,11 +204,11 @@
         "side": "LONG"
       },
       "moo_ticket": {
-        "allowed_to_trade": true,
+        "allowed_to_trade": false,
         "panel_id": "abook_moo",
-        "permission": "ALLOW_PROBE",
-        "risk_multiplier": 1.0,
-        "route_weight": 1.0,
+        "permission": "BLOCK",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
         "score_consumer_locked": true,
         "score_partition": "UNTAGGED",
         "side": "LONG"
@@ -477,14 +477,12 @@
   },
   "by_panel": {
     "abook_moo": {
-      "allowed_strategies": [
-        "moo_ticket"
-      ],
-      "max_route_weight": 1.0,
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
       "panel_id": "abook_moo",
       "panel_name": "A-Book Proven MOO",
       "permissions": {
-        "ALLOW_PROBE": 1
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -808,8 +806,8 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-07-01T22:09:35+00:00",
-  "generated_at_et": "2026-07-01T18:09:35-04:00",
+  "generated_at": "2026-07-01T22:19:18+00:00",
+  "generated_at_et": "2026-07-01T18:19:18-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1512,8 +1510,8 @@
       "strategy_id": "micro_clock_buy_zone"
     },
     "moo_ticket": {
-      "allowed_to_trade": true,
-      "confidence": "POLICY_OVERRIDE",
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
@@ -1521,12 +1519,10 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
-        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
-        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "UNTAGGED",
         "source_ok": true
@@ -1545,41 +1541,17 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED",
-        "route_policy_override:ALLOW_PROBE",
-        "explicit_operator_probe_score_lock_escape"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "abook_moo",
       "panel_name": "A-Book Proven MOO",
-      "permission": "ALLOW_PROBE",
-      "policy_override": {
-        "applied": true,
-        "expires_et": "2026-07-07",
-        "guardrails": [
-          "Tickets must be generated from today's A-book source.",
-          "fem_tickets.py must run with --proven-moo --fresh-only --no-bracket.",
-          "Only FEM >= 90 or T1-STRONG_LONG names can enter this route.",
-          "5_TRADE_BOT.bat runs this route only before the opening auction."
-        ],
-        "max_risk_dollars": 100.0,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "previous": {
-          "allowed_to_trade": false,
-          "confidence": "SCORE_CONSUMER_LOCK",
-          "permission": "BLOCK",
-          "risk_multiplier": 0.0,
-          "route_weight": 0.0
-        },
-        "reason": "Explicit probe for the historically profitable FEM A-book morning MOO slice, filtered to fem>=90 or T1-STRONG_LONG."
-      },
+      "permission": "BLOCK",
       "reasons": [
-        "operator route policy override: Explicit probe for the historically profitable FEM A-book morning MOO slice, filtered to fem>=90 or T1-STRONG_LONG.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 1.0,
-      "route_weight": 1.0,
+      "risk_multiplier": 0.0,
+      "route_weight": 0.0,
       "side": "LONG",
       "strategy_id": "moo_ticket"
     },
@@ -2920,6 +2892,13 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "abook_moo",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "LONG",
+      "strategy_id": "moo_ticket"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "options_context",
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
@@ -2974,19 +2953,19 @@
     "kill_switch": false,
     "overrides": {
       "moo_ticket": {
-        "active": true,
-        "allowed_to_trade": true,
-        "applied": true,
+        "active": false,
+        "allowed_to_trade": false,
+        "applied": false,
         "blocked_by_health": false,
         "errors": [],
         "expires_et": "2026-07-07",
         "max_risk_dollars": 100.0,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "reason": "Explicit probe for the historically profitable FEM A-book morning MOO slice, filtered to fem>=90 or T1-STRONG_LONG.",
-        "risk_multiplier": 1.0,
-        "route_weight": 1.0,
-        "status": "APPLIED",
+        "operator_approved_probe": false,
+        "permission": "TRACK_ONLY",
+        "reason": "Benched for tomorrow: recent MOO candidates looked like upper-gap bear rejections; keep the ticket output as radar for Upside Down Cow instead of sending long MOO orders.",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
+        "status": "DISABLED",
         "strategy_id": "moo_ticket"
       },
       "short_genesis": {
@@ -3073,8 +3052,8 @@
     "policy_schema": "fem_contract_route_policy.v1",
     "schema": "fem_contract_route_policy_application.v1",
     "summary": {
-      "applied": 5,
-      "disabled": 1,
+      "applied": 4,
+      "disabled": 2,
       "expired": 0,
       "health_blocked": 0,
       "invalid": 0,
@@ -3085,24 +3064,24 @@
   "schema": "fem_contract_trade_permissions.v1",
   "summary": {
     "allow_full": 0,
-    "allow_probe": 5,
-    "allowed_long": 3,
+    "allow_probe": 4,
+    "allowed_long": 2,
     "allowed_short": 2,
-    "allowed_to_trade": 5,
+    "allowed_to_trade": 4,
     "bench": 0,
-    "block": 11,
+    "block": 12,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 30,
     "permission_counts": {
-      "ALLOW_PROBE": 5,
-      "BLOCK": 11,
+      "ALLOW_PROBE": 4,
+      "BLOCK": 12,
       "TRACK_ONLY": 26
     },
     "registry_overall": "FAIL",
     "research_only": 0,
-    "route_policy_applied": 5,
+    "route_policy_applied": 4,
     "route_policy_invalid": 0,
     "route_policy_overrides": 6,
     "score_consumer_allowed": 0,
