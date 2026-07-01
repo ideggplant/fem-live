@@ -3,7 +3,6 @@
     "allow_full": [],
     "allow_probe": [
       "moo_ticket",
-      "short_genesis",
       "surge_micro_scout",
       "surge_watch_probe",
       "trapped_short"
@@ -38,6 +37,7 @@
       "mustard_mixed_research",
       "mustard_reload",
       "mustard_runner_long",
+      "short_genesis",
       "short_universe",
       "short_universe_breakdown",
       "short_universe_gapdown_cont",
@@ -271,11 +271,11 @@
         "side": "MIXED"
       },
       "short_genesis": {
-        "allowed_to_trade": true,
+        "allowed_to_trade": false,
         "panel_id": "short_genesis",
-        "permission": "ALLOW_PROBE",
-        "risk_multiplier": 0.25,
-        "route_weight": 0.25,
+        "permission": "TRACK_ONLY",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
         "side": "SHORT"
@@ -601,14 +601,12 @@
       "strategies": 2
     },
     "short_genesis": {
-      "allowed_strategies": [
-        "short_genesis"
-      ],
-      "max_route_weight": 0.25,
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
       "panel_id": "short_genesis",
       "panel_name": "Short Genesis",
       "permissions": {
-        "ALLOW_PROBE": 1
+        "TRACK_ONLY": 1
       },
       "side": "SHORT",
       "strategies": 1
@@ -753,8 +751,8 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-07-01T14:05:08+00:00",
-  "generated_at_et": "2026-07-01T10:05:08-04:00",
+  "generated_at": "2026-07-01T14:17:08+00:00",
+  "generated_at_et": "2026-07-01T10:17:08-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1805,8 +1803,8 @@
       "strategy_id": "options_roundtrip_short"
     },
     "short_genesis": {
-      "allowed_to_trade": true,
-      "confidence": "POLICY_OVERRIDE",
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
@@ -1814,12 +1812,10 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
-        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
-        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
         "source_ok": true
@@ -1838,41 +1834,17 @@
         "ghost_target_hit_rate": 51.68
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT",
-        "route_policy_override:ALLOW_PROBE",
-        "explicit_operator_probe_score_lock_escape"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "short_genesis",
       "panel_name": "Short Genesis",
-      "permission": "ALLOW_PROBE",
-      "policy_override": {
-        "applied": true,
-        "expires_et": "2026-07-07",
-        "guardrails": [
-          "Only the Short Genesis PAPER_LIVE scanner may use this route.",
-          "Do not open live_fire_dump, gap_reject_short, dump_short, or broad short_universe from this override.",
-          "Existing borrowability, price, liquidity, position cap, giveback guard, and broker safety checks still apply.",
-          "Review after expiry or after at least 20 routed attempts."
-        ],
-        "max_risk_dollars": 75.0,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "previous": {
-          "allowed_to_trade": false,
-          "confidence": "SCORE_CONSUMER_LOCK",
-          "permission": "TRACK_ONLY",
-          "risk_multiplier": 0.0,
-          "route_weight": 0.0
-        },
-        "reason": "Narrow short probe because broad dump/gap-reject buckets were negative today, while Short Genesis was track-only and the small live-sim sample was positive. Keep this separate and capped."
-      },
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "operator route policy override: Narrow short probe because broad dump/gap-reject buckets were negative today, while Short Genesis was track-only and the small live-sim sample was positive. Keep this separate and capped.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 0.25,
-      "route_weight": 0.25,
+      "risk_multiplier": 0.0,
+      "route_weight": 0.0,
       "side": "SHORT",
       "strategy_id": "short_genesis"
     },
@@ -2808,19 +2780,19 @@
         "strategy_id": "moo_ticket"
       },
       "short_genesis": {
-        "active": true,
-        "allowed_to_trade": true,
-        "applied": true,
+        "active": false,
+        "allowed_to_trade": false,
+        "applied": false,
         "blocked_by_health": false,
         "errors": [],
         "expires_et": "2026-07-07",
         "max_risk_dollars": 75.0,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "reason": "Narrow short probe because broad dump/gap-reject buckets were negative today, while Short Genesis was track-only and the small live-sim sample was positive. Keep this separate and capped.",
-        "risk_multiplier": 0.25,
-        "route_weight": 0.25,
-        "status": "APPLIED",
+        "operator_approved_probe": false,
+        "permission": "TRACK_ONLY",
+        "reason": "Disabled after broader actual-fill review. Use trapped_short as the short execution route; keep short_genesis for tracking only until it proves itself.",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
+        "status": "DISABLED",
         "strategy_id": "short_genesis"
       },
       "surge_micro_scout": {
@@ -2875,8 +2847,8 @@
     "policy_schema": "fem_contract_route_policy.v1",
     "schema": "fem_contract_route_policy_application.v1",
     "summary": {
-      "applied": 5,
-      "disabled": 0,
+      "applied": 4,
+      "disabled": 1,
       "expired": 0,
       "health_blocked": 0,
       "invalid": 0,
@@ -2887,10 +2859,10 @@
   "schema": "fem_contract_trade_permissions.v1",
   "summary": {
     "allow_full": 0,
-    "allow_probe": 5,
+    "allow_probe": 4,
     "allowed_long": 3,
-    "allowed_short": 1,
-    "allowed_to_trade": 5,
+    "allowed_short": 0,
+    "allowed_to_trade": 4,
     "bench": 0,
     "block": 13,
     "ghost_good_skip_groups": 0,
@@ -2898,13 +2870,13 @@
     "health_overall": "FAIL",
     "panel_score_strategies": 27,
     "permission_counts": {
-      "ALLOW_PROBE": 5,
+      "ALLOW_PROBE": 4,
       "BLOCK": 13,
-      "TRACK_ONLY": 21
+      "TRACK_ONLY": 22
     },
     "registry_overall": "WARN",
     "research_only": 0,
-    "route_policy_applied": 5,
+    "route_policy_applied": 4,
     "route_policy_invalid": 0,
     "route_policy_overrides": 5,
     "score_consumer_allowed": 0,
@@ -2915,7 +2887,7 @@
       "UNTAGGED": 12
     },
     "strategies": 39,
-    "track_only": 21,
+    "track_only": 22,
     "watch_only": 0
   },
   "trade_date": "2026-07-01"
