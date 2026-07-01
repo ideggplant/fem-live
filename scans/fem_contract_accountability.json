@@ -1,16 +1,16 @@
 {
   "category_counts": [
     {
-      "count": 1643,
+      "count": 3004,
       "key": "REJECTION_CAPTURE"
     },
     {
-      "count": 644,
-      "key": "RESULT_ATTRIBUTION"
+      "count": 901,
+      "key": "FRESHNESS"
     },
     {
-      "count": 561,
-      "key": "FRESHNESS"
+      "count": 564,
+      "key": "RESULT_ATTRIBUTION"
     },
     {
       "count": 3,
@@ -21,8 +21,8 @@
       "key": "FILL_MATCH"
     }
   ],
-  "code_version": "nogit:2a25056fc135d8ff",
-  "generated_at": "2026-07-01T16:03:51+00:00",
+  "code_version": "nogit:b96beb1626c311af",
+  "generated_at": "2026-07-01T17:12:10+00:00",
   "operator_queue": [
     {
       "category": "FRESHNESS",
@@ -977,16 +977,16 @@
   ],
   "owner_counts": [
     {
-      "count": 1643,
+      "count": 3004,
       "key": "bot"
     },
     {
-      "count": 644,
-      "key": "results"
+      "count": 901,
+      "key": "data_freshness"
     },
     {
-      "count": 561,
-      "key": "data_freshness"
+      "count": 564,
+      "key": "results"
     },
     {
       "count": 3,
@@ -1001,16 +1001,16 @@
   "schema": "fem_contract_accountability.v1",
   "state_counts": [
     {
-      "count": 1643,
+      "count": 3004,
       "key": "REJECTION_REASON"
     },
     {
-      "count": 644,
-      "key": "REALIZED_RESULT"
+      "count": 901,
+      "key": "FRESHNESS_CHECK"
     },
     {
-      "count": 561,
-      "key": "FRESHNESS_CHECK"
+      "count": 564,
+      "key": "REALIZED_RESULT"
     },
     {
       "count": 3,
@@ -1025,42 +1025,42 @@
     "coverage": {
       "complete_traces": 0,
       "live_traces": 14,
-      "needs_action": 485,
+      "needs_action": 821,
       "ordered_traces": 14,
-      "pending": 727,
-      "rejected_or_dead_end": 1641,
-      "simulated_traces": 2839,
-      "trace_count": 2853,
-      "validator_break_count": 485,
+      "pending": 656,
+      "rejected_or_dead_end": 2997,
+      "simulated_traces": 4460,
+      "trace_count": 4474,
+      "validator_break_count": 825,
       "validator_errors": 0,
-      "validator_trace_count": 2853,
-      "validator_warnings": 485
+      "validator_trace_count": 4474,
+      "validator_warnings": 825
     },
     "owners_needing_attention": {
-      "bot": 2,
+      "bot": 7,
       "broker_fill": 2,
-      "data_freshness": 561,
-      "results": 644,
+      "data_freshness": 901,
+      "results": 564,
       "risk_exit": 3
     },
     "severity": {
-      "INFO": 1641,
-      "PENDING": 727,
-      "WARN": 485
+      "INFO": 2997,
+      "PENDING": 656,
+      "WARN": 821
     },
     "states_needing_attention": {
       "EXIT": 3,
       "FILL": 2,
-      "FRESHNESS_CHECK": 561,
-      "REALIZED_RESULT": 644,
-      "REJECTION_REASON": 2
+      "FRESHNESS_CHECK": 901,
+      "REALIZED_RESULT": 564,
+      "REJECTION_REASON": 7
     }
   },
   "top_blockers": [
     {
       "category": "FRESHNESS",
       "code": "FRESHNESS_EXPIRED",
-      "count": 481,
+      "count": 812,
       "examples": [
         {
           "detail": "stale fire after restart/poll delay",
@@ -1098,6 +1098,46 @@
       "state": "FRESHNESS_CHECK"
     },
     {
+      "category": "REJECTION_CAPTURE",
+      "code": "REJECTION_REASON_MISSING",
+      "count": 7,
+      "examples": [
+        {
+          "detail": "bot rejected fire but did not emit REJECTION_REASON",
+          "strategy_id": "live_fire_surge",
+          "symbol": "CPB",
+          "trace_id": "2026-07-01:live_fire:CPB:LONG:surge:701T1044590400:856fc01a"
+        },
+        {
+          "detail": "bot rejected fire but did not emit REJECTION_REASON",
+          "strategy_id": "live_fire_surge",
+          "symbol": "ADT",
+          "trace_id": "2026-07-01:live_fire:ADT:LONG:surge:701T1143330400:d056d132"
+        },
+        {
+          "detail": "bot rejected fire but did not emit REJECTION_REASON",
+          "strategy_id": "live_fire_surge",
+          "symbol": "EXLS",
+          "trace_id": "2026-07-01:live_fire:EXLS:LONG:surge:701T1255480400:85f57e4b"
+        },
+        {
+          "detail": "bot rejected fire but did not emit REJECTION_REASON",
+          "strategy_id": "live_fire_surge",
+          "symbol": "KD",
+          "trace_id": "2026-07-01:live_fire:KD:LONG:surge:701T1255480400:ed409107"
+        },
+        {
+          "detail": "bot rejected fire but did not emit REJECTION_REASON",
+          "strategy_id": "live_fire_surge",
+          "symbol": "RPD",
+          "trace_id": "2026-07-01:live_fire:RPD:LONG:surge:701T1258020400:39eb17f6"
+        }
+      ],
+      "next_action": "Add a canonical rejection reason for CPB; skipped picks need named causes.",
+      "owner": "bot",
+      "state": "REJECTION_REASON"
+    },
+    {
       "category": "FILL_MATCH",
       "code": "ENTRY_ORDER_UNFILLED_OR_REJECTED",
       "count": 2,
@@ -1118,28 +1158,6 @@
       "next_action": "Verify broker execution join for AHMA; parent order has no matched fill.",
       "owner": "broker_fill",
       "state": "FILL"
-    },
-    {
-      "category": "REJECTION_CAPTURE",
-      "code": "REJECTION_REASON_MISSING",
-      "count": 2,
-      "examples": [
-        {
-          "detail": "bot rejected fire but did not emit REJECTION_REASON",
-          "strategy_id": "live_fire_surge",
-          "symbol": "CPB",
-          "trace_id": "2026-07-01:live_fire:CPB:LONG:surge:701T1044590400:856fc01a"
-        },
-        {
-          "detail": "bot rejected fire but did not emit REJECTION_REASON",
-          "strategy_id": "live_fire_surge",
-          "symbol": "ADT",
-          "trace_id": "2026-07-01:live_fire:ADT:LONG:surge:701T1143330400:d056d132"
-        }
-      ],
-      "next_action": "Add a canonical rejection reason for CPB; skipped picks need named causes.",
-      "owner": "bot",
-      "state": "REJECTION_REASON"
     }
   ],
   "trade_date": "2026-07-01"
