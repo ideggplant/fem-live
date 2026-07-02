@@ -1,8 +1,8 @@
 {
   "breaches": [],
   "code_version": "unknown",
-  "generated_at": "2026-07-02T16:26:58+00:00",
-  "generated_at_et": "2026-07-02T12:26:58-04:00",
+  "generated_at": "2026-07-02T16:48:16+00:00",
+  "generated_at_et": "2026-07-02T12:48:16-04:00",
   "inputs": {
     "missing_inputs": [],
     "parse_errors": {},
@@ -10,10 +10,18 @@
     "score_partitions_schema": "fem_contract_score_partitions.v1",
     "score_provenance_overall": "WARN",
     "score_provenance_schema": "fem_contract_score_provenance.v1",
-    "trade_permissions_generated_at": "2026-07-02T16:14:40+00:00",
+    "trade_permissions_generated_at": "2026-07-02T16:47:08+00:00",
     "trade_permissions_schema": "fem_contract_trade_permissions.v1"
   },
   "operator_overrides": [
+    {
+      "allowed_to_trade": true,
+      "permission": "ALLOW_PROBE",
+      "reason": "explicit operator paper/probe override; score evidence remains non-normal and cannot be promoted silently",
+      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
+      "score_partition": "EXPERIMENT",
+      "strategy_id": "gap_reject_short"
+    },
     {
       "allowed_to_trade": true,
       "permission": "ALLOW_PROBE",
@@ -282,22 +290,22 @@
     },
     "gap_reject_short": {
       "active_breach": false,
-      "allowed_to_trade": false,
+      "allowed_to_trade": true,
       "bot_score_allowed": false,
       "consumption_permission": "EXPERIMENT_ONLY",
       "display_allowed": true,
-      "explicit_operator_probe": false,
+      "explicit_operator_probe": true,
       "normal_score_eligible": false,
       "panel_name": "Gap Reject Short",
       "reason": "experiment score evidence is visible but cannot feed bot permissions",
-      "requested_bot_permission": false,
+      "requested_bot_permission": true,
       "research_allowed": true,
       "route_lock": "DEMOTE_TO_TRACK_ONLY",
-      "score_lock_escape": null,
+      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
       "score_partition": "EXPERIMENT",
       "side": "SHORT",
       "strategy_id": "gap_reject_short",
-      "trade_permission": "BLOCK"
+      "trade_permission": "ALLOW_PROBE"
     },
     "gap_wall_roundtrip_shadow": {
       "active_breach": false,
@@ -1005,13 +1013,13 @@
   },
   "summary": {
     "allowed_locked": 0,
-    "allowed_to_trade": 4,
+    "allowed_to_trade": 5,
     "bot_score_allowed": 0,
     "bot_score_locked": 50,
     "breaches": 0,
     "experiment": 28,
     "normal": 0,
-    "operator_probe_overrides": 4,
+    "operator_probe_overrides": 5,
     "review": 0,
     "strategies": 50,
     "untagged": 22
