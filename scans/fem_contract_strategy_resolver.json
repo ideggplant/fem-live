@@ -1,8 +1,8 @@
 {
   "code_version": "unknown",
   "duplicate_owner_conflicts": [],
-  "generated_at": "2026-07-02T13:24:20.994869+00:00",
-  "generated_at_et": "2026-07-02T09:24:20.994869-04:00",
+  "generated_at": "2026-07-02T13:36:07.933549+00:00",
+  "generated_at_et": "2026-07-02T09:36:07.933549-04:00",
   "operator_read": "Every visible strategy id has an explicit registry fate.",
   "overall": "WARN",
   "pending_registry": [],
@@ -824,7 +824,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -952,7 +952,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -992,7 +992,7 @@
       "owner_panel_id": "live_fire_gap_eat",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_gap_eat",
       "source": "panel_registry",
       "stats": {
@@ -1032,7 +1032,7 @@
       "owner_panel_id": "live_fire_gap_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_gap_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -1072,7 +1072,7 @@
       "owner_panel_id": "live_fire_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -1112,7 +1112,7 @@
       "owner_panel_id": "live_fire_surge",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "SHADOW_ONLY",
       "score_partition": "shadow_panel::live_fire_surge",
       "source": "panel_registry",
       "stats": {
@@ -1237,7 +1237,7 @@
         "permission": "TRACK_ONLY",
         "reason": "Benched for tomorrow: recent MOO candidates looked like upper-gap bear rejections; keep the ticket output as radar for Upside Down Cow instead of sending long MOO orders."
       },
-      "score_mode": "BLOCKED",
+      "score_mode": "NORMAL",
       "score_partition": "operator_probe::abook_moo",
       "source": "panel_registry+route_policy_lock",
       "stats": {
@@ -1659,7 +1659,7 @@
         "permission": "TRACK_ONLY",
         "reason": "Disabled after broader actual-fill review. Use trapped_short as the short execution route; keep short_genesis for tracking only until it proves itself."
       },
-      "score_mode": "BLOCKED",
+      "score_mode": "NORMAL",
       "score_partition": "paper_live::short_genesis",
       "source": "panel_registry+route_policy_lock",
       "stats": {
@@ -2095,29 +2095,35 @@
       "strategy_id": "stock_clock_shadow"
     },
     {
-      "bot_allowed": false,
+      "bot_allowed": true,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
+        "bot_decision",
         "channel_location",
+        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
+        "risk_dollars",
+        "route_permission",
         "side",
         "signal_timestamp",
+        "stop_price",
         "strategy_id",
         "symbol",
+        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
+      "next_action": "Owned and allowed by current admission state.",
       "owner_display_name": "Surge Trader",
       "owner_panel_id": "surge_trader",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "NORMAL",
       "score_partition": "paper_live::surge_trader",
       "source": "panel_registry",
       "stats": {
@@ -2481,10 +2487,10 @@
   ],
   "strategy_registry_file": "fem_contract_strategy_registry.json",
   "summary": {
-    "blocked_score": 13,
-    "bot_allowed": 4,
+    "blocked_score": 4,
+    "bot_allowed": 5,
     "duplicate_owner_conflicts": 0,
-    "normal_score": 0,
+    "normal_score": 3,
     "phase_counts": {
       "PAPER_LIVE": 11,
       "RESEARCH_ONLY": 10,
@@ -2495,12 +2501,13 @@
     "resolved_pending_registry": 0,
     "retired_or_illegal": 0,
     "score_mode_counts": {
-      "BLOCKED": 13,
+      "BLOCKED": 4,
+      "NORMAL": 3,
       "PROBE_ONLY": 4,
       "RESEARCH_ONLY": 10,
-      "SHADOW_ONLY": 22
+      "SHADOW_ONLY": 28
     },
-    "shadow_score": 22,
+    "shadow_score": 28,
     "status_counts": {
       "REGISTERED": 43,
       "REGISTERED_POLICY_LOCKED": 2,
