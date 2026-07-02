@@ -1,8 +1,8 @@
 {
   "breaches": [],
   "code_version": "unknown",
-  "generated_at": "2026-07-02T14:44:06+00:00",
-  "generated_at_et": "2026-07-02T10:44:06-04:00",
+  "generated_at": "2026-07-02T15:04:06+00:00",
+  "generated_at_et": "2026-07-02T11:04:06-04:00",
   "inputs": {
     "missing_inputs": [],
     "parse_errors": {},
@@ -10,10 +10,18 @@
     "score_partitions_schema": "fem_contract_score_partitions.v1",
     "score_provenance_overall": "WARN",
     "score_provenance_schema": "fem_contract_score_provenance.v1",
-    "trade_permissions_generated_at": "2026-07-02T14:23:46+00:00",
+    "trade_permissions_generated_at": "2026-07-02T14:56:25+00:00",
     "trade_permissions_schema": "fem_contract_trade_permissions.v1"
   },
   "operator_overrides": [
+    {
+      "allowed_to_trade": true,
+      "permission": "ALLOW_PROBE",
+      "reason": "explicit operator paper/probe override; score evidence remains non-normal and cannot be promoted silently",
+      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
+      "score_partition": "UNTAGGED",
+      "strategy_id": "moo_ticket"
+    },
     {
       "allowed_to_trade": true,
       "permission": "ALLOW_PROBE",
@@ -37,14 +45,6 @@
       "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
       "score_partition": "UNTAGGED",
       "strategy_id": "trapped_short"
-    },
-    {
-      "allowed_to_trade": true,
-      "permission": "ALLOW_PROBE",
-      "reason": "explicit operator paper/probe override; score evidence remains non-normal and cannot be promoted silently",
-      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
-      "score_partition": "UNTAGGED",
-      "strategy_id": "upside_down_cow_short"
     }
   ],
   "operator_read": "Explicit operator probe override active; non-normal score evidence is isolated and cannot promote silently.",
@@ -453,22 +453,22 @@
     },
     "moo_ticket": {
       "active_breach": false,
-      "allowed_to_trade": false,
+      "allowed_to_trade": true,
       "bot_score_allowed": false,
       "consumption_permission": "UNTAGGED_ONLY",
       "display_allowed": true,
-      "explicit_operator_probe": false,
+      "explicit_operator_probe": true,
       "normal_score_eligible": false,
       "panel_name": "A-Book Proven MOO",
       "reason": "strategy permission had no score-provenance row",
-      "requested_bot_permission": false,
+      "requested_bot_permission": true,
       "research_allowed": true,
       "route_lock": "BLOCK",
-      "score_lock_escape": null,
+      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
       "score_partition": "UNTAGGED",
       "side": "LONG",
       "strategy_id": "moo_ticket",
-      "trade_permission": "BLOCK"
+      "trade_permission": "ALLOW_PROBE"
     },
     "mustard_grind_long": {
       "active_breach": false,
@@ -966,22 +966,22 @@
     },
     "upside_down_cow_short": {
       "active_breach": false,
-      "allowed_to_trade": true,
+      "allowed_to_trade": false,
       "bot_score_allowed": false,
       "consumption_permission": "UNTAGGED_ONLY",
       "display_allowed": true,
-      "explicit_operator_probe": true,
+      "explicit_operator_probe": false,
       "normal_score_eligible": false,
       "panel_name": "Upside Down Cow",
       "reason": "strategy permission had no score-provenance row",
-      "requested_bot_permission": true,
+      "requested_bot_permission": false,
       "research_allowed": true,
       "route_lock": "BLOCK",
-      "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
+      "score_lock_escape": null,
       "score_partition": "UNTAGGED",
       "side": "SHORT",
       "strategy_id": "upside_down_cow_short",
-      "trade_permission": "ALLOW_PROBE"
+      "trade_permission": "BLOCK"
     },
     "value_area_fortress": {
       "active_breach": false,
