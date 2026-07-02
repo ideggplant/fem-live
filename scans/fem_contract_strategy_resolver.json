@@ -1,8 +1,8 @@
 {
   "code_version": "unknown",
   "duplicate_owner_conflicts": [],
-  "generated_at": "2026-07-02T14:44:05.784576+00:00",
-  "generated_at_et": "2026-07-02T10:44:05.784576-04:00",
+  "generated_at": "2026-07-02T14:56:24.191154+00:00",
+  "generated_at_et": "2026-07-02T10:56:24.191154-04:00",
   "operator_read": "Every visible strategy id has an explicit registry fate.",
   "overall": "WARN",
   "pending_registry": [],
@@ -1251,39 +1251,46 @@
       "strategy_id": "micro_clock_buy_zone"
     },
     {
-      "bot_allowed": false,
+      "bot_allowed": true,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
+        "bot_decision",
         "channel_location",
+        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
+        "risk_dollars",
+        "route_permission",
         "side",
         "signal_timestamp",
+        "stop_price",
         "strategy_id",
         "symbol",
+        "target_price",
         "trace_id"
       ],
-      "next_action": "Route policy/permission lock is active. Keep this strategy out of live orders until an explicit ALLOW_PROBE or ALLOW_FULL policy is approved.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "A-Book Proven MOO",
       "owner_panel_id": "abook_moo",
       "phase": "PAPER_LIVE",
-      "resolution_status": "REGISTERED_POLICY_LOCKED",
-      "route_policy_lock": {
-        "allowed_to_trade": false,
+      "policy_override": {
         "applied": true,
-        "enabled": false,
         "expires_et": "2026-07-07",
-        "permission": "TRACK_ONLY",
-        "reason": "Benched for tomorrow: recent MOO candidates looked like upper-gap bear rejections; keep the ticket output as radar for Upside Down Cow instead of sending long MOO orders."
+        "max_risk_dollars": 100,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Gill requested MOO restored for the next session. Only proven A-Book MOO tickets may route; Upside Down Cow is benched.",
+        "risk_multiplier": 0.25
       },
-      "score_mode": "NORMAL",
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "operator_probe::abook_moo",
-      "source": "panel_registry+route_policy_lock",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -2430,15 +2437,13 @@
       "strategy_id": "trapped_short"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context",
         "options_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
@@ -2447,33 +2452,28 @@
         "options_snapshot_id",
         "options_wall_map",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
+      "next_action": "Route policy/permission lock is active. Keep this strategy out of live orders until an explicit ALLOW_PROBE or ALLOW_FULL policy is approved.",
       "owner_display_name": "Upside Down Cow",
       "owner_panel_id": "upside_down_cow",
       "phase": "PAPER_LIVE",
-      "policy_override": {
+      "resolution_status": "REGISTERED_POLICY_LOCKED",
+      "route_policy_lock": {
+        "allowed_to_trade": false,
         "applied": true,
+        "enabled": false,
         "expires_et": "2026-07-07",
-        "max_risk_dollars": 35,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "reason": "Gill named MOO inversion route: short proven MOO radar names only after upper-gap rejection confirms the long narrative failed.",
-        "risk_multiplier": 1.0
+        "permission": "TRACK_ONLY",
+        "reason": "Gill requested Upside Down Cow turned off for the next session while long MOO is restored."
       },
-      "resolution_status": "REGISTERED_POLICY_PROBE",
-      "score_mode": "PROBE_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "operator_probe::upside_down_cow",
-      "source": "panel_registry+route_policy",
+      "source": "panel_registry+route_policy_lock",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -2531,10 +2531,10 @@
   ],
   "strategy_registry_file": "fem_contract_strategy_registry.json",
   "summary": {
-    "blocked_score": 4,
+    "blocked_score": 5,
     "bot_allowed": 5,
     "duplicate_owner_conflicts": 0,
-    "normal_score": 3,
+    "normal_score": 2,
     "phase_counts": {
       "PAPER_LIVE": 11,
       "RESEARCH_ONLY": 10,
@@ -2545,8 +2545,8 @@
     "resolved_pending_registry": 0,
     "retired_or_illegal": 0,
     "score_mode_counts": {
-      "BLOCKED": 4,
-      "NORMAL": 3,
+      "BLOCKED": 5,
+      "NORMAL": 2,
       "PROBE_ONLY": 4,
       "RESEARCH_ONLY": 10,
       "SHADOW_ONLY": 29
