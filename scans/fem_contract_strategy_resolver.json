@@ -1,8 +1,8 @@
 {
   "code_version": "unknown",
   "duplicate_owner_conflicts": [],
-  "generated_at": "2026-07-02T16:26:58.242851+00:00",
-  "generated_at_et": "2026-07-02T12:26:58.242851-04:00",
+  "generated_at": "2026-07-02T16:41:40.633073+00:00",
+  "generated_at_et": "2026-07-02T12:41:40.633089-04:00",
   "operator_read": "Every visible strategy id has an explicit registry fate.",
   "overall": "WARN",
   "pending_registry": [],
@@ -886,35 +886,50 @@
       "strategy_id": "gap_eat_staircase_long"
     },
     {
-      "bot_allowed": false,
+      "bot_allowed": true,
       "context_contract": [
         "gap_channel_context",
         "short_context"
       ],
       "evidence_required": [
         "borrow_or_shortability_context",
+        "bot_decision",
         "channel_location",
+        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "overhead_supply",
         "panel_id",
+        "risk_dollars",
+        "route_permission",
         "short_setup",
         "side",
         "signal_timestamp",
+        "stop_price",
         "strategy_id",
         "symbol",
+        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
+      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
       "owner_display_name": "Gap Reject Short",
       "owner_panel_id": "gap_reject_short",
-      "phase": "SHADOW_PANEL",
-      "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "phase": "PAPER_LIVE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-07",
+        "max_risk_dollars": 75,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Jul02: Gill requested the bear/gap-rejection short route live after repeated overhead-gap long failures; router evidence showed gap_reject_short candidates were blocked only by registry permission.",
+        "risk_multiplier": 0.25
+      },
+      "resolution_status": "REGISTERED_POLICY_PROBE",
+      "score_mode": "PROBE_ONLY",
       "score_partition": "shadow_panel::gap_reject_short",
-      "source": "panel_registry",
+      "source": "panel_registry+route_policy",
       "stats": {
         "broken_traces": 0,
         "funnel_traces": 0,
@@ -2317,11 +2332,11 @@
       "policy_override": {
         "applied": true,
         "expires_et": "2026-07-07",
-        "max_risk_dollars": 15,
+        "max_risk_dollars": 75,
         "operator_approved_probe": true,
         "permission": "ALLOW_PROBE",
-        "reason": "Tiny watch-only surge probe for first-hour cheap-name candidates that were repeatedly missed by the non-trade verdict bucket.",
-        "risk_multiplier": 0.05
+        "reason": "Jul02: align route policy with fem_auto_trade $75 watch-probe risk so valid probes are not reduced to toy size.",
+        "risk_multiplier": 0.25
       },
       "resolution_status": "REGISTERED_POLICY_PROBE",
       "score_mode": "PROBE_ONLY",
@@ -2532,30 +2547,30 @@
   "strategy_registry_file": "fem_contract_strategy_registry.json",
   "summary": {
     "blocked_score": 4,
-    "bot_allowed": 5,
+    "bot_allowed": 6,
     "duplicate_owner_conflicts": 0,
     "normal_score": 3,
     "phase_counts": {
-      "PAPER_LIVE": 11,
+      "PAPER_LIVE": 12,
       "RESEARCH_ONLY": 10,
-      "SHADOW_PANEL": 29
+      "SHADOW_PANEL": 28
     },
-    "registered": 44,
+    "registered": 43,
     "research_only": 10,
     "resolved_pending_registry": 0,
     "retired_or_illegal": 0,
     "score_mode_counts": {
       "BLOCKED": 4,
       "NORMAL": 3,
-      "PROBE_ONLY": 4,
+      "PROBE_ONLY": 5,
       "RESEARCH_ONLY": 10,
-      "SHADOW_ONLY": 29
+      "SHADOW_ONLY": 28
     },
-    "shadow_score": 29,
+    "shadow_score": 28,
     "status_counts": {
-      "REGISTERED": 44,
+      "REGISTERED": 43,
       "REGISTERED_POLICY_LOCKED": 2,
-      "REGISTERED_POLICY_PROBE": 4
+      "REGISTERED_POLICY_PROBE": 5
     },
     "strategies": 50,
     "unresolved_illegal": 0
