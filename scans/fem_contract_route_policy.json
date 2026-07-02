@@ -101,18 +101,37 @@
         "Separate strategy id; do not merge with surge_micro_scout performance.",
         "Bot caps this lane at 1 new entry per pass and 5 per day.",
         "Only first-hour WATCH_ONLY rows with score, relative-volume, risk-on, and reachable target checks can enter.",
-        "Review after expiry or after at least 20 routed attempts."
+        "Review after expiry or after at least 20 routed attempts.",
+        "Code-level surge watch sizing is $75 risk; broker/position/liquidity caps still control final shares."
       ],
       "operator_approved_probe": true,
-      "max_risk_dollars": 15,
+      "max_risk_dollars": 75,
       "permission": "ALLOW_PROBE",
-      "reason": "Tiny watch-only surge probe for first-hour cheap-name candidates that were repeatedly missed by the non-trade verdict bucket.",
-      "risk_multiplier": 0.05,
-      "route_weight": 0.05
+      "reason": "Jul02: align route policy with fem_auto_trade $75 watch-probe risk so valid probes are not reduced to toy size.",
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25
+    },
+    "gap_reject_short": {
+      "allowed_to_trade": true,
+      "enabled": true,
+      "expires_et": "2026-07-07",
+      "guardrails": [
+        "Only explicit gap_reject_short overhead-gap rejection fires may use this route.",
+        "Do not borrow permission from live_fire_dump, dump_short, short_universe, or trapped_short.",
+        "Require borrowability/shortability proxy, valid price, and current route lock registry.",
+        "Existing liquidity, position cap, giveback guard, daily P&L guard, and broker safety checks still apply.",
+        "Review after expiry or at least 20 routed attempts."
+      ],
+      "operator_approved_probe": true,
+      "max_risk_dollars": 75,
+      "permission": "ALLOW_PROBE",
+      "reason": "Jul02: Gill requested the bear/gap-rejection short route live after repeated overhead-gap long failures; router evidence showed gap_reject_short candidates were blocked only by registry permission.",
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25
     }
   },
   "owner": "Gill",
   "schema": "fem_contract_route_policy.v1",
   "trade_date_created": "2026-06-25",
-  "updated_at": "2026-07-02T00:00:00+00:00"
+  "updated_at": "2026-07-02T16:41:10.556792+00:00"
 }
