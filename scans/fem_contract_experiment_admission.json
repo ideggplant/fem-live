@@ -146,8 +146,8 @@
       "severity": "WARN"
     }
   ],
-  "generated_at": "2026-07-02T13:36:07.185063+00:00",
-  "generated_at_et": "2026-07-02T09:36:07.185063-04:00",
+  "generated_at": "2026-07-02T14:56:23.781190+00:00",
+  "generated_at_et": "2026-07-02T10:56:23.781190-04:00",
   "new_idea_intake_template": {
     "context_requirements": [],
     "deletion_rule": "",
@@ -160,7 +160,7 @@
     "required_data": [],
     "shadow_test_days": 3
   },
-  "operator_read": "Experiment admission has 7 blocker panel(s). Do not promote new ideas until those rows are resolved.",
+  "operator_read": "Experiment admission has 6 blocker panel(s). Do not promote new ideas until those rows are resolved.",
   "overall": "FAIL",
   "panels": [
     {
@@ -244,45 +244,6 @@
         "short_mid",
         "short_universe",
         "short_universe_grade"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": true,
-      "context_requirements": [
-        "short_context"
-      ],
-      "display_name": "Upside Down Cow",
-      "findings": [
-        {
-          "code": "REGISTRY_STATUS_FAIL",
-          "detail": "panel registry row is failing",
-          "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-          "severity": "FAIL"
-        },
-        {
-          "code": "SOURCE_STALE",
-          "detail": "required source artifact is stale",
-          "next_action": "Run the source builder before this panel can influence decisions.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "bot",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "upside_down_cow",
-      "phase": "PAPER_LIVE",
-      "phase_source": "declared",
-      "score_partition": "operator_probe::upside_down_cow",
-      "score_required": false,
-      "side": "SHORT",
-      "source_paths": [
-        "latest_moo_radar_manifest.json",
-        "latest_tickets_manifest.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "upside_down_cow_short"
       ]
     },
     {
@@ -763,6 +724,35 @@
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
       "context_requirements": [
+        "gap_channel_context"
+      ],
+      "display_name": "Gap Wall Roundtrip",
+      "findings": [],
+      "mode": "tracked",
+      "next_action": "Admitted as research/shadow. Keep it out of live ordering.",
+      "panel_id": "gap_wall_roundtrip",
+      "phase": "SHADOW_PANEL",
+      "phase_source": "declared",
+      "score_partition": "shadow_panel::gap_wall_roundtrip",
+      "score_required": true,
+      "side": "MIXED",
+      "source_paths": [
+        "_DAILY/live_fires_2026-07-02.jsonl",
+        "_DAILY/live_fires_{date}.jsonl",
+        "fem_gap_staircase_lens.json",
+        "fem_gap_timeframe_contract.json",
+        "fem_gap_wall_roundtrip.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "gap_wall_roundtrip_shadow"
+      ]
+    },
+    {
+      "admission_status": "OK",
+      "bot_permission": "NO_ORDERING",
+      "bot_required": false,
+      "context_requirements": [
         "short_context"
       ],
       "display_name": "Live Fire Dump",
@@ -1151,6 +1141,32 @@
     },
     {
       "admission_status": "OK",
+      "bot_permission": "ALLOWED_BY_ADMISSION",
+      "bot_required": true,
+      "context_requirements": [
+        "short_context"
+      ],
+      "display_name": "Upside Down Cow",
+      "findings": [],
+      "mode": "bot",
+      "next_action": "Admitted. Continue tracking execution quality and score evidence.",
+      "panel_id": "upside_down_cow",
+      "phase": "PAPER_LIVE",
+      "phase_source": "declared",
+      "score_partition": "operator_probe::upside_down_cow",
+      "score_required": false,
+      "side": "SHORT",
+      "source_paths": [
+        "latest_moo_radar_manifest.json",
+        "latest_tickets_manifest.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "upside_down_cow_short"
+      ]
+    },
+    {
+      "admission_status": "OK",
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
       "context_requirements": [],
@@ -1273,14 +1289,14 @@
   "schema": "fem_contract_experiment_admission.v1",
   "summary": {
     "bot_permissions": {
-      "ALLOWED_BY_ADMISSION": 4,
-      "BLOCKED": 7,
-      "NO_ORDERING": 23
+      "ALLOWED_BY_ADMISSION": 5,
+      "BLOCKED": 6,
+      "NO_ORDERING": 24
     },
-    "fail": 7,
+    "fail": 6,
     "floating_artifacts": 24,
-    "ok": 20,
-    "panels": 34,
+    "ok": 22,
+    "panels": 35,
     "phase_counts": {
       "ACCOUNTABILITY": 1,
       "CONTEXT_SOURCE": 1,
@@ -1288,7 +1304,7 @@
       "PAPER_LIVE": 7,
       "RESEARCH_NOTE": 5,
       "RESEARCH_ONLY": 1,
-      "SHADOW_PANEL": 18
+      "SHADOW_PANEL": 19
     },
     "unregistered_strategies": 0,
     "warn": 7
@@ -1324,22 +1340,6 @@
       "display_name": "Short Universe",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "short_universe",
-      "severity": "FAIL"
-    },
-    {
-      "code": "REGISTRY_STATUS_FAIL",
-      "detail": "panel registry row is failing",
-      "display_name": "Upside Down Cow",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "upside_down_cow",
-      "severity": "FAIL"
-    },
-    {
-      "code": "SOURCE_STALE",
-      "detail": "required source artifact is stale",
-      "display_name": "Upside Down Cow",
-      "next_action": "Run the source builder before this panel can influence decisions.",
-      "panel_id": "upside_down_cow",
       "severity": "FAIL"
     },
     {
@@ -1452,6 +1452,22 @@
       "display_name": "Stock Clock / Micro Clocks",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "stock_clock",
+      "severity": "WARN"
+    },
+    {
+      "code": "REGISTRY_STATUS_WARN",
+      "detail": "panel registry row is warning",
+      "display_name": "Surge Probe Shadow",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "surge_probe_shadow",
+      "severity": "WARN"
+    },
+    {
+      "code": "SCORE_MISSING",
+      "detail": "score is required but not wired",
+      "display_name": "Surge Probe Shadow",
+      "next_action": "Wire this panel into fem_contract_score_bridge.py before treating it as a trader.",
+      "panel_id": "surge_probe_shadow",
       "severity": "WARN"
     }
   ],
