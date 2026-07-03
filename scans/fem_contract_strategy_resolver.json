@@ -1,8 +1,8 @@
 {
   "code_version": "unknown",
   "duplicate_owner_conflicts": [],
-  "generated_at": "2026-07-02T18:36:26.440560+00:00",
-  "generated_at_et": "2026-07-02T14:36:26.440560-04:00",
+  "generated_at": "2026-07-03T11:57:26.967619+00:00",
+  "generated_at_et": "2026-07-03T07:57:26.967619-04:00",
   "operator_read": "Every visible strategy id has an explicit registry fate.",
   "overall": "WARN",
   "pending_registry": [],
@@ -824,7 +824,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -1011,7 +1011,7 @@
       "owner_panel_id": "live_fire_dump",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_dump",
       "source": "panel_registry",
       "stats": {
@@ -1051,7 +1051,7 @@
       "owner_panel_id": "live_fire_gap_eat",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_eat",
       "source": "panel_registry",
       "stats": {
@@ -1091,7 +1091,7 @@
       "owner_panel_id": "live_fire_gap_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_gap_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -1131,7 +1131,7 @@
       "owner_panel_id": "live_fire_reclaim",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -1171,7 +1171,7 @@
       "owner_panel_id": "live_fire_surge",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
-      "score_mode": "SHADOW_ONLY",
+      "score_mode": "BLOCKED",
       "score_partition": "shadow_panel::live_fire_surge",
       "source": "panel_registry",
       "stats": {
@@ -1725,7 +1725,7 @@
         "permission": "TRACK_ONLY",
         "reason": "Disabled after broader actual-fill review. Use trapped_short as the short execution route; keep short_genesis for tracking only until it proves itself."
       },
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::short_genesis",
       "source": "panel_registry+route_policy_lock",
       "stats": {
@@ -2161,35 +2161,29 @@
       "strategy_id": "stock_clock_shadow"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned and allowed by current admission state.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Surge Trader",
       "owner_panel_id": "surge_trader",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::surge_trader",
       "source": "panel_registry",
       "stats": {
@@ -2207,46 +2201,31 @@
       "strategy_id": "surge_chase"
     },
     {
-      "bot_allowed": true,
+      "bot_allowed": false,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
-        "bot_decision",
         "channel_location",
-        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
-        "risk_dollars",
-        "route_permission",
         "side",
         "signal_timestamp",
-        "stop_price",
         "strategy_id",
         "symbol",
-        "target_price",
         "trace_id"
       ],
-      "next_action": "Explicit operator route-policy probe is active. Keep probe-sized and expire/review before promotion to normal score.",
+      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
       "owner_display_name": "Surge Micro",
       "owner_panel_id": "surge_micro",
       "phase": "PAPER_LIVE",
-      "policy_override": {
-        "applied": true,
-        "expires_et": "2026-07-02",
-        "max_risk_dollars": 75,
-        "operator_approved_probe": true,
-        "permission": "ALLOW_PROBE",
-        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
-        "risk_multiplier": 0.25
-      },
-      "resolution_status": "REGISTERED_POLICY_PROBE",
-      "score_mode": "PROBE_ONLY",
+      "resolution_status": "REGISTERED",
+      "score_mode": "BLOCKED",
       "score_partition": "paper_live::surge_micro",
-      "source": "panel_registry+route_policy",
+      "source": "panel_registry",
       "stats": {
         "broken_traces": 2,
         "funnel_traces": 10,
@@ -2486,7 +2465,7 @@
         "permission": "TRACK_ONLY",
         "reason": "Gill requested Upside Down Cow turned off for the next session while long MOO is restored."
       },
-      "score_mode": "NORMAL",
+      "score_mode": "BLOCKED",
       "score_partition": "operator_probe::upside_down_cow",
       "source": "panel_registry+route_policy_lock",
       "stats": {
@@ -2546,35 +2525,34 @@
   ],
   "strategy_registry_file": "fem_contract_strategy_registry.json",
   "summary": {
-    "blocked_score": 4,
-    "bot_allowed": 6,
+    "blocked_score": 14,
+    "bot_allowed": 4,
     "duplicate_owner_conflicts": 0,
-    "normal_score": 3,
+    "normal_score": 0,
     "phase_counts": {
       "PAPER_LIVE": 12,
       "RESEARCH_ONLY": 10,
       "SHADOW_PANEL": 28
     },
-    "registered": 43,
+    "registered": 44,
     "research_only": 10,
     "resolved_pending_registry": 0,
     "retired_or_illegal": 0,
     "score_mode_counts": {
-      "BLOCKED": 4,
-      "NORMAL": 3,
-      "PROBE_ONLY": 5,
+      "BLOCKED": 14,
+      "PROBE_ONLY": 4,
       "RESEARCH_ONLY": 10,
-      "SHADOW_ONLY": 28
+      "SHADOW_ONLY": 22
     },
-    "shadow_score": 28,
+    "shadow_score": 22,
     "status_counts": {
-      "REGISTERED": 43,
+      "REGISTERED": 44,
       "REGISTERED_POLICY_LOCKED": 2,
-      "REGISTERED_POLICY_PROBE": 5
+      "REGISTERED_POLICY_PROBE": 4
     },
     "strategies": 50,
     "unresolved_illegal": 0
   },
-  "trade_date": "2026-07-02",
+  "trade_date": "2026-07-03",
   "unresolved_illegal": []
 }
