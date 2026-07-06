@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-06T04:18:41",
+  "generated_at": "2026-07-06T04:19:42",
   "date": "2026-07-06",
-  "mode": "TRIGGER_LIVE",
-  "n_positions": 7,
+  "mode": "SOFT_STOP_EXIT",
+  "n_positions": 6,
   "positions": [
     {
       "ticker": "ABCL",
@@ -146,23 +146,6 @@
       "moc_order_id": null,
       "options_context": null,
       "fill_net": -47,
-      "fill_realized": 0.0,
-      "broker_qty": null
-    },
-    {
-      "ticker": "RDW",
-      "qty": -131,
-      "entry": 11.4826,
-      "stop": 11.523,
-      "t1": 11.4018,
-      "score": null,
-      "mode": "dump_short",
-      "moo_order_id": 4138,
-      "target_order_id": 4140,
-      "stop_order_id": 4139,
-      "moc_order_id": null,
-      "options_context": null,
-      "fill_net": -131,
       "fill_realized": 0.0,
       "broker_qty": null
     }
@@ -340,23 +323,24 @@
       "mode": "dump_short",
       "moo_order_id": 4138,
       "target_order_id": 4140,
-      "stop_order_id": 4139,
+      "stop_order_id": null,
       "moc_order_id": null,
       "options_context": null,
-      "fill_net": -131,
-      "fill_realized": 0.0,
+      "fill_net": 0,
+      "fill_realized": -9.17,
       "broker_qty": null
     }
   ],
   "memory_reconcile": {
     "open_position_source": "executions_csv",
-    "stale_memory_count": 1,
+    "stale_memory_count": 2,
     "stale_memory_symbols": [
-      "PL"
+      "PL",
+      "RDW"
     ],
     "broker_reconcile_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
     "broker_reconcile_generated_at": "2026-07-06T11:14:09+00:00",
-    "broker_reconcile_age_sec": 272.367247,
+    "broker_reconcile_age_sec": 333.530256,
     "broker_reconcile_overall": "OK",
     "broker_reconcile_summary": {
       "breach_codes": {},
@@ -376,7 +360,7 @@
       "positions": 0,
       "unprotected_positions": 0
     },
-    "state_rows_reconciled": 0
+    "state_rows_reconciled": 8
   },
   "fills": [
     {
@@ -435,161 +419,122 @@
     },
     {
       "ticker": "RDW",
-      "bought": 0,
+      "bought": 131,
       "sold": 131,
-      "net": -131,
-      "realized": 0.0,
+      "net": 0,
+      "realized": -9.17,
       "went_short": true,
-      "open": true
+      "open": false
     }
   ],
   "fills_totals": {
-    "realized": 0.0,
+    "realized": -9.17,
     "symbols": 7,
     "shorts": 7
   },
   "log_tail": [
-    "04:17:00  INFO       Order 4138 status=PreSubmitted",
-    "04:17:00  INFO       Order 4139 status=PreSubmitted",
-    "04:17:00  INFO       Order 4140 status=PreSubmitted",
-    "04:17:00  INFO       FILL RDW SLD 131.0@11.47 oid=4138",
-    "04:17:00  INFO       Order 4138 status=Filled filled=131.0 remaining=0.0 avgPx=11.4700",
-    "04:17:00  INFO       Order 4139 status=PreSubmitted",
-    "04:17:00  INFO       Order 4139 status=PreSubmitted",
-    "04:17:00  INFO       Order 4140 status=PreSubmitted",
-    "04:17:00  INFO       Order 4138 status=Filled filled=131.0 remaining=0.0 avgPx=11.4700",
-    "04:17:00  INFO     ANSWER commissionReport {'commissionReport': 1991446840048: ExecId: 00025b49.6a5083e7.01.01, Commission: 1.056891, Currency: USD, RealizedPnL: , Yield: , YieldRedemptionDate: 0}",
-    "04:17:00  INFO       Order 4140 status=PreSubmitted",
-    "04:17:01  INFO       Order 4140 status=Submitted",
-    "04:17:02  INFO     Status pushed -> fem_bot_status.json",
-    "04:17:17  INFO     gates: regime=RISK_ON  dilution_flags=69  ledger_levels=8",
-    "04:17:20  INFO     REQUEST reqPositions {}",
-    "04:17:20  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "04:17:27  INFO     Status pushed -> fem_bot_status.json",
-    "04:17:44  INFO     REQUEST reqPositions {}",
-    "04:17:44  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "04:18:03  INFO     REQUEST reqPositions {}",
-    "04:18:03  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "04:18:20  INFO     REQUEST reqPositions {}",
-    "04:18:20  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "04:18:39  INFO     REQUEST reqPositions {}",
-    "04:18:39  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "04:19:39  INFO     REQUEST cancelOrder {'orderId': 4139}",
+    "04:19:39  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004139\\x00'",
+    "04:19:39  INFO     REQUEST cancelOrder {'orderId': 4140}",
+    "04:19:39  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004140\\x00'",
+    "04:19:39  INFO       cancelled 2 stale working order(s) on RDW before re-entry",
+    "04:19:39  INFO       Order 4140 status=PendingCancel",
+    "04:19:39  INFO       Order 4139 status=Cancelled",
+    "04:19:39  WARNING  IB [4139] 202: Order Canceled - reason:",
+    "04:19:39  ERROR    IB [4140] 10148: OrderId 4140 that needs to be cancelled cannot be cancelled, state: PendingCancel.",
+    "04:19:40  INFO       Order 4140 status=Cancelled",
+    "04:19:40  WARNING  IB [4140] 202: Order Canceled - reason:",
+    "04:19:41  INFO     REQUEST reqPositions {}",
+    "04:19:41  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "04:19:42  INFO     REQUEST placeOrder {'orderId': 4141, 'contract': 1991445501984: 0,RDW,STK,,0.0,,,SMART,,USD,,,False,,combo:, 'order': 1991470199536: 0,0,0: LMT BUY 131@11.760000 DAY}",
+    "04:19:42  INFO     SENDING placeOrder b'\\x00\\x00\\x01@3\\x004141\\x000\\x00RDW\\x00STK\\x00\\x000.0\\x00\\x00\\x00SMART\\x00\\x00USD\\x00\\x00\\x00\\x00\\x00BUY\\x00131\\x00LMT\\x0011.76\\x00\\x00DAY\\x00\\x00\\x00\\x000\\x00\\x001\\x000\\x000\\x000\\x000\\x000\\x001\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00-1\\x000\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x00\\x000\\x00\\x000\\x000\\x000\\x000\\x00\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x000\\x00\\x00\\x00\\x001.7976931348623157e+308\\x00\\x00\\x00\\x00\\x000\\x000\\x000\\x00\\x00'",
+    "04:19:42  INFO       FLATTEN BUY RDW x131 cross-LMT cap=11.76",
+    "04:19:42  INFO       Order 4141 status=PreSubmitted",
+    "04:19:42  INFO       FILL RDW BOT 107.0@11.54 oid=4141",
+    "04:19:42  INFO       Order 4141 status=PreSubmitted filled=107.0 remaining=24.0 avgPx=11.5400",
+    "04:19:42  INFO       FILL RDW BOT 24.0@11.54 oid=4141",
+    "04:19:42  INFO       Order 4141 status=Filled filled=131.0 remaining=0.0 avgPx=11.5400",
+    "04:19:42  INFO       Order 4141 status=Filled filled=131.0 remaining=0.0 avgPx=11.5400",
+    "04:19:42  INFO     ANSWER commissionReport {'commissionReport': 1991449122464: ExecId: 00025b49.6a508404.01.01, Commission: 1.000321, Currency: USD, RealizedPnL: -9.353583, Yield: , YieldRedemptionDate: 0}",
+    "04:19:42  INFO       Order 4141 status=Filled filled=131.0 remaining=0.0 avgPx=11.5400",
+    "04:19:42  INFO     ANSWER commissionReport {'commissionReport': 1991467438672: ExecId: 00025b49.6a508405.01.01, Commission: 0.000072, Currency: USD, RealizedPnL: -1.873701, Yield: , YieldRedemptionDate: 0}"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "RISK_ON",
-  "daily_pnl": -24.067745835205187,
-  "entries_today": 8,
-  "open_count": 7,
-  "unrealized_open": -23.28,
-  "daily_pnl_guard": {
-    "schema": "fem_daily_pnl_guard.v1",
-    "generated_at": "2026-07-06T11:14:10+00:00",
-    "generated_at_et": "2026-07-06T07:14:10.666167-04:00",
-    "trade_date": "2026-07-06",
-    "kind": "WATCHING",
-    "entry_permission": "ALLOW_NEW_ENTRIES",
-    "enforce": true,
-    "profit_lock_enabled": true,
-    "settings": {
-      "arm": 75.0,
-      "giveback_min": 25.0,
-      "giveback_frac": 0.3,
-      "hard_giveback_frac": 0.45,
-      "min_keep": 25.0,
-      "max_daily_loss": 5000
-    },
-    "daily_pnl_peak": null,
-    "daily_pnl_now": null,
-    "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
-  },
-  "grade_mults": {
-    "dump": 1.37,
-    "reclaim": 0.5,
-    "gap_reclaim": 0.5,
-    "gap_eat": 0.5,
-    "surge": 0.5
-  },
-  "benched": [],
-  "fading": [],
-  "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "pre",
-    "generated_at": "2026-07-06T11:18:42+00:00",
-    "generated_at_et": "2026-07-06T07:18:42-04:00",
+    "generated_at": "2026-07-06T11:19:43+00:00",
+    "generated_at_et": "2026-07-06T07:19:43-04:00",
     "summary": {
       "checks": 62,
-      "ok": 18,
+      "ok": 17,
       "warn": 15,
-      "fail": 29
+      "fail": 30
     },
     "bad_checks": [
       {
         "id": "contract_dashboard",
         "label": "Contract dashboard payload",
         "status": "FAIL",
-        "detail": "stale during pre: 406158s old, limit 2700s",
+        "detail": "stale during pre: 406220s old, limit 2700s",
         "path": "fem_contract_dashboard.json",
-        "age_seconds": 406158
+        "age_seconds": 406220
       },
       {
         "id": "contract_breaks",
         "label": "Contract breach ledger",
         "status": "FAIL",
-        "detail": "stale during pre: 406192s old, limit 2700s",
+        "detail": "stale during pre: 406254s old, limit 2700s",
         "path": "fem_contract_breaks.json",
-        "age_seconds": 406192
+        "age_seconds": 406254
       },
       {
         "id": "contract_accountability",
         "label": "Contract accountability queue",
         "status": "FAIL",
-        "detail": "stale during pre: 406159s old, limit 2700s",
+        "detail": "stale during pre: 406221s old, limit 2700s",
         "path": "fem_contract_accountability.json",
-        "age_seconds": 406159
+        "age_seconds": 406221
       },
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during pre: 339391s old, limit 2700s",
+        "detail": "stale during pre: 339453s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 339391
+        "age_seconds": 339453
       },
       {
         "id": "contract_fill_reconcile",
         "label": "Contract fill reconciliation",
         "status": "FAIL",
-        "detail": "stale during pre: 406768s old, limit 2700s",
+        "detail": "stale during pre: 406829s old, limit 2700s",
         "path": "fem_contract_fill_reconcile.json",
-        "age_seconds": 406768
+        "age_seconds": 406829
       },
       {
         "id": "contract_exit_reconcile",
         "label": "Contract exit reconciliation",
         "status": "FAIL",
-        "detail": "stale during pre: 406741s old, limit 2700s",
+        "detail": "stale during pre: 406803s old, limit 2700s",
         "path": "fem_contract_exit_reconcile.json",
-        "age_seconds": 406741
+        "age_seconds": 406803
       },
       {
         "id": "contract_ghost_ledger",
         "label": "Contract ghost/skipped trade ledger",
         "status": "FAIL",
-        "detail": "stale during pre: 406826s old, limit 2700s",
+        "detail": "stale during pre: 406887s old, limit 2700s",
         "path": "fem_contract_ghost_ledger.json",
-        "age_seconds": 406826
+        "age_seconds": 406887
       },
       {
         "id": "contract_decision_obligation",
         "label": "Contract decision obligation audit",
         "status": "FAIL",
-        "detail": "stale during pre: 406184s old, limit 2700s",
+        "detail": "stale during pre: 406245s old, limit 2700s",
         "path": "fem_contract_decision_obligation.json",
-        "age_seconds": 406184
+        "age_seconds": 406245
       }
     ],
     "next_actions": [
