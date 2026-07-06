@@ -182,8 +182,8 @@
       "severity": "WARN"
     }
   ],
-  "generated_at": "2026-07-06T11:29:31.606491+00:00",
-  "generated_at_et": "2026-07-06T07:29:31.606491-04:00",
+  "generated_at": "2026-07-06T11:35:45.672901+00:00",
+  "generated_at_et": "2026-07-06T07:35:45.672901-04:00",
   "new_idea_intake_template": {
     "context_requirements": [],
     "deletion_rule": "",
@@ -196,7 +196,7 @@
     "required_data": [],
     "shadow_test_days": 3
   },
-  "operator_read": "Experiment admission has 7 blocker panel(s). Do not promote new ideas until those rows are resolved.",
+  "operator_read": "Experiment admission has 6 blocker panel(s). Do not promote new ideas until those rows are resolved.",
   "overall": "FAIL",
   "panels": [
     {
@@ -234,48 +234,6 @@
       "source_required": true,
       "strategy_ids": [
         "moo_ticket"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": true,
-      "context_requirements": [
-        "short_context"
-      ],
-      "display_name": "Short Universe",
-      "findings": [
-        {
-          "code": "REGISTRY_STATUS_FAIL",
-          "detail": "panel registry row is failing",
-          "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-          "severity": "FAIL"
-        },
-        {
-          "code": "SOURCE_STALE",
-          "detail": "required source artifact is stale",
-          "next_action": "Run the source builder before this panel can influence decisions.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "bot",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "short_universe",
-      "phase": "PAPER_LIVE",
-      "phase_source": "declared",
-      "score_partition": "paper_live::short_universe",
-      "score_required": true,
-      "side": "SHORT",
-      "source_paths": [
-        "_DAILY/fem_short_universe_grade.json",
-        "_DAILY/short_universe_fires.jsonl",
-        "short_mid_universe.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "short_mid",
-        "short_universe",
-        "short_universe_grade"
       ]
     },
     {
@@ -1071,6 +1029,35 @@
     },
     {
       "admission_status": "OK",
+      "bot_permission": "ALLOWED_BY_ADMISSION",
+      "bot_required": true,
+      "context_requirements": [
+        "short_context"
+      ],
+      "display_name": "Short Universe",
+      "findings": [],
+      "mode": "bot",
+      "next_action": "Admitted. Continue tracking execution quality and score evidence.",
+      "panel_id": "short_universe",
+      "phase": "PAPER_LIVE",
+      "phase_source": "declared",
+      "score_partition": "paper_live::short_universe",
+      "score_required": true,
+      "side": "SHORT",
+      "source_paths": [
+        "_DAILY/fem_short_universe_grade.json",
+        "_DAILY/short_universe_fires.jsonl",
+        "short_mid_universe.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "short_mid",
+        "short_universe",
+        "short_universe_grade"
+      ]
+    },
+    {
+      "admission_status": "OK",
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
       "context_requirements": [
@@ -1363,13 +1350,13 @@
   "schema": "fem_contract_experiment_admission.v1",
   "summary": {
     "bot_permissions": {
-      "ALLOWED_BY_ADMISSION": 4,
-      "BLOCKED": 7,
+      "ALLOWED_BY_ADMISSION": 5,
+      "BLOCKED": 6,
       "NO_ORDERING": 24
     },
-    "fail": 7,
+    "fail": 6,
     "floating_artifacts": 30,
-    "ok": 20,
+    "ok": 21,
     "panels": 35,
     "phase_counts": {
       "ACCOUNTABILITY": 1,
@@ -1398,22 +1385,6 @@
       "display_name": "A-Book Proven MOO",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "abook_moo",
-      "severity": "FAIL"
-    },
-    {
-      "code": "REGISTRY_STATUS_FAIL",
-      "detail": "panel registry row is failing",
-      "display_name": "Short Universe",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "short_universe",
-      "severity": "FAIL"
-    },
-    {
-      "code": "SOURCE_STALE",
-      "detail": "required source artifact is stale",
-      "display_name": "Short Universe",
-      "next_action": "Run the source builder before this panel can influence decisions.",
-      "panel_id": "short_universe",
       "severity": "FAIL"
     },
     {
@@ -1542,6 +1513,22 @@
       "display_name": "Runner Exit Decision",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "runner_exit_decision",
+      "severity": "WARN"
+    },
+    {
+      "code": "REGISTRY_STATUS_WARN",
+      "detail": "panel registry row is warning",
+      "display_name": "Scan Stage Drop Audit",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "scan_stage_drop_audit",
+      "severity": "WARN"
+    },
+    {
+      "code": "SOURCE_STALE",
+      "detail": "required source artifact is stale",
+      "display_name": "Scan Stage Drop Audit",
+      "next_action": "Run the source builder before this panel can influence decisions.",
+      "panel_id": "scan_stage_drop_audit",
       "severity": "WARN"
     }
   ],
