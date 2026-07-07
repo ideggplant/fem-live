@@ -13,7 +13,6 @@
       "ath_long",
       "bear_rejection_pending",
       "bull_bounce_pending",
-      "channel_shelf_reclaim_swing",
       "clock_long",
       "clock_short",
       "daily_liquid_120",
@@ -53,6 +52,7 @@
     ],
     "research_only": [],
     "track_only": [
+      "channel_shelf_reclaim_swing",
       "short_universe_breakdown",
       "short_universe_gapdown_cont",
       "short_universe_lower_high",
@@ -104,7 +104,7 @@
       "channel_shelf_reclaim_swing": {
         "allowed_to_trade": false,
         "panel_id": "fem_swing_lab",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -627,7 +627,7 @@
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -960,8 +960,8 @@
       "strategies": 1
     }
   },
-  "generated_at": "2026-07-07T11:18:02+00:00",
-  "generated_at_et": "2026-07-07T07:18:02-04:00",
+  "generated_at": "2026-07-07T11:19:56+00:00",
+  "generated_at_et": "2026-07-07T07:19:56-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1159,21 +1159,21 @@
     },
     "channel_shelf_reclaim_swing": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1189,14 +1189,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3402,13 +3402,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "fem_swing_lab",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "channel_shelf_reclaim_swing"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "stock_clock",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -3581,6 +3574,13 @@
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "short_genesis"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "short_universe",
+      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "SHORT",
+      "strategy_id": "short_mid"
     }
   ],
   "route_policy": {
@@ -3721,15 +3721,15 @@
     "allowed_short": 2,
     "allowed_to_trade": 4,
     "bench": 0,
-    "block": 41,
+    "block": 40,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 34,
     "permission_counts": {
       "ALLOW_PROBE": 4,
-      "BLOCK": 41,
-      "TRACK_ONLY": 5
+      "BLOCK": 40,
+      "TRACK_ONLY": 6
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -3744,7 +3744,7 @@
       "UNTAGGED": 22
     },
     "strategies": 50,
-    "track_only": 5,
+    "track_only": 6,
     "watch_only": 0
   },
   "trade_date": "2026-07-07"
