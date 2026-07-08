@@ -13,7 +13,7 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-07-08T11:05:45+00:00",
+    "generated_at": "2026-07-08T11:28:12+00:00",
     "open_orders": 0,
     "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
     "overall": "OK",
@@ -23,27 +23,27 @@
   },
   "checks": [
     {
-      "detail": "restart_required=0, missing_required=3",
+      "detail": "restart_required=0, missing_required=2",
       "drift_overall": "FAIL",
       "drift_run": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "runtime_drift: overall=FAIL restart_required=0 missing_required=3 roles ok/warn/fail=0/1/2"
+        "stdout": "runtime_drift: overall=FAIL restart_required=0 missing_required=2 roles ok/warn/fail=1/1/1"
       },
       "id": "runtime_drift_clean",
       "label": "Runtime drift clean",
-      "missing_required": 3,
+      "missing_required": 2,
       "required": true,
       "restart_required": 0,
       "status": "FAIL"
     },
     {
-      "detail": "missing: live_runner, trade_bot, live_fire_grade",
+      "detail": "missing: trade_bot, live_fire_grade",
       "id": "runtime_processes_live",
       "label": "Live runtime processes",
       "live_fire_grade": false,
-      "live_runner": false,
-      "process_count": 0,
+      "live_runner": true,
+      "process_count": 3,
       "required": true,
       "session": "pre",
       "status": "FAIL",
@@ -57,32 +57,32 @@
       "status": "OK"
     },
     {
-      "age_seconds": 40008,
-      "detail": "stale: 40008s old, limit 240s",
+      "age_seconds": 14,
+      "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-07-07T23:59:00+00:00",
+      "mtime_utc": "2026-07-08T11:28:01+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 250223,
-      "status": "FAIL"
+      "size_bytes": 26641,
+      "status": "OK"
     },
     {
-      "age_seconds": 39948,
-      "detail": "stale: 39948s old, limit 240s",
+      "age_seconds": 12,
+      "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-07-08T00:00:00+00:00",
+      "mtime_utc": "2026-07-08T11:28:02+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 1165,
-      "status": "FAIL"
+      "size_bytes": 1059,
+      "status": "OK"
     },
     {
-      "age_seconds": 40240,
-      "detail": "stale: 40240s old, limit 240s",
+      "age_seconds": 41587,
+      "detail": "stale: 41587s old, limit 240s",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
       "mtime_utc": "2026-07-07T23:55:08+00:00",
@@ -117,23 +117,41 @@
       "status": "WARN"
     }
   ],
-  "generated_at": "2026-07-08T11:05:49+00:00",
-  "generated_at_et": "2026-07-08T07:05:49-04:00",
+  "generated_at": "2026-07-08T11:28:15+00:00",
+  "generated_at_et": "2026-07-08T07:28:15-04:00",
   "next_actions": [
     "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
     "Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.",
-    "Start or restart _DAILY\\4_LIVE.bat / LIVE_RUN.bat so fem_live_signals.json refreshes.",
     "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
   ],
   "overall": "FAIL",
-  "processes": [],
+  "processes": [
+    {
+      "command_line": "C:\\WINDOWS\\system32\\cmd.exe /c \"\"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat\" \"",
+      "creation_date": "2026-07-08T04:22:11.3438500-07:00",
+      "name": "cmd.exe",
+      "process_id": 27780
+    },
+    {
+      "command_line": "py  -3.12 fem_live_runner.py",
+      "creation_date": "2026-07-08T04:22:11.9639260-07:00",
+      "name": "py.exe",
+      "process_id": 25212
+    },
+    {
+      "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_runner.py",
+      "creation_date": "2026-07-08T04:22:12.1991320-07:00",
+      "name": "python.exe",
+      "process_id": 9436
+    }
+  ],
   "schema": "fem_contract_live_readiness.v1",
   "session": "pre",
   "summary": {
     "checks": 9,
-    "fail": 5,
+    "fail": 3,
     "live_ready": false,
-    "ok": 1,
+    "ok": 3,
     "warn": 3
   },
   "trade_date": "2026-07-08"
