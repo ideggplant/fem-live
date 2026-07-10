@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-10T06:35:53",
+  "generated_at": "2026-07-10T06:36:09",
   "date": "2026-07-10",
-  "mode": "TRIGGER_LIVE",
+  "mode": "DILUTION_SHORT_ENTRY",
   "n_positions": 0,
   "positions": [],
   "bot_memory_entries": [
@@ -68,6 +68,45 @@
       "stop_order_id": null,
       "moc_order_id": null,
       "options_context": null,
+      "fill_net": null,
+      "fill_realized": null,
+      "broker_qty": null
+    },
+    {
+      "ticker": "OUST",
+      "qty": 0,
+      "entry": 47.12,
+      "stop": 47.4108,
+      "t1": 45.7064,
+      "score": null,
+      "mode": "dilution_short",
+      "moo_order_id": null,
+      "target_order_id": null,
+      "stop_order_id": null,
+      "moc_order_id": null,
+      "options_context": {
+        "generated_at": "2026-07-07T05:18:06",
+        "ok": true,
+        "long_read": "supportive",
+        "short_read": "hostile",
+        "long_score": 43,
+        "short_score": -43,
+        "liq": 84,
+        "pc_oi": 0.5,
+        "pc_vol": 0.54,
+        "atm_iv": 1.588,
+        "call_wall": 50.0,
+        "call_wall_dist_pct": 3.09,
+        "put_wall": 40.0,
+        "put_wall_dist_pct": -17.53,
+        "notes": [
+          "liquid_chain",
+          "call_volume_leads",
+          "call_oi_leads",
+          "call_wall_magnet",
+          "iv_extreme"
+        ]
+      },
       "fill_net": null,
       "fill_realized": null,
       "broker_qty": null
@@ -145,18 +184,19 @@
   ],
   "memory_reconcile": {
     "open_position_source": "executions_csv",
-    "stale_memory_count": 6,
+    "stale_memory_count": 7,
     "stale_memory_symbols": [
       "CRE",
       "GMM",
       "IAUX",
+      "OUST",
       "RIVN",
       "SHAZ",
       "SHOP"
     ],
     "broker_reconcile_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
     "broker_reconcile_generated_at": "2026-07-10T13:17:11+00:00",
-    "broker_reconcile_age_sec": 1122.225304,
+    "broker_reconcile_age_sec": 1138.341823,
     "broker_reconcile_overall": "OK",
     "broker_reconcile_summary": {
       "breach_codes": {},
@@ -176,7 +216,7 @@
       "positions": 0,
       "unprotected_positions": 0
     },
-    "state_rows_reconciled": 0
+    "state_rows_reconciled": 6
   },
   "fills": [
     {
@@ -195,9 +235,6 @@
     "shorts": 0
   },
   "log_tail": [
-    "06:33:46  INFO       ~ CCXI Surge Micro failed/stale: live 17.065, fire 17.37, stop 16.5884",
-    "06:33:48  INFO       ~ TKLF Surge Micro RSI context missing - shadow only, not blocking",
-    "06:33:50  INFO       ~ TKLF Surge Micro failed/stale: live 2.1201, fire 2.17, stop 2.0506",
     "06:34:11  INFO     REQUEST reqPositions {}",
     "06:34:11  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
     "06:34:23  INFO     Status saved locally (push failed) -> fem_bot_status.json",
@@ -219,47 +256,11 @@
     "06:35:10  INFO       WNW    gated - universal daily liquidity: opening proxy max(today 490,635, prev 723,253) < 1,000,000",
     "06:35:48  INFO     gates: regime=RISK_ON  dilution_flags=90  ledger_levels=8",
     "06:35:53  INFO     REQUEST reqPositions {}",
-    "06:35:53  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "06:35:53  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "06:36:00  INFO     Status pushed -> fem_bot_status.json",
+    "06:36:09  INFO       OUST   short bracket NOT sent: SHORT_NOT_IN_SCREENER_UNIVERSE (TV short screener universe has 0 names)",
+    "06:36:09  INFO       >>> DILUTION SHORT OUST x127 SELL LMT 46.9786 cover-stop 47.4108 cover-tgt 45.7064 (VWAP 47.1750, 5m_high 47.8500, last 47.1200)"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "RISK_ON",
-  "daily_pnl": 60.90414399999987,
-  "entries_today": 6,
-  "open_count": 0,
-  "unrealized_open": 0.0,
-  "daily_pnl_guard": {
-    "schema": "fem_daily_pnl_guard.v1",
-    "generated_at": "2026-07-10T13:17:19+00:00",
-    "generated_at_et": "2026-07-10T09:17:19.509093-04:00",
-    "trade_date": "2026-07-10",
-    "kind": "WATCHING",
-    "entry_permission": "ALLOW_NEW_ENTRIES",
-    "enforce": true,
-    "profit_lock_enabled": false,
-    "settings": {
-      "arm": 75.0,
-      "giveback_min": 25.0,
-      "giveback_frac": 0.3,
-      "hard_giveback_frac": 0.45,
-      "min_keep": 25.0,
-      "max_daily_loss": 5000
-    },
-    "daily_pnl_peak": 61.24,
-    "daily_pnl_now": null,
-    "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
-  },
-  "grade_mults": {
-    "reclaim": 0.5,
-    "surge": 0.5,
-    "gap_eat": 0.5,
-    "gap_reclaim": 0.5,
-    "dump": 1.48
-  },
-  "benched": [],
-  "fading": [],
-  "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
