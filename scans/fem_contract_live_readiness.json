@@ -2,8 +2,8 @@
   "bot_status": {
     "available": true,
     "broker_open_orders": 0,
-    "generated_at": "2026-07-10T04:42:26",
-    "mode": "TRIGGER_LIVE",
+    "generated_at": "2026-07-10T16:55:15",
+    "mode": "AH_FLATTENED",
     "n_positions": 0,
     "position_source": "broker_reconcile",
     "positions_count": 0,
@@ -13,7 +13,7 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-07-10T11:42:57+00:00",
+    "generated_at": "2026-07-10T19:50:06+00:00",
     "open_orders": 0,
     "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
     "overall": "OK",
@@ -23,108 +23,113 @@
   },
   "checks": [
     {
-      "detail": "restart_required=0, missing_required=1",
-      "drift_overall": "WARN",
+      "detail": "restart_required=1, missing_required=0",
+      "drift_overall": "FAIL",
       "drift_run": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "runtime_drift: overall=WARN restart_required=0 missing_required=1 roles ok/warn/fail=2/1/0"
+        "stdout": "runtime_drift: overall=FAIL restart_required=1 missing_required=0 roles ok/warn/fail=2/0/1"
       },
       "id": "runtime_drift_clean",
       "label": "Runtime drift clean",
-      "missing_required": 1,
+      "missing_required": 0,
       "required": true,
-      "restart_required": 0,
+      "restart_required": 1,
       "status": "FAIL"
     },
     {
-      "detail": "missing: live_fire_grade",
+      "detail": "required live processes visible",
       "id": "runtime_processes_live",
       "label": "Live runtime processes",
       "live_fire_grade": false,
       "live_runner": true,
-      "process_count": 5,
-      "required": true,
-      "session": "pre",
-      "status": "FAIL",
+      "process_count": 8,
+      "required": false,
+      "session": "closed",
+      "status": "OK",
       "trade_bot": true
     },
     {
       "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
-      "required": true,
+      "required": false,
       "status": "OK"
     },
     {
-      "age_seconds": 58,
+      "age_seconds": 2697,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-07-10T11:42:00+00:00",
+      "mtime_utc": "2026-07-10T23:59:00+00:00",
       "path": "_DAILY\\fem_live_signals.json",
-      "required": true,
+      "required": false,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 44531,
+      "size_bytes": 245906,
       "status": "OK"
     },
     {
-      "age_seconds": 56,
+      "age_seconds": 2637,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-07-10T11:42:02+00:00",
+      "mtime_utc": "2026-07-11T00:00:00+00:00",
       "path": "_DAILY\\fem_regime_live.json",
-      "required": true,
+      "required": false,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 1165,
+      "size_bytes": 1139,
       "status": "OK"
     },
     {
-      "age_seconds": 31,
+      "age_seconds": 2921,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-07-10T11:42:27+00:00",
+      "mtime_utc": "2026-07-10T23:55:16+00:00",
       "path": "fem_bot_status.json",
-      "required": true,
+      "required": false,
       "schema": null,
-      "size_bytes": 7146,
+      "size_bytes": 28201,
       "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 20128,
+      "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
+      "mtime_utc": "2026-07-10T19:08:29+00:00",
       "path": "_DAILY\\executions_2026-07-10.csv",
       "required": false,
-      "status": "WARN"
+      "size_bytes": 3300,
+      "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 15273,
+      "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
+      "mtime_utc": "2026-07-10T20:29:24+00:00",
       "path": "_DAILY\\order_strategy_2026-07-10.jsonl",
       "required": false,
-      "status": "WARN"
+      "size_bytes": 27662,
+      "status": "OK"
     },
     {
-      "age_seconds": 47,
+      "age_seconds": 3156,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-07-10T11:42:10+00:00",
+      "mtime_utc": "2026-07-10T23:51:21+00:00",
       "path": "_DAILY\\contract_events_2026-07-10.jsonl",
       "required": false,
-      "size_bytes": 443976,
+      "size_bytes": 30392734,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-07-10T11:42:58+00:00",
-  "generated_at_et": "2026-07-10T07:42:58-04:00",
+  "generated_at": "2026-07-11T00:43:57+00:00",
+  "generated_at_et": "2026-07-10T20:43:57-04:00",
   "next_actions": [
-    "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-    "Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher."
+    "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
   ],
   "overall": "FAIL",
   "processes": [
@@ -147,26 +152,44 @@
       "process_id": 23096
     },
     {
-      "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
-      "creation_date": "2026-07-10T04:13:20.6625010-07:00",
-      "name": "py.exe",
-      "process_id": 26196
+      "command_line": "\"C:\\Windows\\System32\\cmd.exe\"  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && (py -3.12 -m py_compile fem_auto_trade.py && echo BOT_COMPILE_OK || echo BOT_COMPILE_FAIL) > _bot_compile.txt 2>&1\"",
+      "creation_date": "2026-07-10T05:04:10.5278160-07:00",
+      "name": "cmd.exe",
+      "process_id": 30656
     },
     {
-      "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
-      "creation_date": "2026-07-10T04:13:20.6822020-07:00",
-      "name": "python.exe",
-      "process_id": 32396
+      "command_line": "\"C:\\Windows\\System32\\cmd.exe\"  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && (py -3.12 -m py_compile fem_auto_trade.py && echo LANES_COMPILE_OK || echo LANES_COMPILE_FAIL) > _bot_compile.txt 2>&1\"",
+      "creation_date": "2026-07-10T05:09:54.8091510-07:00",
+      "name": "cmd.exe",
+      "process_id": 27816
+    },
+    {
+      "command_line": "C:\\WINDOWS\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\5_TRADE_BOT.bat\"",
+      "creation_date": "2026-07-10T06:17:04.3700250-07:00",
+      "name": "cmd.exe",
+      "process_id": 27720
+    },
+    {
+      "command_line": "\"C:\\Windows\\System32\\cmd.exe\"  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && (py -3.12 -m py_compile fem_auto_trade.py && echo PACE_GATE_COMPILE_OK || echo PACE_GATE_COMPILE_FAIL) > _bot_compile.txt 2>&1\"",
+      "creation_date": "2026-07-10T06:54:01.4483200-07:00",
+      "name": "cmd.exe",
+      "process_id": 19340
+    },
+    {
+      "command_line": "\"C:\\Windows\\System32\\cmd.exe\"  /k \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\5_TRADE_BOT.bat\"",
+      "creation_date": "2026-07-10T08:28:59.7623790-07:00",
+      "name": "cmd.exe",
+      "process_id": 17136
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
-  "session": "pre",
+  "session": "closed",
   "summary": {
     "checks": 9,
-    "fail": 2,
+    "fail": 1,
     "live_ready": false,
-    "ok": 5,
-    "warn": 2
+    "ok": 8,
+    "warn": 0
   },
   "trade_date": "2026-07-10"
 }
