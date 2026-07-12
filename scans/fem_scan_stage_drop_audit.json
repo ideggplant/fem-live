@@ -1,6 +1,6 @@
 {
   "schema": "fem_scan_stage_drop_audit.v1",
-  "generated_at": "2026-07-11T07:53:10",
+  "generated_at": "2026-07-11T17:21:06",
   "trade_date": "2026-07-10",
   "source_postmortem": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\Master Fem Fresh Scans\\fem_postmortem_2026-07-10.csv",
   "daily_liquid_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
@@ -22,7 +22,10 @@
     "spine_panel_pick_seen": 5,
     "spine_accepted": 0,
     "unseen_after_contract_spine": 2,
-    "fire_seen_without_panel_pick": 6
+    "fire_seen_without_panel_pick": 6,
+    "downstream_trace_without_panel_pick": 6,
+    "fire_event_without_panel_pick": 0,
+    "unseen_replay_queue": 2
   },
   "top_scan_stage_drops": [
     {
@@ -62,8 +65,21 @@
         "STALE_FIRE",
         "SURGE_TRADING_DISABLED"
       ],
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "PANEL",
+        "PICK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 153,
+      "spine_panel_event_count": 6,
+      "spine_pick_event_count": 6,
+      "spine_freshness_count": 47,
+      "spine_bot_decision_count": 47,
       "likely_failure": "LEGACY_POSTMORTEM_UNDERCOUNT",
-      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks"
+      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks",
+      "repair_priority": "P1_LEGACY_ACCOUNTING"
     },
     {
       "ticker": "VTAK",
@@ -94,8 +110,21 @@
       "spine_rejection_reasons": [
         "GAP_EAT_REGIME"
       ],
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "PANEL",
+        "PICK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 5,
+      "spine_panel_event_count": 1,
+      "spine_pick_event_count": 1,
+      "spine_freshness_count": 1,
+      "spine_bot_decision_count": 1,
       "likely_failure": "LEGACY_POSTMORTEM_UNDERCOUNT",
-      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks"
+      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks",
+      "repair_priority": "P1_LEGACY_ACCOUNTING"
     },
     {
       "ticker": "FBRX",
@@ -131,8 +160,19 @@
         "STALE_FIRE",
         "SURGE_TRADING_DISABLED"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 183,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 61,
+      "spine_bot_decision_count": 61,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
     },
     {
       "ticker": "ONFO",
@@ -159,8 +199,15 @@
       "spine_trace_count": 0,
       "spine_strategies": [],
       "spine_rejection_reasons": [],
+      "spine_states": [],
+      "spine_event_count": 0,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 0,
+      "spine_bot_decision_count": 0,
       "likely_failure": "DROPPED_AT_SCAN_STAGE",
-      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed"
+      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed",
+      "repair_priority": "P0_UNSEEN_MOVER_REPLAY"
     },
     {
       "ticker": "EDBL",
@@ -187,8 +234,15 @@
       "spine_trace_count": 0,
       "spine_strategies": [],
       "spine_rejection_reasons": [],
+      "spine_states": [],
+      "spine_event_count": 0,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 0,
+      "spine_bot_decision_count": 0,
       "likely_failure": "DROPPED_AT_SCAN_STAGE",
-      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed"
+      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed",
+      "repair_priority": "P0_UNSEEN_MOVER_REPLAY"
     },
     {
       "ticker": "IOTR",
@@ -220,8 +274,19 @@
         "MIN_DAILY_VOLUME",
         "STALE_FIRE"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 30,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 10,
+      "spine_bot_decision_count": 10,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
     },
     {
       "ticker": "SDOT",
@@ -255,8 +320,21 @@
         "MIN_DAILY_VOLUME",
         "STALE_FIRE"
       ],
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "PANEL",
+        "PICK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 74,
+      "spine_panel_event_count": 1,
+      "spine_pick_event_count": 1,
+      "spine_freshness_count": 24,
+      "spine_bot_decision_count": 24,
       "likely_failure": "LEGACY_POSTMORTEM_UNDERCOUNT",
-      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks"
+      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks",
+      "repair_priority": "P1_LEGACY_ACCOUNTING"
     },
     {
       "ticker": "TRAX",
@@ -290,8 +368,19 @@
         "STALE_FIRE",
         "SURGE_TRADING_DISABLED"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 117,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 39,
+      "spine_bot_decision_count": 39,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
     },
     {
       "ticker": "RGNX",
@@ -323,8 +412,19 @@
         "MIN_DAILY_VOLUME",
         "STALE_FIRE"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 9,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 3,
+      "spine_bot_decision_count": 3,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
     },
     {
       "ticker": "MRNA",
@@ -358,8 +458,21 @@
         "GAP_REJECT_DISABLED",
         "STALE_FIRE"
       ],
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "PANEL",
+        "PICK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 32,
+      "spine_panel_event_count": 1,
+      "spine_pick_event_count": 1,
+      "spine_freshness_count": 10,
+      "spine_bot_decision_count": 10,
       "likely_failure": "LEGACY_POSTMORTEM_UNDERCOUNT",
-      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks"
+      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks",
+      "repair_priority": "P1_LEGACY_ACCOUNTING"
     },
     {
       "ticker": "PRME",
@@ -393,8 +506,21 @@
         "GAP_REJECT_DISABLED",
         "STALE_FIRE"
       ],
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "PANEL",
+        "PICK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 14,
+      "spine_panel_event_count": 1,
+      "spine_pick_event_count": 1,
+      "spine_freshness_count": 4,
+      "spine_bot_decision_count": 4,
       "likely_failure": "LEGACY_POSTMORTEM_UNDERCOUNT",
-      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks"
+      "todo": "count contract PANEL/PICK coverage alongside legacy CSV picks",
+      "repair_priority": "P1_LEGACY_ACCOUNTING"
     },
     {
       "ticker": "OPEN",
@@ -425,8 +551,19 @@
       "spine_rejection_reasons": [
         "STALE_FIRE"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 6,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 2,
+      "spine_bot_decision_count": 2,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
     },
     {
       "ticker": "CCC",
@@ -460,14 +597,180 @@
         "STALE_FIRE",
         "SURGE_TRADING_DISABLED"
       ],
-      "likely_failure": "FIRE_SEEN_NO_PANEL_PICK_TRACE",
-      "todo": "stamp PANEL/PICK at bot intake before freshness or gate rejection"
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_event_count": 138,
+      "spine_panel_event_count": 0,
+      "spine_pick_event_count": 0,
+      "spine_freshness_count": 46,
+      "spine_bot_decision_count": 46,
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "repair_priority": "P0_PANEL_PICK_HANDOFF"
+    }
+  ],
+  "panel_pick_repair_queue": [
+    {
+      "ticker": "FBRX",
+      "chg_pct_full": 19.67,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 48,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump",
+        "live_fire_surge"
+      ],
+      "spine_rejection_reasons": [
+        "GAP_REJECT_DISABLED",
+        "MIN_DAILY_VOLUME",
+        "SHORT_NOT_IN_SCREENER_UNIVERSE",
+        "STALE_FIRE",
+        "SURGE_TRADING_DISABLED"
+      ]
+    },
+    {
+      "ticker": "IOTR",
+      "chg_pct_full": -12.47,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 6,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump"
+      ],
+      "spine_rejection_reasons": [
+        "MIN_DAILY_VOLUME",
+        "STALE_FIRE"
+      ]
+    },
+    {
+      "ticker": "TRAX",
+      "chg_pct_full": 11.85,
+      "in_daily_liquid_120": true,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 32,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump",
+        "live_fire_surge"
+      ],
+      "spine_rejection_reasons": [
+        "GAP_REJECT_DISABLED",
+        "STALE_FIRE",
+        "SURGE_TRADING_DISABLED"
+      ]
+    },
+    {
+      "ticker": "RGNX",
+      "chg_pct_full": -10.86,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 2,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump"
+      ],
+      "spine_rejection_reasons": [
+        "MIN_DAILY_VOLUME",
+        "STALE_FIRE"
+      ]
+    },
+    {
+      "ticker": "OPEN",
+      "chg_pct_full": -10.09,
+      "in_daily_liquid_120": true,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 1,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump"
+      ],
+      "spine_rejection_reasons": [
+        "STALE_FIRE"
+      ]
+    },
+    {
+      "ticker": "CCC",
+      "chg_pct_full": 10.04,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_PANEL_PICK_HANDOFF",
+      "likely_failure": "DOWNSTREAM_TRACE_WITHOUT_PANEL_PICK",
+      "todo": "repair the fire-to-PANEL/PICK handoff; downstream gate events exist without an origin stamp",
+      "spine_trace_count": 35,
+      "spine_states": [
+        "BOT_DECISION",
+        "FRESHNESS_CHECK",
+        "REJECTION_REASON"
+      ],
+      "spine_strategies": [
+        "live_fire_dump",
+        "live_fire_surge"
+      ],
+      "spine_rejection_reasons": [
+        "GAP_REJECT_DISABLED",
+        "STALE_FIRE",
+        "SURGE_TRADING_DISABLED"
+      ]
+    }
+  ],
+  "unseen_mover_replay_queue": [
+    {
+      "ticker": "ONFO",
+      "chg_pct_full": -16.88,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_UNSEEN_MOVER_REPLAY",
+      "likely_failure": "DROPPED_AT_SCAN_STAGE",
+      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed"
+    },
+    {
+      "ticker": "EDBL",
+      "chg_pct_full": -15.95,
+      "in_daily_liquid_120": false,
+      "repair_priority": "P0_UNSEEN_MOVER_REPLAY",
+      "likely_failure": "DROPPED_AT_SCAN_STAGE",
+      "todo": "add the mover to the live coverage net and emit an explicit rejection if needed"
     }
   ],
   "caught": [],
   "picked_flat": [],
   "recommendations": [
-    "Repair scan-stage candidate generation: every watchlist mover should produce a PANEL->PICK trace before any bot rejection.",
+    "Repair scan-stage candidate generation: every watchlist mover should produce a PANEL->PICK trace before any downstream gate rejection.",
+    "Repair the six fire-without-PANEL/PICK cases as a trace-integrity defect; do not reinterpret them as detector misses.",
+    "Replay the two truly unseen movers through the scan coverage net and record an explicit no-fire reason if they remain excluded.",
     "Use Daily Liquid 120 as the cold high-liquidity battlefield and compare every miss against it.",
     "Keep MOO-long blocked until its candidates stop clustering at upper-gap rejection; track Upside Down Cow separately.",
     "Treat liquid names with no spine fire as the first replay set; treat fire-without-PANEL/PICK as a trace defect."
