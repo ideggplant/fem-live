@@ -11,6 +11,7 @@
       "dilution_short",
       "dump_short",
       "gap_eat",
+      "gap_eat_trigger",
       "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "meta_confluence",
@@ -257,6 +258,16 @@
         "route_weight": 0.0,
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
+        "side": "LONG"
+      },
+      "gap_eat_trigger": {
+        "allowed_to_trade": false,
+        "panel_id": "gap_eat_trigger",
+        "permission": "BLOCK",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
+        "score_consumer_locked": true,
+        "score_partition": "UNTAGGED",
         "side": "LONG"
       },
       "gap_reject_short": {
@@ -750,6 +761,17 @@
       "side": "LONG",
       "strategies": 1
     },
+    "gap_eat_trigger": {
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
+      "panel_id": "gap_eat_trigger",
+      "panel_name": "Gap Eat",
+      "permissions": {
+        "BLOCK": 1
+      },
+      "side": "LONG",
+      "strategies": 1
+    },
     "gap_reject_short": {
       "allowed_strategies": [],
       "max_route_weight": 0.0,
@@ -1074,8 +1096,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-13T17:49:51+00:00",
-  "generated_at_et": "2026-07-13T13:49:51-04:00",
+  "generated_at": "2026-07-13T18:12:02+00:00",
+  "generated_at_et": "2026-07-13T14:12:02-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1249,7 +1271,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 16,
+        "ghost_fires": 15,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1295,7 +1317,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 2,
+        "ghost_fires": 0,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1961,6 +1983,53 @@
       "side": "LONG",
       "strategy_id": "gap_eat_staircase_long"
     },
+    "gap_eat_trigger": {
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
+      "contract": {
+        "bot_required": false,
+        "bot_route_ok": true,
+        "dashboard_ok": true,
+        "health_overall": "FAIL",
+        "normal_score_eligible": false,
+        "panel_status": "WARN",
+        "publisher_ok": true,
+        "score_consumer_locked": true,
+        "score_consumer_reason": "strategy score missing score-provenance lock",
+        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_ok": true,
+        "score_partition": "UNTAGGED",
+        "source_ok": true
+      },
+      "evidence": {
+        "actual_avg_r": -0.1111,
+        "actual_closed": 1,
+        "actual_realized_pnl": -7.89,
+        "actual_trades": 6,
+        "ghost_avg_target_r": null,
+        "ghost_fires": 0,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": null,
+        "ghost_target_hit_rate": null
+      },
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED",
+        "strategy present in score/ghost evidence but not panel registry"
+      ],
+      "panel_id": "gap_eat_trigger",
+      "panel_name": "Gap Eat",
+      "permission": "BLOCK",
+      "reasons": [
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+      ],
+      "risk_multiplier": 0.0,
+      "route_weight": 0.0,
+      "side": "LONG",
+      "strategy_id": "gap_eat_trigger"
+    },
     "gap_reject_short": {
       "allowed_to_trade": false,
       "confidence": "SCORE_CONSUMER_LOCK",
@@ -2076,13 +2145,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9392,
-        "ghost_fires": 1525,
-        "ghost_graded": 1404,
-        "ghost_run_rate": 7.26,
+        "ghost_avg_target_r": -0.9394,
+        "ghost_fires": 1615,
+        "ghost_graded": 1496,
+        "ghost_run_rate": 7.29,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": "PENDING_GHOST_RESULT",
-        "ghost_target_hit_rate": 2.28
+        "ghost_target_hit_rate": 2.27
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2123,13 +2192,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9556,
-        "ghost_fires": 70,
-        "ghost_graded": 60,
-        "ghost_run_rate": 3.33,
+        "ghost_avg_target_r": -0.9608,
+        "ghost_fires": 78,
+        "ghost_graded": 68,
+        "ghost_run_rate": 2.94,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": "PENDING_GHOST_RESULT",
-        "ghost_target_hit_rate": 1.67
+        "ghost_target_hit_rate": 1.47
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2171,8 +2240,8 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -1.0,
-        "ghost_fires": 45,
-        "ghost_graded": 33,
+        "ghost_fires": 54,
+        "ghost_graded": 36,
         "ghost_run_rate": 0.0,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": "PENDING_GHOST_RESULT",
@@ -2264,13 +2333,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.7221,
-        "ghost_fires": 1552,
-        "ghost_graded": 1324,
-        "ghost_run_rate": 18.2,
+        "ghost_avg_target_r": -0.7435,
+        "ghost_fires": 1733,
+        "ghost_graded": 1497,
+        "ghost_run_rate": 16.77,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": "PENDING_GHOST_RESULT",
-        "ghost_target_hit_rate": 10.42
+        "ghost_target_hit_rate": 9.62
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -3415,13 +3484,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.7221,
-        "ghost_fires": 1552,
-        "ghost_graded": 1324,
-        "ghost_run_rate": 18.2,
+        "ghost_avg_target_r": -0.7435,
+        "ghost_fires": 1733,
+        "ghost_graded": 1497,
+        "ghost_run_rate": 16.77,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 10.42
+        "ghost_target_hit_rate": 9.62
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -3462,13 +3531,13 @@
         "actual_closed": 6,
         "actual_realized_pnl": -259.45,
         "actual_trades": 24,
-        "ghost_avg_target_r": 0.7301,
+        "ghost_avg_target_r": 0.6661,
         "ghost_fires": 30,
-        "ghost_graded": 26,
-        "ghost_run_rate": 96.15,
+        "ghost_graded": 27,
+        "ghost_run_rate": 92.59,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 61.54
+        "ghost_target_hit_rate": 59.26
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3861,6 +3930,13 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "gap_eat_trigger",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "LONG",
+      "strategy_id": "gap_eat_trigger"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "gap_wall_roundtrip",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "MIXED",
@@ -4131,13 +4207,13 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 26,
+    "block": 27,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
-    "panel_score_strategies": 39,
+    "panel_score_strategies": 40,
     "permission_counts": {
-      "BLOCK": 26,
+      "BLOCK": 27,
       "TRACK_ONLY": 33
     },
     "registry_overall": "WARN",
@@ -4147,12 +4223,12 @@
     "route_policy_overrides": 7,
     "score_consumer_allowed": 0,
     "score_consumer_lock_overall": "WARN",
-    "score_consumer_locked": 59,
+    "score_consumer_locked": 60,
     "score_partition_counts": {
       "EXPERIMENT": 39,
-      "UNTAGGED": 20
+      "UNTAGGED": 21
     },
-    "strategies": 59,
+    "strategies": 60,
     "track_only": 33,
     "watch_only": 0
   },
