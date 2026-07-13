@@ -1,9 +1,26 @@
 {
-  "generated_at": "2026-07-13T07:00:05",
+  "generated_at": "2026-07-13T07:02:00",
   "date": "2026-07-13",
-  "mode": "TRIGGER_LIVE",
-  "n_positions": 1,
+  "mode": "GAP_TARGET_SET",
+  "n_positions": 2,
   "positions": [
+    {
+      "ticker": "CMBT",
+      "qty": 29,
+      "entry": 15.57,
+      "stop": 14.78,
+      "t1": 16.76,
+      "score": null,
+      "mode": "sma_reclaim_long",
+      "moo_order_id": 4550,
+      "target_order_id": 4563,
+      "stop_order_id": 4564,
+      "moc_order_id": null,
+      "options_context": null,
+      "fill_net": 29,
+      "fill_realized": -0.0,
+      "broker_qty": null
+    },
     {
       "ticker": "F",
       "qty": 33,
@@ -49,12 +66,12 @@
       "score": null,
       "mode": "sma_reclaim_long",
       "moo_order_id": 4550,
-      "target_order_id": 4552,
-      "stop_order_id": 4551,
+      "target_order_id": 4563,
+      "stop_order_id": 4564,
       "moc_order_id": null,
       "options_context": null,
-      "fill_net": null,
-      "fill_realized": null,
+      "fill_net": 29,
+      "fill_realized": -0.0,
       "broker_qty": null
     },
     {
@@ -293,10 +310,9 @@
   ],
   "memory_reconcile": {
     "open_position_source": "executions_csv",
-    "stale_memory_count": 10,
+    "stale_memory_count": 9,
     "stale_memory_symbols": [
       "BETA",
-      "CMBT",
       "EHGO",
       "IAUX",
       "MIMI",
@@ -311,7 +327,7 @@
     "broker_reconcile_age_sec": null,
     "broker_reconcile_overall": null,
     "broker_reconcile_summary": {},
-    "state_rows_reconciled": 0
+    "state_rows_reconciled": 1
   },
   "fills": [
     {
@@ -322,6 +338,15 @@
       "realized": -1.44,
       "went_short": false,
       "open": false
+    },
+    {
+      "ticker": "CMBT",
+      "bought": 29,
+      "sold": 0,
+      "net": 29,
+      "realized": -0.0,
+      "went_short": false,
+      "open": true
     },
     {
       "ticker": "EHGO",
@@ -353,151 +378,112 @@
   ],
   "fills_totals": {
     "realized": 13.96,
-    "symbols": 4,
+    "symbols": 5,
     "shorts": 0
   },
   "log_tail": [
-    "06:56:54  INFO       Order 4546 status=Submitted",
-    "06:56:54  INFO       Order 4545 status=PreSubmitted",
-    "06:56:54  INFO       Order 4552 status=PreSubmitted",
-    "06:56:54  INFO       Order 4551 status=PreSubmitted",
-    "06:56:54  INFO       Order 4550 status=Submitted",
-    "06:56:56  INFO     REQUEST reqPositions {}",
-    "06:56:56  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "06:56:56  INFO     disconnecting",
-    "06:56:56  WARNING  TWS connection closed.",
-    "06:57:02  INFO       OSS    gated - universal daily liquidity: day volume 67,520 < 650,000 (current-day hard floor)",
-    "06:57:02  INFO       PGY    gated - universal daily liquidity: day volume 344,232 < 650,000 (current-day hard floor)",
-    "06:57:05  INFO       VKTX   gated - universal daily liquidity: day volume 247,201 < 650,000 (current-day hard floor)",
-    "06:57:14  INFO     REQUEST reqPositions {}",
-    "06:57:14  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "06:57:18  INFO     Status pushed -> fem_bot_status.json",
-    "06:58:24  INFO       live dilution BETA: GREEN",
-    "06:58:25  INFO       ~ BETA SMA-reclaim gated - thin tape: day volume 128,561 < 750,000",
-    "06:58:31  INFO     gates: regime=RISK_OFF  dilution_flags=90  ledger_levels=8",
-    "06:58:32  INFO     REQUEST reqPositions {}",
-    "06:58:32  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "06:58:36  INFO     Status pushed -> fem_bot_status.json",
-    "06:59:55  INFO       TSLZ   gated - universal daily liquidity: day volume 595,378 < 650,000 (current-day hard floor)",
-    "06:59:58  INFO       NGEN   gated - universal daily liquidity: day volume 424,091 < 650,000 (current-day hard floor)",
-    "07:00:04  INFO     REQUEST reqPositions {}",
-    "07:00:04  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "07:01:58  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004552\\x00'",
+    "07:01:58  INFO     REQUEST cancelOrder {'orderId': 4552}",
+    "07:01:58  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004552\\x00'",
+    "07:01:58  INFO     REQUEST cancelOrder {'orderId': 4551}",
+    "07:01:58  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004551\\x00'",
+    "07:01:58  INFO       cancelled 2 stale working order(s) on CMBT before re-entry",
+    "07:01:58  INFO       Order 4552 status=PendingCancel",
+    "07:01:58  INFO       Order 4551 status=Cancelled",
+    "07:01:58  WARNING  IB [4551] 202: Order Canceled - reason:",
+    "07:01:58  ERROR    IB [4552] 10148: OrderId 4552 that needs to be cancelled cannot be cancelled, state: PendingCancel.",
+    "07:01:58  INFO       Order 4552 status=Cancelled",
+    "07:01:58  WARNING  IB [4552] 202: Order Canceled - reason:",
+    "07:01:58  ERROR    IB [4552] 10148: OrderId 4552 that needs to be cancelled cannot be cancelled, state: Cancelled.",
+    "07:01:58  ERROR    IB [4551] 10148: OrderId 4551 that needs to be cancelled cannot be cancelled, state: Cancelled.",
+    "07:02:00  INFO     REQUEST reqPositions {}",
+    "07:02:00  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "07:02:00  INFO     REQUEST placeOrder {'orderId': 4563, 'contract': 2165900067904: 0,CMBT,STK,,0.0,,,SMART,,USD,,,False,,combo:, 'order': 2165900067808: 4563,0,0: LMT SELL 10@15.630000 DAY}",
+    "07:02:00  INFO     SENDING placeOrder b'\\x00\\x00\\x01A3\\x004563\\x000\\x00CMBT\\x00STK\\x00\\x000.0\\x00\\x00\\x00SMART\\x00\\x00USD\\x00\\x00\\x00\\x00\\x00SELL\\x0010\\x00LMT\\x0015.63\\x00\\x00DAY\\x00\\x00\\x00\\x000\\x00\\x001\\x000\\x000\\x000\\x000\\x000\\x001\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00-1\\x000\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x00\\x000\\x00\\x000\\x000\\x000\\x000\\x00\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x000\\x00\\x00\\x00\\x001.7976931348623157e+308\\x00\\x00\\x00\\x00\\x000\\x000\\x000\\x00\\x00'",
+    "07:02:00  INFO     REQUEST placeOrder {'orderId': 4564, 'contract': 2165900067904: 0,CMBT,STK,,0.0,,,SMART,,USD,,,False,,combo:, 'order': 2165938981920: 4564,0,0: STP SELL 29@179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 DAY}",
+    "07:02:00  INFO     SENDING placeOrder b'\\x00\\x00\\x01A3\\x004564\\x000\\x00CMBT\\x00STK\\x00\\x000.0\\x00\\x00\\x00SMART\\x00\\x00USD\\x00\\x00\\x00\\x00\\x00SELL\\x0029\\x00STP\\x00\\x0014.78\\x00DAY\\x00\\x00\\x00\\x000\\x00\\x001\\x000\\x000\\x000\\x000\\x000\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00-1\\x000\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x00\\x000\\x00\\x000\\x000\\x000\\x000\\x00\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x000\\x00\\x00\\x00\\x001.7976931348623157e+308\\x00\\x00\\x00\\x00\\x000\\x000\\x000\\x00\\x00'",
+    "07:02:00  INFO       ^ CMBT fresh 15m gap overhead @ 15.63 \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u009d banking 10/29 sh into it",
+    "07:02:00  INFO       Order 4563 status=PreSubmitted",
+    "07:02:00  INFO       Order 4563 status=Submitted",
+    "07:02:00  INFO       Order 4564 status=PreSubmitted",
+    "07:02:00  INFO       Order 4564 status=PreSubmitted"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "RISK_OFF",
-  "daily_pnl": 11.379504035400394,
-  "entries_today": 11,
-  "open_count": 1,
-  "unrealized_open": 6.09,
-  "daily_pnl_guard": {
-    "schema": "fem_daily_pnl_guard.v1",
-    "generated_at": "2026-07-13T13:51:12+00:00",
-    "generated_at_et": "2026-07-13T09:51:12.428642-04:00",
-    "trade_date": "2026-07-13",
-    "kind": "WATCHING",
-    "entry_permission": "ALLOW_NEW_ENTRIES",
-    "enforce": true,
-    "profit_lock_enabled": false,
-    "settings": {
-      "arm": 75.0,
-      "giveback_min": 25.0,
-      "giveback_frac": 0.3,
-      "hard_giveback_frac": 0.45,
-      "min_keep": 25.0,
-      "max_daily_loss": 5000
-    },
-    "daily_pnl_peak": 8.13,
-    "daily_pnl_now": null,
-    "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
-  },
-  "grade_mults": {
-    "gap_reclaim": 0.5,
-    "surge": 0.5,
-    "gap_eat": 0.5,
-    "dump": 1.3,
-    "reclaim": 0.56
-  },
-  "benched": [],
-  "fading": [],
-  "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "rth",
-    "generated_at": "2026-07-13T14:00:06+00:00",
-    "generated_at_et": "2026-07-13T10:00:06-04:00",
+    "generated_at": "2026-07-13T14:02:04+00:00",
+    "generated_at_et": "2026-07-13T10:02:04-04:00",
     "summary": {
       "checks": 58,
-      "ok": 15,
+      "ok": 16,
       "warn": 14,
-      "fail": 29
+      "fail": 28
     },
     "bad_checks": [
       {
         "id": "contract_dashboard",
         "label": "Contract dashboard payload",
         "status": "FAIL",
-        "detail": "stale during rth: 2908s old, limit 2700s",
+        "detail": "stale during rth: 3023s old, limit 2700s",
         "path": "fem_contract_dashboard.json",
-        "age_seconds": 2908
+        "age_seconds": 3023
       },
       {
         "id": "contract_breaks",
         "label": "Contract breach ledger",
         "status": "FAIL",
-        "detail": "stale during rth: 2715s old, limit 2700s",
+        "detail": "stale during rth: 2830s old, limit 2700s",
         "path": "fem_contract_breaks.json",
-        "age_seconds": 2715
+        "age_seconds": 2830
       },
       {
         "id": "contract_accountability",
         "label": "Contract accountability queue",
         "status": "FAIL",
-        "detail": "stale during rth: 2908s old, limit 2700s",
+        "detail": "stale during rth: 3023s old, limit 2700s",
         "path": "fem_contract_accountability.json",
-        "age_seconds": 2908
+        "age_seconds": 3023
       },
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during rth: 2909s old, limit 2700s",
+        "detail": "stale during rth: 3024s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 2909
+        "age_seconds": 3024
       },
       {
         "id": "contract_fill_reconcile",
         "label": "Contract fill reconciliation",
         "status": "FAIL",
-        "detail": "stale during rth: 2907s old, limit 2700s",
+        "detail": "stale during rth: 3023s old, limit 2700s",
         "path": "fem_contract_fill_reconcile.json",
-        "age_seconds": 2907
+        "age_seconds": 3023
       },
       {
         "id": "contract_exit_reconcile",
         "label": "Contract exit reconciliation",
         "status": "FAIL",
-        "detail": "stale during rth: 2906s old, limit 2700s",
+        "detail": "stale during rth: 3021s old, limit 2700s",
         "path": "fem_contract_exit_reconcile.json",
-        "age_seconds": 2906
+        "age_seconds": 3021
       },
       {
         "id": "contract_ghost_ledger",
         "label": "Contract ghost/skipped trade ledger",
         "status": "FAIL",
-        "detail": "stale during rth: 2906s old, limit 2700s",
+        "detail": "stale during rth: 3021s old, limit 2700s",
         "path": "fem_contract_ghost_ledger.json",
-        "age_seconds": 2906
+        "age_seconds": 3021
       },
       {
         "id": "contract_route_readiness",
         "label": "Contract bot route readiness audit",
         "status": "FAIL",
-        "detail": "stale during rth: 2880s old, limit 2700s",
+        "detail": "stale during rth: 2995s old, limit 2700s",
         "path": "fem_contract_route_readiness.json",
-        "age_seconds": 2880
+        "age_seconds": 2995
       }
     ],
     "next_actions": [
