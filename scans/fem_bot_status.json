@@ -1,31 +1,13 @@
 {
-  "generated_at": "2026-07-13T05:48:29",
+  "generated_at": "2026-07-13T05:49:50",
   "date": "2026-07-13",
-  "mode": "TRIGGER_LIVE",
-  "n_positions": 1,
-  "positions": [
-    {
-      "ticker": "EHGO",
-      "qty": 354,
-      "entry": 2.1865,
-      "stop": 2.0601,
-      "t1": 2.3982,
-      "score": 55.0,
-      "mode": "surge_micro_dilution_momentum_scalp",
-      "moo_order_id": 4534,
-      "target_order_id": 4538,
-      "stop_order_id": 4537,
-      "moc_order_id": null,
-      "options_context": null,
-      "fill_net": 354,
-      "fill_realized": -0.0,
-      "broker_qty": null
-    }
-  ],
+  "mode": "SOFT_STOP_EXIT",
+  "n_positions": 0,
+  "positions": [],
   "bot_memory_entries": [
     {
       "ticker": "EHGO",
-      "qty": 354,
+      "qty": 0,
       "entry": 2.1865,
       "stop": 2.0601,
       "t1": 2.3982,
@@ -33,11 +15,11 @@
       "mode": "surge_micro_dilution_momentum_scalp",
       "moo_order_id": 4534,
       "target_order_id": 4538,
-      "stop_order_id": 4537,
+      "stop_order_id": null,
       "moc_order_id": null,
       "options_context": null,
-      "fill_net": 354,
-      "fill_realized": -0.0,
+      "fill_net": 0,
+      "fill_realized": -63.72,
       "broker_qty": null
     },
     {
@@ -60,8 +42,9 @@
   ],
   "memory_reconcile": {
     "open_position_source": "executions_csv",
-    "stale_memory_count": 1,
+    "stale_memory_count": 2,
     "stale_memory_symbols": [
+      "EHGO",
       "TDIC"
     ],
     "broker_reconcile_source": null,
@@ -69,96 +52,57 @@
     "broker_reconcile_age_sec": null,
     "broker_reconcile_overall": null,
     "broker_reconcile_summary": {},
-    "state_rows_reconciled": 0
+    "state_rows_reconciled": 1
   },
   "fills": [
     {
       "ticker": "EHGO",
       "bought": 354,
-      "sold": 0,
-      "net": 354,
-      "realized": -0.0,
+      "sold": 354,
+      "net": 0,
+      "realized": -63.72,
       "went_short": false,
-      "open": true
+      "open": false
     }
   ],
   "fills_totals": {
-    "realized": 0.0,
+    "realized": -63.72,
     "symbols": 1,
     "shorts": 0
   },
   "log_tail": [
-    "05:40:47  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:40:50  INFO     Status pushed -> fem_bot_status.json",
-    "05:41:45  INFO     gates: regime=RISK_OFF  dilution_flags=90  ledger_levels=8",
-    "05:42:03  INFO     REQUEST reqPositions {}",
-    "05:42:03  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:42:07  INFO     Status pushed -> fem_bot_status.json",
-    "05:43:38  INFO     REQUEST reqPositions {}",
-    "05:43:38  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:43:45  INFO     Status pushed -> fem_bot_status.json",
-    "05:45:01  INFO     gates: regime=RISK_OFF  dilution_flags=90  ledger_levels=8",
-    "05:45:02  INFO     REQUEST reqPositions {}",
-    "05:45:02  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:45:06  INFO     Status saved locally (push failed) -> fem_bot_status.json",
-    "05:46:05  INFO     REQUEST reqPositions {}",
-    "05:46:05  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:46:51  INFO     REQUEST reqPositions {}",
-    "05:46:51  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:46:54  INFO     Status saved locally (push failed) -> fem_bot_status.json",
-    "05:47:40  INFO     gates: regime=NEUTRAL  dilution_flags=90  ledger_levels=8",
-    "05:47:40  INFO     REQUEST reqPositions {}",
-    "05:47:40  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
-    "05:48:11  INFO       AGEN   gated - universal daily liquidity: day volume 833,400 < 1,000,000 (not avg-liquid, not on pace)",
-    "05:48:13  INFO       EHGO   fired but already holding a position \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u009d per-name cap, skip",
-    "05:48:29  INFO     REQUEST reqPositions {}",
-    "05:48:29  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'"
+    "05:49:47  INFO       x EHGO SOFT-STOP (LONG): 2 through stop 2.0601 \u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u009d cross-LMT out",
+    "05:49:47  INFO     REQUEST cancelOrder {'orderId': 4537}",
+    "05:49:47  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004537\\x00'",
+    "05:49:47  INFO     REQUEST cancelOrder {'orderId': 4538}",
+    "05:49:47  INFO     SENDING cancelOrder b'\\x00\\x00\\x00\\t4\\x001\\x004538\\x00'",
+    "05:49:47  INFO       cancelled 2 stale working order(s) on EHGO before re-entry",
+    "05:49:47  INFO       Order 4537 status=Cancelled",
+    "05:49:47  WARNING  IB [4537] 202: Order Canceled - reason:",
+    "05:49:47  INFO       Order 4538 status=Cancelled",
+    "05:49:47  WARNING  IB [4538] 202: Order Canceled - reason:",
+    "05:49:49  INFO     REQUEST reqPositions {}",
+    "05:49:49  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "05:49:49  INFO     REQUEST placeOrder {'orderId': 4539, 'contract': 2110213461568: 0,EHGO,STK,,0.0,,,SMART,,USD,,,False,,combo:, 'order': 2110240170656: 0,0,0: LMT SELL 354@1.960000 DAY}",
+    "05:49:49  INFO     SENDING placeOrder b'\\x00\\x00\\x01A3\\x004539\\x000\\x00EHGO\\x00STK\\x00\\x000.0\\x00\\x00\\x00SMART\\x00\\x00USD\\x00\\x00\\x00\\x00\\x00SELL\\x00354\\x00LMT\\x001.96\\x00\\x00DAY\\x00\\x00\\x00\\x000\\x00\\x001\\x000\\x000\\x000\\x000\\x000\\x001\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00-1\\x000\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x000\\x00\\x00\\x000\\x000\\x00\\x00\\x000\\x00\\x000\\x000\\x000\\x000\\x00\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x001.7976931348623157e+308\\x000\\x00\\x00\\x00\\x001.7976931348623157e+308\\x00\\x00\\x00\\x00\\x000\\x000\\x000\\x00\\x00'",
+    "05:49:49  INFO       FLATTEN SELL EHGO x354 cross-LMT cap=1.96",
+    "05:49:49  INFO       Order 4539 status=PreSubmitted",
+    "05:49:49  INFO       Order 4539 status=PreSubmitted",
+    "05:49:50  INFO       FILL EHGO SLD 300.0@2.0 oid=4539",
+    "05:49:50  INFO       Order 4539 status=PreSubmitted filled=300.0 remaining=54.0 avgPx=2.0000",
+    "05:49:50  INFO       FILL EHGO SLD 54.0@2.0 oid=4539",
+    "05:49:50  INFO       Order 4539 status=Filled filled=354.0 remaining=0.0 avgPx=2.0000",
+    "05:49:50  INFO       Order 4539 status=Filled filled=354.0 remaining=0.0 avgPx=2.0000",
+    "05:49:50  INFO     ANSWER commissionReport {'commissionReport': 2110694397120: ExecId: 00025b44.6a5484a9.01.01, Commission: 1.571760, Currency: USD, RealizedPnL: -57.07266, Yield: , YieldRedemptionDate: 0}",
+    "05:49:50  INFO       Order 4539 status=Filled filled=354.0 remaining=0.0 avgPx=2.0000",
+    "05:49:50  INFO     ANSWER commissionReport {'commissionReport': 2110685126272: ExecId: 00025b44.6a5484aa.01.01, Commission: 0.282917, Currency: USD, RealizedPnL: -10.273079, Yield: , YieldRedemptionDate: 0}"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "NEUTRAL",
-  "daily_pnl": -44.25112025604244,
-  "entries_today": 2,
-  "open_count": 1,
-  "unrealized_open": -44.25,
-  "daily_pnl_guard": {
-    "schema": "fem_daily_pnl_guard.v1",
-    "generated_at": "2026-07-13T11:26:12+00:00",
-    "generated_at_et": "2026-07-13T07:26:12.332080-04:00",
-    "trade_date": "2026-07-13",
-    "kind": "WATCHING",
-    "entry_permission": "ALLOW_NEW_ENTRIES",
-    "enforce": true,
-    "profit_lock_enabled": false,
-    "settings": {
-      "arm": 75.0,
-      "giveback_min": 25.0,
-      "giveback_frac": 0.3,
-      "hard_giveback_frac": 0.45,
-      "min_keep": 25.0,
-      "max_daily_loss": 5000
-    },
-    "daily_pnl_peak": null,
-    "daily_pnl_now": null,
-    "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
-  },
-  "grade_mults": {
-    "reclaim": 0.56,
-    "dump": 1.16,
-    "gap_reclaim": 0.5,
-    "gap_eat": 0.5,
-    "surge": 0.5
-  },
-  "benched": [],
-  "fading": [],
-  "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "pre",
-    "generated_at": "2026-07-13T12:48:30+00:00",
-    "generated_at_et": "2026-07-13T08:48:30-04:00",
+    "generated_at": "2026-07-13T12:49:51+00:00",
+    "generated_at_et": "2026-07-13T08:49:51-04:00",
     "summary": {
       "checks": 56,
       "ok": 16,
@@ -170,65 +114,65 @@
         "id": "contract_dashboard",
         "label": "Contract dashboard payload",
         "status": "FAIL",
-        "detail": "stale during pre: 118085s old, limit 2700s",
+        "detail": "stale during pre: 118165s old, limit 2700s",
         "path": "fem_contract_dashboard.json",
-        "age_seconds": 118085
+        "age_seconds": 118165
       },
       {
         "id": "contract_breaks",
         "label": "Contract breach ledger",
         "status": "FAIL",
-        "detail": "stale during pre: 164387s old, limit 2700s",
+        "detail": "stale during pre: 164468s old, limit 2700s",
         "path": "fem_contract_breaks.json",
-        "age_seconds": 164387
+        "age_seconds": 164468
       },
       {
         "id": "contract_accountability",
         "label": "Contract accountability queue",
         "status": "FAIL",
-        "detail": "stale during pre: 166617s old, limit 2700s",
+        "detail": "stale during pre: 166698s old, limit 2700s",
         "path": "fem_contract_accountability.json",
-        "age_seconds": 166617
+        "age_seconds": 166698
       },
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during pre: 949580s old, limit 2700s",
+        "detail": "stale during pre: 949661s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 949580
+        "age_seconds": 949661
       },
       {
         "id": "contract_fill_reconcile",
         "label": "Contract fill reconciliation",
         "status": "FAIL",
-        "detail": "stale during pre: 166391s old, limit 2700s",
+        "detail": "stale during pre: 166472s old, limit 2700s",
         "path": "fem_contract_fill_reconcile.json",
-        "age_seconds": 166391
+        "age_seconds": 166472
       },
       {
         "id": "contract_exit_reconcile",
         "label": "Contract exit reconciliation",
         "status": "FAIL",
-        "detail": "stale during pre: 166382s old, limit 2700s",
+        "detail": "stale during pre: 166463s old, limit 2700s",
         "path": "fem_contract_exit_reconcile.json",
-        "age_seconds": 166382
+        "age_seconds": 166463
       },
       {
         "id": "contract_ghost_ledger",
         "label": "Contract ghost/skipped trade ledger",
         "status": "FAIL",
-        "detail": "stale during pre: 166682s old, limit 2700s",
+        "detail": "stale during pre: 166763s old, limit 2700s",
         "path": "fem_contract_ghost_ledger.json",
-        "age_seconds": 166682
+        "age_seconds": 166763
       },
       {
         "id": "contract_route_readiness",
         "label": "Contract bot route readiness audit",
         "status": "FAIL",
-        "detail": "stale during pre: 4907s old, limit 2700s",
+        "detail": "stale during pre: 4988s old, limit 2700s",
         "path": "fem_contract_route_readiness.json",
-        "age_seconds": 4907
+        "age_seconds": 4988
       }
     ],
     "next_actions": [
