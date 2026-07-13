@@ -1,8 +1,8 @@
 {
   "all_known": false,
   "dry_run": false,
-  "generated_at": "2026-07-02T13:02:09+00:00",
-  "generated_at_et": "2026-07-02T09:02:09-04:00",
+  "generated_at": "2026-07-13T13:11:36+00:00",
+  "generated_at_et": "2026-07-13T09:11:36-04:00",
   "include_research": false,
   "panels": [
     {
@@ -12,106 +12,273 @@
           "command": [
             "py",
             "-3.12",
-            "fem_surge_micro_plan.py",
-            "--max",
-            "30"
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
           ],
-          "elapsed_seconds": 0.5,
+          "elapsed_seconds": 1.58,
           "returncode": 0,
           "status": "OK",
           "stderr_tail": [],
           "stdout_tail": [
-            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan.json",
-            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan_dashboard.json",
-            "day=2026-07-02 raw=8 planned=16 scout=0 starter=2 late=0",
-            "CETX   MICRO_STARTER_ONLY score=55.0 fire=3.87 move=21.01 rv=51.5 tp1=4.2571 need=10.0% qty=310 risk=$65.98",
-            "CLRO   MICRO_STARTER_ONLY score=55.0 fire=4.2679 move=17.57 rv=5.2 tp1=4.6706 need=9.44% qty=149 risk=$34.98",
-            "RIVN   WATCH_ONLY         score=38.0 fire=17.97 move=4.49 rv=52.3 tp1=19.4158 need=8.05% qty=83 risk=$67.12",
-            "USDE   SCREENER_LOW_QUALITY score=11.0 fire=2.08 move=143.75 rv=0.69 tp1=2.2767 need=9.46% qty=305 risk=$34.89",
-            "JEM    SKIP               score= 6.0 fire=3.95 move=4.24 rv=8.5 tp1=4.3227 need=9.43% qty=161 risk=$34.98",
-            "CWD    SKIP               score= 4.0 fire=1.3101 move=6.49 rv=5.1 tp1=1.4561 need=11.14% qty=411 risk=$35.0",
-            "LGCL   SKIP               score= 0.0 fire=1.95 move=8.94 rv=165.9 tp1=2.2103 need=13.35% qty=461 risk=$58.43",
-            "PPCB   SKIP               score= 0.0 fire=1.72 move=4.88 rv=5.7 tp1=1.9117 need=11.14% qty=313 risk=$34.99"
+            "scanning 0 names x 1 sessions ...",
+            "short-universe: 0 names today, +0 new fires, 10918 total in archive",
+            "  vwap_reject    fired=4807 resolved=2037 win=38.3 avgR=-0.041 -> FLAT",
+            "  breakdown      fired=861 resolved=247 win=31.6 avgR=-0.211 -> BAD",
+            "  gapdown_cont   fired=731 resolved=330 win=35.2 avgR=-0.121 -> BAD",
+            "  lower_high     fired=4519 resolved=1530 win=37.3 avgR=-0.069 -> FLAT",
+            "  CHAMPION -> none yet (no setup has n>=10 + positive avgR) \u2014 still gathering"
           ],
-          "timeout_seconds": 420
+          "timeout_seconds": 900
         }
       ],
-      "display_name": "Surge Micro",
+      "display_name": "Short Universe",
       "files_after": [
         {
           "exists": true,
-          "mtime_utc": "2026-07-02T13:02:09+00:00",
-          "path": "fem_surge_micro_plan.json",
-          "size_bytes": 88250
+          "mtime_utc": "2026-07-13T13:11:22+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17271
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-13T13:11:22+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 2450767
         }
       ],
       "files_before": [
         {
           "exists": true,
-          "mtime_utc": "2026-07-02T13:01:44+00:00",
-          "path": "fem_surge_micro_plan.json",
-          "size_bytes": 82885
+          "mtime_utc": "2026-07-11T00:35:50+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17271
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-11T00:35:50+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 2450767
         }
       ],
       "mode": "bot",
-      "panel_id": "surge_micro",
-      "primary_source": "fem_surge_micro_plan.json",
-      "primary_source_freshness_before": "OK",
+      "panel_id": "short_universe",
+      "primary_source": "_DAILY/fem_short_universe_grade.json",
+      "primary_source_freshness_before": "STALE",
       "refresh_spec": {
         "commands": [
           [
             "py",
             "-3.12",
-            "fem_surge_micro_plan.py",
-            "--max",
-            "30"
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
           ]
         ],
         "expected_files": [
-          "fem_surge_micro_plan.json"
+          "_DAILY/fem_short_universe_grade.json",
+          "_DAILY/short_universe_fires.jsonl"
         ],
-        "notes": "Rebuilds the small-risk surge plan from the latest live fires.",
+        "notes": "Refreshes the live bot's short-universe bridge source.",
         "research": false
       },
-      "source_fresh_ok_before": true,
+      "source_fresh_ok_before": false,
       "status": "OK",
-      "status_before": "OK"
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_ath_long_plan.py",
+            "--max",
+            "40"
+          ],
+          "elapsed_seconds": 2.06,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "ath-long-plan: wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_ath_long_plan.json",
+            "  source=72 price_5_20=2 common=2 excluded=0 elapsed=1.7s",
+            "  KURA   ACTIONABLE_WATCH score=   74 APPROACHING off=2.96% entry=11.97-12.22 stop=11.56 tp1=12.49 tp2=13.18 rr2=2.0",
+            "  VLY    ACTIONABLE_WATCH score=   66 APPROACHING off=2.63% entry=14.44-14.74 stop=13.94 tp1=15.01 tp2=15.89 rr2=2.0"
+          ],
+          "timeout_seconds": 420
+        }
+      ],
+      "display_name": "All-Time High Long",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-13T13:11:24+00:00",
+          "path": "fem_ath_long_plan.json",
+          "size_bytes": 5891
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-01T14:39:26+00:00",
+          "path": "fem_ath_long_plan.json",
+          "size_bytes": 35695
+        }
+      ],
+      "mode": "tracked",
+      "panel_id": "ath_long",
+      "primary_source": "fem_ath_long_plan.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_ath_long_plan.py",
+            "--max",
+            "40"
+          ]
+        ],
+        "expected_files": [
+          "fem_ath_long_plan.json"
+        ],
+        "notes": "Uses the existing ATH scan/watchlist and rebuilds long plans.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "WARN"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_gap_reject_short.py"
+          ],
+          "elapsed_seconds": 11.27,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [
+            "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_reject_short.py:143: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).",
+            "  d = datetime.datetime.utcfromtimestamp(b[\"t\"] / 1000).strftime(\"%Y-%m-%d\")",
+            "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_reject_short.py:67: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).",
+            "  et = datetime.datetime.utcfromtimestamp(b[\"t\"] / 1000 - 4 * 3600)"
+          ],
+          "stdout_tail": [
+            "grading gap-rejection shorts: 220 names, ~15d lookback...",
+            "  forward ledger: +1320 new today, 65358 cumulative setups",
+            "==================================================================",
+            "  GAP-REJECTION SHORT GRADE  (trapped-longs-at-the-ceiling)",
+            "  220 names \u00b7 ~15d \u00b7 65358 setups found",
+            "==================================================================",
+            "  OVERALL: n=65358  win%=37.7  avgR=0.053  sumR=3437.3",
+            "  --- RE-ARM TEST: alpha (good on UP/FLAT) vs beta (only DOWN days) ---",
+            "    SPY DOWN days:  n=23570  win%=42.3  avgR=0.175",
+            "    SPY FLAT days:  n=29369  win%=37.2  avgR=0.038",
+            "    SPY UP   days:  n=12419  win%=29.9  avgR=-0.144",
+            "  --- by gap type (down/red = bearish supply) ---",
+            "    down-gap:  n=38228  win%=37.5  avgR=0.041",
+            "    up  -gap:  n=27130  win%=37.9  avgR=0.069",
+            "------------------------------------------------------------------",
+            "  VERDICT: not proven independent of down-days (beta/unclear). Keep dumps off;",
+            "           do NOT arm. Re-grade with more history or a tighter setup first.",
+            "  detail -> _DAILY/gap_reject_short_detail.csv   summary -> gap_reject_short_grade.json"
+          ],
+          "timeout_seconds": 600
+        }
+      ],
+      "display_name": "Gap Reject Short",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-13T13:11:36+00:00",
+          "path": "gap_reject_short_grade.json",
+          "size_bytes": 817
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-13T13:11:35+00:00",
+          "path": "_DAILY/gap_reject_ledger.jsonl",
+          "size_bytes": 10261592
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-12T21:59:01+00:00",
+          "path": "gap_reject_short_grade.json",
+          "size_bytes": 816
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-07-10T20:15:18+00:00",
+          "path": "_DAILY/gap_reject_ledger.jsonl",
+          "size_bytes": 10054986
+        }
+      ],
+      "mode": "tracked",
+      "panel_id": "gap_reject_short",
+      "primary_source": "gap_reject_short_grade.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_gap_reject_short.py"
+          ]
+        ],
+        "expected_files": [
+          "gap_reject_short_grade.json",
+          "_DAILY/gap_reject_ledger.jsonl"
+        ],
+        "notes": "Grades the trapped-longs-at-the-ceiling short thesis.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "WARN"
     }
   ],
   "publish_result": null,
-  "registry_generated_at": "2026-07-02T13:02:08+00:00",
+  "registry_generated_at": "2026-07-13T13:01:28+00:00",
   "registry_overall_before": "FAIL",
   "registry_summary_before": {
     "active_fail": 3,
-    "active_warn": 7,
+    "active_warn": 10,
     "bot_required": 7,
     "bot_routed": 7,
-    "fresh_sourced": 17,
-    "panels": 34,
-    "scored": 22,
-    "sourced": 24,
-    "stale_source_panels": 20,
-    "stale_sources": 36,
+    "fresh_sourced": 16,
+    "panels": 36,
+    "scored": 24,
+    "sourced": 23,
+    "stale_source_panels": 22,
+    "stale_sources": 40,
     "status_counts": {
       "FAIL": 3,
-      "OK": 19,
+      "OK": 18,
       "RESEARCH": 4,
-      "WARN": 8
+      "WARN": 11
     }
   },
-  "requested_panels": [
-    "surge_micro"
-  ],
+  "requested_panels": [],
   "schema": "fem_contract_source_refresh.v1",
   "summary": {
-    "active_warn_before": 7,
-    "attempted": 1,
+    "active_warn_before": 10,
+    "attempted": 3,
     "failed": 0,
     "publish_status": "NOT_REQUESTED",
-    "selected": 1,
+    "selected": 3,
     "skipped": 0,
-    "stale_source_panels_before": 20,
-    "succeeded": 1
+    "stale_source_panels_before": 22,
+    "succeeded": 3
   },
-  "trade_date": "2026-07-02"
+  "trade_date": "2026-07-13"
 }
