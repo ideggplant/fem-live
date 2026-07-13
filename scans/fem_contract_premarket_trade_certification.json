@@ -1,5 +1,5 @@
 {
-  "broker_mode": "live",
+  "broker_mode": "offline",
   "checks": [
     {
       "code": "REFRESH_STEP_OK",
@@ -65,7 +65,7 @@
       "code": "GATE_CONFORMANCE_WARN",
       "detail": "No hard conformance break found, but refresh/known-risk warnings remain. Review before open.",
       "status": "WARN",
-      "warnings": 3
+      "warnings": 5
     },
     {
       "code": "GATES_IN",
@@ -88,13 +88,13 @@
         "allowed_short": 0,
         "allowed_to_trade": 0,
         "bench": 0,
-        "block": 48,
+        "block": 49,
         "ghost_good_skip_groups": 0,
         "ghost_opportunity_groups": 0,
         "health_overall": "FAIL",
         "panel_score_strategies": 34,
         "permission_counts": {
-          "BLOCK": 48,
+          "BLOCK": 49,
           "TRACK_ONLY": 5
         },
         "registry_overall": "FAIL",
@@ -104,12 +104,12 @@
         "route_policy_overrides": 7,
         "score_consumer_allowed": 0,
         "score_consumer_lock_overall": "WARN",
-        "score_consumer_locked": 53,
+        "score_consumer_locked": 54,
         "score_partition_counts": {
-          "EXPERIMENT": 34,
-          "UNTAGGED": 19
+          "EXPERIMENT": 33,
+          "UNTAGGED": 21
         },
-        "strategies": 53,
+        "strategies": 54,
         "track_only": 5,
         "watch_only": 0
       }
@@ -123,7 +123,7 @@
         "bot_silent": 0,
         "decision_seen": 0,
         "event_stream_present": true,
-        "events_today": 372,
+        "events_today": 0,
         "fail": 0,
         "missing_bot_code": 0,
         "missing_registry": 0,
@@ -137,12 +137,13 @@
       }
     },
     {
-      "code": "BROKER_RECONCILE_OK",
-      "detail": "Live broker/order safety reconcile is clean.",
-      "status": "OK",
+      "code": "BROKER_RECONCILE_OFFLINE",
+      "detail": "Order safety files are clean, but this did not inspect live IBKR orders/positions.",
+      "overall": "OK",
+      "status": "WARN",
       "summary": {
         "breach_codes": {},
-        "broker_connected": true,
+        "broker_connected": false,
         "cancel_candidates": 0,
         "cancel_failed": 0,
         "cancelled": 0,
@@ -160,15 +161,15 @@
       }
     },
     {
-      "code": "LIVE_RUNTIME_NOT_STARTED",
-      "detail": "Live runtime is not fully up yet; run the startup routine before final certification.",
+      "code": "LIVE_RUNTIME_WARN",
+      "detail": "Live runtime readiness has warnings.",
       "status": "WARN",
       "summary": {
         "checks": 9,
-        "fail": 2,
+        "fail": 0,
         "live_ready": false,
-        "ok": 5,
-        "warn": 2
+        "ok": 6,
+        "warn": 3
       }
     },
     {
@@ -178,8 +179,8 @@
       "status": "WARN"
     }
   ],
-  "generated_at": "2026-07-10T11:42:58+00:00",
-  "generated_at_et": "2026-07-10T07:42:58-04:00",
+  "generated_at": "2026-07-13T00:44:38+00:00",
+  "generated_at_et": "2026-07-12T20:44:38-04:00",
   "next_actions": [
     {
       "action": "Review gate conformance warnings; stale weekend sources usually clear after morning refresh.",
@@ -190,15 +191,15 @@
       "severity": "BLOCKER"
     },
     {
-      "action": "Before the final morning go/no-go, start 4_LIVE and 5_TRADE_BOT, then rerun with --require-live-runtime.",
+      "action": "Offline check passed files only; rerun without --broker-mode offline before trusting live orders.",
+      "severity": "REVIEW"
+    },
+    {
+      "action": "Live runtime readiness has warnings.",
       "severity": "REVIEW"
     },
     {
       "action": "Contract health still has failures; certificate only hard-blocks live gate/order safety failures.",
-      "severity": "REVIEW"
-    },
-    {
-      "action": "For the final morning check after the bot is running, rerun with --require-live-runtime.",
       "severity": "REVIEW"
     }
   ],
@@ -206,118 +207,118 @@
   "refresh_steps": [
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_panel_registry.py",
-      "finished_at": "2026-07-10T11:42:44+00:00",
+      "finished_at": "2026-07-13T00:44:25+00:00",
       "id": "panel_registry",
       "label": "Refresh panel registry",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:44+00:00",
+      "started_at": "2026-07-13T00:44:24+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "e today's source output for FEM Swing Lab; stale source data cannot be trusted.\n  WARN Gap Eat Staircase: Regenerate today's source output for Gap Eat Staircase; stale source data cannot be trusted.\n  WARN Gap Reject Short: Regenerate today's source output for Gap Reject Short; stale source data cannot be trusted.\n  WARN Gap Wall Roundtrip: Regenerate today's source output for Gap Wall Roundtrip; stale source data cannot be trusted.\n  WARN Mustard Reload Lab: Regenerate today's source output for Mustard Reload Lab; stale source data cannot be trusted.\n  WARN Options Roundtrip Lab: Regenerate today's source output for Options Roundtrip Lab; stale source data cannot be trusted.\n  WARN Runner Exit Decision: Regenerate today's source output for Runner Exit Decision; stale source data cannot be trusted.\n  WARN Scan Stage Drop Audit: Regenerate today's source output for Scan Stage Drop Audit; stale source data cannot be trusted.\n  WARN State Lookup: Regenerate today's source output for State Lookup; stale source data cannot be trusted.\n  WARN Stock Clock / Micro Clocks: Regenerate today's source output for Stock Clock / Micro Clocks; stale source data cannot be trusted.\n  WARN Surge Probe Shadow: Add Surge Probe Shadow to the contract score bridge so picks gain/lose trust.\n  WARN Value Area Fortress: Regenerate today's source output for Value Area Fortress; stale source data cannot be trusted.\n  WARN Watchlist Gap-Eat: Regenerate today's source output for Watchlist Gap-Eat; stale source data cannot be trusted.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_panel_registry.json"
+      "stdout_tail": "rate today's source output for Daily Liquid 120; stale source data cannot be trusted.\n  WARN FEM Swing Lab: Regenerate today's source output for FEM Swing Lab; stale source data cannot be trusted.\n  WARN Gap Eat Staircase: Regenerate today's source output for Gap Eat Staircase; stale source data cannot be trusted.\n  WARN Gap Wall Roundtrip: Regenerate today's source output for Gap Wall Roundtrip; stale source data cannot be trusted.\n  WARN Mustard Reload Lab: Regenerate today's source output for Mustard Reload Lab; stale source data cannot be trusted.\n  WARN Options Roundtrip Lab: Regenerate today's source output for Options Roundtrip Lab; stale source data cannot be trusted.\n  WARN Runner Exit Decision: Regenerate today's source output for Runner Exit Decision; stale source data cannot be trusted.\n  WARN Scan Stage Drop Audit: Regenerate today's source output for Scan Stage Drop Audit; stale source data cannot be trusted.\n  WARN State Lookup: Regenerate today's source output for State Lookup; stale source data cannot be trusted.\n  WARN Stock Clock / Micro Clocks: Regenerate today's source output for Stock Clock / Micro Clocks; stale source data cannot be trusted.\n  WARN Surge Probe Shadow: Add Surge Probe Shadow to the contract score bridge so picks gain/lose trust.\n  WARN Value Area Fortress: Regenerate today's source output for Value Area Fortress; stale source data cannot be trusted.\n  WARN Watchlist Gap-Eat: Regenerate today's source output for Watchlist Gap-Eat; stale source data cannot be trusted.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_panel_registry.json"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_experiment_admission.py",
-      "finished_at": "2026-07-10T11:42:45+00:00",
+      "finished_at": "2026-07-13T00:44:25+00:00",
       "id": "experiment_admission",
       "label": "Refresh experiment admission",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:44+00:00",
+      "started_at": "2026-07-13T00:44:25+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM CONTRACT EXPERIMENT ADMISSION 2026-07-10 overall=FAIL panels=36 ok=11 warn=12 fail=13 unregistered=0 floating=37\nExperiment admission has 13 blocker panel(s). Do not promote new ideas until those rows are resolved.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_experiment_admission.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_experiment_admission_2026-07-10.json"
+      "stdout_tail": "FEM CONTRACT EXPERIMENT ADMISSION 2026-07-12 overall=FAIL panels=36 ok=9 warn=11 fail=16 unregistered=1 floating=39\nExperiment admission has 16 blocker panel(s). Do not promote new ideas until those rows are resolved.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_experiment_admission.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_experiment_admission_2026-07-12.json"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_resolver.py",
-      "finished_at": "2026-07-10T11:42:45+00:00",
+      "finished_at": "2026-07-13T00:44:25+00:00",
       "id": "strategy_resolver",
       "label": "Refresh strategy registry",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:45+00:00",
+      "started_at": "2026-07-13T00:44:25+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM CONTRACT STRATEGY RESOLVER 2026-07-10 overall=FAIL strategies=53 registered=51 pending_registry=0 unresolved=0 bot_allowed=2\nEvery visible strategy id has an explicit registry fate.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_resolver.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_registry.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_resolver_2026-07-10.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_registry_2026-07-10.json"
+      "stdout_tail": "FEM CONTRACT STRATEGY RESOLVER 2026-07-12 overall=FAIL strategies=54 registered=51 pending_registry=0 unresolved=1 bot_allowed=0\n1 strategy id(s) still have no explicit fate. They are illegal until mapped.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_resolver.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_registry.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_resolver_2026-07-12.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_registry_2026-07-12.json"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_ownership.py",
-      "finished_at": "2026-07-10T11:42:46+00:00",
+      "finished_at": "2026-07-13T00:44:26+00:00",
       "id": "strategy_ownership",
       "label": "Refresh strategy ownership",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:45+00:00",
+      "started_at": "2026-07-13T00:44:25+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM CONTRACT STRATEGY OWNERSHIP 2026-07-10 overall=FAIL strategies=53 owned=53 quarantine=0 order_allowed=3\nEvery visible strategy id has a registry owner.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_ownership.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_ownership_2026-07-10.json"
+      "stdout_tail": "FEM CONTRACT STRATEGY OWNERSHIP 2026-07-12 overall=FAIL strategies=54 owned=53 quarantine=1 order_allowed=0\n1 unowned strategy id(s) are quarantined; map or retire them before trusting their scores.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_strategy_ownership.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_strategy_ownership_2026-07-12.json"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.py --date 2026-07-10",
-      "finished_at": "2026-07-10T11:42:47+00:00",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.py --date 2026-07-13",
+      "finished_at": "2026-07-13T00:44:26+00:00",
       "id": "trade_permissions",
       "label": "Refresh trade permissions",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:46+00:00",
+      "started_at": "2026-07-13T00:44:26+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM CONTRACT TRADE PERMISSIONS 2026-07-10 strategies=53 full=0 probe=0 benched=0 blocked=48 research=0 track=5\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.json"
+      "stdout_tail": "FEM CONTRACT TRADE PERMISSIONS 2026-07-13 strategies=54 full=0 probe=0 benched=0 blocked=49 research=0 track=5\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_trade_permissions.json"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.py --date 2026-07-10",
-      "finished_at": "2026-07-10T11:42:47+00:00",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.py --date 2026-07-13",
+      "finished_at": "2026-07-13T00:44:26+00:00",
       "id": "gate_router",
       "label": "Refresh gate router",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:47+00:00",
+      "started_at": "2026-07-13T00:44:26+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM CONTRACT GATE ROUTER 2026-07-10: gates=24 routes=53 events=258 symbols=67 modes={'HARD': 15, 'SHADOW': 9}\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_spine_gate_context.json"
+      "stdout_tail": "FEM CONTRACT GATE ROUTER 2026-07-13: gates=24 routes=54 events=0 symbols=0 modes={'HARD': 15, 'SHADOW': 9}\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_gate_router.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_spine_gate_context.json"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.py",
-      "finished_at": "2026-07-10T11:42:55+00:00",
+      "finished_at": "2026-07-13T00:44:34+00:00",
       "id": "route_readiness",
       "label": "Refresh route readiness",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:47+00:00",
+      "started_at": "2026-07-13T00:44:26+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "FEM ROUTE READINESS 2026-07-10 overall=OK routes=0 ok=0 warn=0 fail=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.json"
+      "stdout_tail": "FEM ROUTE READINESS 2026-07-12 overall=OK routes=0 ok=0 warn=0 fail=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_route_readiness.json"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.py --date 2026-07-10",
-      "finished_at": "2026-07-10T11:42:55+00:00",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.py --date 2026-07-13",
+      "finished_at": "2026-07-13T00:44:34+00:00",
       "id": "live_gate_conformance",
       "label": "Refresh live gate conformance",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:55+00:00",
+      "started_at": "2026-07-13T00:44:34+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "==========================================================================\nFEM LIVE GATE CONFORMANCE\n==========================================================================\noverall=WARN failures=0 warnings=3 orders=0 fills=0\ngates route_lock=False gate_router=True source_fresh=True daily_guard=True legacy_permission=False\nNo hard conformance break found, but refresh/known-risk warnings remain. Review before open.\n\nWARNINGS\n- SOURCE_DATE_MISMATCH: bot_gate_audit is not stamped for 2026-07-10\n- OWNER_DECISION_PERMISSION_TAGS_ONLY: Trade-permission enforcement retired by owner (Jul 8); gate-router and universal entry gates remain enforced.\n- UNKNOWN_PERMISSION_FAIL_OPEN_FLAG: TRADE_PERMISSION_BLOCK_UNKNOWN is false. Route-lock/gate-router must remain on to prevent unmapped strategy leaks.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_live_gate_conformance_2026-07-10.json"
+      "stdout_tail": "==========================================================================\nFEM LIVE GATE CONFORMANCE\n==========================================================================\noverall=WARN failures=0 warnings=5 orders=0 fills=0\ngates route_lock=False gate_router=True source_fresh=True daily_guard=True legacy_permission=False\nNo hard conformance break found, but refresh/known-risk warnings remain. Review before open.\n\nWARNINGS\n- SOURCE_DATE_MISMATCH: bot_gate_audit is not stamped for 2026-07-13\n- SOURCE_DATE_MISMATCH: panel_registry is not stamped for 2026-07-13\n- SOURCE_DATE_MISMATCH: strategy_ownership is not stamped for 2026-07-13\n- OWNER_DECISION_PERMISSION_TAGS_ONLY: Trade-permission enforcement retired by owner (Jul 8); gate-router and universal entry gates remain enforced.\n- UNKNOWN_PERMISSION_FAIL_OPEN_FLAG: TRADE_PERMISSION_BLOCK_UNKNOWN is false. Route-lock/gate-router must remain on to prevent unmapped strategy leaks.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_gate_conformance.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_live_gate_conformance_2026-07-13.json"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.py --date 2026-07-10",
-      "finished_at": "2026-07-10T11:42:57+00:00",
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.py --date 2026-07-13 --offline",
+      "finished_at": "2026-07-13T00:44:34+00:00",
       "id": "live_broker_reconcile",
       "label": "Refresh broker/order safety reconcile",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:55+00:00",
+      "started_at": "2026-07-13T00:44:34+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "04:42:56  INFO     sent startApi\n04:42:56  INFO     REQUEST startApi {}\n04:42:56  INFO     SENDING startApi b'\\x00\\x00\\x00\\t71\\x002\\x0018\\x00\\x00'\n04:42:56  INFO     ANSWER connectAck {}\n04:42:56  INFO     Connected to TWS.  Next order ID: 4440\n04:42:56  INFO     REQUEST reqAllOpenOrders {}\n04:42:56  INFO     SENDING reqAllOpenOrders b'\\x00\\x00\\x00\\x0516\\x001\\x00'\n04:42:57  INFO     REQUEST reqAllOpenOrders {}\n04:42:57  INFO     SENDING reqAllOpenOrders b'\\x00\\x00\\x00\\x0516\\x001\\x00'\n04:42:57  INFO     REQUEST reqPositions {}\n04:42:57  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'\n04:42:57  INFO     disconnecting\n04:42:57  WARNING  TWS connection closed.\nFEM LIVE BROKER RECONCILE 2026-07-10 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout_tail": "FEM LIVE BROKER RECONCILE 2026-07-13 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.py",
-      "finished_at": "2026-07-10T11:42:58+00:00",
+      "finished_at": "2026-07-13T00:44:38+00:00",
       "id": "live_readiness",
       "label": "Refresh live runtime readiness",
       "returncode": 0,
-      "started_at": "2026-07-10T11:42:57+00:00",
+      "started_at": "2026-07-13T00:44:34+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "live_readiness: overall=FAIL session=pre ok/warn/fail=5/2/2\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nNEXT: Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout_tail": "live_readiness: overall=WARN session=closed ok/warn/fail=6/3/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   ],
   "require_live_runtime": false,
   "schema": "fem_contract_premarket_trade_certification.v1",
-  "session_now": "pre",
+  "session_now": "closed",
   "source_files": {
     "broker_reconcile": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
     "contract_health": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_health.json",
@@ -334,11 +335,11 @@
     "checks": 18,
     "failures": 2,
     "gate_overall": "WARN",
-    "live_readiness_overall": "FAIL",
+    "live_readiness_overall": "WARN",
     "route_readiness_overall": "OK",
-    "warnings": 3
+    "warnings": 4
   },
-  "target_trade_date": "2026-07-10",
+  "target_trade_date": "2026-07-13",
   "trade_tomorrow": "NO",
   "verdict": "NO"
 }
