@@ -1,12 +1,12 @@
 {
   "broker_mode": "live",
   "dry_run": false,
-  "generated_at": "2026-07-13T01:34:45+00:00",
-  "generated_at_et": "2026-07-12T21:34:45-04:00",
+  "generated_at": "2026-07-13T11:26:46+00:00",
+  "generated_at_et": "2026-07-13T07:26:46-04:00",
   "morning_mode": "none",
-  "operator_read": "START_TRADING_DAY: NO. First blocker: unknown - unknown failure.",
+  "operator_read": "START_TRADING_DAY: STARTED_WITH_REVIEW. Session pre started, but final certificate says NO; review dashboard before trusting trades.",
   "schema": "fem_contract_start_trading_day.v1",
-  "session": "closed",
+  "session": "pre",
   "source_files": {
     "broker_reconcile": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
     "fem_swing_timesfm_loop": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8BD_FEM_SWING_TIMESFM_OVERLAY.bat",
@@ -16,18 +16,18 @@
     "premarket_certification": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json",
     "surge_micro_loop": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8A_SURGE_MICRO_PLAN.bat"
   },
-  "start_verdict": "NO",
-  "started_at": "2026-07-13T01:33:50+00:00",
+  "start_verdict": "STARTED_WITH_REVIEW",
+  "started_at": "2026-07-13T08:08:16+00:00",
   "steps": [
     {
-      "at": "2026-07-13T01:33:50+00:00",
+      "at": "2026-07-13T08:08:16+00:00",
       "detail": "TWS paper API port is reachable.",
       "id": "tws_paper",
       "label": "TWS paper port 7497",
       "status": "OK"
     },
     {
-      "at": "2026-07-13T01:33:50+00:00",
+      "at": "2026-07-13T08:08:16+00:00",
       "detail": "Skipped by --morning none.",
       "id": "morning_refresh",
       "label": "Morning refresh",
@@ -35,94 +35,101 @@
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.py --day 2026-07-13 --limit 180 --workers 12",
-      "detail": "returncode=0",
-      "finished_at": "2026-07-13T01:33:59+00:00",
+      "detail": "timeout after 180s",
+      "finished_at": "2026-07-13T11:25:36+00:00",
       "id": "daily_rsi_context",
       "label": "Daily RSI context",
-      "returncode": 0,
-      "started_at": "2026-07-13T01:33:50+00:00",
-      "status": "OK",
-      "stderr_tail": "",
-      "stdout_tail": "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_daily_rsi_context_2026-07-13.json\nday=2026-07-13 tickers=153 ok=151"
+      "returncode": 124,
+      "started_at": "2026-07-13T08:08:16+00:00",
+      "status": "FAIL",
+      "stderr_tail": "timeout",
+      "stdout_tail": "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_daily_rsi_context_2026-07-13.json\nday=2026-07-13 tickers=153 ok=151\n"
     },
     {
       "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-07-13 --broker-mode live",
       "detail": "returncode=0",
-      "finished_at": "2026-07-13T01:34:22+00:00",
+      "finished_at": "2026-07-13T11:25:59+00:00",
       "id": "pre_start_certification",
       "label": "Pre-start trade certification",
       "returncode": 0,
-      "started_at": "2026-07-13T01:33:59+00:00",
+      "started_at": "2026-07-13T11:25:36+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: NO. First blocker: NO_ALLOWED_ROUTES - No route is currently allowed to trade.\ntarget=2026-07-13 verdict=NO failures=2 warnings=3 allowed_routes=0 broker_mode=live\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- BLOCKER: Decide which route is allowed to trade; right now the bot has nothing permitted.\n- REVIEW: Live runtime readiness has warnings.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n- REVIEW: For the final morning check after the bot is running, rerun with --require-live-runtime.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-07-13.json"
+      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: NO. First blocker: NO_ALLOWED_ROUTES - No route is currently allowed to trade.\ntarget=2026-07-13 verdict=NO failures=2 warnings=3 allowed_routes=0 broker_mode=live\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- BLOCKER: Decide which route is allowed to trade; right now the bot has nothing permitted.\n- REVIEW: Before the final morning go/no-go, start 4_LIVE and 5_TRADE_BOT, then rerun with --require-live-runtime.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n- REVIEW: For the final morning check after the bot is running, rerun with --require-live-runtime.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-07-13.json"
     },
     {
-      "at": "2026-07-13T01:34:23+00:00",
+      "at": "2026-07-13T11:26:00+00:00",
       "detail": "Live support stack already appears to be running.",
       "id": "start_live_stack",
       "label": "Start live stack",
       "status": "OK"
     },
     {
-      "at": "2026-07-13T01:34:24+00:00",
-      "detail": "Market session is closed; Surge Micro loop was not started.",
+      "at": "2026-07-13T11:26:01+00:00",
+      "command": "start \"FEM SURGE MICRO PLAN\" \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8A_SURGE_MICRO_PLAN.bat\"",
+      "detail": "started 8A_SURGE_MICRO_PLAN.bat",
       "id": "start_surge_micro",
-      "label": "Start Surge Micro plan loop",
-      "session": "closed",
-      "status": "SKIPPED"
+      "label": "FEM SURGE MICRO PLAN",
+      "status": "OK"
     },
     {
-      "at": "2026-07-13T01:34:24+00:00",
-      "detail": "Market session is closed; Mustard shadow loop was not started.",
+      "at": "2026-07-13T11:26:01+00:00",
+      "command": "start \"FEM MUSTARD X SHADOW\" \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8BB_MUSTARD_X_SHADOW_LOOP.bat\"",
+      "detail": "started 8BB_MUSTARD_X_SHADOW_LOOP.bat",
       "id": "start_mustard_shadow",
-      "label": "Start Mustard X shadow loop",
-      "session": "closed",
-      "status": "SKIPPED"
+      "label": "FEM MUSTARD X SHADOW",
+      "status": "OK"
     },
     {
-      "at": "2026-07-13T01:34:25+00:00",
-      "detail": "Market session is closed; options context loop was not started.",
+      "at": "2026-07-13T11:26:02+00:00",
+      "detail": "Options context refresh loop already appears to be running.",
       "id": "start_options_context",
       "label": "Start Options Context refresh",
-      "session": "closed",
-      "status": "SKIPPED"
+      "session": "pre",
+      "status": "OK"
     },
     {
-      "at": "2026-07-13T01:34:26+00:00",
-      "detail": "Market session is closed; FEM Swing TimesFM shadow loop was not started.",
+      "at": "2026-07-13T11:26:03+00:00",
+      "command": "start \"FEM SWING TIMESFM SHADOW\" \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\8BD_FEM_SWING_TIMESFM_OVERLAY.bat\"",
+      "detail": "started 8BD_FEM_SWING_TIMESFM_OVERLAY.bat",
       "id": "start_fem_swing_timesfm",
-      "label": "Start FEM Swing TimesFM loop",
-      "session": "closed",
-      "status": "SKIPPED"
+      "label": "FEM SWING TIMESFM SHADOW",
+      "status": "OK"
     },
     {
-      "at": "2026-07-13T01:34:26+00:00",
-      "detail": "Market session is closed; no bot window started.",
-      "id": "start_trade_bot",
-      "label": "Start trade bot",
-      "session": "closed",
-      "status": "SKIPPED"
+      "at": "2026-07-13T11:26:04+00:00",
+      "command": "start \"FEM PREMARKET BOT\" \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\5A_TRADE_BOT_PRE.bat\"",
+      "detail": "started 5A_TRADE_BOT_PRE.bat",
+      "id": "start_window",
+      "label": "FEM PREMARKET BOT",
+      "status": "OK"
     },
     {
-      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-07-13 --broker-mode live",
+      "at": "2026-07-13T11:26:04+00:00",
+      "detail": "Waiting 20s for live windows to write heartbeat.",
+      "id": "warmup_wait",
+      "label": "Runtime warmup wait",
+      "status": "OK"
+    },
+    {
+      "command": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.py --date 2026-07-13 --broker-mode live --require-live-runtime",
       "detail": "returncode=0",
-      "finished_at": "2026-07-13T01:34:45+00:00",
+      "finished_at": "2026-07-13T11:26:46+00:00",
       "id": "final_certification",
       "label": "Final trade certification",
       "returncode": 0,
-      "started_at": "2026-07-13T01:34:26+00:00",
+      "started_at": "2026-07-13T11:26:24+00:00",
       "status": "OK",
       "stderr_tail": "",
-      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: NO. First blocker: NO_ALLOWED_ROUTES - No route is currently allowed to trade.\ntarget=2026-07-13 verdict=NO failures=2 warnings=3 allowed_routes=0 broker_mode=live\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- BLOCKER: Decide which route is allowed to trade; right now the bot has nothing permitted.\n- REVIEW: Live runtime readiness has warnings.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n- REVIEW: For the final morning check after the bot is running, rerun with --require-live-runtime.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-07-13.json"
+      "stdout_tail": "==============================================================================\nFEM PREMARKET TRADE CERTIFICATION\n==============================================================================\nTRADE_TOMORROW: NO. First blocker: NO_ALLOWED_ROUTES - No route is currently allowed to trade.\ntarget=2026-07-13 verdict=NO failures=2 warnings=3 allowed_routes=0 broker_mode=live\n\nNEXT ACTIONS\n- REVIEW: Review gate conformance warnings; stale weekend sources usually clear after morning refresh.\n- BLOCKER: Decide which route is allowed to trade; right now the bot has nothing permitted.\n- REVIEW: Live runtime readiness has warnings.\n- REVIEW: Contract health still has failures; certificate only hard-blocks live gate/order safety failures.\n\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_premarket_trade_certification.json\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_contract_premarket_trade_certification_2026-07-13.json"
     }
   ],
   "summary": {
-    "failures": 0,
+    "failures": 1,
     "final_certification_verdict": "NO",
     "pre_certification_verdict": "NO",
-    "steps": 11,
-    "warnings_or_skips": 6
+    "steps": 12,
+    "warnings_or_skips": 1
   },
   "target_trade_date": "2026-07-13",
   "trade_certification_verdict": "NO"
