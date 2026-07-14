@@ -9,8 +9,6 @@
     ],
     "bench": [],
     "block": [
-      "clock_long",
-      "clock_short",
       "daily_liquid_120",
       "delta_volume_context",
       "dilution_short",
@@ -20,7 +18,6 @@
       "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "meta_confluence",
-      "micro_clock_buy_zone",
       "moo_ticket",
       "options_context",
       "options_roundtrip_long",
@@ -28,11 +25,9 @@
       "runner_exit_decision",
       "scan_stage_drop_audit",
       "short_mid",
-      "stock_clock_shadow",
       "surge_probe",
       "timesfm_shadow",
       "upside_down_cow_short",
-      "value_area_fortress",
       "watchlist_gap_eat"
     ],
     "research_only": [],
@@ -42,6 +37,8 @@
       "bear_rejection_pending",
       "bull_bounce_pending",
       "channel_shelf_reclaim_swing",
+      "clock_long",
+      "clock_short",
       "daily_120_short",
       "daily_120_short_breakdown",
       "daily_120_short_gapdown_cont",
@@ -54,6 +51,7 @@
       "live_fire_gap_reclaim",
       "live_fire_reclaim",
       "live_fire_surge",
+      "micro_clock_buy_zone",
       "mustard_grind_long",
       "mustard_mixed_research",
       "mustard_reload",
@@ -66,7 +64,9 @@
       "short_universe_lower_high",
       "short_universe_vwap_reject",
       "state_lookup",
-      "surge_chase"
+      "stock_clock_shadow",
+      "surge_chase",
+      "value_area_fortress"
     ],
     "watch_only": [],
     "weights": {
@@ -123,7 +123,7 @@
       "clock_long": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -133,7 +133,7 @@
       "clock_short": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -353,7 +353,7 @@
       "micro_clock_buy_zone": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -563,7 +563,7 @@
       "stock_clock_shadow": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -643,7 +643,7 @@
       "value_area_fortress": {
         "allowed_to_trade": false,
         "panel_id": "value_area_fortress",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -995,7 +995,7 @@
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
       "permissions": {
-        "BLOCK": 4
+        "TRACK_ONLY": 4
       },
       "side": "LONG",
       "strategies": 4
@@ -1064,7 +1064,7 @@
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1081,8 +1081,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-14T18:25:50+00:00",
-  "generated_at_et": "2026-07-14T14:25:50-04:00",
+  "generated_at": "2026-07-14T18:50:30+00:00",
+  "generated_at_et": "2026-07-14T14:50:30-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1326,21 +1326,21 @@
     },
     "clock_long": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1356,14 +1356,14 @@
         "ghost_target_hit_rate": 30.32
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1372,21 +1372,21 @@
     },
     "clock_short": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1402,14 +1402,14 @@
         "ghost_target_hit_rate": 43.94
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1947,7 +1947,7 @@
         "actual_trades": 0,
         "ghost_avg_target_r": -1.0,
         "ghost_fires": 66,
-        "ghost_graded": 10,
+        "ghost_graded": 11,
         "ghost_run_rate": 0.0,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
@@ -2083,13 +2083,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9151,
-        "ghost_fires": 1495,
-        "ghost_graded": 1351,
-        "ghost_run_rate": 7.03,
+        "ghost_avg_target_r": -0.9162,
+        "ghost_fires": 1597,
+        "ghost_graded": 1463,
+        "ghost_run_rate": 6.7,
         "ghost_skip_avg_r": -0.9056,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 3.18
+        "ghost_target_hit_rate": 3.14
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2130,13 +2130,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9602,
-        "ghost_fires": 186,
-        "ghost_graded": 134,
-        "ghost_run_rate": 4.48,
+        "ghost_avg_target_r": -0.9697,
+        "ghost_fires": 211,
+        "ghost_graded": 176,
+        "ghost_run_rate": 3.41,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 1.49
+        "ghost_target_hit_rate": 1.14
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -2177,9 +2177,9 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -1.0,
-        "ghost_fires": 72,
-        "ghost_graded": 39,
-        "ghost_run_rate": 5.13,
+        "ghost_fires": 105,
+        "ghost_graded": 64,
+        "ghost_run_rate": 3.12,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": 0.0
@@ -2223,7 +2223,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.7949,
-        "ghost_fires": 13,
+        "ghost_fires": 14,
         "ghost_graded": 13,
         "ghost_run_rate": 15.38,
         "ghost_skip_avg_r": null,
@@ -2269,13 +2269,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.824,
-        "ghost_fires": 3241,
-        "ghost_graded": 2924,
-        "ghost_run_rate": 13.44,
+        "ghost_avg_target_r": -0.8349,
+        "ghost_fires": 3511,
+        "ghost_graded": 3182,
+        "ghost_run_rate": 12.7,
         "ghost_skip_avg_r": -0.4391,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 6.6
+        "ghost_target_hit_rate": 6.19
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2387,21 +2387,21 @@
     },
     "micro_clock_buy_zone": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2409,7 +2409,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 10,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2417,14 +2417,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2500,7 +2500,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": 0.0211,
-        "ghost_fires": 4378,
+        "ghost_fires": 4376,
         "ghost_graded": 4374,
         "ghost_run_rate": 81.71,
         "ghost_skip_avg_r": null,
@@ -2546,7 +2546,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": 0.0906,
-        "ghost_fires": 357,
+        "ghost_fires": 359,
         "ghost_graded": 321,
         "ghost_run_rate": 65.73,
         "ghost_skip_avg_r": null,
@@ -3377,21 +3377,21 @@
     },
     "stock_clock_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3399,7 +3399,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 43,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3407,14 +3407,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3444,13 +3444,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.824,
-        "ghost_fires": 3241,
-        "ghost_graded": 2924,
-        "ghost_run_rate": 13.44,
+        "ghost_avg_target_r": -0.8349,
+        "ghost_fires": 3511,
+        "ghost_graded": 3182,
+        "ghost_run_rate": 12.7,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 6.6
+        "ghost_target_hit_rate": 6.19
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3492,13 +3492,13 @@
         "actual_closed": 1,
         "actual_realized_pnl": 47.2,
         "actual_trades": 3,
-        "ghost_avg_target_r": 0.4666,
+        "ghost_avg_target_r": 0.277,
         "ghost_fires": 30,
-        "ghost_graded": 23,
-        "ghost_run_rate": 86.96,
+        "ghost_graded": 22,
+        "ghost_run_rate": 81.82,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 52.17
+        "ghost_target_hit_rate": 45.45
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -3606,9 +3606,9 @@
         "source_ok": true
       },
       "evidence": {
-        "actual_avg_r": -0.7983,
-        "actual_closed": 3,
-        "actual_realized_pnl": -127.53,
+        "actual_avg_r": -0.68,
+        "actual_closed": 4,
+        "actual_realized_pnl": -150.77,
         "actual_trades": 27,
         "ghost_avg_target_r": null,
         "ghost_fires": 0,
@@ -3824,21 +3824,21 @@
     },
     "value_area_fortress": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3854,14 +3854,14 @@
         "ghost_target_hit_rate": 3.83
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3916,20 +3916,6 @@
     }
   },
   "recommendations": [
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "clock_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "clock_short"
-    },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "daily_liquid_120",
@@ -3995,13 +3981,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "micro_clock_buy_zone"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "abook_moo",
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4051,13 +4030,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "stock_clock_shadow"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "surge_probe_shadow",
       "reason": "required score missing; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4076,13 +4048,6 @@
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "upside_down_cow_short"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "value_area_fortress",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "value_area_fortress"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4246,15 +4211,15 @@
     "allowed_short": 1,
     "allowed_to_trade": 4,
     "bench": 0,
-    "block": 25,
+    "block": 20,
     "ghost_good_skip_groups": 3,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 40,
     "permission_counts": {
       "ALLOW_PROBE": 4,
-      "BLOCK": 25,
-      "TRACK_ONLY": 30
+      "BLOCK": 20,
+      "TRACK_ONLY": 35
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4269,7 +4234,7 @@
       "UNTAGGED": 20
     },
     "strategies": 59,
-    "track_only": 30,
+    "track_only": 35,
     "watch_only": 0
   },
   "trade_date": "2026-07-14"
