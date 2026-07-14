@@ -4,6 +4,7 @@
       "code": "ORPHAN_EXIT_ORDERS",
       "detail": "Exit/protective orders are working while the broker position is flat.",
       "examples": [
+        "FLNC#4611:ORPHAN_EXIT_POSITION_FLAT",
         "CLSK#4651:ORPHAN_EXIT_POSITION_FLAT"
       ],
       "severity": "FAIL"
@@ -23,8 +24,8 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-14T17:15:46+00:00",
-  "generated_at_et": "2026-07-14T13:15:46-04:00",
+  "generated_at": "2026-07-14T17:20:14+00:00",
+  "generated_at_et": "2026-07-14T13:20:14-04:00",
   "inputs": {
     "exit_intent_rows": 40,
     "order_strategy_rows": 30,
@@ -83,61 +84,13 @@
     },
     {
       "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": null,
-      "exit_intent": "STOP_QTY_SYNC",
-      "exit_strategy_id": "surge_watch_probe",
-      "limit_price": null,
-      "oca_group": "",
-      "order_id": "4609",
-      "order_type": "STP",
-      "parent_id": "0",
-      "position_qty": 93.0,
-      "quantity": 93.0,
-      "raw": {
-        "action": "SELL",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 0.0,
-        "oca_group": "",
-        "order_id": 4609,
-        "order_ref": "",
-        "order_type": "STP",
-        "outside_rth": false,
-        "parent_id": 0,
-        "perm_id": 327926166,
-        "quantity": 93.0,
-        "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 15.3,
-        "symbol": "FLNC",
-        "tif": "DAY",
-        "trail_stop_price": 15.3,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": 15.3,
-      "symbol": "FLNC"
-    },
-    {
-      "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
       "exit_intent": "MISSING_TARGET_REPAIR",
       "exit_strategy_id": "surge_watch_probe",
@@ -146,7 +99,7 @@
       "order_id": "4611",
       "order_type": "LMT",
       "parent_id": "0",
-      "position_qty": 93.0,
+      "position_qty": 0.0,
       "quantity": 65.0,
       "raw": {
         "action": "SELL",
@@ -172,7 +125,7 @@
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
+      "severity": "FAIL",
       "status": "Submitted",
       "stop_price": null,
       "symbol": "FLNC"
@@ -898,7 +851,7 @@
       "symbol": "CRWD"
     }
   ],
-  "operator_read": "Order safety is FAIL: 1 orphan exit order(s). Mode is AUDIT_ONLY; cancelled 0. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 2 orphan exit order(s). Mode is AUDIT_ONLY; cancelled 0. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
@@ -953,25 +906,6 @@
       "symbol": "CRWD",
       "target_orders": [
         "4655"
-      ]
-    },
-    {
-      "avg_cost": 15.9307557,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "4609"
-      ],
-      "qty": 93.0,
-      "related_exit_orders": [
-        "4609",
-        "4611"
-      ],
-      "severity": "OK",
-      "side": "LONG",
-      "symbol": "FLNC",
-      "target_orders": [
-        "4611"
       ]
     },
     {
@@ -1074,22 +1008,22 @@
   "session": "rth",
   "summary": {
     "breach_codes": {
-      "ORPHAN_EXIT_POSITION_FLAT": 1
+      "ORPHAN_EXIT_POSITION_FLAT": 2
     },
     "broker_connected": true,
-    "cancel_candidates": 1,
+    "cancel_candidates": 2,
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 18,
-    "order_fail": 1,
-    "order_ok": 17,
+    "open_orders": 17,
+    "order_fail": 2,
+    "order_ok": 15,
     "order_warn": 0,
-    "orphan_exit_orders": 1,
+    "orphan_exit_orders": 2,
     "position_fail": 0,
-    "position_ok": 9,
+    "position_ok": 8,
     "position_warn": 0,
-    "positions": 9,
+    "positions": 8,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-14"
