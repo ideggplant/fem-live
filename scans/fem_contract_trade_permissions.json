@@ -1,7 +1,12 @@
 {
   "bot_route_manifest": {
     "allow_full": [],
-    "allow_probe": [],
+    "allow_probe": [
+      "sma_reclaim_long",
+      "surge_micro_scout",
+      "surge_watch_probe",
+      "trapped_short"
+    ],
     "bench": [],
     "block": [
       "all_time_high_long",
@@ -30,9 +35,7 @@
       "short_universe_grade",
       "stock_clock_shadow",
       "surge_probe",
-      "surge_watch_probe",
       "timesfm_shadow",
-      "trapped_short",
       "upside_down_cow_short",
       "value_area_fortress",
       "watchlist_gap_eat"
@@ -62,10 +65,8 @@
       "short_universe_gapdown_cont",
       "short_universe_lower_high",
       "short_universe_vwap_reject",
-      "sma_reclaim_long",
       "state_lookup",
-      "surge_chase",
-      "surge_micro_scout"
+      "surge_chase"
     ],
     "watch_only": [],
     "weights": {
@@ -540,11 +541,11 @@
         "side": "SHORT"
       },
       "sma_reclaim_long": {
-        "allowed_to_trade": false,
+        "allowed_to_trade": true,
         "panel_id": "sma_reclaim",
-        "permission": "TRACK_ONLY",
-        "risk_multiplier": 0.0,
-        "route_weight": 0.0,
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
         "side": "LONG"
@@ -580,11 +581,11 @@
         "side": "LONG"
       },
       "surge_micro_scout": {
-        "allowed_to_trade": false,
+        "allowed_to_trade": true,
         "panel_id": "surge_micro",
-        "permission": "TRACK_ONLY",
-        "risk_multiplier": 0.0,
-        "route_weight": 0.0,
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
         "side": "LONG"
@@ -600,11 +601,11 @@
         "side": "LONG"
       },
       "surge_watch_probe": {
-        "allowed_to_trade": false,
+        "allowed_to_trade": true,
         "panel_id": "surge_micro",
-        "permission": "BLOCK",
-        "risk_multiplier": 0.0,
-        "route_weight": 0.0,
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
         "score_consumer_locked": true,
         "score_partition": "UNTAGGED",
         "side": "LONG"
@@ -620,11 +621,11 @@
         "side": "MIXED"
       },
       "trapped_short": {
-        "allowed_to_trade": false,
+        "allowed_to_trade": true,
         "panel_id": "state_lookup",
-        "permission": "BLOCK",
-        "risk_multiplier": 0.0,
-        "route_weight": 0.0,
+        "permission": "ALLOW_PROBE",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
         "score_consumer_locked": true,
         "score_partition": "UNTAGGED",
         "side": "SHORT"
@@ -961,23 +962,27 @@
       "strategies": 1
     },
     "sma_reclaim": {
-      "allowed_strategies": [],
-      "max_route_weight": 0.0,
+      "allowed_strategies": [
+        "sma_reclaim_long"
+      ],
+      "max_route_weight": 0.25,
       "panel_id": "sma_reclaim",
       "panel_name": "SMA Reclaim",
       "permissions": {
-        "TRACK_ONLY": 1
+        "ALLOW_PROBE": 1
       },
       "side": "LONG",
       "strategies": 1
     },
     "state_lookup": {
-      "allowed_strategies": [],
-      "max_route_weight": 0.0,
+      "allowed_strategies": [
+        "trapped_short"
+      ],
+      "max_route_weight": 0.25,
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
       "permissions": {
-        "BLOCK": 1,
+        "ALLOW_PROBE": 1,
         "TRACK_ONLY": 3
       },
       "side": "SHORT",
@@ -995,13 +1000,15 @@
       "strategies": 4
     },
     "surge_micro": {
-      "allowed_strategies": [],
-      "max_route_weight": 0.0,
+      "allowed_strategies": [
+        "surge_micro_scout",
+        "surge_watch_probe"
+      ],
+      "max_route_weight": 0.25,
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permissions": {
-        "BLOCK": 1,
-        "TRACK_ONLY": 1
+        "ALLOW_PROBE": 2
       },
       "side": "LONG",
       "strategies": 2
@@ -1073,8 +1080,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-14T10:41:18+00:00",
-  "generated_at_et": "2026-07-14T06:41:18-04:00",
+  "generated_at": "2026-07-14T10:56:41+00:00",
+  "generated_at_et": "2026-07-14T06:56:41-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -3250,8 +3257,8 @@
       "strategy_id": "short_universe_vwap_reject"
     },
     "sma_reclaim_long": {
-      "allowed_to_trade": false,
-      "confidence": "SCORE_CONSUMER_LOCK",
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
@@ -3259,10 +3266,12 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
+        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
+        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
         "source_ok": true
@@ -3281,17 +3290,40 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "route_policy_override:ALLOW_PROBE",
+        "explicit_operator_probe_score_lock_escape"
       ],
       "panel_id": "sma_reclaim",
       "panel_name": "SMA Reclaim",
-      "permission": "TRACK_ONLY",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-14",
+        "guardrails": [
+          "Only today's sma_reclaim_today.json signals may use this route.",
+          "Existing fem_auto_trade no-chase, stop geometry, liquidity, dilution, gap, and freshness gates still apply.",
+          "Route is a probe only; review after today or after at least 20 routed attempts."
+        ],
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "SCORE_CONSUMER_LOCK",
+          "permission": "TRACK_ONLY",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Jul14 Gill approved today-only SMA reclaim probe as a narrow long route beside surge micro."
+      },
       "reasons": [
+        "operator route policy override: Jul14 Gill approved today-only SMA reclaim probe as a narrow long route beside surge micro.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 0.0,
-      "route_weight": 0.0,
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
       "side": "LONG",
       "strategy_id": "sma_reclaim_long"
     },
@@ -3434,8 +3466,8 @@
       "strategy_id": "surge_chase"
     },
     "surge_micro_scout": {
-      "allowed_to_trade": false,
-      "confidence": "SCORE_CONSUMER_LOCK",
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
@@ -3443,10 +3475,12 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
+        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
+        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
         "source_ok": true
@@ -3465,17 +3499,40 @@
         "ghost_target_hit_rate": 0.0
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "route_policy_override:ALLOW_PROBE",
+        "explicit_operator_probe_score_lock_escape"
       ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
-      "permission": "TRACK_ONLY",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-14",
+        "guardrails": [
+          "Existing fem_auto_trade surge micro sizing still applies.",
+          "Existing overhead-gap and clear-highway filters still apply.",
+          "Review after the expiry date or after at least 20 routed attempts."
+        ],
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "SCORE_CONSUMER_LOCK",
+          "permission": "TRACK_ONLY",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Jul14 Gill approved today-only live probe for surge micro after overhead-gap, liquidity, stale-pullback, RSI, dilution, and sizing gates."
+      },
       "reasons": [
+        "operator route policy override: Jul14 Gill approved today-only live probe for surge micro after overhead-gap, liquidity, stale-pullback, RSI, dilution, and sizing gates.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 0.0,
-      "route_weight": 0.0,
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
       "side": "LONG",
       "strategy_id": "surge_micro_scout"
     },
@@ -3527,8 +3584,8 @@
       "strategy_id": "surge_probe"
     },
     "surge_watch_probe": {
-      "allowed_to_trade": false,
-      "confidence": "SCORE_CONSUMER_LOCK",
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
@@ -3536,10 +3593,12 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
+        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "UNTAGGED",
         "source_ok": true
@@ -3558,17 +3617,42 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED"
+        "score_consumer_lock:UNTAGGED",
+        "route_policy_override:ALLOW_PROBE",
+        "explicit_operator_probe_score_lock_escape"
       ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
-      "permission": "BLOCK",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-14",
+        "guardrails": [
+          "Separate strategy id; do not merge with surge_micro_scout performance.",
+          "Bot caps this lane at 1 new entry per pass and 5 per day.",
+          "Only first-hour WATCH_ONLY rows with score, relative-volume, risk-on, and reachable target checks can enter.",
+          "Review after expiry or after at least 20 routed attempts.",
+          "Code-level surge watch sizing is $75 risk; broker/position/liquidity caps still control final shares."
+        ],
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "SCORE_CONSUMER_LOCK",
+          "permission": "BLOCK",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Jul14 Gill approved today-only watch-probe lane so strong first-hour surge-watch candidates can route with existing bot caps and gates."
+      },
       "reasons": [
+        "operator route policy override: Jul14 Gill approved today-only watch-probe lane so strong first-hour surge-watch candidates can route with existing bot caps and gates.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 0.0,
-      "route_weight": 0.0,
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
       "side": "LONG",
       "strategy_id": "surge_watch_probe"
     },
@@ -3619,8 +3703,8 @@
       "strategy_id": "timesfm_shadow"
     },
     "trapped_short": {
-      "allowed_to_trade": false,
-      "confidence": "SCORE_CONSUMER_LOCK",
+      "allowed_to_trade": true,
+      "confidence": "POLICY_OVERRIDE",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
@@ -3628,10 +3712,12 @@
         "health_overall": "FAIL",
         "normal_score_eligible": false,
         "panel_status": "OK",
+        "policy_override": true,
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_lock_escape": "EXPLICIT_OPERATOR_PROBE",
         "score_ok": true,
         "score_partition": "UNTAGGED",
         "source_ok": true
@@ -3650,17 +3736,42 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED"
+        "score_consumer_lock:UNTAGGED",
+        "route_policy_override:ALLOW_PROBE",
+        "explicit_operator_probe_score_lock_escape"
       ],
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
-      "permission": "BLOCK",
+      "permission": "ALLOW_PROBE",
+      "policy_override": {
+        "applied": true,
+        "expires_et": "2026-07-14",
+        "guardrails": [
+          "Only State Lookup BEAR_REJECTION_CONFIRMED may use this route.",
+          "Do not route BEAR_REJECTION_PENDING through trapped_short.",
+          "Do not open gap_reject_short, live_fire_dump, dump_short, or broad short_universe from this override.",
+          "Existing borrowability, position cap, giveback guard, and broker safety checks still apply.",
+          "Review after expiry or after at least 20 routed attempts."
+        ],
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "previous": {
+          "allowed_to_trade": false,
+          "confidence": "SCORE_CONSUMER_LOCK",
+          "permission": "BLOCK",
+          "risk_multiplier": 0.0,
+          "route_weight": 0.0
+        },
+        "reason": "Jul14 Gill approved short-market preparedness. Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate. Keep narrow; do not open broad short screens."
+      },
       "reasons": [
+        "operator route policy override: Jul14 Gill approved short-market preparedness. Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate. Keep narrow; do not open broad short screens.",
         "system health was FAIL at build; bot runtime health gate still enforces entries",
         "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
-      "risk_multiplier": 0.0,
-      "route_weight": 0.0,
+      "risk_multiplier": 0.25,
+      "route_weight": 0.25,
       "side": "SHORT",
       "strategy_id": "trapped_short"
     },
@@ -3987,13 +4098,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "surge_micro",
-      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
-      "side": "LONG",
-      "strategy_id": "surge_watch_probe"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "timesfm_shadow",
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
@@ -4001,17 +4105,24 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "state_lookup",
-      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
-      "side": "SHORT",
-      "strategy_id": "trapped_short"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "upside_down_cow",
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "upside_down_cow_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "value_area_fortress",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "LONG",
+      "strategy_id": "value_area_fortress"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "watchlist_gap_eat",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "LONG",
+      "strategy_id": "watchlist_gap_eat"
     }
   ],
   "route_policy": {
@@ -4067,52 +4178,68 @@
         "status": "EXPIRED",
         "strategy_id": "short_genesis"
       },
-      "surge_micro_scout": {
-        "active": false,
+      "sma_reclaim_long": {
+        "active": true,
         "allowed_to_trade": true,
-        "applied": false,
+        "applied": true,
         "blocked_by_health": false,
         "errors": [],
-        "expires_et": "2026-07-02",
+        "expires_et": "2026-07-14",
         "max_risk_dollars": 75.0,
         "operator_approved_probe": true,
         "permission": "ALLOW_PROBE",
-        "reason": "Explicit tiny live probe for surge micro after overhead-gap, liquidity, stale-pullback, and sizing gates.",
+        "reason": "Jul14 Gill approved today-only SMA reclaim probe as a narrow long route beside surge micro.",
         "risk_multiplier": 0.25,
         "route_weight": 0.25,
-        "status": "EXPIRED",
+        "status": "APPLIED",
+        "strategy_id": "sma_reclaim_long"
+      },
+      "surge_micro_scout": {
+        "active": true,
+        "allowed_to_trade": true,
+        "applied": true,
+        "blocked_by_health": false,
+        "errors": [],
+        "expires_et": "2026-07-14",
+        "max_risk_dollars": 75.0,
+        "operator_approved_probe": true,
+        "permission": "ALLOW_PROBE",
+        "reason": "Jul14 Gill approved today-only live probe for surge micro after overhead-gap, liquidity, stale-pullback, RSI, dilution, and sizing gates.",
+        "risk_multiplier": 0.25,
+        "route_weight": 0.25,
+        "status": "APPLIED",
         "strategy_id": "surge_micro_scout"
       },
       "surge_watch_probe": {
-        "active": false,
+        "active": true,
         "allowed_to_trade": true,
-        "applied": false,
+        "applied": true,
         "blocked_by_health": false,
         "errors": [],
-        "expires_et": "2026-07-07",
+        "expires_et": "2026-07-14",
         "max_risk_dollars": 75.0,
         "operator_approved_probe": true,
         "permission": "ALLOW_PROBE",
-        "reason": "Jul02: align route policy with fem_auto_trade $75 watch-probe risk so valid probes are not reduced to toy size.",
+        "reason": "Jul14 Gill approved today-only watch-probe lane so strong first-hour surge-watch candidates can route with existing bot caps and gates.",
         "risk_multiplier": 0.25,
         "route_weight": 0.25,
-        "status": "EXPIRED",
+        "status": "APPLIED",
         "strategy_id": "surge_watch_probe"
       },
       "trapped_short": {
-        "active": false,
+        "active": true,
         "allowed_to_trade": true,
-        "applied": false,
+        "applied": true,
         "blocked_by_health": false,
         "errors": [],
-        "expires_et": "2026-07-07",
+        "expires_et": "2026-07-14",
         "max_risk_dollars": 75.0,
         "operator_approved_probe": true,
         "permission": "ALLOW_PROBE",
-        "reason": "Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate.",
+        "reason": "Jul14 Gill approved short-market preparedness. Best actual short performer: State Lookup BEAR_REJECTION_CONFIRMED / trapped_short, +$765.37 over 68 closed slices, 60.3% win rate. Keep narrow; do not open broad short screens.",
         "risk_multiplier": 0.25,
         "route_weight": 0.25,
-        "status": "EXPIRED",
+        "status": "APPLIED",
         "strategy_id": "trapped_short"
       },
       "upside_down_cow_short": {
@@ -4135,37 +4262,38 @@
     "policy_schema": "fem_contract_route_policy.v1",
     "schema": "fem_contract_route_policy_application.v1",
     "summary": {
-      "applied": 0,
+      "applied": 4,
       "disabled": 0,
-      "expired": 7,
+      "expired": 4,
       "health_blocked": 0,
       "invalid": 0,
-      "overrides": 7
+      "overrides": 8
     },
     "trade_date": "2026-07-14"
   },
   "schema": "fem_contract_trade_permissions.v1",
   "summary": {
     "allow_full": 0,
-    "allow_probe": 0,
-    "allowed_long": 0,
-    "allowed_short": 0,
-    "allowed_to_trade": 0,
+    "allow_probe": 4,
+    "allowed_long": 3,
+    "allowed_short": 1,
+    "allowed_to_trade": 4,
     "bench": 0,
-    "block": 32,
+    "block": 30,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 39,
     "permission_counts": {
-      "BLOCK": 32,
-      "TRACK_ONLY": 27
+      "ALLOW_PROBE": 4,
+      "BLOCK": 30,
+      "TRACK_ONLY": 25
     },
     "registry_overall": "FAIL",
     "research_only": 0,
-    "route_policy_applied": 0,
+    "route_policy_applied": 4,
     "route_policy_invalid": 0,
-    "route_policy_overrides": 7,
+    "route_policy_overrides": 8,
     "score_consumer_allowed": 0,
     "score_consumer_lock_overall": "WARN",
     "score_consumer_locked": 59,
@@ -4174,7 +4302,7 @@
       "UNTAGGED": 20
     },
     "strategies": 59,
-    "track_only": 27,
+    "track_only": 25,
     "watch_only": 0
   },
   "trade_date": "2026-07-14"
