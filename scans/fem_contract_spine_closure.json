@@ -7,9 +7,9 @@
   "blocking_normal_scoring_gates": [
     "ARTIFACTS_FRESH",
     "CONTRACT_ERRORS_CLEAR",
+    "DECISION_ACCOUNTING_CLEAN",
     "EVIDENCE_NORMAL_ALLOWED",
-    "BOT_ENFORCEMENT_ON",
-    "ROUTE_POLICY_CLEAN"
+    "BOT_ENFORCEMENT_ON"
   ],
   "code_version": "unknown",
   "gates": [
@@ -17,18 +17,16 @@
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Contract source refresh report: stale during rth: 782972s old, limit 2700s",
-        "FAIL Contract strategy resolver: stale during rth: 49655s old, limit 2700s",
-        "FAIL Contract strategy backfill closure: stale during rth: 260704s old, limit 2700s",
-        "FAIL Contract strategy registry enforcement: stale during rth: 260703s old, limit 2700s",
-        "FAIL Contract daily spine certification: stale during rth: 49663s old, limit 2700s",
-        "FAIL Contract promotion/demotion gate: stale during rth: 49662s old, limit 2700s",
-        "FAIL Contract live trust recovery: stale during rth: 49662s old, limit 2700s",
-        "FAIL Contract live trust executor: stale during rth: 260708s old, limit 2700s",
-        "FAIL Contract AI learning hypothesis ledger: stale during rth: 49661s old, limit 2700s",
-        "FAIL Contract auction truth shadow score: stale during rth: 260689s old, limit 2700s"
+        "WARN Contract source refresh report: stale during rth: 88846s old, limit 2700s",
+        "FAIL Contract strategy backfill closure: stale during rth: 88687s old, limit 2700s",
+        "FAIL Contract strategy registry enforcement: stale during rth: 88687s old, limit 2700s",
+        "FAIL Contract daily spine certification: stale during rth: 45806s old, limit 2700s",
+        "FAIL Contract promotion/demotion gate: stale during rth: 45805s old, limit 2700s",
+        "FAIL Contract live trust recovery: stale during rth: 45805s old, limit 2700s",
+        "FAIL Contract live trust executor: stale during rth: 45805s old, limit 2700s",
+        "FAIL Contract auction truth shadow score: stale during rth: 88681s old, limit 2700s"
       ],
-      "evidence_count": 10,
+      "evidence_count": 8,
       "gate_id": "ARTIFACTS_FRESH",
       "label": "Contract artifacts are fresh",
       "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -41,7 +39,7 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
-        "FAIL Panel registry contract failures: 12 active panel registry failure(s)"
+        "FAIL Panel registry contract failures: 2 active panel registry failure(s)"
       ],
       "evidence_count": 1,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -56,14 +54,12 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Bot status feed: stale during rth: 52586s old, limit 720s",
-        "FAIL Runtime processes: trading bot process not detected during tradable session",
-        "FAIL Required runtime process missing: 3 required runtime role(s) missing during rth",
-        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=0/3/6, bot_mode=AH_FLATTENED, positions=0",
+        "FAIL Runtime process restart required: 1 runtime role(s) started before watched code changed; restart_queue=1",
+        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=6/2/1, bot_mode=TRIGGER_LIVE, positions=0",
         "FAIL Runtime drift overall:",
         "FAIL Live readiness overall:"
       ],
-      "evidence_count": 6,
+      "evidence_count": 4,
       "gate_id": "RUNTIME_READY",
       "label": "Live/bot runtime matches disk code",
       "next_action": "Restart stale/missing runtime windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
@@ -89,18 +85,20 @@
     },
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": false,
+      "blocking_normal_scoring": true,
       "evidence": [
-        "No decision-accounting gaps are visible."
+        "WARN Allowed bot route readiness warnings: 2 allowed route readiness warning(s); bot_silent=2, stale_source=0, source_missing=0",
+        "WARN Inferred duplicate/pending pick accounting: inferred_duplicate_needs_explicit=0, pending_new=11",
+        "WARN Decision obligation timestamp ordering warnings: 74 accounted pick(s) had accounting timestamps earlier than pick timestamps"
       ],
-      "evidence_count": 1,
+      "evidence_count": 3,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
-      "next_action": "No action required.",
+      "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
       "priority": 50,
-      "severity": "OK",
+      "severity": "WARN",
       "source": "decision obligation/live-fire/latency reports",
-      "status": "CLOSED"
+      "status": "REVIEW"
     },
     {
       "blocking_live_trading": false,
@@ -108,14 +106,13 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=108157, review=0",
-        "SCORE_CONSUMER_LOCK_ACTIVE: 53 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=44, track_only=9",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=111008, review=0",
+        "SCORE_CONSUMER_LOCK_ACTIVE: 59 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
-      "evidence_count": 8,
+      "evidence_count": 7,
       "gate_id": "EVIDENCE_NORMAL_ALLOWED",
       "label": "Evidence can enter normal scoring",
       "next_action": "Keep this session quarantined as EXPERIMENT until the listed blockers clear.",
@@ -145,22 +142,22 @@
     },
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": true,
+      "blocking_normal_scoring": false,
       "evidence": [
         "route_policy_enabled=True",
         "route_policy_invalid=0",
-        "allowed_to_trade=0",
+        "allowed_to_trade=4",
         "allow_full=0",
-        "allow_probe=0"
+        "allow_probe=4"
       ],
       "evidence_count": 5,
       "gate_id": "ROUTE_POLICY_CLEAN",
       "label": "Route policy and trade permissions are unambiguous",
-      "next_action": "Run _DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat and _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat; inspect invalid/blocked routes.",
+      "next_action": "No action required.",
       "priority": 80,
-      "severity": "WARN",
+      "severity": "OK",
       "source": "fem_contract_route_policy.json + fem_contract_trade_permissions.json",
-      "status": "REVIEW"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": false,
@@ -198,24 +195,22 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-07-11T14:31:44+00:00",
-  "generated_at_et": "2026-07-11T10:31:44-04:00",
+  "generated_at": "2026-07-14T13:52:24+00:00",
+  "generated_at_et": "2026-07-14T09:52:24-04:00",
   "next_gate": {
     "blocking_live_trading": false,
     "blocking_normal_scoring": true,
     "evidence": [
-      "WARN Contract source refresh report: stale during rth: 782972s old, limit 2700s",
-      "FAIL Contract strategy resolver: stale during rth: 49655s old, limit 2700s",
-      "FAIL Contract strategy backfill closure: stale during rth: 260704s old, limit 2700s",
-      "FAIL Contract strategy registry enforcement: stale during rth: 260703s old, limit 2700s",
-      "FAIL Contract daily spine certification: stale during rth: 49663s old, limit 2700s",
-      "FAIL Contract promotion/demotion gate: stale during rth: 49662s old, limit 2700s",
-      "FAIL Contract live trust recovery: stale during rth: 49662s old, limit 2700s",
-      "FAIL Contract live trust executor: stale during rth: 260708s old, limit 2700s",
-      "FAIL Contract AI learning hypothesis ledger: stale during rth: 49661s old, limit 2700s",
-      "FAIL Contract auction truth shadow score: stale during rth: 260689s old, limit 2700s"
+      "WARN Contract source refresh report: stale during rth: 88846s old, limit 2700s",
+      "FAIL Contract strategy backfill closure: stale during rth: 88687s old, limit 2700s",
+      "FAIL Contract strategy registry enforcement: stale during rth: 88687s old, limit 2700s",
+      "FAIL Contract daily spine certification: stale during rth: 45806s old, limit 2700s",
+      "FAIL Contract promotion/demotion gate: stale during rth: 45805s old, limit 2700s",
+      "FAIL Contract live trust recovery: stale during rth: 45805s old, limit 2700s",
+      "FAIL Contract live trust executor: stale during rth: 45805s old, limit 2700s",
+      "FAIL Contract auction truth shadow score: stale during rth: 88681s old, limit 2700s"
     ],
-    "evidence_count": 10,
+    "evidence_count": 8,
     "gate_id": "ARTIFACTS_FRESH",
     "label": "Contract artifacts are fresh",
     "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
@@ -246,5 +241,5 @@
     "remediation_plan_overall": "FAIL",
     "review_gates": 1
   },
-  "trade_date": "2026-07-11"
+  "trade_date": "2026-07-14"
 }
