@@ -1,54 +1,100 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-07-13T21:06:41-04:00",
+ "generated_at": "2026-07-13T21:14:45-04:00",
  "trade_date": "2026-07-13",
- "staircase_source": "fem_gap_eat_staircase_long_2026-07-13.json",
- "staircase_is_today": true,
+ "staircase_source": "fem_gap_grind_lane.json",
+ "staircase_is_today": false,
+ "historical_authority": {
+  "mode": "INTRADAY_BAR_REPLAY",
+  "source": "fem_gap_grind_lane",
+  "strict_rule": "strict_v2",
+  "supersedes_end_of_day_snapshot": true,
+  "replay_generated_at": "2026-07-14T01:14:45.371192+00:00",
+  "candidate_count": 3,
+  "trigger_count": 0,
+  "graded_paths": 0
+ },
  "spec": "eat -> accept x2(10m) -> road>=2% -> vol>=1.5x -> rsi>55 rising + ema23 -> fresh floors below",
  "counts": {
-  "WATCHING": 3,
-  "NO_GAP_MAP": 1
+  "ACCEPTED_WAITING": 1,
+  "WATCHING": 2
  },
  "condition_blockers": {
-  "1_eaten": 3,
-  "2_accepted": 3,
-  "4_volume": 2,
-  "5_momentum": 3,
-  "6_floors": 3
+  "4_volume": 3,
+  "6_floors": 3,
+  "2_accepted": 2,
+  "1_eaten": 1,
+  "5_momentum": 1
  },
  "rows": [
   {
    "ticker": "SRXH",
-   "score": 68,
+   "score": null,
    "gap_top": 2.605,
    "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
+    "1_eaten": true,
+    "2_accepted": true,
     "3_road": true,
     "4_volume": false,
-    "5_momentum": false,
+    "5_momentum": true,
     "6_floors": false
    },
-   "state": "WATCHING",
+   "state": "ACCEPTED_WAITING",
    "plan": null,
-   "road_pct": null,
-   "relvol": 0.1,
-   "rsi": 48.8,
+   "road_pct": 8.92,
+   "relvol": 0.713,
+   "rsi": 62.64,
    "floors": [],
    "blockers": [
-    "1_eaten",
-    "2_accepted",
     "4_volume",
-    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
+   "conditions_met": 4,
+   "intraday_trigger": null,
+   "source_counterfactual": {
+    "graded_r": 2.0,
+    "outcome": "TARGET",
+    "pick_id": "2026-07-13:live_fire_gap_eat:SRXH:LONG:2.48",
+    "rejection_reason": "GAP_LANE_DAILY_CAP"
+   }
   },
   {
    "ticker": "CCC",
-   "score": 63,
-   "gap_top": 6.59,
+   "score": null,
+   "gap_top": 6.15,
+   "conditions": {
+    "1_eaten": true,
+    "2_accepted": false,
+    "3_road": true,
+    "4_volume": false,
+    "5_momentum": true,
+    "6_floors": false
+   },
+   "state": "WATCHING",
+   "plan": null,
+   "road_pct": 12.17,
+   "relvol": 0.002,
+   "rsi": 55.33,
+   "floors": [],
+   "blockers": [
+    "2_accepted",
+    "4_volume",
+    "6_floors"
+   ],
+   "conditions_met": 3,
+   "intraday_trigger": null,
+   "source_counterfactual": {
+    "graded_r": null,
+    "outcome": null,
+    "pick_id": "2026-07-13:live_fire_gap_eat:CCC:LONG:6.22",
+    "rejection_reason": "STALE_FIRE"
+   }
+  },
+  {
+   "ticker": "OSCR",
+   "score": null,
+   "gap_top": 31.6,
    "conditions": {
     "1_eaten": false,
     "2_accepted": false,
@@ -59,9 +105,9 @@
    },
    "state": "WATCHING",
    "plan": null,
-   "road_pct": null,
-   "relvol": 0.32,
-   "rsi": 18.7,
+   "road_pct": 4.45,
+   "relvol": 0.022,
+   "rsi": 28.03,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -70,41 +116,61 @@
     "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
-  },
-  {
-   "ticker": "OSCR",
-   "score": 63,
-   "gap_top": 32.56,
-   "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
-    "3_road": true,
-    "4_volume": true,
-    "5_momentum": false,
-    "6_floors": false
-   },
-   "state": "WATCHING",
-   "plan": null,
-   "road_pct": null,
-   "relvol": 10.05,
-   "rsi": 69.1,
-   "floors": [],
-   "blockers": [
-    "1_eaten",
-    "2_accepted",
-    "5_momentum",
-    "6_floors"
-   ],
-   "conditions_met": 2
-  },
-  {
-   "ticker": "SLGB",
-   "score": 54,
-   "gap_top": null,
-   "conditions": {},
-   "state": "NO_GAP_MAP",
-   "plan": null
+   "conditions_met": 1,
+   "intraday_trigger": null,
+   "source_counterfactual": {
+    "graded_r": null,
+    "outcome": null,
+    "pick_id": "2026-07-13:live_fire_gap_eat:OSCR:LONG:31.57",
+    "rejection_reason": "STALE_FIRE"
+   }
   }
- ]
+ ],
+ "intraday_replay_summary": {
+  "grind_lane": {
+   "avg_max_pullback_pct": 1.168,
+   "avg_mfe_pct": 0.095,
+   "controlled_grinds": 0,
+   "graded_paths": 1,
+   "positive_final_pct": 0,
+   "signals": 3,
+   "triggered": 1
+  },
+  "strict_v2": {
+   "avg_max_pullback_pct": null,
+   "avg_mfe_pct": null,
+   "controlled_grinds": 0,
+   "graded_paths": 0,
+   "positive_final_pct": 0,
+   "signals": 3,
+   "triggered": 0
+  },
+  "without_floors": {
+   "avg_max_pullback_pct": 3.497,
+   "avg_mfe_pct": 0.863,
+   "controlled_grinds": 0,
+   "graded_paths": 1,
+   "positive_final_pct": 0,
+   "signals": 3,
+   "triggered": 1
+  },
+  "without_momentum": {
+   "avg_max_pullback_pct": null,
+   "avg_mfe_pct": null,
+   "controlled_grinds": 0,
+   "graded_paths": 0,
+   "positive_final_pct": 0,
+   "signals": 3,
+   "triggered": 0
+  },
+  "without_volume": {
+   "avg_max_pullback_pct": null,
+   "avg_mfe_pct": null,
+   "controlled_grinds": 0,
+   "graded_paths": 0,
+   "positive_final_pct": 0,
+   "signals": 3,
+   "triggered": 0
+  }
+ }
 }
