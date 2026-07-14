@@ -9,7 +9,6 @@
       "dilution_short",
       "dump_short",
       "gap_eat",
-      "gap_eat_trigger",
       "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "meta_confluence",
@@ -43,6 +42,7 @@
       "daily_120_short_lower_high",
       "daily_120_short_vwap_reject",
       "gap_eat_staircase_long",
+      "gap_eat_trigger",
       "gap_reject_short",
       "live_fire_dump",
       "live_fire_gap_eat",
@@ -263,11 +263,11 @@
       "gap_eat_trigger": {
         "allowed_to_trade": false,
         "panel_id": "gap_eat_trigger",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "side": "LONG"
       },
       "gap_reject_short": {
@@ -767,7 +767,7 @@
       "panel_id": "gap_eat_trigger",
       "panel_name": "Gap Eat",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1096,8 +1096,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-14T00:39:18+00:00",
-  "generated_at_et": "2026-07-13T20:39:18-04:00",
+  "generated_at": "2026-07-14T00:43:02+00:00",
+  "generated_at_et": "2026-07-13T20:43:02-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1995,10 +1995,10 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
-        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "source_ok": true
       },
       "evidence": {
@@ -2015,15 +2015,15 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED",
+        "score_consumer_lock:EXPERIMENT",
         "strategy present in score/ghost evidence but not panel registry"
       ],
       "panel_id": "gap_eat_trigger",
       "panel_name": "Gap Eat",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
         "system health was FAIL at build; bot runtime health gate still enforces entries",
-        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3915,13 +3915,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "gap_eat_trigger",
-      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
-      "side": "LONG",
-      "strategy_id": "gap_eat_trigger"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "gap_wall_roundtrip",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "MIXED",
@@ -4171,14 +4164,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 22,
+    "block": 21,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 40,
     "permission_counts": {
-      "BLOCK": 22,
-      "TRACK_ONLY": 38
+      "BLOCK": 21,
+      "TRACK_ONLY": 39
     },
     "registry_overall": "WARN",
     "research_only": 0,
@@ -4189,11 +4182,11 @@
     "score_consumer_lock_overall": "WARN",
     "score_consumer_locked": 60,
     "score_partition_counts": {
-      "EXPERIMENT": 39,
-      "UNTAGGED": 21
+      "EXPERIMENT": 40,
+      "UNTAGGED": 20
     },
     "strategies": 60,
-    "track_only": 38,
+    "track_only": 39,
     "watch_only": 0
   },
   "trade_date": "2026-07-13"
