@@ -1,34 +1,49 @@
 {
-  "certification": "EXPERIMENT_ONLY",
+  "certification": "REJECTED",
   "code_version": "unknown",
   "decision_matrix": {
     "bot_route_permission_learning": "BLOCK",
-    "experiment_research": "ALLOW",
+    "experiment_research": "BLOCK",
     "normal_panel_score": "BLOCK",
     "panel_promotion": "BLOCK"
   },
-  "generated_at": "2026-07-14T13:55:10.087104+00:00",
-  "generated_at_et": "2026-07-14T09:55:10.087104-04:00",
+  "generated_at": "2026-07-15T01:14:59.853332+00:00",
+  "generated_at_et": "2026-07-14T21:14:59.853332-04:00",
   "inputs": {
     "closure_generated_at": "2026-07-14T13:55:01+00:00",
     "enforcement_generated_at": "2026-07-14T13:55:08.289815+00:00",
-    "evidence_generated_at": "2026-07-14T13:54:58+00:00",
-    "health_generated_at": "2026-07-14T13:55:00+00:00",
-    "lock_generated_at": "2026-07-14T13:54:53+00:00",
-    "partitions_generated_at": "2026-07-14T13:54:51+00:00"
+    "evidence_generated_at": "2026-07-15T01:14:59+00:00",
+    "health_generated_at": "2026-07-14T23:56:44+00:00",
+    "lock_generated_at": "2026-07-15T01:04:31+00:00",
+    "partitions_generated_at": "2026-07-15T00:48:34+00:00"
   },
-  "next_action": "Run 0ZO promotion gate for research ranking only; keep all promotions blocked.",
-  "operator_read": "Daily spine is experiment-only: keep evidence visible for research, but do not train normal edge or promote panels.",
-  "overall": "WARN",
+  "next_action": "Fix rejecting contract breaches before using today's data for learning.",
+  "operator_read": "Daily spine rejected: critical registry/score/order contract breaches are present.",
+  "overall": "FAIL",
   "reason_counts": {
+    "CRITICAL_HEALTH_FAILURE": 2,
     "EVIDENCE_PARTITION_EXPERIMENT": 1,
     "HEALTH_WARNINGS_PRESENT": 1,
-    "NONCRITICAL_HEALTH_FAILURE": 8,
+    "NONCRITICAL_HEALTH_FAILURE": 3,
     "NO_NORMAL_LEADERBOARD": 1,
     "REVIEW_FLAGS_PRESENT": 1,
     "SPINE_BLOCKS_NORMAL_SCORING": 1
   },
   "reasons": [
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_score_partitions: stale during ah: 36110s old, limit 720s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_strategy_enforcement: stale during ah: 36094s old, limit 2700s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
     {
       "code": "EVIDENCE_PARTITION_EXPERIMENT",
       "detail": "Today's evidence is EXPERIMENT-ONLY. Keep it visible for research, but do not let it train normal panel edge or bot route permissions.",
@@ -52,56 +67,21 @@
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_daily_certification: stale during rth: 45962s old, limit 2700s",
+      "detail": "contract_dashboard: stale during ah: 36269s old, limit 2700s",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_promotion_gate: stale during rth: 45962s old, limit 2700s",
+      "detail": "contract_breaks: stale during ah: 36395s old, limit 2700s",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_live_trust_recovery: stale during rth: 45961s old, limit 2700s",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_live_trust_executor: stale during rth: 45961s old, limit 2700s",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_auction_truth_shadow: stale during rth: 88837s old, limit 2700s",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "panel_registry_contracts: 2 active panel registry failure(s)",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "runtime_drift_restart_required: 1 runtime role(s) started before watched code changed; restart_queue=1",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "live_readiness_not_ready: live_ready=False, checks ok/warn/fail=6/2/1, bot_mode=TRIGGER_LIVE, positions=0",
+      "detail": "contract_accountability: stale during ah: 36269s old, limit 2700s",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -115,7 +95,7 @@
     },
     {
       "code": "HEALTH_WARNINGS_PRESENT",
-      "detail": "13 warning check(s) present",
+      "detail": "14 warning check(s) present",
       "effect": "partial_review",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -123,25 +103,26 @@
   ],
   "schema": "fem_contract_daily_certification.v1",
   "severity_counts": {
-    "WARN": 13
+    "FAIL": 2,
+    "WARN": 8
   },
   "summary": {
-    "actual_realized_pnl": 0.0,
+    "actual_realized_pnl": -50.4,
     "bot_promotion_allowed": false,
-    "certification": "EXPERIMENT_ONLY",
+    "certification": "REJECTED",
     "evidence_partition": "EXPERIMENT",
-    "experiment_actual_trades": 0,
-    "experiment_learning_allowed": true,
+    "experiment_actual_trades": 30,
+    "experiment_learning_allowed": false,
     "experiment_reasons": 11,
-    "health_fail": 9,
+    "health_fail": 29,
     "health_overall": "FAIL",
-    "health_warn": 13,
+    "health_warn": 14,
     "normal_actual_trades": 0,
     "normal_learning_allowed": false,
     "partial_reasons": 2,
-    "reason_count": 13,
-    "rejecting_reasons": 0,
-    "review_required": true
+    "reason_count": 10,
+    "rejecting_reasons": 2,
+    "review_required": false
   },
   "trade_date": "2026-07-14"
 }
