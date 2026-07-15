@@ -1,22 +1,19 @@
 {
   "bot_status": {
     "available": true,
-    "broker_open_orders": 0,
-    "generated_at": "2026-07-15T04:50:23",
-    "mode": "TRIGGER_LIVE",
+    "generated_at": "2026-07-15T04:57:46",
+    "mode": "SURGE_WATCH_PROBE_ENTRY",
     "n_positions": 0,
-    "position_source": "broker_reconcile",
     "positions_count": 0,
-    "sample_modes": [],
-    "stale_bot_status_positions": 0
+    "sample_modes": []
   },
   "broker_reconcile": {
     "available": true,
-    "broker_connected": true,
-    "generated_at": "2026-07-15T11:50:49+00:00",
+    "broker_connected": false,
+    "generated_at": "2026-07-15T11:57:49+00:00",
     "open_orders": 0,
-    "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
-    "overall": "OK",
+    "operator_read": "Order safety could not inspect live broker state because TWS/Gateway was unavailable. Start TWS paper on port 7497 and rerun the reconcile before trusting open orders.",
+    "overall": "BROKER_UNAVAILABLE",
     "positions": 0,
     "trade_date": "2026-07-15",
     "unprotected_positions": 0
@@ -57,75 +54,81 @@
       "status": "OK"
     },
     {
-      "age_seconds": 19,
+      "age_seconds": 11,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-07-15T11:50:35+00:00",
+      "mtime_utc": "2026-07-15T11:57:43+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 128618,
+      "size_bytes": 132465,
       "status": "OK"
     },
     {
-      "age_seconds": 16,
+      "age_seconds": 6,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-07-15T11:50:39+00:00",
+      "mtime_utc": "2026-07-15T11:57:48+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 1167,
+      "size_bytes": 1157,
       "status": "OK"
     },
     {
-      "age_seconds": 29,
+      "age_seconds": 8,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-07-15T11:50:25+00:00",
+      "mtime_utc": "2026-07-15T11:57:46+00:00",
       "path": "fem_bot_status.json",
       "required": true,
       "schema": null,
-      "size_bytes": 7474,
+      "size_bytes": 14325,
       "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 7,
+      "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
+      "mtime_utc": "2026-07-15T11:57:47+00:00",
       "path": "_DAILY\\executions_2026-07-15.csv",
       "required": false,
-      "status": "WARN"
+      "size_bytes": 142,
+      "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 9,
+      "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
+      "mtime_utc": "2026-07-15T11:57:45+00:00",
       "path": "_DAILY\\order_strategy_2026-07-15.jsonl",
       "required": false,
-      "status": "WARN"
+      "size_bytes": 2303,
+      "status": "OK"
     },
     {
       "age_seconds": 0,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-07-15T11:50:55+00:00",
+      "mtime_utc": "2026-07-15T11:57:55+00:00",
       "path": "_DAILY\\contract_events_2026-07-15.jsonl",
       "required": false,
-      "size_bytes": 77601312,
+      "size_bytes": 81593963,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-07-15T11:50:55+00:00",
-  "generated_at_et": "2026-07-15T07:50:55-04:00",
+  "generated_at": "2026-07-15T11:57:55+00:00",
+  "generated_at_et": "2026-07-15T07:57:55-04:00",
   "next_actions": [
     "Live readiness blockers are clear."
   ],
-  "overall": "WARN",
+  "overall": "OK",
   "processes": [
     {
       "command_line": "C:\\WINDOWS\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat\"",
@@ -182,16 +185,16 @@
       "process_id": 4816
     },
     {
-      "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoExit -Command $env:FEM_MAX_FIRES_PER_CYCLE=\"600\"; Set-Location -LiteralPath \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\"; Write-Host \"FEM TRIGGER BOT - auto-reconnect enabled - fire cap 600\"; & \"C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" fem_auto_trade.py --mode trigger --until 15:45 ",
-      "creation_date": "2026-07-15T04:45:17.0913570-07:00",
+      "command_line": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoExit -Command $env:FEM_MAX_FIRES_PER_CYCLE=\"600\"; Set-Location -LiteralPath \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\"; Write-Host \"FEM TRIGGER BOT - auto-reconnect enabled - fire cap 600 - sector stale watch-probe warning\"; & \"C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" fem_auto_trade.py --mode trigger --until 15:45 ",
+      "creation_date": "2026-07-15T04:56:51.3952320-07:00",
       "name": "powershell.exe",
-      "process_id": 15388
+      "process_id": 17464
     },
     {
       "command_line": "\"C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" fem_auto_trade.py --mode trigger --until 15:45",
-      "creation_date": "2026-07-15T04:45:19.1373080-07:00",
+      "creation_date": "2026-07-15T04:56:53.3238990-07:00",
       "name": "python.exe",
-      "process_id": 24484
+      "process_id": 19172
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
@@ -200,9 +203,9 @@
     "checks": 9,
     "fail": 0,
     "live_ready": true,
-    "ok": 7,
-    "warn": 2,
-    "warning_only": true
+    "ok": 9,
+    "warn": 0,
+    "warning_only": false
   },
   "trade_date": "2026-07-15"
 }
