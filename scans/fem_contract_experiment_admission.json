@@ -242,8 +242,8 @@
       "severity": "WARN"
     }
   ],
-  "generated_at": "2026-07-15T08:20:47.107198+00:00",
-  "generated_at_et": "2026-07-15T04:20:47.107198-04:00",
+  "generated_at": "2026-07-15T09:41:33.739072+00:00",
+  "generated_at_et": "2026-07-15T05:41:33.739072-04:00",
   "new_idea_intake_template": {
     "context_requirements": [],
     "deletion_rule": "",
@@ -256,7 +256,7 @@
     "required_data": [],
     "shadow_test_days": 3
   },
-  "operator_read": "Experiment admission has 9 blocker panel(s). Do not promote new ideas until those rows are resolved.",
+  "operator_read": "Experiment admission has 8 blocker panel(s). Do not promote new ideas until those rows are resolved.",
   "overall": "FAIL",
   "panels": [
     {
@@ -294,47 +294,6 @@
       "source_required": true,
       "strategy_ids": [
         "moo_ticket"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": true,
-      "context_requirements": [
-        "short_context"
-      ],
-      "display_name": "Short Genesis",
-      "findings": [
-        {
-          "code": "REGISTRY_STATUS_FAIL",
-          "detail": "panel registry row is failing",
-          "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-          "severity": "FAIL"
-        },
-        {
-          "code": "SOURCE_STALE",
-          "detail": "required source artifact is stale",
-          "next_action": "Run the source builder before this panel can influence decisions.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "bot",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "short_genesis",
-      "phase": "PAPER_LIVE",
-      "phase_source": "declared",
-      "score_partition": "paper_live::short_genesis",
-      "score_required": true,
-      "side": "SHORT",
-      "source_paths": [
-        "_DAILY/fam_state_ideas_2026-07-15.jsonl",
-        "_DAILY/fam_state_ideas_{date}.jsonl",
-        "fem_short_stats.json",
-        "latest_short.txt"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "short_genesis"
       ]
     },
     {
@@ -842,51 +801,6 @@
       "context_requirements": [
         "short_context"
       ],
-      "display_name": "State Lookup",
-      "findings": [
-        {
-          "code": "REGISTRY_STATUS_WARN",
-          "detail": "panel registry row is warning",
-          "next_action": "Inspect registry warnings before promotion.",
-          "severity": "WARN"
-        },
-        {
-          "code": "SOURCE_STALE",
-          "detail": "required source artifact is stale",
-          "next_action": "Run the source builder before this panel can influence decisions.",
-          "severity": "WARN"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Inspect registry warnings before promotion.",
-      "panel_id": "state_lookup",
-      "phase": "SHADOW_PANEL",
-      "phase_source": "declared",
-      "score_partition": "shadow_panel::state_lookup",
-      "score_required": true,
-      "side": "MIXED",
-      "source_paths": [
-        "_DAILY/fam_entry_freeze_2026-07-15.json",
-        "_DAILY/fam_entry_freeze_{date}.json",
-        "_DAILY/fam_state_ideas_2026-07-15.jsonl",
-        "_DAILY/fam_state_ideas_{date}.jsonl",
-        "fam_state_idea_tracker.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "bear_rejection_pending",
-        "bull_bounce_pending",
-        "state_lookup",
-        "trapped_short"
-      ]
-    },
-    {
-      "admission_status": "WARN",
-      "bot_permission": "NO_ORDERING",
-      "bot_required": false,
-      "context_requirements": [
-        "short_context"
-      ],
       "display_name": "Stock Clock / Micro Clocks",
       "findings": [
         {
@@ -1177,6 +1091,34 @@
     },
     {
       "admission_status": "OK",
+      "bot_permission": "ALLOWED_BY_ADMISSION",
+      "bot_required": true,
+      "context_requirements": [
+        "short_context"
+      ],
+      "display_name": "Short Genesis",
+      "findings": [],
+      "mode": "bot",
+      "next_action": "Admitted. Continue tracking execution quality and score evidence.",
+      "panel_id": "short_genesis",
+      "phase": "PAPER_LIVE",
+      "phase_source": "declared",
+      "score_partition": "paper_live::short_genesis",
+      "score_required": true,
+      "side": "SHORT",
+      "source_paths": [
+        "_DAILY/fam_state_ideas_2026-07-15.jsonl",
+        "_DAILY/fam_state_ideas_{date}.jsonl",
+        "fem_short_stats.json",
+        "latest_short.txt"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "short_genesis"
+      ]
+    },
+    {
+      "admission_status": "OK",
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
       "context_requirements": [
@@ -1282,6 +1224,38 @@
       "source_required": false,
       "strategy_ids": [
         "short_universe_vwap_reject"
+      ]
+    },
+    {
+      "admission_status": "OK",
+      "bot_permission": "NO_ORDERING",
+      "bot_required": false,
+      "context_requirements": [
+        "short_context"
+      ],
+      "display_name": "State Lookup",
+      "findings": [],
+      "mode": "tracked",
+      "next_action": "Admitted as research/shadow. Keep it out of live ordering.",
+      "panel_id": "state_lookup",
+      "phase": "SHADOW_PANEL",
+      "phase_source": "declared",
+      "score_partition": "shadow_panel::state_lookup",
+      "score_required": true,
+      "side": "MIXED",
+      "source_paths": [
+        "_DAILY/fam_entry_freeze_2026-07-15.json",
+        "_DAILY/fam_entry_freeze_{date}.json",
+        "_DAILY/fam_state_ideas_2026-07-15.jsonl",
+        "_DAILY/fam_state_ideas_{date}.jsonl",
+        "fam_state_idea_tracker.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "bear_rejection_pending",
+        "bull_bounce_pending",
+        "state_lookup",
+        "trapped_short"
       ]
     },
     {
@@ -1607,13 +1581,13 @@
   "schema": "fem_contract_experiment_admission.v1",
   "summary": {
     "bot_permissions": {
-      "ALLOWED_BY_ADMISSION": 1,
-      "BLOCKED": 9,
+      "ALLOWED_BY_ADMISSION": 2,
+      "BLOCKED": 8,
       "NO_ORDERING": 27
     },
-    "fail": 9,
+    "fail": 8,
     "floating_artifacts": 40,
-    "ok": 10,
+    "ok": 12,
     "panels": 37,
     "phase_counts": {
       "ACCOUNTABILITY": 1,
@@ -1626,7 +1600,7 @@
       "SHADOW_PANEL": 16
     },
     "unregistered_strategies": 0,
-    "warn": 18
+    "warn": 17
   },
   "top_findings": [
     {
@@ -1643,22 +1617,6 @@
       "display_name": "A-Book Proven MOO",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "abook_moo",
-      "severity": "FAIL"
-    },
-    {
-      "code": "REGISTRY_STATUS_FAIL",
-      "detail": "panel registry row is failing",
-      "display_name": "Short Genesis",
-      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
-      "panel_id": "short_genesis",
-      "severity": "FAIL"
-    },
-    {
-      "code": "SOURCE_STALE",
-      "detail": "required source artifact is stale",
-      "display_name": "Short Genesis",
-      "next_action": "Run the source builder before this panel can influence decisions.",
-      "panel_id": "short_genesis",
       "severity": "FAIL"
     },
     {
@@ -1787,6 +1745,22 @@
       "display_name": "Gap Eat Staircase",
       "next_action": "Run the source builder before this panel can influence decisions.",
       "panel_id": "gap_eat_staircase",
+      "severity": "WARN"
+    },
+    {
+      "code": "REGISTRY_STATUS_WARN",
+      "detail": "panel registry row is warning",
+      "display_name": "Gap Reject Short",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "gap_reject_short",
+      "severity": "WARN"
+    },
+    {
+      "code": "SOURCE_STALE",
+      "detail": "required source artifact is stale",
+      "display_name": "Gap Reject Short",
+      "next_action": "Run the source builder before this panel can influence decisions.",
+      "panel_id": "gap_reject_short",
       "severity": "WARN"
     }
   ],
