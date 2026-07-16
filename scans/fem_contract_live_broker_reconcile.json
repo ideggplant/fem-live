@@ -1,25 +1,22 @@
 {
   "action_items": [
     {
-      "code": "INVALID_ENTRY_ORDERS",
-      "detail": "Working entry orders exist that are not currently allowed by the spine route contract.",
-      "examples": [
-        "DSGR#4930:ROUTE_LOCK_REGISTRY_BOT_BLOCKED"
-      ],
-      "severity": "FAIL"
+      "code": "ORDER_SAFETY_CLEAN",
+      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
+      "severity": "OK"
     }
   ],
   "broker": {
     "bot_client_id": 10,
-    "client_id": 19,
+    "client_id": 21,
     "connected": true,
     "error": null,
     "offline": false,
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-16T14:54:06+00:00",
-  "generated_at_et": "2026-07-16T10:54:06-04:00",
+  "generated_at": "2026-07-16T15:02:40+00:00",
+  "generated_at_et": "2026-07-16T11:02:40-04:00",
   "inputs": {
     "exit_intent_rows": 67,
     "order_strategy_rows": 44,
@@ -126,13 +123,13 @@
     },
     {
       "action": "BUY",
-      "breach_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
+      "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "ENTRY",
       "client_id": 10,
-      "detail": "strategy registry marks this route bot_allowed=false",
+      "detail": "entry order is mapped; route lock is audit-only because FEM_ROUTE_LOCK_ENFORCE is off",
       "entry_strategy_id": "surge_chase",
       "exit_intent": null,
       "exit_strategy_id": null,
@@ -177,7 +174,7 @@
         "reason_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
         "registry_id": "surge_chase"
       },
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "Submitted",
       "stop_price": null,
       "symbol": "DSGR"
@@ -375,8 +372,8 @@
       "symbol": "MAN"
     }
   ],
-  "operator_read": "Order safety is FAIL: 1 invalid entry order(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
-  "overall": "FAIL",
+  "operator_read": "Order safety is OK: 7 working order(s) and 3 live position(s) reconciled against the spine.",
+  "overall": "OK",
   "positions": [
     {
       "ah_exit_contract": {
@@ -482,17 +479,15 @@
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {
-      "ROUTE_LOCK_REGISTRY_BOT_BLOCKED": 1
-    },
+    "breach_codes": {},
     "broker_connected": true,
-    "cancel_candidates": 1,
+    "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
-    "invalid_entry_like_orders": 1,
+    "invalid_entry_like_orders": 0,
     "open_orders": 7,
-    "order_fail": 1,
-    "order_ok": 6,
+    "order_fail": 0,
+    "order_ok": 7,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
