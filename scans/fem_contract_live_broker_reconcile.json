@@ -11,36 +11,87 @@
   ],
   "broker": {
     "bot_client_id": 10,
-    "client_id": 19,
+    "client_id": 18,
     "connected": true,
     "error": null,
     "offline": false,
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-16T01:23:08+00:00",
-  "generated_at_et": "2026-07-15T21:23:08-04:00",
+  "generated_at": "2026-07-16T01:25:04+00:00",
+  "generated_at_et": "2026-07-15T21:25:04-04:00",
   "inputs": {
-    "exit_intent_rows": 128,
+    "exit_intent_rows": 129,
     "order_strategy_rows": 83,
     "strategy_registry_rows": 65,
     "trade_permission_rows": 65
   },
-  "mode": "ENFORCE",
-  "open_orders": [],
-  "operator_read": "Order safety is FAIL: 1 unprotected position(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "mode": "AUDIT_ONLY",
+  "open_orders": [
+    {
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "AFTER_HOURS_FLATTEN_SWEEP",
+      "exit_strategy_id": null,
+      "limit_price": 3.16,
+      "oca_group": "",
+      "order_id": "4850",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": 279.0,
+      "quantity": 279.0,
+      "raw": {
+        "action": "SELL",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 3.16,
+        "oca_group": "",
+        "order_id": 4850,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 125342247,
+        "quantity": 279.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "CATX",
+        "tif": "DAY",
+        "trail_stop_price": 2.16,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "CATX"
+    }
+  ],
+  "operator_read": "Order safety is FAIL: 1 unprotected position(s). Mode is AUDIT_ONLY; cancelled 0. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
+        "ah_exit_owner_verified": true,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "ah_target_orders": [
+          "4850"
+        ],
+        "ah_target_quantity": 279.0,
+        "detail": "AH exit owner verified",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
+        "full_ah_target_coverage": true,
         "position_quantity": 279.0,
         "schema": "fem_ah_exit_contract.v1"
       },
@@ -49,11 +100,15 @@
       "detail": "live position has no recognized protective stop/trailing order",
       "protective_stop_orders": [],
       "qty": 279.0,
-      "related_exit_orders": [],
+      "related_exit_orders": [
+        "4850"
+      ],
       "severity": "FAIL",
       "side": "LONG",
       "symbol": "CATX",
-      "target_orders": []
+      "target_orders": [
+        "4850"
+      ]
     }
   ],
   "schema": "fem_contract_live_broker_reconcile.v1",
@@ -68,9 +123,9 @@
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 0,
+    "open_orders": 1,
     "order_fail": 0,
-    "order_ok": 0,
+    "order_ok": 1,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 1,
