@@ -12,135 +12,129 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-07-16T03:31:34+00:00",
+    "generated_at": "2026-07-16T10:55:15+00:00",
     "open_orders": 1,
     "operator_read": "Order safety is FAIL: 1 unprotected position(s). Mode is AUDIT_ONLY; cancelled 0. Inspect before starting or continuing the bot.",
     "overall": "FAIL",
     "positions": 1,
-    "trade_date": "2026-07-15",
+    "trade_date": "2026-07-16",
     "unprotected_positions": 1
   },
   "checks": [
     {
-      "detail": "restart_required=0, missing_required=0",
-      "drift_overall": "OK",
+      "detail": "restart_required=0, missing_required=3",
+      "drift_overall": "FAIL",
       "drift_run": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "runtime_drift: overall=OK restart_required=0 missing_required=0 roles ok/warn/fail=3/0/0"
+        "stdout": "runtime_drift: overall=FAIL restart_required=0 missing_required=3 roles ok/warn/fail=0/1/2"
       },
       "id": "runtime_drift_clean",
       "label": "Runtime drift clean",
-      "missing_required": 0,
+      "missing_required": 3,
       "required": true,
       "restart_required": 0,
-      "status": "OK"
+      "status": "FAIL"
     },
     {
-      "detail": "required live processes visible",
+      "detail": "missing: live_runner, trade_bot, live_fire_grade",
       "id": "runtime_processes_live",
       "label": "Live runtime processes",
       "live_fire_grade": false,
       "live_runner": false,
       "process_count": 0,
-      "required": false,
-      "session": "closed",
-      "status": "OK",
+      "required": true,
+      "session": "pre",
+      "status": "FAIL",
       "trade_bot": false
     },
     {
       "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
-      "required": false,
+      "required": true,
       "status": "OK"
     },
     {
-      "age_seconds": 1075,
-      "detail": "fresh",
+      "age_seconds": 27694,
+      "detail": "stale: 27694s old, limit 240s",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
       "mtime_utc": "2026-07-16T03:13:42+00:00",
       "path": "_DAILY\\fem_live_signals.json",
-      "required": false,
+      "required": true,
       "schema": "fem_live_signals/v1",
       "size_bytes": 293428,
-      "status": "OK"
+      "status": "FAIL"
     },
     {
-      "age_seconds": 1079,
-      "detail": "fresh",
+      "age_seconds": 27698,
+      "detail": "stale: 27698s old, limit 240s",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
       "mtime_utc": "2026-07-16T03:13:39+00:00",
       "path": "_DAILY\\fem_regime_live.json",
-      "required": false,
+      "required": true,
       "schema": "fem_regime_live/v1",
       "size_bytes": 1151,
-      "status": "OK"
+      "status": "FAIL"
     },
     {
-      "age_seconds": 7245,
-      "detail": "fresh",
+      "age_seconds": 33864,
+      "detail": "stale: 33864s old, limit 240s",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
       "mtime_utc": "2026-07-16T01:30:53+00:00",
       "path": "fem_bot_status.json",
-      "required": false,
+      "required": true,
       "schema": null,
       "size_bytes": 23437,
-      "status": "OK"
+      "status": "FAIL"
     },
     {
-      "age_seconds": 19383,
-      "detail": "present",
+      "detail": "missing while bot has positions",
       "id": "executions_feed",
       "label": "Execution CSV feed",
-      "mtime_utc": "2026-07-15T22:08:35+00:00",
-      "path": "_DAILY\\executions_2026-07-15.csv",
-      "required": false,
-      "size_bytes": 3705,
-      "status": "OK"
+      "path": "_DAILY\\executions_2026-07-16.csv",
+      "required": true,
+      "status": "FAIL"
     },
     {
-      "age_seconds": 19384,
-      "detail": "present",
+      "detail": "missing while bot has positions",
       "id": "order_strategy_map",
       "label": "Order strategy map",
-      "mtime_utc": "2026-07-15T22:08:34+00:00",
-      "path": "_DAILY\\order_strategy_2026-07-15.jsonl",
-      "required": false,
-      "size_bytes": 63227,
-      "status": "OK"
+      "path": "_DAILY\\order_strategy_2026-07-16.jsonl",
+      "required": true,
+      "status": "FAIL"
     },
     {
-      "age_seconds": 8093,
-      "detail": "present",
+      "detail": "missing while bot has positions",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-07-16T01:16:45+00:00",
-      "path": "_DAILY\\contract_events_2026-07-15.jsonl",
-      "required": false,
-      "size_bytes": 470158764,
-      "status": "OK"
+      "path": "_DAILY\\contract_events_2026-07-16.jsonl",
+      "required": true,
+      "status": "FAIL"
     }
   ],
-  "generated_at": "2026-07-16T03:31:38+00:00",
-  "generated_at_et": "2026-07-15T23:31:38-04:00",
+  "generated_at": "2026-07-16T10:55:17+00:00",
+  "generated_at_et": "2026-07-16T06:55:17-04:00",
   "next_actions": [
-    "Live readiness blockers are clear."
+    "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+    "Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.",
+    "Start or restart _DAILY\\4_LIVE.bat / LIVE_RUN.bat so fem_live_signals.json refreshes.",
+    "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
   ],
-  "overall": "OK",
+  "overall": "FAIL",
   "processes": [],
   "schema": "fem_contract_live_readiness.v1",
-  "session": "closed",
+  "session": "pre",
   "summary": {
     "checks": 9,
-    "fail": 0,
-    "live_ready": true,
-    "ok": 9,
+    "fail": 8,
+    "live_ready": false,
+    "ok": 1,
     "warn": 0,
     "warning_only": false
   },
-  "trade_date": "2026-07-15"
+  "trade_date": "2026-07-16"
 }
