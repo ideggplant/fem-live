@@ -1,0 +1,227 @@
+{
+  "advisory_only": true,
+  "alist_tradeability": {
+    "age_sec": 0.048831939697265625,
+    "alist_fillable_count": 21,
+    "alist_proven_moo_candidate_count": 2,
+    "alist_row_count": 21,
+    "attention_reason": null,
+    "bridge_state": "MOO_TRADEABLE",
+    "moo_executable_ticket_count": 3,
+    "moo_tradeable": true,
+    "moo_tws_order_rows": 9,
+    "needs_attention": false,
+    "source_file": "fem_abook_2026-07-15_0623.csv",
+    "source_same_day": true
+  },
+  "blockers": [
+    {
+      "action": "Reconnect TWS/broker and rerun prime readiness.",
+      "code": "BROKER_NOT_OK",
+      "impact": "Cannot trust entries, exits, or flat state.",
+      "message": "Broker reconcile is FAIL connected=True.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Run broker reconcile and clean the named order issue.",
+      "code": "ORDER_SAFETY_NOT_CLEAN",
+      "impact": "Scalping can create uncontrolled exposure.",
+      "message": "Broker order/position safety is not clean.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Protect or flatten the position before new trades.",
+      "code": "UNPROTECTED_POSITION",
+      "impact": "Account risk is not bounded.",
+      "message": "At least one position is unprotected.",
+      "severity": "PANIC"
+    }
+  ],
+  "bot": {
+    "age_sec": 7246.044928312302,
+    "alive": false,
+    "generated_at": "2026-07-15T18:30:51",
+    "mode": "AH_FLATTEN_TOO_LATE",
+    "n_positions": 1
+  },
+  "broker": {
+    "age_sec": 5.2076005935668945,
+    "connected": true,
+    "generated_at": "2026-07-16T03:31:34+00:00",
+    "invalid_entry_like_orders": 0,
+    "open_orders": 1,
+    "order_fail": 0,
+    "orphan_exit_orders": 0,
+    "overall": "FAIL",
+    "position_fail": 1,
+    "positions": 1,
+    "unprotected_positions": 1
+  },
+  "expected_bot": false,
+  "flat_required": false,
+  "generated_at": "2026-07-16T03:31:42+00:00",
+  "generated_at_et": "2026-07-15T23:31:32-04:00",
+  "guarantees": [
+    "does_not_modify_bot_config",
+    "does_not_change_route_policy",
+    "does_not_change_trade_permissions",
+    "does_not_change_panel_scores",
+    "does_not_change_gates",
+    "does_not_submit_or_cancel_orders",
+    "does_not_flatten_positions"
+  ],
+  "live_readiness": {
+    "age_sec": 0.4611978530883789,
+    "fail": 0,
+    "generated_at": "2026-07-16T03:31:38+00:00",
+    "live_ready": true,
+    "next_actions": [
+      "Live readiness blockers are clear."
+    ],
+    "overall": "OK",
+    "session": "closed",
+    "warn": 0
+  },
+  "money_safe": false,
+  "morning": {
+    "age_sec": 25998.469341516495,
+    "ah_bot": "STARTED",
+    "ah_status": "OK",
+    "date": "2026-07-15",
+    "precheck_status": "OK",
+    "precheck_tws": "OK",
+    "rth_bot": "ALREADY_RUNNING",
+    "rth_status": "OK",
+    "scanner": "OK",
+    "scanner_status": "OK",
+    "scanner_tws": "DOWN",
+    "stack": "REQUESTED"
+  },
+  "next_session_startup": {
+    "alist_fillable_count": 21,
+    "carryover_blocks_scheduled_start": false,
+    "carryover_open_order_count": 1,
+    "carryover_position_count": 1,
+    "moo_executable_ticket_count": 3,
+    "moo_tradeable_now": true,
+    "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
+    "ready_for_next_session_start": true,
+    "schedule_armed": true,
+    "startup_hard_blockers": [],
+    "tws_connected_now": true
+  },
+  "refresh": {
+    "alist_tradeability": {
+      "ran": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "A-list tradeability: rows=21 fillable=21 proven_moo=2 moo_orders=3 state=MOO_TRADEABLE\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
+    },
+    "broker_reconcile": {
+      "ran": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-15 overall=FAIL orders=1 positions=1 order_fail=0 pos_fail=1 cancelled=0\n  POSITION_UNPROTECTED_NO_STOP: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+    },
+    "live_readiness": {
+      "ran": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "live_readiness: overall=OK session=closed ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+    }
+  },
+  "schedules": {
+    "missing": [],
+    "no_next_run": [],
+    "not_ready": [],
+    "ok": true,
+    "rows": [
+      {
+        "last_run_time": "07/15/2026 04:00:00",
+        "last_task_result": 0,
+        "next_run_time": "07/16/2026 04:00:00",
+        "state": "Ready",
+        "task_name": "FEM 0400 Scanner And Stack"
+      },
+      {
+        "last_run_time": "07/15/2026 06:17:00",
+        "last_task_result": 0,
+        "next_run_time": "07/16/2026 06:17:00",
+        "state": "Ready",
+        "task_name": "FEM 0627 RTH Bot Handoff"
+      },
+      {
+        "last_run_time": "07/15/2026 12:50:00",
+        "last_task_result": 0,
+        "next_run_time": "07/16/2026 12:50:00",
+        "state": "Ready",
+        "task_name": "FEM 1305 AH Trade Bot"
+      },
+      {
+        "last_run_time": "07/15/2026 03:55:01",
+        "last_task_result": 4294967295,
+        "next_run_time": "07/16/2026 03:55:00",
+        "state": "Ready",
+        "task_name": "FEM Independent Watchdog"
+      },
+      {
+        "last_run_time": "07/15/2026 03:55:01",
+        "last_task_result": 0,
+        "next_run_time": "07/16/2026 03:55:00",
+        "state": "Ready",
+        "task_name": "FEM_0355_TWS_PRECHECK"
+      }
+    ],
+    "unknown": false
+  },
+  "schema": "fem_prime_readiness.v1",
+  "sector_context": {
+    "age_sec": 27430.78365135193,
+    "overall": "WARN",
+    "rankings_count": 26,
+    "refresh_error": null,
+    "snapshot_age_seconds": 0.013000965118408203,
+    "snapshot_fresh": true,
+    "unknown_symbol_count": 15,
+    "unknown_symbols": [
+      "AAPU",
+      "AEHG",
+      "AHCO",
+      "ALEC",
+      "AMA",
+      "AMZU",
+      "ANGO",
+      "ANIX",
+      "ASTN",
+      "AUTL",
+      "AZTA",
+      "BABU",
+      "BABX",
+      "BEKE",
+      "PYPG"
+    ]
+  },
+  "session": "closed",
+  "state": "NOT_TRADE_READY",
+  "title": "FEM Blocked",
+  "trade_ready": false,
+  "watch_items": [],
+  "watchdog": {
+    "age_sec": 22.229941368103027,
+    "bot_mode": "AH_FLATTEN_TOO_LATE",
+    "broker_connected": true,
+    "broker_open_orders": 1,
+    "broker_overall": "FAIL",
+    "broker_positions": 1,
+    "critical_or_panic_count": 4,
+    "morning_scanner": "OK",
+    "morning_tws": "DOWN",
+    "overall": "PANIC",
+    "penny_morning_count": 370,
+    "penny_morning_is_today": true,
+    "rth_handoff_status": "OK",
+    "short_watchlist_count": 123,
+    "short_watchlist_is_today": true,
+    "trigger_process_count": 0
+  }
+}
