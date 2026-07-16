@@ -1,9 +1,27 @@
 {
-  "generated_at": "2026-07-16T13:37:53",
+  "generated_at": "2026-07-16T13:38:01",
   "date": "2026-07-16",
-  "mode": "TRIGGER_LIVE_STATUS_REPAIRED",
-  "n_positions": 0,
-  "positions": [],
+  "mode": "TRIGGER_LIVE",
+  "n_positions": 1,
+  "positions": [
+    {
+      "ticker": "BURU",
+      "qty": 4026,
+      "entry": 0.1228,
+      "stop": 0.1205,
+      "t1": 0.1274,
+      "score": 2.0,
+      "mode": "gap_eat_trigger",
+      "moo_order_id": 4994,
+      "target_order_id": 4996,
+      "stop_order_id": 4995,
+      "moc_order_id": null,
+      "options_context": null,
+      "fill_net": 4026,
+      "fill_realized": -12.07,
+      "broker_qty": null
+    }
+  ],
   "bot_memory_entries": [
     {
       "ticker": "ATPC",
@@ -546,11 +564,10 @@
     }
   ],
   "memory_reconcile": {
-    "open_position_source": "broker_reconcile",
-    "stale_memory_count": 27,
+    "open_position_source": "executions_csv",
+    "stale_memory_count": 26,
     "stale_memory_symbols": [
       "ATPC",
-      "BURU",
       "CLIK",
       "CNH",
       "CPHI",
@@ -579,7 +596,7 @@
     ],
     "broker_reconcile_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
     "broker_reconcile_generated_at": "2026-07-16T20:37:47+00:00",
-    "broker_reconcile_age_sec": 6.142037,
+    "broker_reconcile_age_sec": 13.841504,
     "broker_reconcile_overall": "OK",
     "broker_reconcile_summary": {
       "ah_exit_owner_unverified_positions": 0,
@@ -781,15 +798,6 @@
     "shorts": 1
   },
   "log_tail": [
-    "13:37:07  INFO       LITZ   gated - universal daily liquidity: post-market volume 1,586 < 50,000 (post-market hard floor)",
-    "13:37:08  INFO       KFRC   gated - universal daily liquidity: 30d avg volume 195,727 < 250,000 (thin normal tape)",
-    "13:37:09  INFO       BCC    gated - universal daily liquidity: post-market volume 1,598 < 50,000 (post-market hard floor)",
-    "13:37:10  INFO       FDXF   gated - universal daily liquidity: post-market volume 2,810 < 50,000 (post-market hard floor)",
-    "13:37:11  INFO       CNMD   gated - universal daily liquidity: post-market volume 1,422 < 50,000 (post-market hard floor)",
-    "13:37:12  INFO       SAM    gated - universal daily liquidity: post-market volume 4,581 < 50,000 (post-market hard floor)",
-    "13:37:13  INFO       IT     gated - universal daily liquidity: post-market volume 5,791 < 50,000 (post-market hard floor)",
-    "13:37:13  INFO       RCEL   surge fired outside legacy 09:30-15:00 ET window - continuing through safety stack",
-    "13:37:13  INFO       RCEL   surge relvol 2.16 < 8.0 - continuing for paper-data mode",
     "13:37:14  INFO       RCEL surge skip: no clear highway (up/red gap within 5% above)",
     "13:37:15  INFO       JACK   gated - universal daily liquidity: post-market volume 2,528 < 50,000 (post-market hard floor)",
     "13:37:16  INFO       ARX    gated - universal daily liquidity: post-market volume 3,008 < 50,000 (post-market hard floor)",
@@ -805,13 +813,25 @@
     "13:37:50  INFO       FOXF   gated - universal daily liquidity: post-market volume 13,169 < 50,000 (post-market hard floor)",
     "13:37:51  INFO       HELP   gated - universal daily liquidity: post-market volume 4,770 < 50,000 (post-market hard floor)",
     "13:37:52  INFO       GLXG   surge fired outside legacy 09:30-15:00 ET window - continuing through safety stack",
-    "13:37:52  INFO       GLXG   surge stale-pullback skip: live 1.2398 already below LMT 1.2810"
+    "13:37:52  INFO       GLXG   surge stale-pullback skip: live 1.2398 already below LMT 1.2810",
+    "13:37:53  INFO       VYX    gated - universal daily liquidity: post-market volume 3,273 < 50,000 (post-market hard floor)",
+    "13:37:54  INFO       LFMD   gated - universal daily liquidity: post-market volume 14,552 < 50,000 (post-market hard floor)",
+    "13:37:54  INFO     Status pushed -> fem_bot_status.json",
+    "13:38:00  INFO     gates: regime=RISK_OFF  dilution_flags=90  ledger_levels=8",
+    "13:38:00  INFO     REQUEST reqPositions {}",
+    "13:38:00  INFO     SENDING reqPositions b'\\x00\\x00\\x00\\x0561\\x001\\x00'",
+    "13:38:00  INFO     positions snapshot: open_count=0 entries_today=27",
+    "13:38:00  INFO     REQUEST reqAllOpenOrders {}",
+    "13:38:00  INFO     SENDING reqAllOpenOrders b'\\x00\\x00\\x00\\x0516\\x001\\x00'"
   ],
   "heartbeat": true,
   "alive": true,
   "halted": false,
   "regime": "RISK_OFF",
   "daily_pnl": -122.48954299999987,
+  "entries_today": 27,
+  "open_count": 0,
+  "unrealized_open": 0.0,
   "daily_pnl_guard": {
     "schema": "fem_daily_pnl_guard.v1",
     "generated_at": "2026-07-16T20:17:05+00:00",
@@ -833,116 +853,100 @@
     "daily_pnl_now": null,
     "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
   },
+  "grade_mults": {
+    "reclaim": 0.5,
+    "gap_reclaim": 0.5,
+    "surge": 0.5,
+    "dump": 1.08,
+    "gap_eat": 0.5
+  },
+  "benched": [],
+  "fading": [],
+  "quarantine": [],
   "contract_health": {
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "ah",
-    "generated_at": "2026-07-16T20:34:59+00:00",
-    "generated_at_et": "2026-07-16T16:34:59-04:00",
+    "generated_at": "2026-07-16T20:38:02+00:00",
+    "generated_at_et": "2026-07-16T16:38:02-04:00",
     "summary": {
       "checks": 63,
-      "ok": 11,
+      "ok": 9,
       "warn": 12,
-      "fail": 40
+      "fail": 42
     },
     "bad_checks": [
       {
         "id": "contract_dashboard",
         "label": "Contract dashboard payload",
         "status": "FAIL",
-        "detail": "stale during ah: 63806s old, limit 2700s",
+        "detail": "stale during ah: 63989s old, limit 2700s",
         "path": "fem_contract_dashboard.json",
-        "age_seconds": 63806
+        "age_seconds": 63989
       },
       {
         "id": "contract_breaks",
         "label": "Contract breach ledger",
         "status": "FAIL",
-        "detail": "stale during ah: 64092s old, limit 2700s",
+        "detail": "stale during ah: 64274s old, limit 2700s",
         "path": "fem_contract_breaks.json",
-        "age_seconds": 64092
+        "age_seconds": 64274
       },
       {
         "id": "panel_score",
         "label": "Panel score ledger",
         "status": "FAIL",
-        "detail": "stale during ah: 5709s old, limit 2700s",
+        "detail": "stale during ah: 5892s old, limit 2700s",
         "path": "fem_contract_panel_score.json",
-        "age_seconds": 5709
+        "age_seconds": 5892
       },
       {
         "id": "contract_accountability",
         "label": "Contract accountability queue",
         "status": "FAIL",
-        "detail": "stale during ah: 196965s old, limit 2700s",
+        "detail": "stale during ah: 197147s old, limit 2700s",
         "path": "fem_contract_accountability.json",
-        "age_seconds": 196965
+        "age_seconds": 197147
+      },
+      {
+        "id": "contract_panel_registry",
+        "label": "Contract panel registry",
+        "status": "FAIL",
+        "detail": "stale during ah: 2798s old, limit 2700s",
+        "path": "fem_contract_panel_registry.json",
+        "age_seconds": 2798
       },
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during ah: 285802s old, limit 2700s",
+        "detail": "stale during ah: 285984s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 285802
+        "age_seconds": 285984
       },
       {
         "id": "contract_fill_reconcile",
         "label": "Contract fill reconciliation",
         "status": "FAIL",
-        "detail": "stale during ah: 68842s old, limit 2700s",
+        "detail": "stale during ah: 69025s old, limit 2700s",
         "path": "fem_contract_fill_reconcile.json",
-        "age_seconds": 68842
+        "age_seconds": 69025
       },
       {
         "id": "contract_exit_reconcile",
         "label": "Contract exit reconciliation",
         "status": "FAIL",
-        "detail": "stale during ah: 68841s old, limit 2700s",
+        "detail": "stale during ah: 69024s old, limit 2700s",
         "path": "fem_contract_exit_reconcile.json",
-        "age_seconds": 68841
-      },
-      {
-        "id": "contract_ghost_ledger",
-        "label": "Contract ghost/skipped trade ledger",
-        "status": "FAIL",
-        "detail": "stale during ah: 197090s old, limit 2700s",
-        "path": "fem_contract_ghost_ledger.json",
-        "age_seconds": 197090
+        "age_seconds": 69024
       }
     ],
     "next_actions": [
       "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat to rebuild the contract funnel.",
       "Run _DAILY\\0F_CONTRACT_ACCOUNTABILITY.bat to rebuild the operator accountability queue.",
+      "Run _DAILY\\0G_CONTRACT_PANEL_REGISTRY.bat to rebuild the panel/trader registry.",
       "Run _DAILY\\0A_CONTRACT_SOURCE_REFRESH.bat to refresh stale panel source files, rebuild contracts, and publish.",
-      "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat to rebuild execution-quality reconciliation.",
-      "Run _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, then _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat."
+      "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat to rebuild execution-quality reconciliation."
     ]
-  },
-  "active_trade_gates": {
-    "trade_permission_enforce": false,
-    "profit_lock_enabled": false,
-    "portfolio_open_risk": {
-      "enabled": false,
-      "mode": "DISABLED_FOR_PAPER_DATA",
-      "active_cap": null,
-      "configured_cap": 225.0,
-      "reason_code": "PORTFOLIO_OPEN_RISK_CAP_REMOVED",
-      "reason": "portfolio open-risk cap is advisory only and does not block entries"
-    },
-    "volume_floors": {
-      "session_now": "ah",
-      "rth_min_day_volume": 400000,
-      "rth_after_11_min_day_volume": 625000,
-      "ah_min_post_market_volume": 50000,
-      "ah_min_post_market_dollar_volume": 100000.0,
-      "fallback_day_volume_floor_after_11": 625000,
-      "avg_30d_min_volume": 250000,
-      "avg_30d_min_dollar_volume": 1000000,
-      "ah_rule": "use post-market volume floor when post-market volume is available; otherwise fallback to current-day volume floor"
-    },
-    "surge_time_window_enforce": false,
-    "surge_probe_enabled": false,
-    "surge_full_pullback_min_move_pct": 10.0
   }
 }
