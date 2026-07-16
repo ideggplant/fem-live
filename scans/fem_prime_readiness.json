@@ -1,18 +1,18 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.048831939697265625,
+    "age_sec": 0.07401466369628906,
     "alist_fillable_count": 21,
     "alist_proven_moo_candidate_count": 2,
     "alist_row_count": 21,
-    "attention_reason": null,
-    "bridge_state": "MOO_TRADEABLE",
+    "attention_reason": "A-list source is not today: fem_abook_2026-07-15_0623.csv source_date=2026-07-15 today=2026-07-16",
+    "bridge_state": "ALIST_NOT_READY",
     "moo_executable_ticket_count": 3,
-    "moo_tradeable": true,
+    "moo_tradeable": false,
     "moo_tws_order_rows": 9,
     "needs_attention": false,
     "source_file": "fem_abook_2026-07-15_0623.csv",
-    "source_same_day": true
+    "source_same_day": false
   },
   "blockers": [
     {
@@ -35,19 +35,40 @@
       "impact": "Account risk is not bounded.",
       "message": "At least one position is unprotected.",
       "severity": "PANIC"
+    },
+    {
+      "action": "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "code": "LIVE_READINESS_BLOCKED",
+      "impact": "FEM may be alive but unable to trade valid scalps.",
+      "message": "Live readiness is blocked.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
+      "code": "WATCHDOG_CRITICAL",
+      "impact": "A money-readiness condition is failing.",
+      "message": "Watchdog has 8 critical/panic alert(s).",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Start the scheduled bot handoff or trade bot.",
+      "code": "TRIGGER_BOT_NOT_VISIBLE",
+      "impact": "FEM cannot enter/manage intended scalps.",
+      "message": "No trigger bot process is visible during a trading session.",
+      "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 7246.044928312302,
+    "age_sec": 33866.12962651253,
     "alive": false,
     "generated_at": "2026-07-15T18:30:51",
     "mode": "AH_FLATTEN_TOO_LATE",
     "n_positions": 1
   },
   "broker": {
-    "age_sec": 5.2076005935668945,
+    "age_sec": 3.6434106826782227,
     "connected": true,
-    "generated_at": "2026-07-16T03:31:34+00:00",
+    "generated_at": "2026-07-16T10:55:15+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 1,
     "order_fail": 0,
@@ -57,10 +78,10 @@
     "positions": 1,
     "unprotected_positions": 1
   },
-  "expected_bot": false,
+  "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-16T03:31:42+00:00",
-  "generated_at_et": "2026-07-15T23:31:32-04:00",
+  "generated_at": "2026-07-16T10:55:21+00:00",
+  "generated_at_et": "2026-07-16T06:55:14-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -71,31 +92,34 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.4611978530883789,
-    "fail": 0,
-    "generated_at": "2026-07-16T03:31:38+00:00",
-    "live_ready": true,
+    "age_sec": 1.5714807510375977,
+    "fail": 8,
+    "generated_at": "2026-07-16T10:55:17+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.",
+      "Start or restart _DAILY\\4_LIVE.bat / LIVE_RUN.bat so fem_live_signals.json refreshes.",
+      "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
     ],
-    "overall": "OK",
-    "session": "closed",
+    "overall": "FAIL",
+    "session": "pre",
     "warn": 0
   },
   "money_safe": false,
   "morning": {
-    "age_sec": 25998.469341516495,
-    "ah_bot": "STARTED",
-    "ah_status": "OK",
-    "date": "2026-07-15",
+    "age_sec": 6.964333534240723,
+    "ah_bot": null,
+    "ah_status": null,
+    "date": "2026-07-16",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": "ALREADY_RUNNING",
-    "rth_status": "OK",
-    "scanner": "OK",
-    "scanner_status": "OK",
-    "scanner_tws": "DOWN",
-    "stack": "REQUESTED"
+    "rth_bot": null,
+    "rth_status": null,
+    "scanner": null,
+    "scanner_status": null,
+    "scanner_tws": null,
+    "stack": null
   },
   "next_session_startup": {
     "alist_fillable_count": 21,
@@ -103,11 +127,13 @@
     "carryover_open_order_count": 1,
     "carryover_position_count": 1,
     "moo_executable_ticket_count": 3,
-    "moo_tradeable_now": true,
+    "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
-    "ready_for_next_session_start": true,
+    "ready_for_next_session_start": false,
     "schedule_armed": true,
-    "startup_hard_blockers": [],
+    "startup_hard_blockers": [
+      "MOO_NOT_TRADEABLE_NOW"
+    ],
     "tws_connected_now": true
   },
   "refresh": {
@@ -115,19 +141,19 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "A-list tradeability: rows=21 fillable=21 proven_moo=2 moo_orders=3 state=MOO_TRADEABLE\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
+      "stdout": "A-list tradeability: rows=21 fillable=21 proven_moo=2 moo_orders=3 state=ALIST_NOT_READY\nAttention: A-list source is not today: fem_abook_2026-07-15_0623.csv source_date=2026-07-15 today=2026-07-16\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
     },
     "broker_reconcile": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-15 overall=FAIL orders=1 positions=1 order_fail=0 pos_fail=1 cancelled=0\n  POSITION_UNPROTECTED_NO_STOP: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-16 overall=FAIL orders=1 positions=1 order_fail=0 pos_fail=1 cancelled=0\n  EXIT_LIKE_MISSING_INTENT: 1\n  POSITION_UNPROTECTED_NO_STOP: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=OK session=closed ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=pre ok/warn/fail=1/0/8\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nNEXT: Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.\nNEXT: Start or restart _DAILY\\4_LIVE.bat / LIVE_RUN.bat so fem_live_signals.json refreshes.\nNEXT: Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -158,16 +184,16 @@
         "task_name": "FEM 1305 AH Trade Bot"
       },
       {
-        "last_run_time": "07/15/2026 03:55:01",
-        "last_task_result": 4294967295,
-        "next_run_time": "07/16/2026 03:55:00",
-        "state": "Ready",
+        "last_run_time": "07/16/2026 03:55:01",
+        "last_task_result": 267009,
+        "next_run_time": "07/17/2026 03:55:00",
+        "state": "Running",
         "task_name": "FEM Independent Watchdog"
       },
       {
-        "last_run_time": "07/15/2026 03:55:01",
+        "last_run_time": "07/16/2026 03:55:01",
         "last_task_result": 0,
-        "next_run_time": "07/16/2026 03:55:00",
+        "next_run_time": "07/17/2026 03:55:00",
         "state": "Ready",
         "task_name": "FEM_0355_TWS_PRECHECK"
       }
@@ -176,7 +202,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 27430.78365135193,
+    "age_sec": 54050.869827747345,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -201,27 +227,43 @@
       "PYPG"
     ]
   },
-  "session": "closed",
+  "session": "pre",
   "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": true,
+    "key": "97f356158a506b5d",
+    "ok": true,
+    "send_count": 1,
+    "status": 200,
+    "uppercase": false
+  },
   "title": "FEM Blocked",
   "trade_ready": false,
-  "watch_items": [],
+  "watch_items": [
+    {
+      "action": "Hydrate/override the unmapped symbols.",
+      "code": "SECTOR_SYMBOLS_UNMAPPED",
+      "impact": "Those names may lose sector alignment context.",
+      "message": "15 active symbol(s) have no sector mapping: AAPU, AEHG, AHCO, ALEC, AMA, AMZU, ANGO, ANIX.",
+      "severity": "WARN"
+    }
+  ],
   "watchdog": {
-    "age_sec": 22.229941368103027,
+    "age_sec": 6.8943257331848145,
     "bot_mode": "AH_FLATTEN_TOO_LATE",
     "broker_connected": true,
     "broker_open_orders": 1,
     "broker_overall": "FAIL",
     "broker_positions": 1,
-    "critical_or_panic_count": 4,
+    "critical_or_panic_count": 8,
     "morning_scanner": "OK",
     "morning_tws": "DOWN",
     "overall": "PANIC",
     "penny_morning_count": 370,
-    "penny_morning_is_today": true,
+    "penny_morning_is_today": false,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 123,
-    "short_watchlist_is_today": true,
+    "short_watchlist_is_today": false,
     "trigger_process_count": 0
   }
 }
