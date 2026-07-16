@@ -6,8 +6,7 @@
       "examples": [
         "SSPC#5005:ORPHAN_EXIT_POSITION_FLAT",
         "SSPC#5006:ORPHAN_EXIT_POSITION_FLAT",
-        "TGHL#5011:ORPHAN_EXIT_POSITION_FLAT",
-        "TGHL#5012:ORPHAN_EXIT_POSITION_FLAT"
+        "IQST#5016:ORPHAN_EXIT_POSITION_FLAT"
       ],
       "severity": "FAIL"
     }
@@ -22,7 +21,7 @@
   },
   "cancellations": [
     {
-      "at": "2026-07-16T19:10:55+00:00",
+      "at": "2026-07-16T19:13:01+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5005",
@@ -30,7 +29,7 @@
       "symbol": "SSPC"
     },
     {
-      "at": "2026-07-16T19:10:55+00:00",
+      "at": "2026-07-16T19:13:01+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5006",
@@ -38,26 +37,18 @@
       "symbol": "SSPC"
     },
     {
-      "at": "2026-07-16T19:10:55+00:00",
+      "at": "2026-07-16T19:13:01+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
-      "order_id": "5011",
+      "order_id": "5016",
       "reason": "ORPHAN_EXIT_POSITION_FLAT",
-      "symbol": "TGHL"
-    },
-    {
-      "at": "2026-07-16T19:10:55+00:00",
-      "cancelled": true,
-      "classification": "EXIT_PROTECTION",
-      "order_id": "5012",
-      "reason": "ORPHAN_EXIT_POSITION_FLAT",
-      "symbol": "TGHL"
+      "symbol": "IQST"
     }
   ],
-  "generated_at": "2026-07-16T19:10:56+00:00",
-  "generated_at_et": "2026-07-16T15:10:56-04:00",
+  "generated_at": "2026-07-16T19:13:01+00:00",
+  "generated_at_et": "2026-07-16T15:13:01-04:00",
   "inputs": {
-    "exit_intent_rows": 124,
+    "exit_intent_rows": 126,
     "order_strategy_rows": 105,
     "strategy_registry_rows": 67,
     "trade_permission_rows": 67
@@ -315,72 +306,14 @@
       "symbol": "SSPC"
     },
     {
-      "action": "BUY",
-      "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
-      "classification": "ENTRY",
-      "client_id": 10,
-      "detail": "entry order is mapped; route lock is audit-only because FEM_ROUTE_LOCK_ENFORCE is off",
-      "entry_strategy_id": "surge_full_pullback",
-      "exit_intent": null,
-      "exit_strategy_id": null,
-      "limit_price": 1.5,
-      "oca_group": "",
-      "order_id": "5010",
-      "order_type": "LMT",
-      "parent_id": "0",
-      "position_qty": 0.0,
-      "quantity": 462.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 1.5,
-        "oca_group": "",
-        "order_id": 5010,
-        "order_ref": "",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 0,
-        "perm_id": 103331296,
-        "quantity": 462.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "TGHL",
-        "tif": "DAY",
-        "trail_stop_price": 2.5,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": {
-        "allowed": false,
-        "candidate_strategy_ids": [
-          "surge_full_pullback"
-        ],
-        "permission": "BLOCK",
-        "permission_id": "surge_full_pullback",
-        "reason": "strategy registry marks this route bot_allowed=false",
-        "reason_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
-        "registry_id": "surge_full_pullback"
-      },
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "TGHL"
-    },
-    {
-      "action": "SELL",
-      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "exit-intent order is working while broker position is flat",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "surge_full_pullback",
       "exit_intent": "PROTECTIVE_STOP",
       "exit_strategy_id": "surge_full_pullback",
@@ -389,7 +322,7 @@
       "order_id": "5011",
       "order_type": "STP",
       "parent_id": "5010",
-      "position_qty": 0.0,
+      "position_qty": 462.0,
       "quantity": 462.0,
       "raw": {
         "action": "SELL",
@@ -415,20 +348,20 @@
         "transmit": true
       },
       "route": null,
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "PreSubmitted",
       "stop_price": 1.23,
       "symbol": "TGHL"
     },
     {
       "action": "SELL",
-      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "exit-intent order is working while broker position is flat",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "surge_full_pullback",
       "exit_intent": "TARGET_TAKE_PROFIT",
       "exit_strategy_id": "surge_full_pullback",
@@ -437,7 +370,7 @@
       "order_id": "5012",
       "order_type": "LMT",
       "parent_id": "5010",
-      "position_qty": 0.0,
+      "position_qty": 462.0,
       "quantity": 462.0,
       "raw": {
         "action": "SELL",
@@ -463,90 +396,95 @@
         "transmit": true
       },
       "route": null,
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "PreSubmitted",
       "stop_price": null,
       "symbol": "TGHL"
     },
     {
       "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
-      "exit_intent": "LADDER_T0_RUNNER_STOP",
+      "exit_intent": "RUNNER_T2_TARGET",
       "exit_strategy_id": "gap_eat_trigger",
-      "limit_price": null,
+      "limit_price": 1.35,
       "oca_group": "",
-      "order_id": "5014",
-      "order_type": "STP",
+      "order_id": "5016",
+      "order_type": "LMT",
       "parent_id": "0",
-      "position_qty": 293.0,
+      "position_qty": 0.0,
       "quantity": 293.0,
       "raw": {
         "action": "SELL",
         "client_id": 10,
         "currency": "USD",
         "exchange": "SMART",
-        "limit_price": 0.0,
+        "limit_price": 1.35,
         "oca_group": "",
-        "order_id": 5014,
+        "order_id": 5016,
         "order_ref": "",
-        "order_type": "STP",
-        "outside_rth": false,
+        "order_type": "LMT",
+        "outside_rth": true,
         "parent_id": 0,
-        "perm_id": 103331300,
+        "perm_id": 103331302,
         "quantity": 293.0,
         "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 1.21,
+        "status": "Submitted",
+        "stop_price": 0.0,
         "symbol": "IQST",
         "tif": "DAY",
-        "trail_stop_price": 1.21,
+        "trail_stop_price": 0.3500000000000001,
         "trailing_percent": 1.7976931348623157e+308,
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": 1.21,
+      "severity": "FAIL",
+      "status": "Submitted",
+      "stop_price": null,
       "symbol": "IQST"
     }
   ],
-  "operator_read": "Order safety is FAIL: 4 orphan exit order(s). Mode is ENFORCE; cancelled 4. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 3 orphan exit order(s). Mode is ENFORCE; cancelled 3. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
+        "ah_exit_owner_verified": true,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "ah_target_orders": [
+          "5012"
+        ],
+        "ah_target_quantity": 462.0,
+        "detail": "AH exit owner verified",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 293.0,
+        "full_ah_target_coverage": true,
+        "position_quantity": 462.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 1.30040175,
+      "avg_cost": 1.505003,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
-        "5014"
+        "5011"
       ],
-      "qty": 293.0,
+      "qty": 462.0,
       "related_exit_orders": [
-        "5014"
+        "5011",
+        "5012"
       ],
       "severity": "OK",
       "side": "LONG",
-      "symbol": "IQST",
-      "target_orders": []
+      "symbol": "TGHL",
+      "target_orders": [
+        "5012"
+      ]
     },
     {
       "ah_exit_contract": {
@@ -587,18 +525,18 @@
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "ORPHAN_EXIT_POSITION_FLAT": 4
+      "ORPHAN_EXIT_POSITION_FLAT": 3
     },
     "broker_connected": true,
-    "cancel_candidates": 4,
+    "cancel_candidates": 3,
     "cancel_failed": 0,
-    "cancelled": 4,
+    "cancelled": 3,
     "invalid_entry_like_orders": 0,
-    "open_orders": 9,
-    "order_fail": 4,
+    "open_orders": 8,
+    "order_fail": 3,
     "order_ok": 5,
     "order_warn": 0,
-    "orphan_exit_orders": 4,
+    "orphan_exit_orders": 3,
     "position_fail": 0,
     "position_ok": 2,
     "position_warn": 0,
