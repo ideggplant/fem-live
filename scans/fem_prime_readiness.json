@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.045996904373168945,
+    "age_sec": 0.1250474452972412,
     "alist_fillable_count": 26,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 26,
@@ -14,18 +14,26 @@
     "source_file": "fem_abook_2026-07-16_0722.csv",
     "source_same_day": true
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Start the scheduled bot handoff or trade bot.",
+      "code": "TRIGGER_BOT_NOT_VISIBLE",
+      "impact": "FEM cannot enter/manage intended scalps.",
+      "message": "No trigger bot process is visible during a trading session.",
+      "severity": "CRITICAL"
+    }
+  ],
   "bot": {
-    "age_sec": 59.523780822753906,
+    "age_sec": 6.879638433456421,
     "alive": true,
-    "generated_at": "2026-07-16T04:52:40",
+    "generated_at": "2026-07-16T06:22:01",
     "mode": "TRIGGER_LIVE",
     "n_positions": 6
   },
   "broker": {
-    "age_sec": 2.1175317764282227,
+    "age_sec": 3.1163859367370605,
     "connected": true,
-    "generated_at": "2026-07-16T11:53:39+00:00",
+    "generated_at": "2026-07-16T13:22:04+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 10,
     "order_fail": 0,
@@ -37,8 +45,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-16T11:53:42+00:00",
-  "generated_at_et": "2026-07-16T07:53:37-04:00",
+  "generated_at": "2026-07-16T13:22:11+00:00",
+  "generated_at_et": "2026-07-16T09:22:03-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,9 +57,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.2146129608154297,
+    "age_sec": 0.42811155319213867,
     "fail": 0,
-    "generated_at": "2026-07-16T11:53:41+00:00",
+    "generated_at": "2026-07-16T13:22:07+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
@@ -62,14 +70,14 @@
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 90.92569875717163,
+    "age_sec": 36.07489776611328,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-16",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": null,
-    "rth_status": null,
+    "rth_bot": "STARTED",
+    "rth_status": "OK",
     "scanner": "OK",
     "scanner_status": "OK",
     "scanner_tws": "OK",
@@ -122,9 +130,9 @@
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "07/15/2026 06:17:00",
+        "last_run_time": "07/16/2026 06:17:00",
         "last_task_result": 0,
-        "next_run_time": "07/16/2026 06:17:00",
+        "next_run_time": "07/17/2026 06:17:00",
         "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
@@ -154,34 +162,37 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 2798.798688173294,
+    "age_sec": 36.264955282211304,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.011002063751220703,
+    "snapshot_age_seconds": 0.028516769409179688,
     "snapshot_fresh": true,
-    "unknown_symbol_count": 14,
+    "unknown_symbol_count": 9,
     "unknown_symbols": [
-      "AAPU",
-      "AEHG",
-      "ALEC",
       "AMA",
-      "AMZU",
-      "ANGO",
-      "ANIX",
-      "ANVS",
-      "AORT",
       "ASTN",
-      "BABX",
-      "CONL",
-      "PYPG",
-      "WOOF"
+      "BTTC",
+      "CHEF",
+      "DAMD",
+      "MSTZ",
+      "SKDD",
+      "SKHZ",
+      "UNHG"
     ]
   },
   "session": "pre",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": true,
+    "key": "cfb5ac60e4ac9693",
+    "ok": true,
+    "send_count": 1,
+    "status": 200,
+    "uppercase": false
+  },
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
     {
       "action": "Manage the carryover separately; keep trading stack live.",
@@ -208,33 +219,33 @@
       "action": "Inspect remaining non-carryover alerts if entries are not firing.",
       "code": "WATCHDOG_CARRYOVER_WARNINGS",
       "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
-      "message": "Watchdog has 4 critical/panic alert(s), including acknowledged carryover risk.",
+      "message": "Watchdog has 6 critical/panic alert(s), including acknowledged carryover risk.",
       "severity": "WARN"
     },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "14 active symbol(s) have no sector mapping: AAPU, AEHG, ALEC, AMA, AMZU, ANGO, ANIX, ANVS.",
+      "message": "9 active symbol(s) have no sector mapping: AMA, ASTN, BTTC, CHEF, DAMD, MSTZ, SKDD, SKHZ.",
       "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 23.479488134384155,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 34.15301990509033,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 10,
     "broker_overall": "FAIL",
     "broker_positions": 6,
-    "critical_or_panic_count": 4,
+    "critical_or_panic_count": 6,
     "morning_scanner": "OK",
     "morning_tws": "OK",
     "overall": "PANIC",
     "penny_morning_count": 370,
     "penny_morning_is_today": false,
-    "rth_handoff_status": null,
+    "rth_handoff_status": "OK",
     "short_watchlist_count": 69,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
