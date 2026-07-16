@@ -1,25 +1,25 @@
 {
   "bot_status": {
     "available": true,
-    "broker_open_orders": 0,
-    "generated_at": "2026-07-15T13:18:25",
-    "mode": "HALTED_PROFIT_LOCK",
-    "n_positions": 0,
-    "position_source": "broker_reconcile",
-    "positions_count": 0,
-    "sample_modes": [],
-    "stale_bot_status_positions": 0
+    "generated_at": "2026-07-15T16:55:01",
+    "mode": "TRIGGER_DONE",
+    "n_positions": 2,
+    "positions_count": 2,
+    "sample_modes": [
+      "surge_micro",
+      "surge_trigger"
+    ]
   },
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-07-15T20:18:22+00:00",
+    "generated_at": "2026-07-16T01:19:56+00:00",
     "open_orders": 0,
-    "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
-    "overall": "OK",
-    "positions": 0,
+    "operator_read": "Order safety is FAIL: 1 unprotected position(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+    "overall": "FAIL",
+    "positions": 1,
     "trade_date": "2026-07-15",
-    "unprotected_positions": 0
+    "unprotected_positions": 1
   },
   "checks": [
     {
@@ -43,9 +43,9 @@
       "label": "Live runtime processes",
       "live_fire_grade": true,
       "live_runner": true,
-      "process_count": 15,
-      "required": true,
-      "session": "ah",
+      "process_count": 11,
+      "required": false,
+      "session": "closed",
       "status": "OK",
       "trade_bot": true
     },
@@ -53,81 +53,81 @@
       "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
-      "required": true,
+      "required": false,
       "status": "OK"
     },
     {
-      "age_seconds": 29,
+      "age_seconds": 0,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-07-15T20:18:01+00:00",
+      "mtime_utc": "2026-07-16T01:20:50+00:00",
       "path": "_DAILY\\fem_live_signals.json",
-      "required": true,
+      "required": false,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 291975,
+      "size_bytes": 290431,
       "status": "OK"
     },
     {
-      "age_seconds": 10,
+      "age_seconds": 14,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-07-15T20:18:20+00:00",
+      "mtime_utc": "2026-07-16T01:20:36+00:00",
       "path": "_DAILY\\fem_regime_live.json",
-      "required": true,
+      "required": false,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 1148,
+      "size_bytes": 1153,
       "status": "OK"
     },
     {
-      "age_seconds": 5,
+      "age_seconds": 5147,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-07-15T20:18:25+00:00",
+      "mtime_utc": "2026-07-15T23:55:03+00:00",
       "path": "fem_bot_status.json",
-      "required": true,
+      "required": false,
       "schema": null,
-      "size_bytes": 24059,
+      "size_bytes": 23770,
       "status": "OK"
     },
     {
-      "age_seconds": 1605,
+      "age_seconds": 11535,
       "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
-      "mtime_utc": "2026-07-15T19:51:45+00:00",
+      "mtime_utc": "2026-07-15T22:08:35+00:00",
       "path": "_DAILY\\executions_2026-07-15.csv",
       "required": false,
-      "size_bytes": 3037,
+      "size_bytes": 3705,
       "status": "OK"
     },
     {
-      "age_seconds": 21040,
+      "age_seconds": 11536,
       "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
-      "mtime_utc": "2026-07-15T14:27:50+00:00",
+      "mtime_utc": "2026-07-15T22:08:34+00:00",
       "path": "_DAILY\\order_strategy_2026-07-15.jsonl",
       "required": false,
-      "size_bytes": 35270,
+      "size_bytes": 63227,
       "status": "OK"
     },
     {
-      "age_seconds": 5,
+      "age_seconds": 245,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-07-15T20:18:25+00:00",
+      "mtime_utc": "2026-07-16T01:16:45+00:00",
       "path": "_DAILY\\contract_events_2026-07-15.jsonl",
       "required": false,
-      "size_bytes": 375432912,
+      "size_bytes": 470158764,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-07-15T20:18:31+00:00",
-  "generated_at_et": "2026-07-15T16:18:31-04:00",
+  "generated_at": "2026-07-16T01:20:50+00:00",
+  "generated_at_et": "2026-07-15T21:20:50-04:00",
   "next_actions": [
     "Live readiness blockers are clear."
   ],
@@ -156,18 +156,6 @@
       "creation_date": "2026-07-15T01:19:01.5427830-07:00",
       "name": "cmd.exe",
       "process_id": 11548
-    },
-    {
-      "command_line": "py  -3.12 fem_live_fire_grade.py --loop 60",
-      "creation_date": "2026-07-15T01:19:01.7416750-07:00",
-      "name": "py.exe",
-      "process_id": 14976
-    },
-    {
-      "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_live_fire_grade.py --loop 60",
-      "creation_date": "2026-07-15T01:19:01.7684800-07:00",
-      "name": "python.exe",
-      "process_id": 5976
     },
     {
       "command_line": "C:\\WINDOWS\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat\"",
@@ -210,22 +198,10 @@
       "creation_date": "2026-07-15T06:34:54.3497740-07:00",
       "name": "cmd.exe",
       "process_id": 15652
-    },
-    {
-      "command_line": "\"C:\\Windows\\py.exe\" -3.12 fem_auto_trade.py --mode trigger --until 19:55 ",
-      "creation_date": "2026-07-15T13:18:15.9925200-07:00",
-      "name": "py.exe",
-      "process_id": 25700
-    },
-    {
-      "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_auto_trade.py --mode trigger --until 19:55 ",
-      "creation_date": "2026-07-15T13:18:16.0669130-07:00",
-      "name": "python.exe",
-      "process_id": 22920
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
-  "session": "ah",
+  "session": "closed",
   "summary": {
     "checks": 9,
     "fail": 0,
