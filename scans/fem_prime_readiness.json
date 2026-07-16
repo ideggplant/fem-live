@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.08851909637451172,
+    "age_sec": 0.06500029563903809,
     "alist_fillable_count": 26,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 26,
@@ -14,54 +14,18 @@
     "source_file": "fem_abook_2026-07-16_0722.csv",
     "source_same_day": true
   },
-  "blockers": [
-    {
-      "action": "Reconnect TWS/broker and rerun prime readiness.",
-      "code": "BROKER_NOT_OK",
-      "impact": "Cannot trust entries, exits, or flat state.",
-      "message": "Broker reconcile is FAIL connected=True.",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Run broker reconcile and clean the named order issue.",
-      "code": "ORDER_SAFETY_NOT_CLEAN",
-      "impact": "Scalping can create uncontrolled exposure.",
-      "message": "Broker order/position safety is not clean.",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Protect or flatten the position before new trades.",
-      "code": "UNPROTECTED_POSITION",
-      "impact": "Account risk is not bounded.",
-      "message": "At least one position is unprotected.",
-      "severity": "PANIC"
-    },
-    {
-      "action": "Live readiness blockers are clear.",
-      "code": "LIVE_READINESS_BLOCKED",
-      "impact": "FEM may be alive but unable to trade valid scalps.",
-      "message": "Live readiness is blocked.",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 4 critical/panic alert(s).",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 64.77928733825684,
+    "age_sec": 31.772104263305664,
     "alive": true,
-    "generated_at": "2026-07-16T04:28:00",
+    "generated_at": "2026-07-16T04:31:28",
     "mode": "TRIGGER_LIVE",
     "n_positions": 1
   },
   "broker": {
-    "age_sec": 4.436871767044067,
+    "age_sec": 3.201995372772217,
     "connected": true,
-    "generated_at": "2026-07-16T11:29:02+00:00",
+    "generated_at": "2026-07-16T11:31:57+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -73,8 +37,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-16T11:29:08+00:00",
-  "generated_at_et": "2026-07-16T07:28:59-04:00",
+  "generated_at": "2026-07-16T11:32:02+00:00",
+  "generated_at_et": "2026-07-16T07:31:55-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -85,9 +49,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.37410712242126465,
+    "age_sec": 0.4450984001159668,
     "fail": 2,
-    "generated_at": "2026-07-16T11:29:06+00:00",
+    "generated_at": "2026-07-16T11:31:59+00:00",
     "live_ready": false,
     "next_actions": [
       "Live readiness blockers are clear."
@@ -96,9 +60,9 @@
     "session": "pre",
     "warn": 0
   },
-  "money_safe": false,
+  "money_safe": true,
   "morning": {
-    "age_sec": 923.0995669364929,
+    "age_sec": 1096.9845402240753,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-16",
@@ -190,7 +154,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 1324.086751461029,
+    "age_sec": 1497.9707217216492,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -215,10 +179,45 @@
     ]
   },
   "session": "pre",
-  "state": "NOT_TRADE_READY",
-  "title": "FEM Blocked",
-  "trade_ready": false,
+  "state": "TRADE_READY",
+  "title": "FEM Ready",
+  "trade_ready": true,
   "watch_items": [
+    {
+      "action": "Manage the carryover separately; keep trading stack live.",
+      "code": "ACKNOWLEDGED_CARRYOVER_POSITION_RISK",
+      "impact": "Carryover risk exists, but scheduled/trigger trading is not hard-blocked when flat_required=no.",
+      "message": "Broker reconcile is FAIL because carryover position(s) are unprotected.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Manage/protect/flatten the carryover separately from session startup.",
+      "code": "CARRYOVER_POSITION_UNPROTECTED",
+      "impact": "This is risk on the carryover, not proof the bot cannot send new protected entries.",
+      "message": "Existing carryover position is unprotected.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Manage/protect/flatten the carryover separately.",
+      "code": "UNPROTECTED_CARRYOVER_POSITION",
+      "impact": "Account risk is not bounded for that position; new-entry readiness is evaluated separately.",
+      "message": "At least one carryover position is unprotected.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Keep trading stack live; manage carryover separately.",
+      "code": "LIVE_READINESS_CARRYOVER_DISPLAY_WARN",
+      "impact": "Bot process, runner, TWS, and live signals are present.",
+      "message": "Live readiness is FAIL due carryover/accounting display checks, but live blockers are clear.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Inspect remaining non-carryover alerts if entries are not firing.",
+      "code": "WATCHDOG_CARRYOVER_WARNINGS",
+      "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
+      "message": "Watchdog has 4 critical/panic alert(s), including acknowledged carryover risk.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -228,7 +227,7 @@
     }
   ],
   "watchdog": {
-    "age_sec": 24.34901237487793,
+    "age_sec": 10.9114248752594,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 0,
