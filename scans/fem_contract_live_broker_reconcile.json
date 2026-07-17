@@ -8,14 +8,6 @@
         "BIYA#5046:ORPHAN_EXIT_POSITION_FLAT"
       ],
       "severity": "FAIL"
-    },
-    {
-      "code": "AH_EXIT_OWNER_UNVERIFIED",
-      "detail": "After-hours position exists without a verified AH-capable exit owner.",
-      "examples": [
-        "CJMB:AH exit owner is not verified: AH target quantity 542 < position quantity 706; no AH-enabled native stop"
-      ],
-      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -28,7 +20,7 @@
   },
   "cancellations": [
     {
-      "at": "2026-07-16T23:58:53+00:00",
+      "at": "2026-07-17T00:01:00+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5045",
@@ -36,7 +28,7 @@
       "symbol": "BIYA"
     },
     {
-      "at": "2026-07-16T23:58:53+00:00",
+      "at": "2026-07-17T00:01:00+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5046",
@@ -44,8 +36,8 @@
       "symbol": "BIYA"
     }
   ],
-  "generated_at": "2026-07-16T23:58:54+00:00",
-  "generated_at_et": "2026-07-16T19:58:54-04:00",
+  "generated_at": "2026-07-17T00:01:00+00:00",
+  "generated_at_et": "2026-07-16T20:01:00-04:00",
   "inputs": {
     "exit_intent_rows": 171,
     "order_strategy_rows": 143,
@@ -305,7 +297,7 @@
       "symbol": "CJMB"
     }
   ],
-  "operator_read": "Order safety is FAIL: 2 orphan exit order(s), 1 AH exit-owner gap(s). Mode is ENFORCE; cancelled 2. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 2 orphan exit order(s). Mode is ENFORCE; cancelled 2. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
@@ -324,8 +316,8 @@
         "schema": "fem_ah_exit_contract.v1"
       },
       "avg_cost": 1.28268005,
-      "breach_code": "POSITION_AH_EXIT_OWNER_UNVERIFIED",
-      "detail": "AH exit owner is not verified: AH target quantity 542 < position quantity 706; no AH-enabled native stop",
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
         "5073"
       ],
@@ -334,7 +326,7 @@
         "5073",
         "5074"
       ],
-      "severity": "FAIL",
+      "severity": "OK",
       "side": "LONG",
       "symbol": "CJMB",
       "target_orders": [
@@ -343,12 +335,11 @@
     }
   ],
   "schema": "fem_contract_live_broker_reconcile.v1",
-  "session": "ah",
+  "session": "closed",
   "summary": {
-    "ah_exit_owner_unverified_positions": 1,
+    "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "ORPHAN_EXIT_POSITION_FLAT": 2,
-      "POSITION_AH_EXIT_OWNER_UNVERIFIED": 1
+      "ORPHAN_EXIT_POSITION_FLAT": 2
     },
     "broker_connected": true,
     "cancel_candidates": 2,
@@ -360,8 +351,8 @@
     "order_ok": 3,
     "order_warn": 0,
     "orphan_exit_orders": 2,
-    "position_fail": 1,
-    "position_ok": 0,
+    "position_fail": 0,
+    "position_ok": 1,
     "position_warn": 0,
     "positions": 1,
     "unprotected_positions": 0
