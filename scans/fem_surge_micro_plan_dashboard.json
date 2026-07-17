@@ -1,11 +1,11 @@
 {
   "schema": "fem_surge_micro_plan_dashboard/v1",
-  "generated_at": "2026-07-17T14:17:11-04:00",
+  "generated_at": "2026-07-17T14:22:23-04:00",
   "day": "2026-07-17",
   "source_file": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\live_fires_2026-07-17.jsonl",
   "screener_source_file": "C:\\Users\\Gill\\Downloads\\Penny Morning Screen_2026-07-13.csv",
-  "live_generated_at": "2026-07-17T14:16:51-04:00",
-  "live_last_msg_et": "2026-07-17T14:16:00-04:00",
+  "live_generated_at": "2026-07-17T14:21:05-04:00",
+  "live_last_msg_et": "2026-07-17T14:21:00-04:00",
   "risk_model": {
     "risk_dollars": 35.0,
     "target_dollars": 60.0,
@@ -21,17 +21,17 @@
     ]
   },
   "counts": {
-    "raw_surge_fires": 1832,
+    "raw_surge_fires": 1849,
     "screener_gappers": 14,
-    "planned": 1846,
-    "daily_120_hits": 69,
+    "planned": 1863,
+    "daily_120_hits": 70,
     "micro_long_scout": 4,
     "micro_starter_only": 6,
     "screener_gapper_watch": 0,
-    "late_fire_watch": 167,
-    "rsi_checked": 274,
+    "late_fire_watch": 174,
+    "rsi_checked": 277,
     "rsi_low_pass": 37,
-    "rsi_not_low_known": 237
+    "rsi_not_low_known": 240
   },
   "daily_liquid_universe": {
     "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
@@ -513,7 +513,7 @@
       "rel_vol": 26.03,
       "move_pct": 9.19,
       "regime": "NEUTRAL",
-      "on_watchlist": false,
+      "on_watchlist": null,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
@@ -530,7 +530,6 @@
         "low_price_micro_live_volume_confirmed"
       ],
       "flags": [
-        "wide_fire_bar_stop_capped",
         "low_price_micro_probe_lane",
         "late_day_decay",
         "not_in_daily_120_liquid_universe",
@@ -560,11 +559,11 @@
         "intent": "micro_starter_only",
         "entry_zone": {
           "low": 2.6617,
-          "high": 3.3968
+          "high": 2.6885
         },
         "entry_reference": 2.6751,
         "stop": 2.528,
-        "stop_source": "capped_inside_wide_bar",
+        "stop_source": "price_band_pct",
         "risk_per_share": 0.1471,
         "qty": 448,
         "notional": 1198.44,
@@ -580,18 +579,16 @@
         "rr_to_tp1": 1.82,
         "rr_to_tp2": 2.0,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
+        "flags": []
       },
       "raw": {
         "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 2.45,
-        "bar_high": 3.39,
-        "bar_low": 2.45,
-        "bar_volume": 503279,
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -2825,35 +2822,32 @@
   ],
   "latest": [
     {
-      "ticker": "CNF",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 2.6751,
-      "rel_vol": 26.03,
-      "move_pct": 9.19,
+      "ticker": "WDCX",
+      "t": "2026-07-17T14:20:19-04:00",
+      "fire_min": 860,
+      "entry": 22.53,
+      "rel_vol": 0.71,
+      "move_pct": 6.53,
       "regime": "NEUTRAL",
       "on_watchlist": false,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
       "mins_to_peak": null,
-      "tp1_needed_pct": 10.01,
+      "tp1_needed_pct": 7.83,
       "micro_tp1_hit": false,
-      "score": 55.0,
-      "verdict": "MICRO_STARTER_ONLY",
+      "score": 10.0,
+      "verdict": "SKIP",
       "reasons": [
-        "low_price_micro_allowed",
-        "huge_rel_vol",
+        "five_plus_surge_band",
         "below_main_bot_but_real_impulse",
-        "cash_target_reachable",
-        "low_price_micro_live_volume_confirmed"
+        "cash_target_reachable"
       ],
       "flags": [
         "wide_fire_bar_stop_capped",
-        "low_price_micro_probe_lane",
+        "weak_rel_vol",
         "late_day_decay",
         "not_in_daily_120_liquid_universe",
-        "daily_120_miss_overridden_by_low_price_micro_volume",
         "rsi_context_missing_shadow"
       ],
       "daily_liquid": {
@@ -2870,33 +2864,216 @@
         "source": null
       },
       "size_profile": {
-        "tag": "micro_plus",
-        "risk_dollars": 75.0,
-        "target_dollars": 120.0,
-        "rule": "score>=80 OR rel_vol>=15 and move>=4%"
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
       },
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
-          "low": 2.6617,
-          "high": 3.3968
+          "low": 22.4174,
+          "high": 23.6372
         },
-        "entry_reference": 2.6751,
-        "stop": 2.528,
+        "entry_reference": 22.53,
+        "stop": 21.5161,
         "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.1471,
-        "qty": 448,
-        "notional": 1198.44,
-        "risk_dollars": 65.91,
-        "notional_cap": 1200.0,
-        "tp1": 2.943,
-        "tp1_needed_pct": 10.01,
-        "tp1_target_cash": 120.0,
+        "risk_per_share": 1.0139,
+        "qty": 34,
+        "notional": 766.02,
+        "risk_dollars": 34.47,
+        "notional_cap": 1500.0,
+        "tp1": 24.2947,
+        "tp1_needed_pct": 7.83,
+        "tp1_target_cash": 60.0,
         "tp1_sell_frac": 0.7,
-        "runner_qty": 134,
-        "runner_stop_after_tp1": 2.6751,
-        "tp2": 2.9694,
-        "rr_to_tp1": 1.82,
+        "runner_qty": 10,
+        "runner_stop_after_tp1": 22.53,
+        "tp2": 24.783,
+        "rr_to_tp1": 1.74,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 19.37,
+        "bar_high": 23.59,
+        "bar_low": 17.96,
+        "bar_volume": 1302927,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "HAWK",
+      "t": "2026-07-17T14:20:19-04:00",
+      "fire_min": 860,
+      "entry": 19.07,
+      "rel_vol": 0.41,
+      "move_pct": 5.18,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.87,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 18.9747,
+          "high": 19.3737
+        },
+        "entry_reference": 19.07,
+        "stop": 18.2118,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.8582,
+        "qty": 40,
+        "notional": 762.8,
+        "risk_dollars": 34.33,
+        "notional_cap": 1500.0,
+        "tp1": 20.57,
+        "tp1_needed_pct": 7.87,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 12,
+        "runner_stop_after_tp1": 19.07,
+        "tp2": 20.977,
+        "rr_to_tp1": 1.75,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 18.06,
+        "bar_high": 19.335,
+        "bar_low": 17.91,
+        "bar_volume": 478991,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "FULC",
+      "t": "2026-07-17T14:20:19-04:00",
+      "fire_min": 860,
+      "entry": 3.68,
+      "rel_vol": 0.56,
+      "move_pct": 5.14,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.48,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 3.6616,
+          "high": 3.7926
+        },
+        "entry_reference": 3.68,
+        "stop": 3.4776,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.2024,
+        "qty": 172,
+        "notional": 632.96,
+        "risk_dollars": 34.81,
+        "notional_cap": 1200.0,
+        "tp1": 4.0288,
+        "tp1_needed_pct": 9.48,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 52,
+        "runner_stop_after_tp1": 3.68,
+        "tp2": 4.0848,
+        "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.0,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
         "flags": [
@@ -2907,10 +3084,10 @@
         "kind": "surge",
         "source": "gainers_snapshot",
         "source_file": "fem_live_signals.json",
-        "bar_open": 2.45,
-        "bar_high": 3.39,
-        "bar_low": 2.45,
-        "bar_volume": 503279,
+        "bar_open": 3.47,
+        "bar_high": 3.785,
+        "bar_low": 3.46,
+        "bar_volume": 1519306,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -2919,47 +3096,321 @@
       }
     },
     {
-      "ticker": "BE",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 217.825,
-      "rel_vol": 0.69,
-      "move_pct": 5.25,
+      "ticker": "IREZ",
+      "t": "2026-07-17T14:20:19-04:00",
+      "fire_min": 860,
+      "entry": 12.33,
+      "rel_vol": 1.04,
+      "move_pct": 5.5,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.72,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "daily_rsi_not_low_64.8"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": 64.83,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "FAIL",
+        "max_rsi": 40.0,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.json"
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 12.2683,
+          "high": 13.507
+        },
+        "entry_reference": 12.33,
+        "stop": 11.7752,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.5549,
+        "qty": 63,
+        "notional": 776.79,
+        "risk_dollars": 34.96,
+        "notional_cap": 1500.0,
+        "tp1": 13.2824,
+        "tp1_needed_pct": 7.72,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 19,
+        "runner_stop_after_tp1": 12.33,
+        "tp2": 13.563,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 12.45,
+        "bar_high": 13.48,
+        "bar_low": 11.66,
+        "bar_volume": 4174196,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "GPCR",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 48.47,
+      "rel_vol": 0.82,
+      "move_pct": 5.3,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.74,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 48.2276,
+          "high": 49.7493
+        },
+        "entry_reference": 48.47,
+        "stop": 46.2888,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 2.1812,
+        "qty": 16,
+        "notional": 775.52,
+        "risk_dollars": 34.9,
+        "notional_cap": 1500.0,
+        "tp1": 52.22,
+        "tp1_needed_pct": 7.74,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 5,
+        "runner_stop_after_tp1": 48.47,
+        "tp2": 53.317,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 45.65,
+        "bar_high": 49.65,
+        "bar_low": 44.8001,
+        "bar_volume": 535127,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "VG",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 13.685,
+      "rel_vol": 1.29,
+      "move_pct": 8.01,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.83,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 13.6166,
+          "high": 13.7725
+        },
+        "entry_reference": 13.685,
+        "stop": 13.0692,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.6158,
+        "qty": 56,
+        "notional": 766.36,
+        "risk_dollars": 34.49,
+        "notional_cap": 1500.0,
+        "tp1": 14.7564,
+        "tp1_needed_pct": 7.83,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 17,
+        "runner_stop_after_tp1": 13.685,
+        "tp2": 15.0535,
+        "rr_to_tp1": 1.74,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 13.05,
+        "bar_high": 13.745,
+        "bar_low": 12.895,
+        "bar_volume": 12400261,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "STX",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 786.71,
+      "rel_vol": 0.83,
+      "move_pct": 5.53,
       "regime": "NEUTRAL",
       "on_watchlist": true,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
       "mins_to_peak": null,
-      "tp1_needed_pct": 9.18,
+      "tp1_needed_pct": 4.0,
       "micro_tp1_hit": false,
-      "score": 30.0,
+      "score": 8.0,
       "verdict": "SKIP",
       "reasons": [
         "five_plus_surge_band",
         "below_main_bot_but_real_impulse",
-        "cash_target_reachable",
+        "cash_target_nearby",
         "daily_120_liquid_universe"
       ],
       "flags": [
         "wide_fire_bar_stop_capped",
         "weak_rel_vol",
         "late_day_decay",
+        "no_defined_risk_size",
         "rsi_context_missing_shadow"
       ],
       "daily_liquid": {
         "in_universe": true,
-        "rank": 26,
+        "rank": 22,
         "selection_bucket": "liquidity_core",
-        "price": 206,
-        "dollar_vol_today": 3377163507.9323053,
-        "vol_today": 16336107.521561,
-        "avg_vol_20d": 15455400,
-        "avg_dollar_vol_20d": 3183812400,
-        "relvol": 1.06,
-        "activity_score": 76.54,
-        "liquidity_score": 90.57,
-        "price_band": "large_liquid",
+        "price": 732.08,
+        "dollar_vol_today": 4637145029.894637,
+        "vol_today": 6220264.564105,
+        "avg_vol_20d": 5186350,
+        "avg_dollar_vol_20d": 3796823108,
+        "relvol": 1.2,
+        "activity_score": 73.33,
+        "liquidity_score": 93.33,
+        "price_band": "mega",
         "reasons": [
           "today_dollar_vol_25m_plus",
           "today_volume_2m_plus"
@@ -2984,25 +3435,25 @@
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
-          "low": 216.7359,
-          "high": 224.1975
+          "low": 782.7765,
+          "high": 810.2673
         },
-        "entry_reference": 217.825,
-        "stop": 208.0229,
+        "entry_reference": 786.71,
+        "stop": 751.308,
         "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 9.8021,
-        "qty": 3,
-        "notional": 653.47,
-        "risk_dollars": 29.41,
+        "risk_per_share": 35.402,
+        "qty": 0,
+        "notional": 0.0,
+        "risk_dollars": 0.0,
         "notional_cap": 1500.0,
-        "tp1": 237.825,
-        "tp1_needed_pct": 9.18,
+        "tp1": 818.1784,
+        "tp1_needed_pct": 4.0,
         "tp1_target_cash": 60.0,
         "tp1_sell_frac": 0.7,
-        "runner_qty": 1,
-        "runner_stop_after_tp1": 217.825,
-        "tp2": 239.6075,
-        "rr_to_tp1": 2.04,
+        "runner_qty": 0,
+        "runner_stop_after_tp1": 786.71,
+        "tp2": 865.381,
+        "rr_to_tp1": 0.89,
         "rr_to_tp2": 2.22,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
         "flags": [
@@ -3013,10 +3464,10 @@
         "kind": "surge",
         "source": "gainers_snapshot",
         "source_file": "fem_live_signals.json",
-        "bar_open": 200.98,
-        "bar_high": 223.75,
-        "bar_low": 194.6,
-        "bar_volume": 11234399,
+        "bar_open": 720.94,
+        "bar_high": 808.65,
+        "bar_low": 700.39,
+        "bar_volume": 5154877,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -3025,30 +3476,30 @@
       }
     },
     {
-      "ticker": "QMCO",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 10.35,
-      "rel_vol": 0.63,
-      "move_pct": 7.45,
+      "ticker": "FEIM",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 64.62,
+      "rel_vol": 0.33,
+      "move_pct": 15.13,
       "regime": "NEUTRAL",
-      "on_watchlist": true,
+      "on_watchlist": false,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
       "mins_to_peak": null,
-      "tp1_needed_pct": 7.73,
+      "tp1_needed_pct": 7.74,
       "micro_tp1_hit": false,
-      "score": 10.0,
+      "score": 0.0,
       "verdict": "SKIP",
       "reasons": [
         "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
         "cash_target_reachable"
       ],
       "flags": [
         "wide_fire_bar_stop_capped",
         "weak_rel_vol",
+        "already_main_bot_threshold",
         "late_day_decay",
         "not_in_daily_120_liquid_universe",
         "rsi_context_missing_shadow"
@@ -3075,24 +3526,24 @@
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
-          "low": 10.2982,
-          "high": 10.6212
+          "low": 64.2969,
+          "high": 67.5148
         },
-        "entry_reference": 10.35,
-        "stop": 9.8842,
+        "entry_reference": 64.62,
+        "stop": 61.7121,
         "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.4657,
-        "qty": 75,
-        "notional": 776.25,
-        "risk_dollars": 34.93,
+        "risk_per_share": 2.9079,
+        "qty": 12,
+        "notional": 775.44,
+        "risk_dollars": 34.89,
         "notional_cap": 1500.0,
-        "tp1": 11.15,
-        "tp1_needed_pct": 7.73,
+        "tp1": 69.62,
+        "tp1_needed_pct": 7.74,
         "tp1_target_cash": 60.0,
         "tp1_sell_frac": 0.7,
-        "runner_qty": 23,
-        "runner_stop_after_tp1": 10.35,
-        "tp2": 11.385,
+        "runner_qty": 4,
+        "runner_stop_after_tp1": 64.62,
+        "tp2": 71.082,
         "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.22,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
@@ -3104,10 +3555,10 @@
         "kind": "surge",
         "source": "gainers_snapshot",
         "source_file": "fem_live_signals.json",
-        "bar_open": 9.16,
-        "bar_high": 10.6,
-        "bar_low": 9.06,
-        "bar_volume": 590777,
+        "bar_open": 55.41,
+        "bar_high": 67.38,
+        "bar_low": 54.01,
+        "bar_volume": 377596,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -3116,30 +3567,30 @@
       }
     },
     {
-      "ticker": "MUU",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 28.99,
-      "rel_vol": 1.38,
-      "move_pct": 5.53,
+      "ticker": "ITG",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 11.975,
+      "rel_vol": 1.02,
+      "move_pct": 10.68,
       "regime": "NEUTRAL",
       "on_watchlist": false,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
       "mins_to_peak": null,
-      "tp1_needed_pct": 7.96,
+      "tp1_needed_pct": 7.83,
       "micro_tp1_hit": false,
-      "score": 10.0,
+      "score": 0.0,
       "verdict": "SKIP",
       "reasons": [
         "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
         "cash_target_reachable"
       ],
       "flags": [
         "wide_fire_bar_stop_capped",
         "weak_rel_vol",
+        "already_main_bot_threshold",
         "late_day_decay",
         "not_in_daily_120_liquid_universe",
         "rsi_context_missing_shadow"
@@ -3166,479 +3617,24 @@
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
-          "low": 28.845,
-          "high": 30.8415
+          "low": 11.9151,
+          "high": 12.525
         },
-        "entry_reference": 28.99,
-        "stop": 27.6854,
+        "entry_reference": 11.975,
+        "stop": 11.4361,
         "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 1.3046,
-        "qty": 26,
-        "notional": 753.74,
-        "risk_dollars": 33.92,
+        "risk_per_share": 0.5389,
+        "qty": 64,
+        "notional": 766.4,
+        "risk_dollars": 34.49,
         "notional_cap": 1500.0,
-        "tp1": 31.2977,
-        "tp1_needed_pct": 7.96,
+        "tp1": 12.9125,
+        "tp1_needed_pct": 7.83,
         "tp1_target_cash": 60.0,
         "tp1_sell_frac": 0.7,
-        "runner_qty": 8,
-        "runner_stop_after_tp1": 28.99,
-        "tp2": 31.889,
-        "rr_to_tp1": 1.77,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 25.48,
-        "bar_high": 30.7799,
-        "bar_low": 24.3001,
-        "bar_volume": 61626292,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "BJRI",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 67.0,
-      "rel_vol": 1.9,
-      "move_pct": 7.19,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.14,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 66.665,
-          "high": 68.156
-        },
-        "entry_reference": 67.0,
-        "stop": 63.985,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 3.015,
-        "qty": 11,
-        "notional": 737.0,
-        "risk_dollars": 33.17,
-        "notional_cap": 1500.0,
-        "tp1": 72.4545,
-        "tp1_needed_pct": 8.14,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 3,
-        "runner_stop_after_tp1": 67.0,
-        "tp2": 73.7,
-        "rr_to_tp1": 1.81,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 63.475,
-        "bar_high": 68.02,
-        "bar_low": 63.335,
-        "bar_volume": 814262,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "RKLX",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 19.44,
-      "rel_vol": 0.46,
-      "move_pct": 5.32,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.72,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 19.3428,
-          "high": 20.2404
-        },
-        "entry_reference": 19.44,
-        "stop": 18.5652,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.8748,
-        "qty": 40,
-        "notional": 777.6,
-        "risk_dollars": 34.99,
-        "notional_cap": 1500.0,
-        "tp1": 20.94,
-        "tp1_needed_pct": 7.72,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 12,
-        "runner_stop_after_tp1": 19.44,
-        "tp2": 21.384,
-        "rr_to_tp1": 1.71,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 17.66,
-        "bar_high": 20.2,
-        "bar_low": 16.88,
-        "bar_volume": 2700163,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "LASR",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 70.125,
-      "rel_vol": 0.46,
-      "move_pct": 6.68,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.78,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 69.7744,
-          "high": 71.6981
-        },
-        "entry_reference": 70.125,
-        "stop": 66.9694,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 3.1556,
-        "qty": 11,
-        "notional": 771.38,
-        "risk_dollars": 34.71,
-        "notional_cap": 1500.0,
-        "tp1": 75.5795,
-        "tp1_needed_pct": 7.78,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 3,
-        "runner_stop_after_tp1": 70.125,
-        "tp2": 77.1375,
-        "rr_to_tp1": 1.73,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 62.3,
-        "bar_high": 71.555,
-        "bar_low": 62.1869,
-        "bar_volume": 513011,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "AXTX",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 5.27,
-      "rel_vol": 0.71,
-      "move_pct": 5.16,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.75,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 5.2436,
-          "high": 5.6376
-        },
-        "entry_reference": 5.27,
-        "stop": 5.0328,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.2371,
-        "qty": 147,
-        "notional": 774.69,
-        "risk_dollars": 34.86,
-        "notional_cap": 1400.0,
-        "tp1": 5.6782,
-        "tp1_needed_pct": 7.75,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 44,
-        "runner_stop_after_tp1": 5.27,
-        "tp2": 5.797,
-        "rr_to_tp1": 1.72,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 4.47,
-        "bar_high": 5.6263,
-        "bar_low": 4.25,
-        "bar_volume": 4494823,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "MULL",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 20.22,
-      "rel_vol": 1.01,
-      "move_pct": 5.09,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.81,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 20.1189,
-          "high": 21.4929
-        },
-        "entry_reference": 20.22,
-        "stop": 19.3101,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.9099,
-        "qty": 38,
-        "notional": 768.36,
-        "risk_dollars": 34.58,
-        "notional_cap": 1500.0,
-        "tp1": 21.7989,
-        "tp1_needed_pct": 7.81,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 11,
-        "runner_stop_after_tp1": 20.22,
-        "tp2": 22.242,
+        "runner_qty": 19,
+        "runner_stop_after_tp1": 11.975,
+        "tp2": 13.1725,
         "rr_to_tp1": 1.74,
         "rr_to_tp2": 2.22,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
@@ -3650,10 +3646,10 @@
         "kind": "surge",
         "source": "gainers_snapshot",
         "source_file": "fem_live_signals.json",
-        "bar_open": 17.81,
-        "bar_high": 21.45,
-        "bar_low": 16.98,
-        "bar_volume": 11924259,
+        "bar_open": 10.37,
+        "bar_high": 12.5,
+        "bar_low": 10.37,
+        "bar_volume": 516050,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -3662,196 +3658,14 @@
       }
     },
     {
-      "ticker": "VSAT",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 72.475,
-      "rel_vol": 0.51,
-      "move_pct": 5.37,
+      "ticker": "HITI",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 2.25,
+      "rel_vol": 0.83,
+      "move_pct": 5.63,
       "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.28,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 72.1126,
-          "high": 73.9175
-        },
-        "entry_reference": 72.475,
-        "stop": 69.2136,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 3.2614,
-        "qty": 10,
-        "notional": 724.75,
-        "risk_dollars": 32.61,
-        "notional_cap": 1500.0,
-        "tp1": 78.475,
-        "tp1_needed_pct": 8.28,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 3,
-        "runner_stop_after_tp1": 72.475,
-        "tp2": 79.7225,
-        "rr_to_tp1": 1.84,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 65.665,
-        "bar_high": 73.77,
-        "bar_low": 65.46,
-        "bar_volume": 1400972,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "TRV",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 365.025,
-      "rel_vol": 1.17,
-      "move_pct": 7.95,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.22,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 363.1999,
-          "high": 368.6358
-        },
-        "entry_reference": 365.025,
-        "stop": 348.5989,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 16.4261,
-        "qty": 2,
-        "notional": 730.05,
-        "risk_dollars": 32.85,
-        "notional_cap": 1500.0,
-        "tp1": 395.025,
-        "tp1_needed_pct": 8.22,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 1,
-        "runner_stop_after_tp1": 365.025,
-        "tp2": 401.5275,
-        "rr_to_tp1": 1.83,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 342.66,
-        "bar_high": 367.9,
-        "bar_low": 341.52,
-        "bar_volume": 2832967,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "AAOG",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 3.11,
-      "rel_vol": 0.81,
-      "move_pct": 6.12,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
+      "on_watchlist": true,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
@@ -3895,24 +3709,24 @@
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
-          "low": 3.0944,
-          "high": 3.2765
+          "low": 2.2388,
+          "high": 2.2645
         },
-        "entry_reference": 3.11,
-        "stop": 2.9389,
+        "entry_reference": 2.25,
+        "stop": 2.1262,
         "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.1711,
-        "qty": 204,
-        "notional": 634.44,
-        "risk_dollars": 34.89,
+        "risk_per_share": 0.1238,
+        "qty": 282,
+        "notional": 634.5,
+        "risk_dollars": 34.9,
         "notional_cap": 1200.0,
-        "tp1": 3.4041,
+        "tp1": 2.4628,
         "tp1_needed_pct": 9.46,
         "tp1_target_cash": 60.0,
         "tp1_sell_frac": 0.7,
-        "runner_qty": 61,
-        "runner_stop_after_tp1": 3.11,
-        "tp2": 3.4521,
+        "runner_qty": 85,
+        "runner_stop_after_tp1": 2.25,
+        "tp2": 2.4975,
         "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.0,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
@@ -3924,10 +3738,10 @@
         "kind": "surge",
         "source": "gainers_snapshot",
         "source_file": "fem_live_signals.json",
-        "bar_open": 2.65,
-        "bar_high": 3.27,
-        "bar_low": 2.425,
-        "bar_volume": 1310238,
+        "bar_open": 2.12,
+        "bar_high": 2.26,
+        "bar_low": 2.088,
+        "bar_volume": 468489,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -3936,104 +3750,12 @@
       }
     },
     {
-      "ticker": "GME.WS",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 2.1,
-      "rel_vol": 1.43,
-      "move_pct": 6.92,
-      "regime": "NEUTRAL",
-      "on_watchlist": false,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 9.43,
-      "micro_tp1_hit": false,
-      "score": 0.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "low_price_micro_allowed",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "wide_fire_bar_stop_capped",
-        "low_price_micro_probe_lane",
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 2.0895,
-          "high": 2.1844
-        },
-        "entry_reference": 2.1,
-        "stop": 1.9845,
-        "stop_source": "capped_inside_wide_bar",
-        "risk_per_share": 0.1155,
-        "qty": 303,
-        "notional": 636.3,
-        "risk_dollars": 35.0,
-        "notional_cap": 1200.0,
-        "tp1": 2.298,
-        "tp1_needed_pct": 9.43,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 91,
-        "runner_stop_after_tp1": 2.1,
-        "tp2": 2.331,
-        "rr_to_tp1": 1.71,
-        "rr_to_tp2": 2.0,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
-      },
-      "raw": {
-        "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 1.96,
-        "bar_high": 2.18,
-        "bar_low": 1.92,
-        "bar_volume": 798845,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "EOSE",
-      "t": "2026-07-17T14:16:02-04:00",
-      "fire_min": 856,
-      "entry": 4.21,
-      "rel_vol": 0.52,
-      "move_pct": 6.19,
+      "ticker": "MGNX",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 4.415,
+      "rel_vol": 0.53,
+      "move_pct": 7.16,
       "regime": "NEUTRAL",
       "on_watchlist": false,
       "graded": false,
@@ -4079,12 +3801,1815 @@
       "trade_plan": {
         "intent": "micro_starter_only",
         "entry_zone": {
+          "low": 4.3929,
+          "high": 4.529
+        },
+        "entry_reference": 4.415,
+        "stop": 4.1722,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.2428,
+        "qty": 144,
+        "notional": 635.76,
+        "risk_dollars": 34.97,
+        "notional_cap": 1200.0,
+        "tp1": 4.8317,
+        "tp1_needed_pct": 9.44,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 43,
+        "runner_stop_after_tp1": 4.415,
+        "tp2": 4.9006,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 4.08,
+        "bar_high": 4.52,
+        "bar_low": 4.055,
+        "bar_volume": 475845,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "TOP",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 2.67,
+      "rel_vol": 0.22,
+      "move_pct": 5.95,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.44,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "daily_rsi_not_low_77.2"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": 77.25,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "FAIL",
+        "max_rsi": 40.0,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.json"
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 2.6566,
+          "high": 2.8357
+        },
+        "entry_reference": 2.67,
+        "stop": 2.5231,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.1469,
+        "qty": 238,
+        "notional": 635.46,
+        "risk_dollars": 34.95,
+        "notional_cap": 1200.0,
+        "tp1": 2.9221,
+        "tp1_needed_pct": 9.44,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 71,
+        "runner_stop_after_tp1": 2.67,
+        "tp2": 2.9637,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 2.54,
+        "bar_high": 2.83,
+        "bar_low": 2.4802,
+        "bar_volume": 508733,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "SPCG",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 30.35,
+      "rel_vol": 1.73,
+      "move_pct": 9.38,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.91,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "daily_rsi_not_low_72.9"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": 72.89,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "FAIL",
+        "max_rsi": 40.0,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_rsi_context.json"
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 30.1983,
+          "high": 31.7283
+        },
+        "entry_reference": 30.35,
+        "stop": 28.9842,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 1.3658,
+        "qty": 25,
+        "notional": 758.75,
+        "risk_dollars": 34.14,
+        "notional_cap": 1500.0,
+        "tp1": 32.75,
+        "tp1_needed_pct": 7.91,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 7,
+        "runner_stop_after_tp1": 30.35,
+        "tp2": 33.385,
+        "rr_to_tp1": 1.76,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 29.4,
+        "bar_high": 31.665,
+        "bar_low": 29.17,
+        "bar_volume": 1723030,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "ASTY",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 6.18,
+      "rel_vol": 0.33,
+      "move_pct": 15.3,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.77,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "already_main_bot_threshold",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 6.1491,
+          "high": 6.6633
+        },
+        "entry_reference": 6.18,
+        "stop": 5.9019,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.2781,
+        "qty": 125,
+        "notional": 772.5,
+        "risk_dollars": 34.76,
+        "notional_cap": 1400.0,
+        "tp1": 6.66,
+        "tp1_needed_pct": 7.77,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 37,
+        "runner_stop_after_tp1": 6.18,
+        "tp2": 6.798,
+        "rr_to_tp1": 1.73,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 5.3,
+        "bar_high": 6.65,
+        "bar_low": 5.23,
+        "bar_volume": 360019,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "ILLR",
+      "t": "2026-07-17T14:19:16-04:00",
+      "fire_min": 859,
+      "entry": 1.3101,
+      "rel_vol": 0.23,
+      "move_pct": 6.51,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 11.14,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "sub2_long_bleed_shadow_only",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 1.3035,
+          "high": 1.3527
+        },
+        "entry_reference": 1.3101,
+        "stop": 1.2249,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.0852,
+        "qty": 411,
+        "notional": 538.45,
+        "risk_dollars": 35.0,
+        "notional_cap": 900.0,
+        "tp1": 1.4561,
+        "tp1_needed_pct": 11.14,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 123,
+        "runner_stop_after_tp1": 1.3101,
+        "tp2": 1.4804,
+        "rr_to_tp1": 1.71,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 1.17,
+        "bar_high": 1.35,
+        "bar_low": 1.16,
+        "bar_volume": 482581,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "HOOZ",
+      "t": "2026-07-17T14:17:05-04:00",
+      "fire_min": 857,
+      "entry": 11.24,
+      "rel_vol": 0.88,
+      "move_pct": 7.66,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.74,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 11.1838,
+          "high": 12.3146
+        },
+        "entry_reference": 11.24,
+        "stop": 10.7342,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.5058,
+        "qty": 69,
+        "notional": 775.56,
+        "risk_dollars": 34.9,
+        "notional_cap": 1500.0,
+        "tp1": 12.1096,
+        "tp1_needed_pct": 7.74,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 21,
+        "runner_stop_after_tp1": 11.24,
+        "tp2": 12.364,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 11.56,
+        "bar_high": 12.29,
+        "bar_low": 10.841,
+        "bar_volume": 361106,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "UROY",
+      "t": "2026-07-17T14:17:05-04:00",
+      "fire_min": 857,
+      "entry": 2.775,
+      "rel_vol": 0.43,
+      "move_pct": 6.32,
+      "regime": "NEUTRAL",
+      "on_watchlist": false,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.44,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "wide_fire_bar_stop_capped",
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 2.7611,
+          "high": 2.7889
+        },
+        "entry_reference": 2.775,
+        "stop": 2.6224,
+        "stop_source": "capped_inside_wide_bar",
+        "risk_per_share": 0.1526,
+        "qty": 229,
+        "notional": 635.48,
+        "risk_dollars": 34.95,
+        "notional_cap": 1200.0,
+        "tp1": 3.037,
+        "tp1_needed_pct": 9.44,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 69,
+        "runner_stop_after_tp1": 2.775,
+        "tp2": 3.0802,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": [
+          "wide_fire_bar_stop_capped"
+        ]
+      },
+      "raw": {
+        "kind": "surge",
+        "source": "gainers_snapshot",
+        "source_file": "fem_live_signals.json",
+        "bar_open": 2.6,
+        "bar_high": 2.7776,
+        "bar_low": 2.565,
+        "bar_volume": 1950089,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "CNF",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 2.6751,
+      "rel_vol": 26.03,
+      "move_pct": 9.19,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 10.01,
+      "micro_tp1_hit": false,
+      "score": 55.0,
+      "verdict": "MICRO_STARTER_ONLY",
+      "reasons": [
+        "low_price_micro_allowed",
+        "huge_rel_vol",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable",
+        "low_price_micro_live_volume_confirmed"
+      ],
+      "flags": [
+        "low_price_micro_probe_lane",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "daily_120_miss_overridden_by_low_price_micro_volume",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_plus",
+        "risk_dollars": 75.0,
+        "target_dollars": 120.0,
+        "rule": "score>=80 OR rel_vol>=15 and move>=4%"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 2.6617,
+          "high": 2.6885
+        },
+        "entry_reference": 2.6751,
+        "stop": 2.528,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.1471,
+        "qty": 448,
+        "notional": 1198.44,
+        "risk_dollars": 65.91,
+        "notional_cap": 1200.0,
+        "tp1": 2.943,
+        "tp1_needed_pct": 10.01,
+        "tp1_target_cash": 120.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 134,
+        "runner_stop_after_tp1": 2.6751,
+        "tp2": 2.9694,
+        "rr_to_tp1": 1.82,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "BE",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 217.825,
+      "rel_vol": 0.69,
+      "move_pct": 5.25,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.18,
+      "micro_tp1_hit": false,
+      "score": 30.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable",
+        "daily_120_liquid_universe"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": true,
+        "rank": 26,
+        "selection_bucket": "liquidity_core",
+        "price": 206,
+        "dollar_vol_today": 3377163507.9323053,
+        "vol_today": 16336107.521561,
+        "avg_vol_20d": 15455400,
+        "avg_dollar_vol_20d": 3183812400,
+        "relvol": 1.06,
+        "activity_score": 76.54,
+        "liquidity_score": 90.57,
+        "price_band": "large_liquid",
+        "reasons": [
+          "today_dollar_vol_25m_plus",
+          "today_volume_2m_plus"
+        ],
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 216.7359,
+          "high": 218.9141
+        },
+        "entry_reference": 217.825,
+        "stop": 208.0229,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 9.8021,
+        "qty": 3,
+        "notional": 653.47,
+        "risk_dollars": 29.41,
+        "notional_cap": 1500.0,
+        "tp1": 237.825,
+        "tp1_needed_pct": 9.18,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 1,
+        "runner_stop_after_tp1": 217.825,
+        "tp2": 239.6075,
+        "rr_to_tp1": 2.04,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "QMCO",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 10.35,
+      "rel_vol": 0.63,
+      "move_pct": 7.45,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.73,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 10.2982,
+          "high": 10.4017
+        },
+        "entry_reference": 10.35,
+        "stop": 9.8842,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.4657,
+        "qty": 75,
+        "notional": 776.25,
+        "risk_dollars": 34.93,
+        "notional_cap": 1500.0,
+        "tp1": 11.15,
+        "tp1_needed_pct": 7.73,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 23,
+        "runner_stop_after_tp1": 10.35,
+        "tp2": 11.385,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "MUU",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 28.99,
+      "rel_vol": 1.38,
+      "move_pct": 5.53,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.96,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 28.845,
+          "high": 29.1349
+        },
+        "entry_reference": 28.99,
+        "stop": 27.6854,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 1.3046,
+        "qty": 26,
+        "notional": 753.74,
+        "risk_dollars": 33.92,
+        "notional_cap": 1500.0,
+        "tp1": 31.2977,
+        "tp1_needed_pct": 7.96,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 8,
+        "runner_stop_after_tp1": 28.99,
+        "tp2": 31.889,
+        "rr_to_tp1": 1.77,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "BJRI",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 67.0,
+      "rel_vol": 1.9,
+      "move_pct": 7.19,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 8.14,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 66.665,
+          "high": 67.335
+        },
+        "entry_reference": 67.0,
+        "stop": 63.985,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 3.015,
+        "qty": 11,
+        "notional": 737.0,
+        "risk_dollars": 33.17,
+        "notional_cap": 1500.0,
+        "tp1": 72.4545,
+        "tp1_needed_pct": 8.14,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 3,
+        "runner_stop_after_tp1": 67.0,
+        "tp2": 73.7,
+        "rr_to_tp1": 1.81,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "RKLX",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 19.44,
+      "rel_vol": 0.46,
+      "move_pct": 5.32,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.72,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 19.3428,
+          "high": 19.5372
+        },
+        "entry_reference": 19.44,
+        "stop": 18.5652,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.8748,
+        "qty": 40,
+        "notional": 777.6,
+        "risk_dollars": 34.99,
+        "notional_cap": 1500.0,
+        "tp1": 20.94,
+        "tp1_needed_pct": 7.72,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 12,
+        "runner_stop_after_tp1": 19.44,
+        "tp2": 21.384,
+        "rr_to_tp1": 1.71,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "LASR",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 70.125,
+      "rel_vol": 0.46,
+      "move_pct": 6.68,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.78,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 69.7744,
+          "high": 70.4756
+        },
+        "entry_reference": 70.125,
+        "stop": 66.9694,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 3.1556,
+        "qty": 11,
+        "notional": 771.38,
+        "risk_dollars": 34.71,
+        "notional_cap": 1500.0,
+        "tp1": 75.5795,
+        "tp1_needed_pct": 7.78,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 3,
+        "runner_stop_after_tp1": 70.125,
+        "tp2": 77.1375,
+        "rr_to_tp1": 1.73,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "AXTX",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 5.27,
+      "rel_vol": 0.71,
+      "move_pct": 5.16,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.75,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 5.2436,
+          "high": 5.2963
+        },
+        "entry_reference": 5.27,
+        "stop": 5.0328,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.2371,
+        "qty": 147,
+        "notional": 774.69,
+        "risk_dollars": 34.86,
+        "notional_cap": 1400.0,
+        "tp1": 5.6782,
+        "tp1_needed_pct": 7.75,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 44,
+        "runner_stop_after_tp1": 5.27,
+        "tp2": 5.797,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "MULL",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 20.22,
+      "rel_vol": 1.01,
+      "move_pct": 5.09,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 7.81,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 20.1189,
+          "high": 20.3211
+        },
+        "entry_reference": 20.22,
+        "stop": 19.3101,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.9099,
+        "qty": 38,
+        "notional": 768.36,
+        "risk_dollars": 34.58,
+        "notional_cap": 1500.0,
+        "tp1": 21.7989,
+        "tp1_needed_pct": 7.81,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 11,
+        "runner_stop_after_tp1": 20.22,
+        "tp2": 22.242,
+        "rr_to_tp1": 1.74,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "VSAT",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 72.475,
+      "rel_vol": 0.51,
+      "move_pct": 5.37,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 8.28,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 72.1126,
+          "high": 72.8374
+        },
+        "entry_reference": 72.475,
+        "stop": 69.2136,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 3.2614,
+        "qty": 10,
+        "notional": 724.75,
+        "risk_dollars": 32.61,
+        "notional_cap": 1500.0,
+        "tp1": 78.475,
+        "tp1_needed_pct": 8.28,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 3,
+        "runner_stop_after_tp1": 72.475,
+        "tp2": 79.7225,
+        "rr_to_tp1": 1.84,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "TRV",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 365.025,
+      "rel_vol": 1.17,
+      "move_pct": 7.95,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 8.22,
+      "micro_tp1_hit": false,
+      "score": 10.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "five_plus_surge_band",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 363.1999,
+          "high": 366.8501
+        },
+        "entry_reference": 365.025,
+        "stop": 348.5989,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 16.4261,
+        "qty": 2,
+        "notional": 730.05,
+        "risk_dollars": 32.85,
+        "notional_cap": 1500.0,
+        "tp1": 395.025,
+        "tp1_needed_pct": 8.22,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 1,
+        "runner_stop_after_tp1": 365.025,
+        "tp2": 401.5275,
+        "rr_to_tp1": 1.83,
+        "rr_to_tp2": 2.22,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "AAOG",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 3.11,
+      "rel_vol": 0.81,
+      "move_pct": 6.12,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.46,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 3.0944,
+          "high": 3.1255
+        },
+        "entry_reference": 3.11,
+        "stop": 2.9389,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.1711,
+        "qty": 204,
+        "notional": 634.44,
+        "risk_dollars": 34.89,
+        "notional_cap": 1200.0,
+        "tp1": 3.4041,
+        "tp1_needed_pct": 9.46,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 61,
+        "runner_stop_after_tp1": 3.11,
+        "tp2": 3.4521,
+        "rr_to_tp1": 1.72,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "GME.WS",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 2.1,
+      "rel_vol": 1.43,
+      "move_pct": 6.92,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.43,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
+          "low": 2.0895,
+          "high": 2.1105
+        },
+        "entry_reference": 2.1,
+        "stop": 1.9845,
+        "stop_source": "price_band_pct",
+        "risk_per_share": 0.1155,
+        "qty": 303,
+        "notional": 636.3,
+        "risk_dollars": 35.0,
+        "notional_cap": 1200.0,
+        "tp1": 2.298,
+        "tp1_needed_pct": 9.43,
+        "tp1_target_cash": 60.0,
+        "tp1_sell_frac": 0.7,
+        "runner_qty": 91,
+        "runner_stop_after_tp1": 2.1,
+        "tp2": 2.331,
+        "rr_to_tp1": 1.71,
+        "rr_to_tp2": 2.0,
+        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
+        "flags": []
+      },
+      "raw": {
+        "kind": "surge",
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
+        "pre_market_change_pct": null,
+        "pre_market_volume": null,
+        "day_volume": null,
+        "float": null,
+        "description": null
+      }
+    },
+    {
+      "ticker": "EOSE",
+      "t": "2026-07-17T14:16:02-04:00",
+      "fire_min": 856,
+      "entry": 4.21,
+      "rel_vol": 0.52,
+      "move_pct": 6.19,
+      "regime": "NEUTRAL",
+      "on_watchlist": null,
+      "graded": false,
+      "max_up_pct": null,
+      "ran": null,
+      "mins_to_peak": null,
+      "tp1_needed_pct": 9.44,
+      "micro_tp1_hit": false,
+      "score": 0.0,
+      "verdict": "SKIP",
+      "reasons": [
+        "low_price_micro_allowed",
+        "below_main_bot_but_real_impulse",
+        "cash_target_reachable"
+      ],
+      "flags": [
+        "low_price_micro_probe_lane",
+        "weak_rel_vol",
+        "late_day_decay",
+        "not_in_daily_120_liquid_universe",
+        "rsi_context_missing_shadow"
+      ],
+      "daily_liquid": {
+        "in_universe": false,
+        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
+        "generated_at": "2026-07-17T04:02:00",
+        "trade_date": "2026-07-17"
+      },
+      "rsi14": null,
+      "rsi_gate": {
+        "route": "surge_long",
+        "status": "MISSING",
+        "max_rsi": 40.0,
+        "source": null
+      },
+      "size_profile": {
+        "tag": "micro_scout",
+        "risk_dollars": 35.0,
+        "target_dollars": 60.0,
+        "rule": "base scout sizing"
+      },
+      "trade_plan": {
+        "intent": "micro_starter_only",
+        "entry_zone": {
           "low": 4.189,
-          "high": 4.3487
+          "high": 4.231
         },
         "entry_reference": 4.21,
         "stop": 3.9784,
-        "stop_source": "capped_inside_wide_bar",
+        "stop_source": "price_band_pct",
         "risk_per_share": 0.2316,
         "qty": 151,
         "notional": 635.71,
@@ -4100,18 +5625,16 @@
         "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.0,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
+        "flags": []
       },
       "raw": {
         "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 3.82,
-        "bar_high": 4.34,
-        "bar_low": 3.7325,
-        "bar_volume": 21459682,
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -4127,7 +5650,7 @@
       "rel_vol": 0.35,
       "move_pct": 6.73,
       "regime": "NEUTRAL",
-      "on_watchlist": false,
+      "on_watchlist": null,
       "graded": false,
       "max_up_pct": null,
       "ran": null,
@@ -4140,7 +5663,6 @@
         "below_main_bot_but_real_impulse"
       ],
       "flags": [
-        "wide_fire_bar_stop_capped",
         "sub2_long_bleed_shadow_only",
         "weak_rel_vol",
         "late_day_decay",
@@ -4171,11 +5693,11 @@
         "intent": "micro_starter_only",
         "entry_zone": {
           "low": 1.1045,
-          "high": 1.1323
+          "high": 1.1156
         },
         "entry_reference": 1.11,
         "stop": 1.0323,
-        "stop_source": "capped_inside_wide_bar",
+        "stop_source": "price_band_pct",
         "risk_per_share": 0.0777,
         "qty": 450,
         "notional": 499.5,
@@ -4191,18 +5713,16 @@
         "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.0,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": [
-          "wide_fire_bar_stop_capped"
-        ]
+        "flags": []
       },
       "raw": {
         "kind": "surge",
-        "source": "gainers_snapshot",
-        "source_file": "fem_live_signals.json",
-        "bar_open": 1.04,
-        "bar_high": 1.13,
-        "bar_low": 1.02,
-        "bar_volume": 810600,
+        "source": null,
+        "source_file": "live_fires_2026-07-17.jsonl",
+        "bar_open": null,
+        "bar_high": null,
+        "bar_low": null,
+        "bar_volume": null,
         "pre_market_change_pct": null,
         "pre_market_volume": null,
         "day_volume": null,
@@ -11975,1521 +13495,6 @@
         "tp2": 1.3281,
         "rr_to_tp1": 1.72,
         "rr_to_tp2": 2.0,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "ELVN",
-      "t": "2026-07-17T14:05:15-04:00",
-      "fire_min": 845,
-      "entry": 53.61,
-      "rel_vol": 0.52,
-      "move_pct": 5.41,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.99,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 53.3419,
-          "high": 53.878
-        },
-        "entry_reference": 53.61,
-        "stop": 51.1975,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 2.4124,
-        "qty": 14,
-        "notional": 750.54,
-        "risk_dollars": 33.77,
-        "notional_cap": 1500.0,
-        "tp1": 57.8957,
-        "tp1_needed_pct": 7.99,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 4,
-        "runner_stop_after_tp1": 53.61,
-        "tp2": 58.971,
-        "rr_to_tp1": 1.78,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "FLY",
-      "t": "2026-07-17T14:04:11-04:00",
-      "fire_min": 844,
-      "entry": 19.99,
-      "rel_vol": 0.72,
-      "move_pct": 5.04,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.9,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 19.89,
-          "high": 20.0899
-        },
-        "entry_reference": 19.99,
-        "stop": 19.0904,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.8996,
-        "qty": 38,
-        "notional": 759.62,
-        "risk_dollars": 34.18,
-        "notional_cap": 1500.0,
-        "tp1": 21.5689,
-        "tp1_needed_pct": 7.9,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 11,
-        "runner_stop_after_tp1": 19.99,
-        "tp2": 21.989,
-        "rr_to_tp1": 1.76,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "ASTS",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 59.85,
-      "rel_vol": 0.43,
-      "move_pct": 8.82,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.35,
-      "micro_tp1_hit": false,
-      "score": 30.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable",
-        "daily_120_liquid_universe"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": true,
-        "rank": 33,
-        "selection_bucket": "liquidity_core",
-        "price": 54.97,
-        "dollar_vol_today": 2918286143.351797,
-        "vol_today": 53050102.587744,
-        "avg_vol_20d": 20682376,
-        "avg_dollar_vol_20d": 1136910209,
-        "relvol": 2.56,
-        "activity_score": 82.31,
-        "liquidity_score": 89.3,
-        "price_band": "large_liquid",
-        "reasons": [
-          "today_dollar_vol_25m_plus",
-          "today_volume_2m_plus",
-          "relative_volume_2x_plus"
-        ],
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 59.5508,
-          "high": 60.1492
-        },
-        "entry_reference": 59.85,
-        "stop": 57.1568,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 2.6932,
-        "qty": 12,
-        "notional": 718.2,
-        "risk_dollars": 32.32,
-        "notional_cap": 1500.0,
-        "tp1": 64.85,
-        "tp1_needed_pct": 8.35,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 4,
-        "runner_stop_after_tp1": 59.85,
-        "tp2": 65.835,
-        "rr_to_tp1": 1.86,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "VICR",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 242.025,
-      "rel_vol": 0.71,
-      "move_pct": 5.04,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.26,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 240.8149,
-          "high": 243.2351
-        },
-        "entry_reference": 242.025,
-        "stop": 231.1339,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 10.8911,
-        "qty": 3,
-        "notional": 726.08,
-        "risk_dollars": 32.67,
-        "notional_cap": 1500.0,
-        "tp1": 262.025,
-        "tp1_needed_pct": 8.26,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 1,
-        "runner_stop_after_tp1": 242.025,
-        "tp2": 266.2275,
-        "rr_to_tp1": 1.84,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "TENX",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 15.84,
-      "rel_vol": 0.49,
-      "move_pct": 5.04,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.73,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 15.7608,
-          "high": 15.9192
-        },
-        "entry_reference": 15.84,
-        "stop": 15.1272,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.7128,
-        "qty": 49,
-        "notional": 776.16,
-        "risk_dollars": 34.93,
-        "notional_cap": 1500.0,
-        "tp1": 17.0645,
-        "tp1_needed_pct": 7.73,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 15,
-        "runner_stop_after_tp1": 15.84,
-        "tp2": 17.424,
-        "rr_to_tp1": 1.72,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "ZURA",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 5.525,
-      "rel_vol": 0.5,
-      "move_pct": 5.33,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.76,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 5.4974,
-          "high": 5.5526
-        },
-        "entry_reference": 5.525,
-        "stop": 5.2764,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.2486,
-        "qty": 140,
-        "notional": 773.5,
-        "risk_dollars": 34.81,
-        "notional_cap": 1400.0,
-        "tp1": 5.9536,
-        "tp1_needed_pct": 7.76,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 42,
-        "runner_stop_after_tp1": 5.525,
-        "tp2": 6.0775,
-        "rr_to_tp1": 1.72,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "PL",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 23.19,
-      "rel_vol": 0.27,
-      "move_pct": 5.05,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.84,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 23.074,
-          "high": 23.3059
-        },
-        "entry_reference": 23.19,
-        "stop": 22.1465,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 1.0435,
-        "qty": 33,
-        "notional": 765.27,
-        "risk_dollars": 34.44,
-        "notional_cap": 1500.0,
-        "tp1": 25.0082,
-        "tp1_needed_pct": 7.84,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 10,
-        "runner_stop_after_tp1": 23.19,
-        "tp2": 25.509,
-        "rr_to_tp1": 1.74,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "UCO",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 41.35,
-      "rel_vol": 1.09,
-      "move_pct": 5.62,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.06,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 41.1433,
-          "high": 41.5567
-        },
-        "entry_reference": 41.35,
-        "stop": 39.4892,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 1.8608,
-        "qty": 18,
-        "notional": 744.3,
-        "risk_dollars": 33.49,
-        "notional_cap": 1500.0,
-        "tp1": 44.6833,
-        "tp1_needed_pct": 8.06,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 5,
-        "runner_stop_after_tp1": 41.35,
-        "tp2": 45.485,
-        "rr_to_tp1": 1.79,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "MANE",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 116.675,
-      "rel_vol": 0.37,
-      "move_pct": 10.25,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.57,
-      "micro_tp1_hit": false,
-      "score": 0.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "already_main_bot_threshold",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 116.0916,
-          "high": 117.2584
-        },
-        "entry_reference": 116.675,
-        "stop": 111.4246,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 5.2504,
-        "qty": 6,
-        "notional": 700.05,
-        "risk_dollars": 31.5,
-        "notional_cap": 1500.0,
-        "tp1": 126.675,
-        "tp1_needed_pct": 8.57,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 2,
-        "runner_stop_after_tp1": 116.675,
-        "tp2": 128.3425,
-        "rr_to_tp1": 1.9,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "BEX",
-      "t": "2026-07-17T14:03:07-04:00",
-      "fire_min": 843,
-      "entry": 29.155,
-      "rel_vol": 0.95,
-      "move_pct": 11.96,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.92,
-      "micro_tp1_hit": false,
-      "score": 0.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "already_main_bot_threshold",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 29.0092,
-          "high": 29.3008
-        },
-        "entry_reference": 29.155,
-        "stop": 27.843,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 1.312,
-        "qty": 26,
-        "notional": 758.03,
-        "risk_dollars": 34.11,
-        "notional_cap": 1500.0,
-        "tp1": 31.4627,
-        "tp1_needed_pct": 7.92,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 8,
-        "runner_stop_after_tp1": 29.155,
-        "tp2": 32.0705,
-        "rr_to_tp1": 1.76,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "XHLD",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 2.1,
-      "rel_vol": 14.57,
-      "move_pct": 6.97,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 9.43,
-      "micro_tp1_hit": false,
-      "score": 55.0,
-      "verdict": "MICRO_STARTER_ONLY",
-      "reasons": [
-        "low_price_micro_allowed",
-        "strong_rel_vol",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable",
-        "low_price_micro_live_volume_confirmed"
-      ],
-      "flags": [
-        "low_price_micro_probe_lane",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "daily_120_miss_overridden_by_low_price_micro_volume",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 2.0895,
-          "high": 2.1105
-        },
-        "entry_reference": 2.1,
-        "stop": 1.9845,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.1155,
-        "qty": 303,
-        "notional": 636.3,
-        "risk_dollars": 35.0,
-        "notional_cap": 1200.0,
-        "tp1": 2.298,
-        "tp1_needed_pct": 9.43,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 91,
-        "runner_stop_after_tp1": 2.1,
-        "tp2": 2.331,
-        "rr_to_tp1": 1.71,
-        "rr_to_tp2": 2.0,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "LQDA",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 79.455,
-      "rel_vol": 0.5,
-      "move_pct": 5.6,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.39,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 79.0577,
-          "high": 79.8523
-        },
-        "entry_reference": 79.455,
-        "stop": 75.8795,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 3.5755,
-        "qty": 9,
-        "notional": 715.1,
-        "risk_dollars": 32.18,
-        "notional_cap": 1500.0,
-        "tp1": 86.1217,
-        "tp1_needed_pct": 8.39,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 3,
-        "runner_stop_after_tp1": 79.455,
-        "tp2": 87.4005,
-        "rr_to_tp1": 1.86,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "AAOX",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 14.085,
-      "rel_vol": 0.96,
-      "move_pct": 6.6,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.75,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 14.0146,
-          "high": 14.1554
-        },
-        "entry_reference": 14.085,
-        "stop": 13.4512,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.6338,
-        "qty": 55,
-        "notional": 774.68,
-        "risk_dollars": 34.86,
-        "notional_cap": 1500.0,
-        "tp1": 15.1759,
-        "tp1_needed_pct": 7.75,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 17,
-        "runner_stop_after_tp1": 14.085,
-        "tp2": 15.4935,
-        "rr_to_tp1": 1.72,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "DLLL",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 20.9201,
-      "rel_vol": 0.92,
-      "move_pct": 5.76,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.75,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 20.8155,
-          "high": 21.0247
-        },
-        "entry_reference": 20.9201,
-        "stop": 19.9787,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.9414,
-        "qty": 37,
-        "notional": 774.04,
-        "risk_dollars": 34.83,
-        "notional_cap": 1500.0,
-        "tp1": 22.5417,
-        "tp1_needed_pct": 7.75,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 11,
-        "runner_stop_after_tp1": 20.9201,
-        "tp2": 23.0121,
-        "rr_to_tp1": 1.72,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "SYRE",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 99.925,
-      "rel_vol": 0.41,
-      "move_pct": 6.02,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 8.58,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 99.4254,
-          "high": 100.4246
-        },
-        "entry_reference": 99.925,
-        "stop": 95.4284,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 4.4966,
-        "qty": 7,
-        "notional": 699.48,
-        "risk_dollars": 31.48,
-        "notional_cap": 1500.0,
-        "tp1": 108.4964,
-        "tp1_needed_pct": 8.58,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 2,
-        "runner_stop_after_tp1": 99.925,
-        "tp2": 109.9175,
-        "rr_to_tp1": 1.91,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "AVTX",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 18.84,
-      "rel_vol": 0.55,
-      "move_pct": 5.37,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 7.77,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 18.7458,
-          "high": 18.9342
-        },
-        "entry_reference": 18.84,
-        "stop": 17.9922,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 0.8478,
-        "qty": 41,
-        "notional": 772.44,
-        "risk_dollars": 34.76,
-        "notional_cap": 1500.0,
-        "tp1": 20.3034,
-        "tp1_needed_pct": 7.77,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 12,
-        "runner_stop_after_tp1": 18.84,
-        "tp2": 20.724,
-        "rr_to_tp1": 1.73,
-        "rr_to_tp2": 2.22,
-        "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
-        "flags": []
-      },
-      "raw": {
-        "kind": "surge",
-        "source": null,
-        "source_file": "live_fires_2026-07-17.jsonl",
-        "bar_open": null,
-        "bar_high": null,
-        "bar_low": null,
-        "bar_volume": null,
-        "pre_market_change_pct": null,
-        "pre_market_volume": null,
-        "day_volume": null,
-        "float": null,
-        "description": null
-      }
-    },
-    {
-      "ticker": "SKHY",
-      "t": "2026-07-17T14:02:02-04:00",
-      "fire_min": 842,
-      "entry": 159.82,
-      "rel_vol": 0.94,
-      "move_pct": 5.19,
-      "regime": "NEUTRAL",
-      "on_watchlist": null,
-      "graded": false,
-      "max_up_pct": null,
-      "ran": null,
-      "mins_to_peak": null,
-      "tp1_needed_pct": 9.39,
-      "micro_tp1_hit": false,
-      "score": 10.0,
-      "verdict": "SKIP",
-      "reasons": [
-        "five_plus_surge_band",
-        "below_main_bot_but_real_impulse",
-        "cash_target_reachable"
-      ],
-      "flags": [
-        "weak_rel_vol",
-        "late_day_decay",
-        "not_in_daily_120_liquid_universe",
-        "rsi_context_missing_shadow"
-      ],
-      "daily_liquid": {
-        "in_universe": false,
-        "source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_daily_liquid_universe.json",
-        "generated_at": "2026-07-17T04:02:00",
-        "trade_date": "2026-07-17"
-      },
-      "rsi14": null,
-      "rsi_gate": {
-        "route": "surge_long",
-        "status": "MISSING",
-        "max_rsi": 40.0,
-        "source": null
-      },
-      "size_profile": {
-        "tag": "micro_scout",
-        "risk_dollars": 35.0,
-        "target_dollars": 60.0,
-        "rule": "base scout sizing"
-      },
-      "trade_plan": {
-        "intent": "micro_starter_only",
-        "entry_zone": {
-          "low": 159.0209,
-          "high": 160.6191
-        },
-        "entry_reference": 159.82,
-        "stop": 152.6281,
-        "stop_source": "price_band_pct",
-        "risk_per_share": 7.1919,
-        "qty": 4,
-        "notional": 639.28,
-        "risk_dollars": 28.77,
-        "notional_cap": 1500.0,
-        "tp1": 174.82,
-        "tp1_needed_pct": 9.39,
-        "tp1_target_cash": 60.0,
-        "tp1_sell_frac": 0.7,
-        "runner_qty": 1,
-        "runner_stop_after_tp1": 159.82,
-        "tp2": 175.802,
-        "rr_to_tp1": 2.09,
-        "rr_to_tp2": 2.22,
         "trigger": "Tiny starter only if price reclaims/holds the fire area; no add-down, no second buy without a new setup.",
         "flags": []
       },
