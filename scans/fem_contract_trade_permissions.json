@@ -6,7 +6,6 @@
     "block": [
       "all_time_high_long",
       "ath_long",
-      "channel_shelf_reclaim_swing",
       "clock_long",
       "clock_short",
       "contract_spine",
@@ -46,6 +45,7 @@
     "track_only": [
       "bear_rejection_pending",
       "bull_bounce_pending",
+      "channel_shelf_reclaim_swing",
       "daily_120_short",
       "daily_120_short_breakdown",
       "daily_120_short_gapdown_cont",
@@ -118,7 +118,7 @@
       "channel_shelf_reclaim_swing": {
         "allowed_to_trade": false,
         "panel_id": "fem_swing_lab",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -844,7 +844,7 @@
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1204,8 +1204,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-17T11:14:19+00:00",
-  "generated_at_et": "2026-07-17T07:14:19-04:00",
+  "generated_at": "2026-07-17T11:33:30+00:00",
+  "generated_at_et": "2026-07-17T07:33:30-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1403,21 +1403,21 @@
     },
     "channel_shelf_reclaim_swing": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1425,7 +1425,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 1,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1433,14 +1433,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2253,7 +2253,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 68,
+        "ghost_fires": 66,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2391,7 +2391,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 25,
+        "ghost_fires": 45,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": -0.9056,
@@ -2577,7 +2577,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 18,
+        "ghost_fires": 36,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": -0.4391,
@@ -3816,7 +3816,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 3,
         "ghost_avg_target_r": null,
-        "ghost_fires": 18,
+        "ghost_fires": 36,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -4224,13 +4224,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "fem_swing_lab",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "channel_shelf_reclaim_swing"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "stock_clock",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4417,6 +4410,13 @@
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "short_universe_grade"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "stock_clock",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "LONG",
+      "strategy_id": "stock_clock_shadow"
     }
   ],
   "route_policy": {
@@ -4573,14 +4573,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 37,
+    "block": 36,
     "ghost_good_skip_groups": 3,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 38,
     "permission_counts": {
-      "BLOCK": 37,
-      "TRACK_ONLY": 28
+      "BLOCK": 36,
+      "TRACK_ONLY": 29
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4595,7 +4595,7 @@
       "UNTAGGED": 24
     },
     "strategies": 65,
-    "track_only": 28,
+    "track_only": 29,
     "watch_only": 0
   },
   "trade_date": "2026-07-17"
