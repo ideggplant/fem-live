@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.058510780334472656,
+    "age_sec": 0.055013179779052734,
     "alist_fillable_count": 10,
     "alist_proven_moo_candidate_count": 0,
     "alist_row_count": 10,
@@ -16,13 +16,6 @@
   },
   "blockers": [
     {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 1 critical/panic alert(s).",
-      "severity": "CRITICAL"
-    },
-    {
       "action": "Refresh penny morning scan before relying on trading.",
       "code": "PENNY_SCAN_NOT_CURRENT",
       "impact": "Penny opportunities may be invisible.",
@@ -31,16 +24,16 @@
     }
   ],
   "bot": {
-    "age_sec": 64.5930106639862,
-    "alive": true,
-    "generated_at": "2026-07-17T13:53:15",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 8.435070514678955,
+    "alive": false,
+    "generated_at": "2026-07-17T16:56:22",
+    "mode": "AH_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 4.012131214141846,
+    "age_sec": 3.1515321731567383,
     "connected": true,
-    "generated_at": "2026-07-17T20:54:16+00:00",
+    "generated_at": "2026-07-17T23:56:29+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -50,10 +43,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-07-17T20:54:22+00:00",
-  "generated_at_et": "2026-07-17T16:54:14-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-07-17T23:56:34+00:00",
+  "generated_at_et": "2026-07-17T19:56:27-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -64,21 +57,21 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.9552638530731201,
-    "fail": 0,
-    "generated_at": "2026-07-17T20:54:19+00:00",
-    "live_ready": true,
+    "age_sec": 0.23806357383728027,
+    "fail": 1,
+    "generated_at": "2026-07-17T23:56:32+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "OK",
+    "overall": "FAIL",
     "session": "ah",
     "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 9.024580717086792,
-    "ah_bot": "TRIGGER_ALREADY_RUNNING_NO_DUPLICATE",
+    "age_sec": 5.186969757080078,
+    "ah_bot": "STARTED",
     "ah_status": "OK",
     "date": "2026-07-17",
     "precheck_status": "OK",
@@ -120,7 +113,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=OK session=ah ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=ah ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -169,7 +162,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 29.325218200683594,
+    "age_sec": 10961.264295101166,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -196,7 +189,7 @@
   "state": "NOT_TRADE_READY",
   "telegram": {
     "enabled": true,
-    "key": "7f68b85309224388",
+    "key": "ffbf0d88a780d094",
     "ok": true,
     "send_count": 1,
     "status": 200,
@@ -206,29 +199,43 @@
   "trade_ready": false,
   "watch_items": [
     {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
+    {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
       "message": "13 active symbol(s) have no sector mapping: AMA, AMWL, ARTV, ASTX, ASTY, BAER, BEX, HYNX.",
       "severity": "WARN"
+    },
+    {
+      "action": "Review after readiness-critical checks.",
+      "code": "WATCHDOG_NON_BLOCKING_WARN",
+      "impact": "Not a direct money-safety blocker.",
+      "message": "Watchdog has non-blocking warnings.",
+      "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 23.146687030792236,
+    "age_sec": 38.01489758491516,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 1,
+    "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "CRITICAL",
+    "overall": "WARN",
     "penny_morning_count": 370,
     "penny_morning_is_today": false,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 71,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 2
+    "trigger_process_count": 1
   }
 }
