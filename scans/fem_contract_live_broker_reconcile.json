@@ -1,13 +1,9 @@
 {
   "action_items": [
     {
-      "code": "ORPHAN_EXIT_ORDERS",
-      "detail": "Exit/protective orders are working while the broker position is flat.",
-      "examples": [
-        "SDOT#5077:ORPHAN_EXIT_POSITION_FLAT",
-        "SDOT#5078:ORPHAN_EXIT_POSITION_FLAT"
-      ],
-      "severity": "FAIL"
+      "code": "ORDER_SAFETY_CLEAN",
+      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
+      "severity": "OK"
     }
   ],
   "broker": {
@@ -18,26 +14,9 @@
     "offline": false,
     "port": 7497
   },
-  "cancellations": [
-    {
-      "at": "2026-07-17T14:29:46+00:00",
-      "cancelled": true,
-      "classification": "EXIT_PROTECTION",
-      "order_id": "5077",
-      "reason": "ORPHAN_EXIT_POSITION_FLAT",
-      "symbol": "SDOT"
-    },
-    {
-      "at": "2026-07-17T14:29:46+00:00",
-      "cancelled": true,
-      "classification": "EXIT_PROTECTION",
-      "order_id": "5078",
-      "reason": "ORPHAN_EXIT_POSITION_FLAT",
-      "symbol": "SDOT"
-    }
-  ],
-  "generated_at": "2026-07-17T14:29:47+00:00",
-  "generated_at_et": "2026-07-17T10:29:47-04:00",
+  "cancellations": [],
+  "generated_at": "2026-07-17T14:32:48+00:00",
+  "generated_at_et": "2026-07-17T10:32:48-04:00",
   "inputs": {
     "exit_intent_rows": 19,
     "order_strategy_rows": 12,
@@ -106,13 +85,13 @@
     },
     {
       "action": "SELL",
-      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "exit-intent order is working while broker position is flat",
+      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
       "entry_strategy_id": "surge_chase",
       "exit_intent": "PROTECTIVE_STOP",
       "exit_strategy_id": "surge_chase",
@@ -147,20 +126,20 @@
         "transmit": true
       },
       "route": null,
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "PreSubmitted",
       "stop_price": 14.39,
       "symbol": "SDOT"
     },
     {
       "action": "SELL",
-      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "exit-intent order is working while broker position is flat",
+      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
       "entry_strategy_id": "surge_chase",
       "exit_intent": "TARGET_TAKE_PROFIT",
       "exit_strategy_id": "surge_chase",
@@ -195,32 +174,30 @@
         "transmit": true
       },
       "route": null,
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "PreSubmitted",
       "stop_price": null,
       "symbol": "SDOT"
     }
   ],
-  "operator_read": "Order safety is FAIL: 2 orphan exit order(s). Mode is ENFORCE; cancelled 2. Inspect before starting or continuing the bot.",
-  "overall": "FAIL",
+  "operator_read": "Order safety is OK: 3 working order(s) and 0 live position(s) reconciled against the spine.",
+  "overall": "OK",
   "positions": [],
   "schema": "fem_contract_live_broker_reconcile.v1",
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {
-      "ORPHAN_EXIT_POSITION_FLAT": 2
-    },
+    "breach_codes": {},
     "broker_connected": true,
-    "cancel_candidates": 2,
+    "cancel_candidates": 0,
     "cancel_failed": 0,
-    "cancelled": 2,
+    "cancelled": 0,
     "invalid_entry_like_orders": 0,
     "open_orders": 3,
-    "order_fail": 2,
-    "order_ok": 1,
+    "order_fail": 0,
+    "order_ok": 3,
     "order_warn": 0,
-    "orphan_exit_orders": 2,
+    "orphan_exit_orders": 0,
     "position_fail": 0,
     "position_ok": 0,
     "position_warn": 0,
