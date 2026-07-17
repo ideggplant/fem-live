@@ -5,8 +5,7 @@
       "detail": "Exit/protective orders are working while the broker position is flat.",
       "examples": [
         "SDOT#5077:ORPHAN_EXIT_POSITION_FLAT",
-        "SDOT#5078:ORPHAN_EXIT_POSITION_FLAT",
-        "STAK#5089:ORPHAN_EXIT_POSITION_FLAT"
+        "SDOT#5078:ORPHAN_EXIT_POSITION_FLAT"
       ],
       "severity": "FAIL"
     }
@@ -21,7 +20,7 @@
   },
   "cancellations": [
     {
-      "at": "2026-07-17T12:45:49+00:00",
+      "at": "2026-07-17T12:46:52+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5077",
@@ -29,24 +28,16 @@
       "symbol": "SDOT"
     },
     {
-      "at": "2026-07-17T12:45:49+00:00",
+      "at": "2026-07-17T12:46:52+00:00",
       "cancelled": true,
       "classification": "EXIT_PROTECTION",
       "order_id": "5078",
       "reason": "ORPHAN_EXIT_POSITION_FLAT",
       "symbol": "SDOT"
-    },
-    {
-      "at": "2026-07-17T12:45:49+00:00",
-      "cancelled": true,
-      "classification": "EXIT_PROTECTION",
-      "order_id": "5089",
-      "reason": "ORPHAN_EXIT_POSITION_FLAT",
-      "symbol": "STAK"
     }
   ],
-  "generated_at": "2026-07-17T12:45:50+00:00",
-  "generated_at_et": "2026-07-17T08:45:50-04:00",
+  "generated_at": "2026-07-17T12:46:52+00:00",
+  "generated_at_et": "2026-07-17T08:46:52-04:00",
   "inputs": {
     "exit_intent_rows": 12,
     "order_strategy_rows": 9,
@@ -210,72 +201,14 @@
       "symbol": "SDOT"
     },
     {
-      "action": "BUY",
-      "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
-      "classification": "ENTRY",
-      "client_id": 10,
-      "detail": "entry order is mapped; route lock is audit-only because FEM_ROUTE_LOCK_ENFORCE is off",
-      "entry_strategy_id": "surge_chase",
-      "exit_intent": null,
-      "exit_strategy_id": null,
-      "limit_price": 3.69,
-      "oca_group": "",
-      "order_id": "5082",
-      "order_type": "LMT",
-      "parent_id": "0",
-      "position_qty": 0.0,
-      "quantity": 169.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 3.69,
-        "oca_group": "",
-        "order_id": 5082,
-        "order_ref": "",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 0,
-        "perm_id": 275369893,
-        "quantity": 169.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "STAK",
-        "tif": "DAY",
-        "trail_stop_price": 4.6899999999999995,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": {
-        "allowed": false,
-        "candidate_strategy_ids": [
-          "surge_chase"
-        ],
-        "permission": "TRACK_ONLY",
-        "permission_id": "surge_chase",
-        "reason": "strategy registry marks this route bot_allowed=false",
-        "reason_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
-        "registry_id": "surge_chase"
-      },
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "STAK"
-    },
-    {
-      "action": "SELL",
-      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
-      "cancel_allowed": true,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "exit-intent order is working while broker position is flat",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": null,
       "exit_intent": "GIVEBACK_RUNNER_PRESERVE_STOP",
       "exit_strategy_id": "surge_chase",
@@ -284,7 +217,7 @@
       "order_id": "5089",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": 0.0,
+      "position_qty": 169.0,
       "quantity": 150.0,
       "raw": {
         "action": "SELL",
@@ -310,36 +243,65 @@
         "transmit": true
       },
       "route": null,
-      "severity": "FAIL",
+      "severity": "OK",
       "status": "PreSubmitted",
       "stop_price": 3.69,
       "symbol": "STAK"
     }
   ],
-  "operator_read": "Order safety is FAIL: 3 orphan exit order(s). Mode is ENFORCE; cancelled 3. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 2 orphan exit order(s). Mode is ENFORCE; cancelled 2. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
-  "positions": [],
+  "positions": [
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": false,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [],
+        "ah_target_quantity": 0,
+        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": false,
+        "position_quantity": 169.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 3.6959201597633133,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "5089"
+      ],
+      "qty": 169.0,
+      "related_exit_orders": [
+        "5089"
+      ],
+      "severity": "OK",
+      "side": "LONG",
+      "symbol": "STAK",
+      "target_orders": []
+    }
+  ],
   "schema": "fem_contract_live_broker_reconcile.v1",
   "session": "pre",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "ORPHAN_EXIT_POSITION_FLAT": 3
+      "ORPHAN_EXIT_POSITION_FLAT": 2
     },
     "broker_connected": true,
-    "cancel_candidates": 3,
+    "cancel_candidates": 2,
     "cancel_failed": 0,
-    "cancelled": 3,
+    "cancelled": 2,
     "invalid_entry_like_orders": 0,
-    "open_orders": 5,
-    "order_fail": 3,
+    "open_orders": 4,
+    "order_fail": 2,
     "order_ok": 2,
     "order_warn": 0,
-    "orphan_exit_orders": 3,
+    "orphan_exit_orders": 2,
     "position_fail": 0,
-    "position_ok": 0,
+    "position_ok": 1,
     "position_warn": 0,
-    "positions": 0,
+    "positions": 1,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-17"
