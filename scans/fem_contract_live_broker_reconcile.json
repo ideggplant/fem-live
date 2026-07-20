@@ -15,10 +15,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-20T13:43:15+00:00",
-  "generated_at_et": "2026-07-20T09:43:15-04:00",
+  "generated_at": "2026-07-20T13:45:21+00:00",
+  "generated_at_et": "2026-07-20T09:45:21-04:00",
   "inputs": {
-    "exit_intent_rows": 52,
+    "exit_intent_rows": 54,
     "order_strategy_rows": 39,
     "strategy_registry_rows": 67,
     "trade_permission_rows": 66
@@ -323,11 +323,11 @@
       "client_id": 10,
       "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": null,
-      "exit_intent": "LADDER_T0_RUNNER_STOP",
+      "exit_intent": "FIRST_TARGET_RUNNER_ROOM_STOP",
       "exit_strategy_id": "surge_chase",
       "limit_price": null,
       "oca_group": "",
-      "order_id": "5138",
+      "order_id": "5139",
       "order_type": "STP",
       "parent_id": "0",
       "position_qty": 27.0,
@@ -339,12 +339,12 @@
         "exchange": "SMART",
         "limit_price": 0.0,
         "oca_group": "",
-        "order_id": 5138,
+        "order_id": 5139,
         "order_ref": "",
         "order_type": "STP",
         "outside_rth": false,
         "parent_id": 0,
-        "perm_id": 8535086,
+        "perm_id": 8535087,
         "quantity": 27.0,
         "sec_type": "STK",
         "status": "PreSubmitted",
@@ -360,21 +360,71 @@
       "status": "PreSubmitted",
       "stop_price": 6.0,
       "symbol": "BIYA"
+    },
+    {
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "RUNNER_T2_TARGET",
+      "exit_strategy_id": "surge_chase",
+      "limit_price": 7.16,
+      "oca_group": "",
+      "order_id": "5140",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": 27.0,
+      "quantity": 27.0,
+      "raw": {
+        "action": "SELL",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 7.16,
+        "oca_group": "",
+        "order_id": 5140,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 8535088,
+        "quantity": 27.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "BIYA",
+        "tif": "DAY",
+        "trail_stop_price": 6.16,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "BIYA"
     }
   ],
-  "operator_read": "Order safety is OK: 7 working order(s) and 4 live position(s) reconciled against the spine.",
+  "operator_read": "Order safety is OK: 8 working order(s) and 4 live position(s) reconciled against the spine.",
   "overall": "OK",
   "positions": [
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
+        "ah_exit_owner_verified": true,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "ah_target_orders": [
+          "5140"
+        ],
+        "ah_target_quantity": 27.0,
+        "detail": "AH exit owner verified",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
+        "full_ah_target_coverage": true,
         "position_quantity": 27.0,
         "schema": "fem_ah_exit_contract.v1"
       },
@@ -382,16 +432,19 @@
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
-        "5138"
+        "5139"
       ],
       "qty": 27.0,
       "related_exit_orders": [
-        "5138"
+        "5139",
+        "5140"
       ],
       "severity": "OK",
       "side": "LONG",
       "symbol": "BIYA",
-      "target_orders": []
+      "target_orders": [
+        "5140"
+      ]
     },
     {
       "ah_exit_contract": {
@@ -503,9 +556,9 @@
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 7,
+    "open_orders": 8,
     "order_fail": 0,
-    "order_ok": 7,
+    "order_ok": 8,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
