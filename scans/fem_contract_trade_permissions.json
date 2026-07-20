@@ -7,7 +7,6 @@
       "all_time_high_long",
       "ath_long",
       "bull_bounce_pending",
-      "channel_shelf_reclaim_swing",
       "clock_long",
       "clock_short",
       "contract_spine",
@@ -48,6 +47,7 @@
     "research_only": [],
     "track_only": [
       "bear_rejection_pending",
+      "channel_shelf_reclaim_swing",
       "daily_120_short",
       "daily_120_short_breakdown",
       "daily_120_short_gapdown_cont",
@@ -119,7 +119,7 @@
       "channel_shelf_reclaim_swing": {
         "allowed_to_trade": false,
         "panel_id": "fem_swing_lab",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -855,7 +855,7 @@
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1227,8 +1227,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-20T11:16:22+00:00",
-  "generated_at_et": "2026-07-20T07:16:22-04:00",
+  "generated_at": "2026-07-20T11:34:19+00:00",
+  "generated_at_et": "2026-07-20T07:34:19-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1426,21 +1426,21 @@
     },
     "channel_shelf_reclaim_swing": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1456,14 +1456,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "fem_swing_lab",
       "panel_name": "FEM Swing Lab",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2276,7 +2276,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 84,
+        "ghost_fires": 77,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2317,10 +2317,10 @@
         "source_ok": false
       },
       "evidence": {
-        "actual_avg_r": null,
-        "actual_closed": 0,
-        "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
+        "actual_avg_r": -0.5214,
+        "actual_closed": 1,
+        "actual_realized_pnl": -31.36,
+        "actual_trades": 4,
         "ghost_avg_target_r": 0.047,
         "ghost_fires": 71881,
         "ghost_graded": 71881,
@@ -2414,7 +2414,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 26,
+        "ghost_fires": 31,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": -0.9056,
@@ -2495,7 +2495,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy score missing score-provenance lock",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2647,7 +2647,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 24,
+        "ghost_fires": 49,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": -0.4391,
@@ -3884,9 +3884,9 @@
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
+        "actual_trades": 12,
         "ghost_avg_target_r": null,
-        "ghost_fires": 24,
+        "ghost_fires": 49,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3930,7 +3930,7 @@
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
+        "actual_trades": 3,
         "ghost_avg_target_r": null,
         "ghost_fires": 30,
         "ghost_graded": 0,
@@ -4301,13 +4301,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "fem_swing_lab",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "channel_shelf_reclaim_swing"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "stock_clock",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4487,6 +4480,13 @@
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "short_mid"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "short_universe",
+      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "SHORT",
+      "strategy_id": "short_universe"
     }
   ],
   "route_policy": {
@@ -4643,14 +4643,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 40,
+    "block": 39,
     "ghost_good_skip_groups": 3,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 39,
     "permission_counts": {
-      "BLOCK": 40,
-      "TRACK_ONLY": 26
+      "BLOCK": 39,
+      "TRACK_ONLY": 27
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4665,7 +4665,7 @@
       "UNTAGGED": 28
     },
     "strategies": 66,
-    "track_only": 26,
+    "track_only": 27,
     "watch_only": 0
   },
   "trade_date": "2026-07-20"
