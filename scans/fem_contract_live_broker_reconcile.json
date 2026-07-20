@@ -15,8 +15,8 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-20T16:17:17+00:00",
-  "generated_at_et": "2026-07-20T12:17:17-04:00",
+  "generated_at": "2026-07-20T16:19:22+00:00",
+  "generated_at_et": "2026-07-20T12:19:22-04:00",
   "inputs": {
     "exit_intent_rows": 135,
     "order_strategy_rows": 92,
@@ -622,72 +622,14 @@
       "symbol": "NNBR"
     },
     {
-      "action": "BUY",
-      "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "ENTRY",
-      "client_id": 10,
-      "detail": "entry order is mapped; route lock is audit-only because FEM_ROUTE_LOCK_ENFORCE is off",
-      "entry_strategy_id": "surge_chase",
-      "exit_intent": null,
-      "exit_strategy_id": null,
-      "limit_price": 4.12,
-      "oca_group": "",
-      "order_id": "5235",
-      "order_type": "LMT",
-      "parent_id": "0",
-      "position_qty": 0.0,
-      "quantity": 216.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 4.12,
-        "oca_group": "",
-        "order_id": 5235,
-        "order_ref": "",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 0,
-        "perm_id": 8535183,
-        "quantity": 216.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "DGXX",
-        "tif": "DAY",
-        "trail_stop_price": 5.12,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": {
-        "allowed": false,
-        "candidate_strategy_ids": [
-          "surge_chase"
-        ],
-        "permission": "TRACK_ONLY",
-        "permission_id": "surge_chase",
-        "reason": "strategy registry marks this route bot_allowed=false",
-        "reason_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
-        "registry_id": "surge_chase"
-      },
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "DGXX"
-    },
-    {
       "action": "SELL",
-      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "surge_chase",
       "exit_intent": "PROTECTIVE_STOP",
       "exit_strategy_id": "surge_chase",
@@ -696,7 +638,7 @@
       "order_id": "5236",
       "order_type": "STP",
       "parent_id": "5235",
-      "position_qty": 0.0,
+      "position_qty": 216.0,
       "quantity": 216.0,
       "raw": {
         "action": "SELL",
@@ -729,13 +671,13 @@
     },
     {
       "action": "SELL",
-      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "surge_chase",
       "exit_intent": "TARGET_TAKE_PROFIT",
       "exit_strategy_id": "surge_chase",
@@ -744,7 +686,7 @@
       "order_id": "5237",
       "order_type": "LMT",
       "parent_id": "5235",
-      "position_qty": 0.0,
+      "position_qty": 216.0,
       "quantity": 216.0,
       "raw": {
         "action": "SELL",
@@ -761,7 +703,7 @@
         "perm_id": 8535185,
         "quantity": 216.0,
         "sec_type": "STK",
-        "status": "PreSubmitted",
+        "status": "Submitted",
         "stop_price": 0.0,
         "symbol": "DGXX",
         "tif": "DAY",
@@ -771,14 +713,47 @@
       },
       "route": null,
       "severity": "OK",
-      "status": "PreSubmitted",
+      "status": "Submitted",
       "stop_price": null,
       "symbol": "DGXX"
     }
   ],
-  "operator_read": "Order safety is OK: 15 working order(s) and 3 live position(s) reconciled against the spine.",
+  "operator_read": "Order safety is OK: 14 working order(s) and 4 live position(s) reconciled against the spine.",
   "overall": "OK",
   "positions": [
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": true,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [
+          "5237"
+        ],
+        "ah_target_quantity": 216.0,
+        "detail": "AH exit owner verified",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": true,
+        "position_quantity": 216.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 4.125003,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "5236"
+      ],
+      "qty": 216.0,
+      "related_exit_orders": [
+        "5236",
+        "5237"
+      ],
+      "severity": "OK",
+      "side": "LONG",
+      "symbol": "DGXX",
+      "target_orders": [
+        "5237"
+      ]
+    },
     {
       "ah_exit_contract": {
         "ah_exit_owner_verified": true,
@@ -889,15 +864,15 @@
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 15,
+    "open_orders": 14,
     "order_fail": 0,
-    "order_ok": 15,
+    "order_ok": 14,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
-    "position_ok": 3,
+    "position_ok": 4,
     "position_warn": 0,
-    "positions": 3,
+    "positions": 4,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-20"
