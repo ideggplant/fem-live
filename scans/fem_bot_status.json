@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-20T08:58:43",
+  "generated_at": "2026-07-20T09:00:20",
   "date": "2026-07-20",
-  "mode": "TRIGGER_LIVE",
+  "mode": "DILUTION_SHORT_ENTRY",
   "n_positions": 4,
   "positions": [
     {
@@ -72,12 +72,8 @@
       "broker_qty": 1.0,
       "broker_avg_cost": 1.32561885,
       "broker_side": "LONG",
-      "protective_stop_orders": [
-        "5226"
-      ],
-      "target_orders": [
-        "5227"
-      ]
+      "protective_stop_orders": [],
+      "target_orders": []
     },
     {
       "ticker": "SNXX",
@@ -222,6 +218,39 @@
       },
       "fill_net": 0,
       "fill_realized": -9.3,
+      "broker_qty": null
+    },
+    {
+      "ticker": "IAUX",
+      "qty": 0,
+      "entry": 1.26,
+      "stop": 1.2707,
+      "t1": 1.2222,
+      "score": null,
+      "mode": "dilution_short",
+      "moo_order_id": null,
+      "target_order_id": null,
+      "stop_order_id": null,
+      "moc_order_id": null,
+      "options_context": {
+        "generated_at": "2026-07-10T06:58:53",
+        "ok": false,
+        "long_read": "no_chain",
+        "short_read": "no_chain",
+        "long_score": null,
+        "short_score": null,
+        "liq": null,
+        "pc_oi": null,
+        "pc_vol": null,
+        "atm_iv": null,
+        "call_wall": null,
+        "call_wall_dist_pct": null,
+        "put_wall": null,
+        "put_wall_dist_pct": null,
+        "notes": []
+      },
+      "fill_net": null,
+      "fill_realized": null,
       "broker_qty": null
     },
     {
@@ -474,7 +503,7 @@
   ],
   "memory_reconcile": {
     "open_position_source": "broker_reconcile",
-    "stale_memory_count": 14,
+    "stale_memory_count": 15,
     "stale_memory_symbols": [
       "ACHR",
       "ADVB",
@@ -482,6 +511,7 @@
       "BIYA",
       "FFAI",
       "GMM",
+      "IAUX",
       "KBR",
       "NUAI",
       "NXXT",
@@ -492,29 +522,31 @@
       "ZYBT"
     ],
     "broker_reconcile_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json",
-    "broker_reconcile_generated_at": "2026-07-20T15:58:10+00:00",
-    "broker_reconcile_age_sec": 33.534283,
-    "broker_reconcile_overall": "OK",
+    "broker_reconcile_generated_at": "2026-07-20T15:59:20+00:00",
+    "broker_reconcile_age_sec": 59.990932,
+    "broker_reconcile_overall": "FAIL",
     "broker_reconcile_summary": {
       "ah_exit_owner_unverified_positions": 0,
-      "breach_codes": {},
+      "breach_codes": {
+        "POSITION_UNPROTECTED_NO_STOP": 1
+      },
       "broker_connected": true,
       "cancel_candidates": 0,
       "cancel_failed": 0,
       "cancelled": 0,
       "invalid_entry_like_orders": 0,
-      "open_orders": 12,
+      "open_orders": 10,
       "order_fail": 0,
-      "order_ok": 12,
+      "order_ok": 10,
       "order_warn": 0,
       "orphan_exit_orders": 0,
-      "position_fail": 0,
-      "position_ok": 4,
+      "position_fail": 1,
+      "position_ok": 3,
       "position_warn": 0,
       "positions": 4,
-      "unprotected_positions": 0
+      "unprotected_positions": 1
     },
-    "state_rows_reconciled": 0
+    "state_rows_reconciled": 3
   },
   "fills": [
     {
@@ -641,10 +673,6 @@
     "shorts": 4
   },
   "log_tail": [
-    "08:58:35  INFO       Order 5141 status=Submitted",
-    "08:58:35  INFO       Order 5175 status=Submitted",
-    "08:58:35  INFO       Order 5120 status=PreSubmitted",
-    "08:58:35  INFO       Order 5121 status=Submitted",
     "08:58:35  INFO       NUAI orphan-exit guard skipped: parent entry 5141 is still Submitted; keeping child exit order 5142",
     "08:58:35  INFO       NUAI orphan-exit guard skipped: parent entry 5141 is still Submitted; keeping child exit order 5143",
     "08:58:37  INFO     REQUEST cancelOrder {'orderId': 5226}",
@@ -665,50 +693,12 @@
     "08:58:38  INFO       + SLNH LADDER T0 (LONG) at +1.5%: banked 1 sh, runner stop -> 1.3129 (ATR room, BE was 1.3788)",
     "08:58:39  INFO       Order 5228 status=Submitted",
     "08:58:40  INFO       Order 5228 status=Submitted",
-    "08:58:42  INFO     Status pushed -> fem_bot_status.json"
+    "08:58:42  INFO     Status pushed -> fem_bot_status.json",
+    "08:58:43  INFO     Status saved locally (push throttled 60s) -> fem_bot_status.json",
+    "09:00:10  INFO       Order 5228 status=Submitted",
+    "09:00:19  INFO       IAUX   short bracket NOT sent: SHORT_NOT_IN_SCREENER_UNIVERSE (TV short screener universe has 58 names)",
+    "09:00:19  INFO       >>> DILUTION SHORT IAUX x1587 SELL LMT 1.2562 cover-stop 1.2707 cover-tgt 1.2222 (VWAP 1.2644, 5m_high 1.2700, last 1.2600)"
   ],
-  "heartbeat": true,
-  "alive": true,
-  "halted": false,
-  "regime": "RISK_ON",
-  "daily_pnl": -565.5048347745816,
-  "entries_today": 15,
-  "open_count": 4,
-  "unrealized_open": -24.38,
-  "daily_pnl_guard": {
-    "schema": "fem_daily_pnl_guard.v1",
-    "generated_at": "2026-07-20T15:46:47+00:00",
-    "generated_at_et": "2026-07-20T11:46:47.073742-04:00",
-    "trade_date": "2026-07-20",
-    "kind": "WATCHING",
-    "entry_permission": "ALLOW_NEW_ENTRIES",
-    "enforce": false,
-    "profit_lock_enabled": false,
-    "settings": {
-      "arm": 999999.0,
-      "giveback_min": 20.0,
-      "giveback_frac": 0.35,
-      "hard_giveback_frac": 0.5,
-      "min_keep": 15.0,
-      "max_daily_loss": 3000.0
-    },
-    "daily_pnl_peak": 102.05,
-    "daily_pnl_now": null,
-    "action": "WATCH_DAILY_PEAK_AND_GIVEBACK"
-  },
-  "grade_mults": {
-    "reclaim": 0.5,
-    "dump": 0.5,
-    "gap_eat": 0.5,
-    "surge": 0.5,
-    "gap_reclaim": 0.5,
-    "gap_fail_short": 0.5
-  },
-  "benched": [
-    "gap_fail_short"
-  ],
-  "fading": [],
-  "quarantine": [],
   "active_trade_gates": {
     "trade_permission_enforce": false,
     "profit_lock_enabled": false,
@@ -755,78 +745,78 @@
     "schema": "fem_contract_health.v1",
     "overall": "FAIL",
     "session": "rth",
-    "generated_at": "2026-07-20T15:58:40+00:00",
-    "generated_at_et": "2026-07-20T11:58:40-04:00",
+    "generated_at": "2026-07-20T16:00:18+00:00",
+    "generated_at_et": "2026-07-20T12:00:18-04:00",
     "summary": {
       "checks": 60,
-      "ok": 18,
+      "ok": 17,
       "warn": 14,
-      "fail": 28
+      "fail": 29
     },
     "bad_checks": [
       {
         "id": "contract_dashboard",
         "label": "Contract dashboard payload",
         "status": "FAIL",
-        "detail": "stale during rth: 224281s old, limit 2700s",
+        "detail": "stale during rth: 224379s old, limit 2700s",
         "path": "fem_contract_dashboard.json",
-        "age_seconds": 224281
+        "age_seconds": 224379
       },
       {
         "id": "contract_breaks",
         "label": "Contract breach ledger",
         "status": "FAIL",
-        "detail": "stale during rth: 224304s old, limit 2700s",
+        "detail": "stale during rth: 224403s old, limit 2700s",
         "path": "fem_contract_breaks.json",
-        "age_seconds": 224304
+        "age_seconds": 224403
       },
       {
         "id": "contract_accountability",
         "label": "Contract accountability queue",
         "status": "FAIL",
-        "detail": "stale during rth: 525986s old, limit 2700s",
+        "detail": "stale during rth: 526084s old, limit 2700s",
         "path": "fem_contract_accountability.json",
-        "age_seconds": 525986
+        "age_seconds": 526084
       },
       {
         "id": "contract_source_refresh",
         "label": "Contract source refresh report",
         "status": "WARN",
-        "detail": "stale during rth: 614823s old, limit 2700s",
+        "detail": "stale during rth: 614921s old, limit 2700s",
         "path": "fem_contract_source_refresh.json",
-        "age_seconds": 614823
+        "age_seconds": 614921
       },
       {
         "id": "contract_fill_reconcile",
         "label": "Contract fill reconciliation",
         "status": "FAIL",
-        "detail": "stale during rth: 225353s old, limit 2700s",
+        "detail": "stale during rth: 225451s old, limit 2700s",
         "path": "fem_contract_fill_reconcile.json",
-        "age_seconds": 225353
+        "age_seconds": 225451
       },
       {
         "id": "contract_exit_reconcile",
         "label": "Contract exit reconciliation",
         "status": "FAIL",
-        "detail": "stale during rth: 225352s old, limit 2700s",
+        "detail": "stale during rth: 225450s old, limit 2700s",
         "path": "fem_contract_exit_reconcile.json",
-        "age_seconds": 225352
+        "age_seconds": 225450
       },
       {
         "id": "contract_ghost_ledger",
         "label": "Contract ghost/skipped trade ledger",
         "status": "FAIL",
-        "detail": "stale during rth: 526111s old, limit 2700s",
+        "detail": "stale during rth: 526209s old, limit 2700s",
         "path": "fem_contract_ghost_ledger.json",
-        "age_seconds": 526111
+        "age_seconds": 526209
       },
       {
         "id": "contract_route_readiness",
         "label": "Contract bot route readiness audit",
         "status": "FAIL",
-        "detail": "stale during rth: 227513s old, limit 2700s",
+        "detail": "stale during rth: 227612s old, limit 2700s",
         "path": "fem_contract_route_readiness.json",
-        "age_seconds": 227513
+        "age_seconds": 227612
       }
     ],
     "next_actions": [
