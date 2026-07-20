@@ -1,9 +1,9 @@
 {
   "bot_status": {
     "available": true,
-    "broker_open_orders": 0,
-    "generated_at": "2026-07-20T12:50:41",
-    "mode": "TRIGGER_LIVE",
+    "broker_open_orders": 6,
+    "generated_at": "2026-07-20T16:56:52",
+    "mode": "AH_FLATTENED",
     "n_positions": 0,
     "position_source": "broker_reconcile",
     "positions_count": 0,
@@ -13,9 +13,9 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-07-20T19:50:55+00:00",
-    "open_orders": 0,
-    "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
+    "generated_at": "2026-07-20T23:56:58+00:00",
+    "open_orders": 6,
+    "operator_read": "Order safety is OK: 6 working order(s) and 0 live position(s) reconciled against the spine.",
     "overall": "OK",
     "positions": 0,
     "trade_date": "2026-07-20",
@@ -23,19 +23,19 @@
   },
   "checks": [
     {
-      "detail": "restart_required=0, missing_required=0",
-      "drift_overall": "OK",
+      "detail": "restart_required=0, missing_required=1",
+      "drift_overall": "FAIL",
       "drift_run": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "runtime_drift: overall=OK restart_required=0 missing_required=0 roles ok/warn/fail=3/0/0"
+        "stdout": "runtime_drift: overall=FAIL restart_required=0 missing_required=1 roles ok/warn/fail=2/0/1"
       },
       "id": "runtime_drift_clean",
       "label": "Runtime drift clean",
-      "missing_required": 0,
+      "missing_required": 1,
       "required": true,
       "restart_required": 0,
-      "status": "OK"
+      "status": "FAIL"
     },
     {
       "detail": "required live processes visible",
@@ -43,9 +43,9 @@
       "label": "Live runtime processes",
       "live_fire_grade": true,
       "live_runner": true,
-      "process_count": 10,
+      "process_count": 8,
       "required": true,
-      "session": "rth",
+      "session": "ah",
       "status": "OK",
       "trade_bot": true
     },
@@ -57,81 +57,81 @@
       "status": "OK"
     },
     {
-      "age_seconds": 2,
+      "age_seconds": 58,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-07-20T19:50:54+00:00",
+      "mtime_utc": "2026-07-20T23:56:01+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 296151,
+      "size_bytes": 302277,
       "status": "OK"
     },
     {
-      "age_seconds": 0,
+      "age_seconds": 58,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-07-20T19:50:56+00:00",
+      "mtime_utc": "2026-07-20T23:56:00+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 5878,
+      "size_bytes": 5886,
       "status": "OK"
     },
     {
-      "age_seconds": 15,
+      "age_seconds": 6,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-07-20T19:50:41+00:00",
+      "mtime_utc": "2026-07-20T23:56:53+00:00",
       "path": "fem_bot_status.json",
       "required": true,
       "schema": null,
-      "size_bytes": 35677,
+      "size_bytes": 28737,
       "status": "OK"
     },
     {
-      "age_seconds": 235,
+      "age_seconds": 1623,
       "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
-      "mtime_utc": "2026-07-20T19:47:01+00:00",
+      "mtime_utc": "2026-07-20T23:29:55+00:00",
       "path": "_DAILY\\executions_2026-07-20.csv",
       "required": false,
-      "size_bytes": 7970,
+      "size_bytes": 8542,
       "status": "OK"
     },
     {
-      "age_seconds": 2239,
+      "age_seconds": 1155,
       "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
-      "mtime_utc": "2026-07-20T19:13:38+00:00",
+      "mtime_utc": "2026-07-20T23:37:43+00:00",
       "path": "_DAILY\\order_strategy_2026-07-20.jsonl",
       "required": false,
-      "size_bytes": 102309,
+      "size_bytes": 119768,
       "status": "OK"
     },
     {
-      "age_seconds": 0,
+      "age_seconds": 104,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-07-20T19:50:57+00:00",
+      "mtime_utc": "2026-07-20T23:55:14+00:00",
       "path": "_DAILY\\contract_events_2026-07-20.jsonl",
       "required": false,
-      "size_bytes": 371373711,
+      "size_bytes": 646150023,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-07-20T19:50:57+00:00",
-  "generated_at_et": "2026-07-20T15:50:57-04:00",
+  "generated_at": "2026-07-20T23:56:59+00:00",
+  "generated_at_et": "2026-07-20T19:56:59-04:00",
   "next_actions": [
-    "Live readiness blockers are clear."
+    "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
   ],
-  "overall": "OK",
+  "overall": "FAIL",
   "processes": [
     {
       "command_line": "C:\\WINDOWS\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat\"",
@@ -180,27 +180,15 @@
       "creation_date": "2026-07-20T06:20:12.2247120-07:00",
       "name": "cmd.exe",
       "process_id": 28296
-    },
-    {
-      "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --until 19:55",
-      "creation_date": "2026-07-20T12:50:34.8297750-07:00",
-      "name": "py.exe",
-      "process_id": 9720
-    },
-    {
-      "command_line": "C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe fem_auto_trade.py --mode trigger --until 19:55",
-      "creation_date": "2026-07-20T12:50:34.8554450-07:00",
-      "name": "python.exe",
-      "process_id": 25548
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
-  "session": "rth",
+  "session": "ah",
   "summary": {
     "checks": 9,
-    "fail": 0,
-    "live_ready": true,
-    "ok": 9,
+    "fail": 1,
+    "live_ready": false,
+    "ok": 8,
     "warn": 0,
     "warning_only": false
   },
