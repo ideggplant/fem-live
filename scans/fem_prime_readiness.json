@@ -1,44 +1,52 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.08151912689208984,
+    "age_sec": 0.11022615432739258,
     "alist_fillable_count": 5,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 5,
-    "attention_reason": null,
-    "bridge_state": "MOO_TRADEABLE",
-    "moo_executable_ticket_count": 3,
-    "moo_tradeable": true,
-    "moo_tws_order_rows": 9,
-    "needs_attention": false,
+    "attention_reason": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
+    "bridge_state": "ALIST_FILLED_BUT_NOT_EXECUTABLE",
+    "moo_executable_ticket_count": 0,
+    "moo_tradeable": false,
+    "moo_tws_order_rows": 0,
+    "needs_attention": true,
     "source_file": "fem_abook_2026-07-20_0502.csv",
     "source_same_day": true
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Start the scheduled bot handoff or trade bot.",
+      "code": "TRIGGER_BOT_NOT_VISIBLE",
+      "impact": "FEM cannot enter/manage intended scalps.",
+      "message": "No trigger bot process is visible during a trading session.",
+      "severity": "CRITICAL"
+    }
+  ],
   "bot": {
-    "age_sec": 37.761112689971924,
+    "age_sec": 15.354883193969727,
     "alive": true,
-    "generated_at": "2026-07-20T06:31:35",
+    "generated_at": "2026-07-20T08:47:12",
     "mode": "TRIGGER_LIVE",
-    "n_positions": 3
+    "n_positions": 5
   },
   "broker": {
-    "age_sec": 2.819941997528076,
+    "age_sec": 2.8078505992889404,
     "connected": true,
-    "generated_at": "2026-07-20T13:32:10+00:00",
+    "generated_at": "2026-07-20T15:47:24+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 12,
+    "open_orders": 13,
     "order_fail": 0,
     "orphan_exit_orders": 0,
-    "overall": "FAIL",
-    "position_fail": 1,
+    "overall": "OK",
+    "position_fail": 0,
     "positions": 5,
-    "unprotected_positions": 1
+    "unprotected_positions": 0
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-20T13:32:14+00:00",
-  "generated_at_et": "2026-07-20T09:32:08-04:00",
+  "generated_at": "2026-07-20T15:47:30+00:00",
+  "generated_at_et": "2026-07-20T11:47:23-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,26 +57,26 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.3156595230102539,
+    "age_sec": 0.3093602657318115,
     "fail": 0,
-    "generated_at": "2026-07-20T13:32:12+00:00",
+    "generated_at": "2026-07-20T15:47:27+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
     ],
-    "overall": "OK",
+    "overall": "WARN",
     "session": "rth",
-    "warn": 0
+    "warn": 1
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 723.3635156154633,
+    "age_sec": 24.171098709106445,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-20",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": "TRIGGER_RETRY",
+    "rth_bot": "ALREADY_RUNNING_RETRY_GUARD",
     "rth_status": "OK",
     "scanner": "OK",
     "scanner_status": "OK",
@@ -78,14 +86,16 @@
   "next_session_startup": {
     "alist_fillable_count": 5,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 12,
+    "carryover_open_order_count": 13,
     "carryover_position_count": 5,
-    "moo_executable_ticket_count": 3,
-    "moo_tradeable_now": true,
+    "moo_executable_ticket_count": 0,
+    "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
-    "ready_for_next_session_start": true,
+    "ready_for_next_session_start": false,
     "schedule_armed": true,
-    "startup_hard_blockers": [],
+    "startup_hard_blockers": [
+      "MOO_NOT_TRADEABLE_NOW"
+    ],
     "tws_connected_now": true
   },
   "refresh": {
@@ -93,19 +103,19 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "A-list tradeability: rows=5 fillable=5 proven_moo=4 moo_orders=3 state=MOO_TRADEABLE\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
+      "stdout": "A-list tradeability: rows=5 fillable=5 proven_moo=4 moo_orders=0 state=ALIST_FILLED_BUT_NOT_EXECUTABLE\nAttention: Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
     },
     "broker_reconcile": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-20 overall=FAIL orders=12 positions=5 order_fail=0 pos_fail=1 cancelled=0\n  POSITION_UNPROTECTED_NO_STOP: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-20 overall=OK orders=13 positions=5 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=OK session=rth ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=8/1/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -154,89 +164,89 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 830.4351150989532,
+    "age_sec": 25.843910455703735,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.01805424690246582,
+    "snapshot_age_seconds": 0.011997222900390625,
     "snapshot_fresh": true,
-    "unknown_symbol_count": 16,
+    "unknown_symbol_count": 22,
     "unknown_symbols": [
+      "AAOG",
       "AAOX",
       "AFL",
       "AIG",
       "AIHS",
       "AMA",
       "AMDL",
-      "ASTX",
+      "APLX",
+      "AXTU",
       "AXTX",
+      "BABX",
+      "BEZ",
       "BKR",
-      "BTTC",
-      "CBRG",
+      "BMNG",
+      "BMNU",
+      "BTGO",
       "NEUTRAL",
       "SKHU",
       "SKHX",
       "SKUU",
+      "SNXX",
       "UNKNOWN"
     ]
   },
   "session": "rth",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": true,
+    "key": "ce047c38d191b843",
+    "ok": true,
+    "send_count": 1,
+    "status": 200,
+    "uppercase": false
+  },
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
-    {
-      "action": "Manage the carryover separately; keep trading stack live.",
-      "code": "ACKNOWLEDGED_CARRYOVER_POSITION_RISK",
-      "impact": "Carryover risk exists, but scheduled/trigger trading is not hard-blocked when flat_required=no.",
-      "message": "Broker reconcile is FAIL because carryover position(s) are unprotected.",
-      "severity": "WARN"
-    },
-    {
-      "action": "Manage/protect/flatten the carryover separately from session startup.",
-      "code": "CARRYOVER_POSITION_UNPROTECTED",
-      "impact": "This is risk on the carryover, not proof the bot cannot send new protected entries.",
-      "message": "Existing carryover position is unprotected.",
-      "severity": "WARN"
-    },
-    {
-      "action": "Manage/protect/flatten the carryover separately.",
-      "code": "UNPROTECTED_CARRYOVER_POSITION",
-      "impact": "Account risk is not bounded for that position; new-entry readiness is evaluated separately.",
-      "message": "At least one carryover position is unprotected.",
-      "severity": "WARN"
-    },
     {
       "action": "Inspect remaining non-carryover alerts if entries are not firing.",
       "code": "WATCHDOG_CARRYOVER_WARNINGS",
       "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
-      "message": "Watchdog has 3 critical/panic alert(s), including acknowledged carryover risk.",
+      "message": "Watchdog has 1 critical/panic alert(s), including acknowledged carryover risk.",
       "severity": "WARN"
     },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "16 active symbol(s) have no sector mapping: AAOX, AFL, AIG, AIHS, AMA, AMDL, ASTX, AXTX.",
+      "message": "22 active symbol(s) have no sector mapping: AAOG, AAOX, AFL, AIG, AIHS, AMA, AMDL, APLX.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
+      "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
+      "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
+      "message": "A-list has fillable candidates but no executable MOO handoff.",
       "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 10.434423685073853,
+    "age_sec": 47.39657688140869,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
-    "broker_open_orders": 12,
-    "broker_overall": "FAIL",
+    "broker_open_orders": 13,
+    "broker_overall": "OK",
     "broker_positions": 5,
-    "critical_or_panic_count": 3,
+    "critical_or_panic_count": 1,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "PANIC",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 58,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
