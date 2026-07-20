@@ -1,9 +1,13 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "ORPHAN_EXIT_ORDERS",
+      "detail": "Exit/protective orders are working while the broker position is flat.",
+      "examples": [
+        "SLNH#5233:ORPHAN_EXIT_POSITION_FLAT",
+        "SLNH#5234:ORPHAN_EXIT_POSITION_FLAT"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -14,9 +18,26 @@
     "offline": false,
     "port": 7497
   },
-  "cancellations": [],
-  "generated_at": "2026-07-20T16:03:41+00:00",
-  "generated_at_et": "2026-07-20T12:03:41-04:00",
+  "cancellations": [
+    {
+      "at": "2026-07-20T16:06:52+00:00",
+      "cancelled": true,
+      "classification": "EXIT_PROTECTION",
+      "order_id": "5233",
+      "reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "symbol": "SLNH"
+    },
+    {
+      "at": "2026-07-20T16:06:52+00:00",
+      "cancelled": true,
+      "classification": "EXIT_PROTECTION",
+      "order_id": "5234",
+      "reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "symbol": "SLNH"
+    }
+  ],
+  "generated_at": "2026-07-20T16:06:52+00:00",
+  "generated_at_et": "2026-07-20T12:06:52-04:00",
   "inputs": {
     "exit_intent_rows": 133,
     "order_strategy_rows": 89,
@@ -468,54 +489,6 @@
       "symbol": "SNXX"
     },
     {
-      "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": "surge_chase",
-      "exit_intent": "LADDER_T0_BANK",
-      "exit_strategy_id": "surge_chase",
-      "limit_price": 1.37,
-      "oca_group": "",
-      "order_id": "5228",
-      "order_type": "MIDPRICE",
-      "parent_id": "0",
-      "position_qty": 1.0,
-      "quantity": 1.0,
-      "raw": {
-        "action": "SELL",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 1.37,
-        "oca_group": "",
-        "order_id": 5228,
-        "order_ref": "",
-        "order_type": "MIDPRICE",
-        "outside_rth": false,
-        "parent_id": 0,
-        "perm_id": 8535177,
-        "quantity": 1.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "SLNH",
-        "tif": "DAY",
-        "trail_stop_price": 0.3700000000000001,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "SLNH"
-    },
-    {
       "action": "BUY",
       "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
       "cancel_allowed": false,
@@ -671,13 +644,13 @@
     },
     {
       "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
       "exit_intent": "FIRST_TARGET_RUNNER_ROOM_STOP",
       "exit_strategy_id": "surge_chase",
@@ -686,7 +659,7 @@
       "order_id": "5233",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": 1.0,
+      "position_qty": 0.0,
       "quantity": 1.0,
       "raw": {
         "action": "SELL",
@@ -712,20 +685,20 @@
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
+      "severity": "FAIL",
       "status": "PreSubmitted",
       "stop_price": 1.31,
       "symbol": "SLNH"
     },
     {
       "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
       "exit_intent": "RUNNER_T2_TARGET",
       "exit_strategy_id": "surge_chase",
@@ -734,7 +707,7 @@
       "order_id": "5234",
       "order_type": "LMT",
       "parent_id": "0",
-      "position_qty": 1.0,
+      "position_qty": 0.0,
       "quantity": 1.0,
       "raw": {
         "action": "SELL",
@@ -760,14 +733,14 @@
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
+      "severity": "FAIL",
       "status": "Submitted",
       "stop_price": null,
       "symbol": "SLNH"
     }
   ],
-  "operator_read": "Order safety is OK: 15 working order(s) and 4 live position(s) reconciled against the spine.",
-  "overall": "OK",
+  "operator_read": "Order safety is FAIL: 2 orphan exit order(s). Mode is ENFORCE; cancelled 2. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
@@ -841,40 +814,6 @@
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
         "ah_target_orders": [
-          "5234"
-        ],
-        "ah_target_quantity": 1.0,
-        "detail": "AH exit owner verified",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": true,
-        "position_quantity": 1.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 1.32561885,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "5233"
-      ],
-      "qty": 1.0,
-      "related_exit_orders": [
-        "5228",
-        "5233",
-        "5234"
-      ],
-      "severity": "OK",
-      "side": "LONG",
-      "symbol": "SLNH",
-      "target_orders": [
-        "5234"
-      ]
-    },
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": true,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [
           "5175"
         ],
         "ah_target_quantity": 28.0,
@@ -907,21 +846,23 @@
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {},
+    "breach_codes": {
+      "ORPHAN_EXIT_POSITION_FLAT": 2
+    },
     "broker_connected": true,
-    "cancel_candidates": 0,
+    "cancel_candidates": 2,
     "cancel_failed": 0,
-    "cancelled": 0,
+    "cancelled": 2,
     "invalid_entry_like_orders": 0,
-    "open_orders": 15,
-    "order_fail": 0,
-    "order_ok": 15,
+    "open_orders": 14,
+    "order_fail": 2,
+    "order_ok": 12,
     "order_warn": 0,
-    "orphan_exit_orders": 0,
+    "orphan_exit_orders": 2,
     "position_fail": 0,
-    "position_ok": 4,
+    "position_ok": 3,
     "position_warn": 0,
-    "positions": 4,
+    "positions": 3,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-20"
