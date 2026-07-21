@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.0802159309387207,
+    "age_sec": 0.05152726173400879,
     "alist_fillable_count": 5,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 5,
@@ -14,35 +14,20 @@
     "source_file": "fem_abook_2026-07-20_0502.csv",
     "source_same_day": false
   },
-  "blockers": [
-    {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 1 critical/panic alert(s).",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Run sector refresh and inspect fem_sector_alignment_status.json.",
-      "code": "SECTOR_CONTEXT_NOT_READY",
-      "impact": "Sector-gated routes may reject valid scalps.",
-      "message": "Sector context is not ready: overall=FAIL fresh=False age=8370.227579832077.",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 34.77962255477905,
-    "alive": true,
-    "generated_at": "2026-07-21T06:45:28",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 50.325029611587524,
+    "alive": false,
+    "generated_at": "2026-07-21T06:52:21",
+    "mode": "TRIGGER_ENTRY",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 2.985320806503296,
+    "age_sec": 2.7336769104003906,
     "connected": true,
-    "generated_at": "2026-07-21T13:46:01+00:00",
+    "generated_at": "2026-07-21T13:53:09+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 6,
+    "open_orders": 12,
     "order_fail": 0,
     "orphan_exit_orders": 0,
     "overall": "OK",
@@ -52,8 +37,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-21T13:46:07+00:00",
-  "generated_at_et": "2026-07-21T09:46:00-04:00",
+  "generated_at": "2026-07-21T13:53:13+00:00",
+  "generated_at_et": "2026-07-21T09:53:07-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -64,9 +49,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.3322627544403076,
+    "age_sec": 0.2660844326019287,
     "fail": 0,
-    "generated_at": "2026-07-21T13:46:04+00:00",
+    "generated_at": "2026-07-21T13:53:11+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
@@ -77,7 +62,7 @@
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 1253.8740766048431,
+    "age_sec": 1680.675801038742,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-21",
@@ -93,7 +78,7 @@
   "next_session_startup": {
     "alist_fillable_count": 5,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 6,
+    "carryover_open_order_count": 12,
     "carryover_position_count": 0,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
@@ -116,7 +101,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-21 overall=OK orders=6 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-21 overall=OK orders=12 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
@@ -171,44 +156,61 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 1254.124423980713,
-    "overall": "FAIL",
+    "age_sec": 287.39101815223694,
+    "overall": "WARN",
     "rankings_count": 26,
-    "refresh_error": "Command '['C:\\\\Users\\\\Gill\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe', '-c', 'import json; from fem_sector import get_sector_rankings; print(json.dumps(get_sector_rankings(force_refresh=True), default=str))']' timed out after 20.0 seconds",
-    "snapshot_age_seconds": 8370.227579832077,
-    "snapshot_fresh": false,
-    "unknown_symbol_count": 12,
+    "refresh_error": null,
+    "snapshot_age_seconds": 0.013006210327148438,
+    "snapshot_fresh": true,
+    "unknown_symbol_count": 14,
     "unknown_symbols": [
       "AAOX",
       "AMA",
+      "AMDL",
+      "ASPI",
       "ASTX",
       "AXTX",
+      "BEX",
       "BMNU",
       "BTTC",
       "CBRG",
       "CCUP",
-      "CLBK",
-      "CNC",
+      "GREEN",
       "NEUTRAL",
       "UNKNOWN"
     ]
   },
   "session": "rth",
-  "state": "NOT_TRADE_READY",
-  "title": "FEM Blocked",
-  "trade_ready": false,
-  "watch_items": [],
+  "state": "TRADE_READY",
+  "title": "FEM Ready",
+  "trade_ready": true,
+  "watch_items": [
+    {
+      "action": "Hydrate/override the unmapped symbols.",
+      "code": "SECTOR_SYMBOLS_UNMAPPED",
+      "impact": "Those names may lose sector alignment context.",
+      "message": "14 active symbol(s) have no sector mapping: AAOX, AMA, AMDL, ASPI, ASTX, AXTX, BEX, BMNU.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Review after readiness-critical checks.",
+      "code": "WATCHDOG_NON_BLOCKING_WARN",
+      "impact": "Not a direct money-safety blocker.",
+      "message": "Watchdog has non-blocking warnings.",
+      "severity": "WARN"
+    }
+  ],
   "watchdog": {
-    "age_sec": 52.751434087753296,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 39.72826600074768,
+    "bot_mode": "TRIGGER_ENTRY",
     "broker_connected": true,
-    "broker_open_orders": 6,
+    "broker_open_orders": 12,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 1,
+    "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "CRITICAL",
+    "overall": "WARN",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
