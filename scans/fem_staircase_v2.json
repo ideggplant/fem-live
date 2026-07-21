@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-07-21T15:53:10-04:00",
+ "generated_at": "2026-07-21T16:03:38-04:00",
  "trade_date": "2026-07-21",
  "staircase_source": "fem_gap_eat_staircase_long_2026-07-21.json",
  "staircase_is_today": true,
@@ -15,15 +15,16 @@
  "counts": {
   "CLEAR_AIR_GAP_BUILD_WATCH": 8,
   "WATCHING": 26,
-  "ACCEPTED_WAITING": 5,
+  "ACCEPTED_WAITING": 4,
+  "NO_GAP_MAP": 1,
   "EATEN": 1
  },
  "condition_blockers": {
   "1_eaten": 26,
   "2_accepted": 27,
   "3_road": 22,
-  "4_volume": 24,
-  "5_momentum": 29,
+  "4_volume": 23,
+  "5_momentum": 28,
   "6_floors": 27
  },
  "rows": [
@@ -1095,7 +1096,7 @@
   },
   {
    "ticker": "SNDX",
-   "score": 35,
+   "score": 17,
    "gap_top": 24.945,
    "conditions": {
     "1_eaten": false,
@@ -6277,6 +6278,59 @@
    "conditions_met": 5
   },
   {
+   "ticker": "ARE",
+   "score": 100,
+   "gap_top": null,
+   "conditions": {},
+   "state": "NO_GAP_MAP",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
+    "state": "INSUFFICIENT_GAP_CONTRACT_COVERAGE",
+    "research_only": true,
+    "live_behavior_changed": false,
+    "operator_note": "full all-timeframe gap map does not contain this symbol, so red-gap transfer cannot be trusted",
+    "missing_reason": "ARE is not present in fem_gap_timeframe_contract.json",
+    "coverage": {
+     "state_timeframes": null,
+     "missing_required_timeframes": "UNKNOWN_SYMBOL_NOT_IN_FULL_CONTRACT",
+     "overhead_by_tf": null
+    }
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "INSUFFICIENT_GAP_CONTRACT_COVERAGE",
+    "symbol": "ARE",
+    "channel": {
+     "available": true,
+     "direction": null,
+     "timeframe": null,
+     "position": null,
+     "lower_rail_now": null,
+     "upper_rail_now": null,
+     "rail_width": null,
+     "score": null
+    },
+    "bear_gap_transfer_15m_state": "INSUFFICIENT_GAP_CONTRACT_COVERAGE",
+    "large_bear_gap": null,
+    "bull_gap_build_15m_below_state": null,
+    "bull_15m_floor_count": 0,
+    "high_volume_15m_floor_count": 0,
+    "coverage": {
+     "contract_symbol_present": false,
+     "contract_date": "2026-07-20",
+     "contract_generated_at": "2026-07-20T21:22:21-04:00",
+     "state_timeframes": null,
+     "missing_required_timeframes": null,
+     "live_tracks_all_research_timeframes": null
+    },
+    "operator_note": "symbol is missing from the full all-timeframe gap map; this fractal read must not be assumed clean",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   }
+  },
+  {
    "ticker": "CCCC",
    "score": 100,
    "gap_top": 4.62,
@@ -8480,129 +8534,6 @@
     "6_floors"
    ],
    "conditions_met": 0
-  },
-  {
-   "ticker": "GMM",
-   "score": 100,
-   "gap_top": 2.76,
-   "conditions": {
-    "1_eaten": true,
-    "2_accepted": true,
-    "3_road": true,
-    "4_volume": false,
-    "5_momentum": false,
-    "6_floors": true
-   },
-   "state": "ACCEPTED_WAITING",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "NO_LARGE_BEAR_OVERHEAD",
-    "research_only": true,
-    "live_behavior_changed": false,
-    "operator_note": "no large bearish overhead gap mapped for 15m transfer check",
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "10m": 1,
-      "1m": 2,
-      "5m": 1
-     }
-    }
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "NO_FRACTAL_TRANSFER_READ",
-    "symbol": "GMM",
-    "channel": {
-     "available": true,
-     "direction": "FLAT",
-     "timeframe": "5m",
-     "position": "MID",
-     "lower_rail_now": 2.5,
-     "upper_rail_now": 2.81,
-     "rail_width": 0.31,
-     "score": 66.0
-    },
-    "bear_gap_transfer_15m_state": "NO_LARGE_BEAR_OVERHEAD",
-    "large_bear_gap": null,
-    "bull_gap_build_15m_below_state": null,
-    "bull_15m_floor_count": 0,
-    "high_volume_15m_floor_count": 0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-07-20",
-     "contract_generated_at": "2026-07-20T21:22:21-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "no higher-timeframe red-gap transfer plus floor-building pattern was proven",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "road_pct": 4.58,
-   "relvol": 0.15,
-   "rsi": 38.0,
-   "floors": [
-    {
-     "tf": "5m",
-     "top": 2.76,
-     "bottom": 2.75,
-     "weight": 1
-    },
-    {
-     "tf": "5m",
-     "top": 2.83,
-     "bottom": 2.7676,
-     "weight": 1
-    },
-    {
-     "tf": "5m",
-     "top": 2.8201,
-     "bottom": 2.67,
-     "weight": 1
-    },
-    {
-     "tf": "5m",
-     "top": 3.0366,
-     "bottom": 2.9294,
-     "weight": 1
-    }
-   ],
-   "blockers": [
-    "4_volume",
-    "5_momentum"
-   ],
-   "conditions_met": 4
   }
  ]
 }
