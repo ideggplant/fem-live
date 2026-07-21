@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.13528680801391602,
+    "age_sec": 0.09054422378540039,
     "alist_fillable_count": 5,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 5,
@@ -14,18 +14,26 @@
     "source_file": "fem_abook_2026-07-20_0502.csv",
     "source_same_day": false
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Start the scheduled bot handoff or trade bot.",
+      "code": "TRIGGER_BOT_NOT_VISIBLE",
+      "impact": "FEM cannot enter/manage intended scalps.",
+      "message": "No trigger bot process is visible during a trading session.",
+      "severity": "CRITICAL"
+    }
+  ],
   "bot": {
-    "age_sec": 34.904417514801025,
+    "age_sec": 15.855245351791382,
     "alive": true,
-    "generated_at": "2026-07-21T10:18:43",
+    "generated_at": "2026-07-21T10:27:30",
     "mode": "TRIGGER_LIVE",
     "n_positions": 2
   },
   "broker": {
-    "age_sec": 3.5433452129364014,
+    "age_sec": 3.6266374588012695,
     "connected": true,
-    "generated_at": "2026-07-21T17:19:14+00:00",
+    "generated_at": "2026-07-21T17:27:42+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 13,
     "order_fail": 0,
@@ -37,8 +45,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-21T17:19:22+00:00",
-  "generated_at_et": "2026-07-21T13:19:12-04:00",
+  "generated_at": "2026-07-21T17:27:48+00:00",
+  "generated_at_et": "2026-07-21T13:27:40-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,9 +57,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.4624004364013672,
+    "age_sec": 0.28859996795654297,
     "fail": 0,
-    "generated_at": "2026-07-21T17:19:17+00:00",
+    "generated_at": "2026-07-21T17:27:46+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
@@ -62,7 +70,7 @@
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 25.29078769683838,
+    "age_sec": 27.935816287994385,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-21",
@@ -156,24 +164,24 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 26.94482421875,
+    "age_sec": 28.184985876083374,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.01600050926208496,
+    "snapshot_age_seconds": 0.015165328979492188,
     "snapshot_fresh": true,
     "unknown_symbol_count": 20,
     "unknown_symbols": [
       "AAOG",
       "AAOX",
       "AEHG",
-      "AIR",
       "AIS",
       "ALXO",
       "AMA",
       "AMDL",
       "APLX",
       "ARMG",
+      "ARTV",
       "ASTX",
       "ASTY",
       "ATI",
@@ -187,49 +195,49 @@
     ]
   },
   "session": "rth",
-  "state": "TRADE_READY",
+  "state": "NOT_TRADE_READY",
   "telegram": {
     "enabled": true,
-    "key": "95d66874e9c2683b",
+    "key": "cfb5ac60e4ac9693",
     "ok": true,
     "send_count": 1,
     "status": 200,
     "uppercase": false
   },
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Inspect remaining non-carryover alerts if entries are not firing.",
+      "code": "WATCHDOG_CARRYOVER_WARNINGS",
+      "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
+      "message": "Watchdog has 1 critical/panic alert(s), including acknowledged carryover risk.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "20 active symbol(s) have no sector mapping: AAOG, AAOX, AEHG, AIR, AIS, ALXO, AMA, AMDL.",
-      "severity": "WARN"
-    },
-    {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
+      "message": "20 active symbol(s) have no sector mapping: AAOG, AAOX, AEHG, AIS, ALXO, AMA, AMDL, APLX.",
       "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 37.147085189819336,
-    "bot_mode": "GATES_MANIFEST",
+    "age_sec": 29.21993112564087,
+    "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 13,
     "broker_overall": "OK",
     "broker_positions": 2,
-    "critical_or_panic_count": 0,
+    "critical_or_panic_count": 1,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 70,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
