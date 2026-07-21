@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.09852290153503418,
+    "age_sec": 1.0113623142242432,
     "alist_fillable_count": 5,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 5,
@@ -14,18 +14,26 @@
     "source_file": "fem_abook_2026-07-20_0502.csv",
     "source_same_day": false
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Run sector refresh and inspect fem_sector_alignment_status.json.",
+      "code": "SECTOR_CONTEXT_NOT_READY",
+      "impact": "Sector-gated routes may reject valid scalps.",
+      "message": "Sector context is not ready: overall=FAIL fresh=False age=8010.761573791504.",
+      "severity": "CRITICAL"
+    }
+  ],
   "bot": {
-    "age_sec": 179.8563733100891,
+    "age_sec": 39.12156367301941,
     "alive": true,
-    "generated_at": "2026-07-21T08:51:18",
+    "generated_at": "2026-07-21T09:01:55",
     "mode": "TRIGGER_LIVE",
     "n_positions": 2
   },
   "broker": {
-    "age_sec": 4.120792627334595,
+    "age_sec": 5.987452507019043,
     "connected": true,
-    "generated_at": "2026-07-21T15:54:20+00:00",
+    "generated_at": "2026-07-21T16:02:27+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 10,
     "order_fail": 0,
@@ -37,8 +45,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-21T15:54:28+00:00",
-  "generated_at_et": "2026-07-21T11:54:18-04:00",
+  "generated_at": "2026-07-21T16:02:37+00:00",
+  "generated_at_et": "2026-07-21T12:02:24-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,9 +57,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 1.0199551582336426,
+    "age_sec": 2.235347032546997,
     "fail": 0,
-    "generated_at": "2026-07-21T15:54:23+00:00",
+    "generated_at": "2026-07-21T16:02:31+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
@@ -62,13 +70,13 @@
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 8953.552890062332,
+    "age_sec": 31.48793125152588,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-21",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": "STARTED",
+    "rth_bot": "ALREADY_RUNNING_RETRY_GUARD",
     "rth_status": "OK",
     "scanner": "OK",
     "scanner_status": "OK",
@@ -156,61 +164,68 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 7560.275586843491,
-    "overall": "WARN",
+    "age_sec": 33.00529670715332,
+    "overall": "FAIL",
     "rankings_count": 26,
-    "refresh_error": null,
-    "snapshot_age_seconds": 0.013006210327148438,
-    "snapshot_fresh": true,
-    "unknown_symbol_count": 14,
+    "refresh_error": "Command '['C:\\\\Users\\\\Gill\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe', '-c', 'import json; from fem_sector import get_sector_rankings; print(json.dumps(get_sector_rankings(force_refresh=True), default=str))']' timed out after 20.0 seconds",
+    "snapshot_age_seconds": 8010.761573791504,
+    "snapshot_fresh": false,
+    "unknown_symbol_count": 20,
     "unknown_symbols": [
+      "AAOG",
       "AAOX",
+      "AEHG",
+      "AIBZ",
+      "AIRO",
+      "AIS",
       "AMA",
       "AMDL",
+      "AMTX",
+      "APLX",
+      "ARMG",
       "ASPI",
       "ASTX",
+      "AVXX",
       "AXTX",
-      "BEX",
-      "BMNU",
-      "BTTC",
-      "CBRG",
-      "CCUP",
-      "GREEN",
+      "BAI",
       "NEUTRAL",
+      "SKHU",
+      "SKHX",
       "UNKNOWN"
     ]
   },
   "session": "rth",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": true,
+    "key": "fe9a7cd1be244154",
+    "ok": true,
+    "send_count": 1,
+    "status": 200,
+    "uppercase": false
+  },
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
     {
-      "action": "Hydrate/override the unmapped symbols.",
-      "code": "SECTOR_SYMBOLS_UNMAPPED",
-      "impact": "Those names may lose sector alignment context.",
-      "message": "14 active symbol(s) have no sector mapping: AAOX, AMA, AMDL, ASPI, ASTX, AXTX, BEX, BMNU.",
-      "severity": "WARN"
-    },
-    {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
+      "action": "Inspect remaining non-carryover alerts if entries are not firing.",
+      "code": "WATCHDOG_CARRYOVER_WARNINGS",
+      "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
+      "message": "Watchdog has 1 critical/panic alert(s), including acknowledged carryover risk.",
       "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 39.40463209152222,
+    "age_sec": 44.3217408657074,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 10,
     "broker_overall": "OK",
     "broker_positions": 2,
-    "critical_or_panic_count": 0,
+    "critical_or_panic_count": 1,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
