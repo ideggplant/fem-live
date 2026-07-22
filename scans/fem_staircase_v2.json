@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-07-22T10:27:46-04:00",
+ "generated_at": "2026-07-22T10:38:11-04:00",
  "trade_date": "2026-07-22",
  "staircase_source": "fem_gap_eat_staircase_long_2026-07-22.json",
  "staircase_is_today": true,
@@ -14,15 +14,15 @@
  "spec": "eat -> accept x2(10m) -> road>=2% -> vol>=1.5x -> rsi>55 rising + ema23 -> fresh floors below",
  "counts": {
   "CLEAR_AIR_GAP_BUILD_WATCH": 8,
-  "WATCHING": 29,
-  "ACCEPTED_WAITING": 3
+  "WATCHING": 28,
+  "ACCEPTED_WAITING": 4
  },
  "condition_blockers": {
-  "1_eaten": 29,
-  "2_accepted": 29,
+  "1_eaten": 28,
+  "2_accepted": 28,
   "3_road": 22,
   "4_volume": 28,
-  "5_momentum": 23,
+  "5_momentum": 24,
   "6_floors": 29
  },
  "rows": [
@@ -7220,8 +7220,8 @@
     "live_behavior_changed": false
    },
    "road_pct": 0.23,
-   "relvol": 0.63,
-   "rsi": 50.5,
+   "relvol": 0.1,
+   "rsi": 47.1,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -7476,35 +7476,43 @@
    "score": 100,
    "gap_top": 1.21,
    "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
+    "1_eaten": true,
+    "2_accepted": true,
     "3_road": true,
     "4_volume": false,
     "5_momentum": false,
     "6_floors": false
    },
-   "state": "WATCHING",
+   "state": "ACCEPTED_WAITING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
-    "state": "BELOW_LARGE_BEAR_GAP",
+    "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
+    "large_bear_gap": {
+     "bottom": 1.26,
+     "top": 1.3,
+     "timeframe": "daily",
+     "type": "vi",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 10.34,
+     "tick_width": 5.0,
+     "genesis_rank_pct": 0.798,
+     "creation_vol": 276089.128079,
+     "conviction_tier": "MINOR"
+    },
+    "last_15m": {
+     "close": 1.2699,
+     "high": 1.28,
+     "low": 1.21,
+     "volume": 90469.66,
+     "relvol_20": 6.01,
+     "volume_ok": false,
+     "entered_from_below": true,
+     "closed_inside_gap": true,
+     "closed_above_gap": false
+    },
     "research_only": true,
     "live_behavior_changed": false,
-    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
-    "large_bear_overheads": [
-     {
-      "bottom": 1.26,
-      "top": 1.3,
-      "timeframe": "daily",
-      "type": "vi",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 10.34,
-      "tick_width": 5.0,
-      "genesis_rank_pct": 0.798,
-      "creation_vol": 276089.128079,
-      "conviction_tier": "MINOR"
-     }
-    ],
     "coverage": {
      "state_timeframes": [
       "weekly",
@@ -7581,11 +7589,12 @@
      "research_only": true,
      "live_behavior_changed": false,
      "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
-    }
+    },
+    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
    },
    "fractal_channel_gap_context": {
     "checked": true,
-    "state": "NO_FRACTAL_TRANSFER_READ",
+    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
     "symbol": "MTEN",
     "channel": {
      "available": true,
@@ -7597,7 +7606,7 @@
      "rail_width": 0.06,
      "score": 72.0
     },
-    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
      "bottom": 1.26,
      "top": 1.3,
@@ -7634,23 +7643,21 @@
      ],
      "live_tracks_all_research_timeframes": false
     },
-    "operator_note": "no higher-timeframe red-gap transfer plus floor-building pattern was proven",
+    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
     "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
     "research_only": true,
     "live_behavior_changed": false
    },
    "road_pct": 5.96,
-   "relvol": 4.63,
-   "rsi": 90.7,
+   "relvol": 6.07,
+   "rsi": 93.2,
    "floors": [],
    "blockers": [
-    "1_eaten",
-    "2_accepted",
     "4_volume",
     "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
+   "conditions_met": 3
   },
   {
    "ticker": "RGNT",
@@ -7661,7 +7668,7 @@
     "2_accepted": false,
     "3_road": true,
     "4_volume": false,
-    "5_momentum": true,
+    "5_momentum": false,
     "6_floors": false
    },
    "state": "WATCHING",
@@ -7829,16 +7836,17 @@
     "live_behavior_changed": false
    },
    "road_pct": 6.59,
-   "relvol": 5.64,
-   "rsi": 60.8,
+   "relvol": 0.58,
+   "rsi": 55.4,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
     "4_volume",
+    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 2
+   "conditions_met": 1
   },
   {
    "ticker": "ROAD",
