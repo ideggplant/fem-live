@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "ORPHAN_EXIT_ORDERS",
+      "detail": "Exit/protective orders are working while the broker position is flat.",
+      "examples": [
+        "ZCMD#5522:ORPHAN_EXIT_POSITION_FLAT"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -14,11 +17,20 @@
     "offline": false,
     "port": 7497
   },
-  "cancellations": [],
-  "generated_at": "2026-07-22T14:11:45+00:00",
-  "generated_at_et": "2026-07-22T10:11:45-04:00",
+  "cancellations": [
+    {
+      "at": "2026-07-22T14:12:52+00:00",
+      "cancelled": true,
+      "classification": "EXIT_PROTECTION",
+      "order_id": "5522",
+      "reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "symbol": "ZCMD"
+    }
+  ],
+  "generated_at": "2026-07-22T14:12:52+00:00",
+  "generated_at_et": "2026-07-22T10:12:52-04:00",
   "inputs": {
-    "exit_intent_rows": 33,
+    "exit_intent_rows": 35,
     "order_strategy_rows": 23,
     "strategy_registry_rows": 66,
     "trade_permission_rows": 66
@@ -123,23 +135,23 @@
     },
     {
       "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
-      "exit_intent": "STOP_QTY_SYNC",
+      "exit_intent": "FIRST_TARGET_RUNNER_ROOM_STOP",
       "exit_strategy_id": "surge_micro_scout",
       "limit_price": null,
       "oca_group": "",
-      "order_id": "5520",
+      "order_id": "5522",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": 44.0,
-      "quantity": 147.0,
+      "position_qty": 0.0,
+      "quantity": 44.0,
       "raw": {
         "action": "SELL",
         "client_id": 10,
@@ -147,13 +159,13 @@
         "exchange": "SMART",
         "limit_price": 0.0,
         "oca_group": "",
-        "order_id": 5520,
+        "order_id": 5522,
         "order_ref": "",
         "order_type": "STP",
         "outside_rth": false,
         "parent_id": 0,
-        "perm_id": 383805301,
-        "quantity": 147.0,
+        "perm_id": 383805303,
+        "quantity": 44.0,
         "sec_type": "STK",
         "status": "PreSubmitted",
         "stop_price": 3.95,
@@ -164,14 +176,14 @@
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
+      "severity": "FAIL",
       "status": "PreSubmitted",
       "stop_price": 3.95,
       "symbol": "ZCMD"
     }
   ],
-  "operator_read": "Order safety is OK: 3 working order(s) and 2 live position(s) reconciled against the spine.",
-  "overall": "OK",
+  "operator_read": "Order safety is FAIL: 1 orphan exit order(s). Mode is ENFORCE; cancelled 1. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
@@ -205,55 +217,29 @@
       "target_orders": [
         "5519"
       ]
-    },
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 44.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 4.1968057210884355,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "5520"
-      ],
-      "qty": 44.0,
-      "related_exit_orders": [
-        "5520"
-      ],
-      "severity": "OK",
-      "side": "LONG",
-      "symbol": "ZCMD",
-      "target_orders": []
     }
   ],
   "schema": "fem_contract_live_broker_reconcile.v1",
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {},
+    "breach_codes": {
+      "ORPHAN_EXIT_POSITION_FLAT": 1
+    },
     "broker_connected": true,
-    "cancel_candidates": 0,
+    "cancel_candidates": 1,
     "cancel_failed": 0,
-    "cancelled": 0,
+    "cancelled": 1,
     "invalid_entry_like_orders": 0,
     "open_orders": 3,
-    "order_fail": 0,
-    "order_ok": 3,
+    "order_fail": 1,
+    "order_ok": 2,
     "order_warn": 0,
-    "orphan_exit_orders": 0,
+    "orphan_exit_orders": 1,
     "position_fail": 0,
-    "position_ok": 2,
+    "position_ok": 1,
     "position_warn": 0,
-    "positions": 2,
+    "positions": 1,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-22"
