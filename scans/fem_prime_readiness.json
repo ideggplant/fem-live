@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.09219789505004883,
+    "age_sec": 0.1838397979736328,
     "alist_fillable_count": 1,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 1,
@@ -16,6 +16,20 @@
   },
   "blockers": [
     {
+      "action": "Reconnect TWS/broker and rerun prime readiness.",
+      "code": "BROKER_NOT_OK",
+      "impact": "Cannot trust entries, exits, or flat state.",
+      "message": "Broker reconcile is FAIL connected=True.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Run broker reconcile and clean the named order issue.",
+      "code": "ORDER_SAFETY_NOT_CLEAN",
+      "impact": "Scalping can create uncontrolled exposure.",
+      "message": "Broker order/position safety is not clean.",
+      "severity": "CRITICAL"
+    },
+    {
       "action": "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
       "code": "LIVE_READINESS_BLOCKED",
       "impact": "FEM may be alive but unable to trade valid scalps.",
@@ -24,29 +38,29 @@
     }
   ],
   "bot": {
-    "age_sec": 30.437487363815308,
+    "age_sec": 71.85255026817322,
     "alive": true,
-    "generated_at": "2026-07-22T08:00:26",
+    "generated_at": "2026-07-22T08:29:54",
     "mode": "TRIGGER_LIVE",
-    "n_positions": 1
+    "n_positions": 3
   },
   "broker": {
-    "age_sec": 3.335148572921753,
+    "age_sec": 4.64846658706665,
     "connected": true,
-    "generated_at": "2026-07-22T15:00:55+00:00",
+    "generated_at": "2026-07-22T15:31:02+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 2,
-    "order_fail": 0,
-    "orphan_exit_orders": 0,
-    "overall": "OK",
+    "open_orders": 5,
+    "order_fail": 1,
+    "orphan_exit_orders": 1,
+    "overall": "FAIL",
     "position_fail": 0,
-    "positions": 1,
+    "positions": 2,
     "unprotected_positions": 0
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-22T15:01:00+00:00",
-  "generated_at_et": "2026-07-22T11:00:53-04:00",
+  "generated_at": "2026-07-22T15:31:11+00:00",
+  "generated_at_et": "2026-07-22T11:31:01-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,20 +71,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.2751772403717041,
+    "age_sec": 0.6195952892303467,
     "fail": 1,
-    "generated_at": "2026-07-22T15:00:58+00:00",
+    "generated_at": "2026-07-22T15:31:06+00:00",
     "live_ready": false,
     "next_actions": [
       "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
     "overall": "FAIL",
     "session": "rth",
-    "warn": 1
+    "warn": 0
   },
-  "money_safe": true,
+  "money_safe": false,
   "morning": {
-    "age_sec": 1244.5734586715698,
+    "age_sec": 3053.5092253684998,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-22",
@@ -86,8 +100,8 @@
   "next_session_startup": {
     "alist_fillable_count": 1,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 2,
-    "carryover_position_count": 1,
+    "carryover_open_order_count": 5,
+    "carryover_position_count": 2,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -109,13 +123,13 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-22 overall=OK orders=2 positions=1 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-22 overall=FAIL orders=5 positions=2 order_fail=1 pos_fail=0 cancelled=0\n  ORPHAN_EXIT_POSITION_FLAT: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=7/1/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -164,7 +178,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 1244.7733306884766,
+    "age_sec": 3053.737524986267,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -222,12 +236,12 @@
     }
   ],
   "watchdog": {
-    "age_sec": 32.654393672943115,
+    "age_sec": 12.51762866973877,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
-    "broker_open_orders": 2,
+    "broker_open_orders": 6,
     "broker_overall": "OK",
-    "broker_positions": 1,
+    "broker_positions": 3,
     "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": "OK",
