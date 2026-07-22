@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-07-22T12:46:38-04:00",
+ "generated_at": "2026-07-22T12:57:02-04:00",
  "trade_date": "2026-07-22",
  "staircase_source": "fem_gap_eat_staircase_long_2026-07-22.json",
  "staircase_is_today": true,
@@ -14,17 +14,17 @@
  "spec": "eat -> accept x2(10m) -> road>=2% -> vol>=1.5x -> rsi>55 rising + ema23 -> fresh floors below",
  "counts": {
   "CLEAR_AIR_GAP_BUILD_WATCH": 8,
-  "WATCHING": 26,
-  "ACCEPTED_WAITING": 5,
+  "WATCHING": 27,
+  "ACCEPTED_WAITING": 4,
   "NO_GAP_MAP": 1
  },
  "condition_blockers": {
-  "1_eaten": 26,
-  "2_accepted": 26,
+  "1_eaten": 27,
+  "2_accepted": 27,
   "3_road": 23,
   "4_volume": 27,
-  "5_momentum": 23,
-  "6_floors": 27
+  "5_momentum": 22,
+  "6_floors": 28
  },
  "rows": [
   {
@@ -6996,32 +6996,48 @@
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
-    "state": "REJECTING_BEAR_GAP",
-    "large_bear_gap": {
-     "bottom": 1.44,
-     "top": 1.49,
-     "timeframe": "15m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 5.11,
-     "tick_width": 6.0,
-     "genesis_rank_pct": 0.644,
-     "creation_vol": 3224.0,
-     "conviction_tier": "MINOR"
-    },
-    "last_15m": {
-     "close": 1.39,
-     "high": 1.462,
-     "low": 1.39,
-     "volume": 400.0,
-     "relvol_20": 0.28,
-     "volume_ok": false,
-     "entered_from_below": false,
-     "closed_inside_gap": false,
-     "closed_above_gap": false
-    },
+    "state": "BELOW_LARGE_BEAR_GAP",
     "research_only": true,
     "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 1.44,
+      "top": 1.49,
+      "timeframe": "15m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 5.11,
+      "tick_width": 6.0,
+      "genesis_rank_pct": 0.644,
+      "creation_vol": 3224.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 1.44,
+      "top": 1.5,
+      "timeframe": "5m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 5.11,
+      "tick_width": 7.0,
+      "genesis_rank_pct": 0.655,
+      "creation_vol": 2818.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 1.55,
+      "top": 1.57,
+      "timeframe": "daily",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 13.14,
+      "tick_width": 3.0,
+      "genesis_rank_pct": 0.782,
+      "creation_vol": 303794.01066,
+      "conviction_tier": "COMPRESSION"
+     }
+    ],
     "coverage": {
      "state_timeframes": [
       "weekly",
@@ -7145,8 +7161,7 @@
      "research_only": true,
      "live_behavior_changed": false,
      "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
-    },
-    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
+    }
    },
    "fractal_channel_gap_context": {
     "checked": true,
@@ -7162,7 +7177,7 @@
      "rail_width": 1.15,
      "score": 60.6
     },
-    "bear_gap_transfer_15m_state": "REJECTING_BEAR_GAP",
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
     "large_bear_gap": {
      "bottom": 1.44,
      "top": 1.49,
@@ -7205,8 +7220,8 @@
     "live_behavior_changed": false
    },
    "road_pct": 5.11,
-   "relvol": 0.22,
-   "rsi": 51.8,
+   "relvol": 0.13,
+   "rsi": 54.5,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -7294,22 +7309,9 @@
     "bull_gap_build_15m_below": {
      "checked": true,
      "state": "BULL_15M_FLOORS_BUILDING_BELOW",
-     "count_15m_bull_gaps_below": 3,
+     "count_15m_bull_gaps_below": 2,
      "high_volume_count": 2,
      "top_15m_bull_gaps_below": [
-      {
-       "bottom": 2.1422,
-       "top": 2.17,
-       "timeframe": "15m",
-       "type": "gap",
-       "source_key": null,
-       "distance_pct": 0.23,
-       "tick_width": 3.0,
-       "genesis_rank_pct": 0.102,
-       "creation_vol": 100.0,
-       "conviction_tier": "MINOR",
-       "high_volume": false
-      },
       {
        "bottom": 2.135,
        "top": 2.1393,
@@ -7397,7 +7399,7 @@
      "conviction_tier": "MINOR"
     },
     "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
-    "bull_15m_floor_count": 3.0,
+    "bull_15m_floor_count": 2.0,
     "high_volume_15m_floor_count": 2.0,
     "coverage": {
      "contract_symbol_present": true,
@@ -7426,8 +7428,8 @@
     "live_behavior_changed": false
    },
    "road_pct": 0.23,
-   "relvol": 1.15,
-   "rsi": 53.2,
+   "relvol": 0.09,
+   "rsi": 44.3,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -7444,14 +7446,14 @@
    "score": 100,
    "gap_top": 4.545,
    "conditions": {
-    "1_eaten": true,
-    "2_accepted": true,
+    "1_eaten": false,
+    "2_accepted": false,
     "3_road": false,
     "4_volume": false,
     "5_momentum": false,
-    "6_floors": true
+    "6_floors": false
    },
-   "state": "ACCEPTED_WAITING",
+   "state": "WATCHING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
@@ -7469,11 +7471,11 @@
      "conviction_tier": "MINOR"
     },
     "last_15m": {
-     "close": 4.56,
+     "close": 4.53,
      "high": 4.56,
-     "low": 4.54,
-     "volume": 3703.0,
-     "relvol_20": 2.16,
+     "low": 4.53,
+     "volume": 1311.0,
+     "relvol_20": 0.69,
      "volume_ok": false,
      "entered_from_below": false,
      "closed_inside_gap": true,
@@ -7632,28 +7634,18 @@
     "live_behavior_changed": false
    },
    "road_pct": 0.22,
-   "relvol": 2.29,
-   "rsi": 54.0,
-   "floors": [
-    {
-     "tf": "5m",
-     "top": 4.5487,
-     "bottom": 4.54,
-     "weight": 1
-    },
-    {
-     "tf": "10m",
-     "top": 4.5487,
-     "bottom": 4.54,
-     "weight": 2
-    }
-   ],
+   "relvol": 0.73,
+   "rsi": 50.8,
+   "floors": [],
    "blockers": [
+    "1_eaten",
+    "2_accepted",
     "3_road",
     "4_volume",
-    "5_momentum"
+    "5_momentum",
+    "6_floors"
    ],
-   "conditions_met": 3
+   "conditions_met": 0
   },
   {
    "ticker": "LKQ",
@@ -7976,15 +7968,15 @@
      "conviction_tier": "MINOR"
     },
     "last_15m": {
-     "close": 1.3101,
+     "close": 1.29,
      "high": 1.34,
-     "low": 1.31,
-     "volume": 20262.06,
-     "relvol_20": 0.02,
+     "low": 1.26,
+     "volume": 168766.81,
+     "relvol_20": 0.14,
      "volume_ok": false,
      "entered_from_below": false,
-     "closed_inside_gap": false,
-     "closed_above_gap": true
+     "closed_inside_gap": true,
+     "closed_above_gap": false
     },
     "research_only": true,
     "live_behavior_changed": false,
@@ -8124,8 +8116,8 @@
     "live_behavior_changed": false
    },
    "road_pct": 5.96,
-   "relvol": 0.25,
-   "rsi": 54.5,
+   "relvol": 0.06,
+   "rsi": 51.4,
    "floors": [],
    "blockers": [
     "4_volume",
@@ -8143,7 +8135,7 @@
     "2_accepted": false,
     "3_road": true,
     "4_volume": false,
-    "5_momentum": false,
+    "5_momentum": true,
     "6_floors": false
    },
    "state": "WATCHING",
@@ -8311,17 +8303,16 @@
     "live_behavior_changed": false
    },
    "road_pct": 6.59,
-   "relvol": 0.29,
-   "rsi": 54.1,
+   "relvol": 0.09,
+   "rsi": 59.4,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
     "4_volume",
-    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
+   "conditions_met": 2
   },
   {
    "ticker": "ROAD",
