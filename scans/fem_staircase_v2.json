@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-07-23T13:05:55-04:00",
+ "generated_at": "2026-07-23T13:16:23-04:00",
  "trade_date": "2026-07-23",
  "staircase_source": "fem_gap_eat_staircase_long_2026-07-23.json",
  "staircase_is_today": true,
@@ -21,7 +21,7 @@
  "condition_blockers": {
   "3_road": 23,
   "4_volume": 31,
-  "5_momentum": 23,
+  "5_momentum": 24,
   "1_eaten": 27,
   "2_accepted": 28,
   "6_floors": 28
@@ -6694,39 +6694,43 @@
     "2_accepted": false,
     "3_road": true,
     "4_volume": false,
-    "5_momentum": true,
+    "5_momentum": false,
     "6_floors": false
    },
    "state": "WATCHING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
-    "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
-    "large_bear_gap": {
-     "bottom": 1.42,
-     "top": 1.4825,
-     "timeframe": "1m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 1.43,
-     "tick_width": 7.0,
-     "genesis_rank_pct": 0.635,
-     "creation_vol": 6588.0,
-     "conviction_tier": "MINOR"
-    },
-    "last_15m": {
-     "close": 1.48,
-     "high": 1.48,
-     "low": 1.47,
-     "volume": 241.0,
-     "relvol_20": 0.21,
-     "volume_ok": false,
-     "entered_from_below": true,
-     "closed_inside_gap": true,
-     "closed_above_gap": false
-    },
+    "state": "BELOW_LARGE_BEAR_GAP",
     "research_only": true,
     "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 1.42,
+      "top": 1.4825,
+      "timeframe": "1m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.43,
+      "tick_width": 7.0,
+      "genesis_rank_pct": 0.635,
+      "creation_vol": 6588.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 1.55,
+      "top": 1.57,
+      "timeframe": "daily",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 10.71,
+      "tick_width": 3.0,
+      "genesis_rank_pct": 0.757,
+      "creation_vol": 303794.01066,
+      "conviction_tier": "COMPRESSION"
+     }
+    ],
     "coverage": {
      "state_timeframes": [
       "weekly",
@@ -6863,12 +6867,11 @@
      "research_only": true,
      "live_behavior_changed": false,
      "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
-    },
-    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
+    }
    },
    "fractal_channel_gap_context": {
     "checked": true,
-    "state": "HTF_CHANNEL_BREAK_RED_GAP_TRANSFER_WITH_15M_FLOORS",
+    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
     "symbol": "GDHG",
     "channel": {
      "available": true,
@@ -6880,7 +6883,7 @@
      "rail_width": 1.16,
      "score": 66.27
     },
-    "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
     "large_bear_gap": {
      "bottom": 1.42,
      "top": 1.4825,
@@ -6917,22 +6920,23 @@
      ],
      "live_tracks_all_research_timeframes": false
     },
-    "operator_note": "higher-timeframe channel context plus 15m floor-building supports red-gap transfer/eat, not simple overhead rejection",
+    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
     "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
     "research_only": true,
     "live_behavior_changed": false
    },
    "road_pct": 10.71,
-   "relvol": 0.22,
-   "rsi": 58.8,
+   "relvol": 0.27,
+   "rsi": 50.3,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
     "4_volume",
+    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 2
+   "conditions_met": 1
   },
   {
    "ticker": "HPE",
