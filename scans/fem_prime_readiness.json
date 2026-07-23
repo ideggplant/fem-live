@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.10353207588195801,
+    "age_sec": 0.035602569580078125,
     "alist_fillable_count": 2,
     "alist_proven_moo_candidate_count": 0,
     "alist_row_count": 2,
@@ -14,40 +14,18 @@
     "source_file": "fem_abook_2026-07-23_0409.csv",
     "source_same_day": true
   },
-  "blockers": [
-    {
-      "action": "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-      "code": "LIVE_READINESS_BLOCKED",
-      "impact": "FEM may be alive but unable to trade valid scalps.",
-      "message": "Live readiness is blocked.",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 2 critical/panic alert(s).",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Start the scheduled bot handoff or trade bot.",
-      "code": "TRIGGER_BOT_NOT_VISIBLE",
-      "impact": "FEM cannot enter/manage intended scalps.",
-      "message": "No trigger bot process is visible during a trading session.",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 12.16799020767212,
-    "alive": true,
-    "generated_at": "2026-07-23T12:50:53",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 6.777260780334473,
+    "alive": false,
+    "generated_at": "2026-07-23T13:38:29",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 3.1012282371520996,
+    "age_sec": 1.9448354244232178,
     "connected": true,
-    "generated_at": "2026-07-23T19:51:02+00:00",
+    "generated_at": "2026-07-23T20:38:35+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -57,10 +35,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-07-23T19:51:08+00:00",
-  "generated_at_et": "2026-07-23T15:51:01-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-07-23T20:38:39+00:00",
+  "generated_at_et": "2026-07-23T16:38:34-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -71,20 +49,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.39813756942749023,
+    "age_sec": 0.18360090255737305,
     "fail": 1,
-    "generated_at": "2026-07-23T19:51:05+00:00",
+    "generated_at": "2026-07-23T20:38:37+00:00",
     "live_ready": false,
     "next_actions": [
       "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
     "overall": "FAIL",
-    "session": "rth",
+    "session": "ah",
     "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 24.38268208503723,
+    "age_sec": 3.4259068965911865,
     "ah_bot": "STARTED",
     "ah_status": "OK",
     "date": "2026-07-23",
@@ -129,7 +107,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=ah ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -178,14 +156,17 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 24.948758840560913,
+    "age_sec": 33.63086724281311,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.015997886657714844,
+    "snapshot_age_seconds": 0.011579513549804688,
     "snapshot_fresh": true,
-    "unknown_symbol_count": 8,
+    "unknown_symbol_count": 11,
     "unknown_symbols": [
+      "AAOG",
+      "AAOX",
+      "ARMG",
       "ASTN",
       "AUB",
       "AVXX",
@@ -196,24 +177,30 @@
       "UNKNOWN"
     ]
   },
-  "session": "rth",
-  "state": "NOT_TRADE_READY",
-  "telegram": {
-    "enabled": true,
-    "key": "7132448162f5602b",
-    "ok": true,
-    "send_count": 1,
-    "status": 200,
-    "uppercase": false
-  },
-  "title": "FEM Blocked",
+  "session": "ah",
+  "state": "SAFE_BUT_WAITING",
+  "title": "FEM Waiting",
   "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "8 active symbol(s) have no sector mapping: ASTN, AUB, AVXX, BANC, NEUTRAL, RECLAIM, SURGE, UNKNOWN.",
+      "message": "11 active symbol(s) have no sector mapping: AAOG, AAOX, ARMG, ASTN, AUB, AVXX, BANC, NEUTRAL.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Review after readiness-critical checks.",
+      "code": "WATCHDOG_NON_BLOCKING_WARN",
+      "impact": "Not a direct money-safety blocker.",
+      "message": "Watchdog has non-blocking warnings.",
       "severity": "WARN"
     },
     {
@@ -225,21 +212,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 46.66998267173767,
-    "bot_mode": "EOD_FLATTENED",
+    "age_sec": 17.501030206680298,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 2,
+    "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "CRITICAL",
+    "overall": "WARN",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 89,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 0
+    "trigger_process_count": 1
   }
 }
