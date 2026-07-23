@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "AH_EXIT_OWNER_UNVERIFIED",
+      "detail": "After-hours position exists without a verified AH-capable exit owner.",
+      "examples": [
+        "ANY:AH exit owner is not verified: AH target quantity 84 < position quantity 246; no AH-enabled native stop"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -15,10 +18,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-23T23:06:08+00:00",
-  "generated_at_et": "2026-07-23T19:06:08-04:00",
+  "generated_at": "2026-07-23T23:08:14+00:00",
+  "generated_at_et": "2026-07-23T19:08:14-04:00",
   "inputs": {
-    "exit_intent_rows": 226,
+    "exit_intent_rows": 230,
     "order_strategy_rows": 149,
     "strategy_registry_rows": 66,
     "trade_permission_rows": 66
@@ -34,14 +37,62 @@
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
       "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": "surge_micro_scout",
-      "exit_intent": "PROTECTIVE_STOP",
+      "entry_strategy_id": null,
+      "exit_intent": "GAP_OVERHEAD_TARGET",
+      "exit_strategy_id": "surge_micro_scout",
+      "limit_price": 2.28,
+      "oca_group": "",
+      "order_id": "5841",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": 246.0,
+      "quantity": 84.0,
+      "raw": {
+        "action": "SELL",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 2.28,
+        "oca_group": "",
+        "order_id": 5841,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 1377716353,
+        "quantity": 84.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "ANY",
+        "tif": "DAY",
+        "trail_stop_price": 1.2799999999999998,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "ANY"
+    },
+    {
+      "action": "SELL",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "GAP_OVERHEAD_PROTECTIVE_STOP",
       "exit_strategy_id": "surge_micro_scout",
       "limit_price": null,
-      "oca_group": "1377716348",
-      "order_id": "5837",
+      "oca_group": "",
+      "order_id": "5842",
       "order_type": "STP",
-      "parent_id": "5836",
+      "parent_id": "0",
       "position_qty": 246.0,
       "quantity": 246.0,
       "raw": {
@@ -50,13 +101,13 @@
         "currency": "USD",
         "exchange": "SMART",
         "limit_price": 0.0,
-        "oca_group": "1377716348",
-        "order_id": 5837,
+        "oca_group": "",
+        "order_id": 5842,
         "order_ref": "",
         "order_type": "STP",
         "outside_rth": false,
-        "parent_id": 5836,
-        "perm_id": 1377716349,
+        "parent_id": 0,
+        "perm_id": 1377716354,
         "quantity": 246.0,
         "sec_type": "STK",
         "status": "PreSubmitted",
@@ -72,98 +123,52 @@
       "status": "PreSubmitted",
       "stop_price": 2.15,
       "symbol": "ANY"
-    },
-    {
-      "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": "surge_micro_scout",
-      "exit_intent": "TARGET_TAKE_PROFIT",
-      "exit_strategy_id": "surge_micro_scout",
-      "limit_price": 2.41,
-      "oca_group": "1377716348",
-      "order_id": "5838",
-      "order_type": "LMT",
-      "parent_id": "5836",
-      "position_qty": 246.0,
-      "quantity": 246.0,
-      "raw": {
-        "action": "SELL",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 2.41,
-        "oca_group": "1377716348",
-        "order_id": 5838,
-        "order_ref": "",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 5836,
-        "perm_id": 1377716350,
-        "quantity": 246.0,
-        "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 0.0,
-        "symbol": "ANY",
-        "tif": "DAY",
-        "trail_stop_price": 1.4100000000000001,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": null,
-      "symbol": "ANY"
     }
   ],
-  "operator_read": "Order safety is OK: 2 working order(s) and 1 live position(s) reconciled against the spine.",
-  "overall": "OK",
+  "operator_read": "Order safety is FAIL: 1 AH exit-owner gap(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": true,
+        "ah_exit_owner_verified": false,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
         "ah_target_orders": [
-          "5838"
+          "5841"
         ],
-        "ah_target_quantity": 246.0,
-        "detail": "AH exit owner verified",
+        "ah_target_quantity": 84.0,
+        "detail": "AH exit owner is not verified: AH target quantity 84 < position quantity 246; no AH-enabled native stop",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": true,
+        "full_ah_target_coverage": false,
         "position_quantity": 246.0,
         "schema": "fem_ah_exit_contract.v1"
       },
       "avg_cost": 2.2850029999999997,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
+      "breach_code": "POSITION_AH_EXIT_OWNER_UNVERIFIED",
+      "detail": "AH exit owner is not verified: AH target quantity 84 < position quantity 246; no AH-enabled native stop",
       "protective_stop_orders": [
-        "5837"
+        "5842"
       ],
       "qty": 246.0,
       "related_exit_orders": [
-        "5837",
-        "5838"
+        "5841",
+        "5842"
       ],
-      "severity": "OK",
+      "severity": "FAIL",
       "side": "LONG",
       "symbol": "ANY",
       "target_orders": [
-        "5838"
+        "5841"
       ]
     }
   ],
   "schema": "fem_contract_live_broker_reconcile.v1",
   "session": "ah",
   "summary": {
-    "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {},
+    "ah_exit_owner_unverified_positions": 1,
+    "breach_codes": {
+      "POSITION_AH_EXIT_OWNER_UNVERIFIED": 1
+    },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
@@ -174,8 +179,8 @@
     "order_ok": 2,
     "order_warn": 0,
     "orphan_exit_orders": 0,
-    "position_fail": 0,
-    "position_ok": 1,
+    "position_fail": 1,
+    "position_ok": 0,
     "position_warn": 0,
     "positions": 1,
     "unprotected_positions": 0
