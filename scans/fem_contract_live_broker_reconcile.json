@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "UNPROTECTED_POSITIONS",
+      "detail": "Live positions exist without a recognized protective stop/trailing order.",
+      "examples": [
+        "EHGO:25.0 LONG"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -15,10 +18,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-23T13:48:52+00:00",
-  "generated_at_et": "2026-07-23T09:48:52-04:00",
+  "generated_at": "2026-07-23T13:50:59+00:00",
+  "generated_at_et": "2026-07-23T09:50:59-04:00",
   "inputs": {
-    "exit_intent_rows": 48,
+    "exit_intent_rows": 49,
     "order_strategy_rows": 28,
     "strategy_registry_rows": 66,
     "trade_permission_rows": 66
@@ -131,54 +134,6 @@
       "client_id": 10,
       "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": null,
-      "exit_intent": "STOP_QTY_SYNC",
-      "exit_strategy_id": "surge_micro_scout",
-      "limit_price": null,
-      "oca_group": "",
-      "order_id": "5621",
-      "order_type": "STP",
-      "parent_id": "0",
-      "position_qty": 37.0,
-      "quantity": 37.0,
-      "raw": {
-        "action": "SELL",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 0.0,
-        "oca_group": "",
-        "order_id": 5621,
-        "order_ref": "",
-        "order_type": "STP",
-        "outside_rth": false,
-        "parent_id": 0,
-        "perm_id": 1377716120,
-        "quantity": 37.0,
-        "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 3.26,
-        "symbol": "EHGO",
-        "tif": "DAY",
-        "trail_stop_price": 3.26,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": 3.26,
-      "symbol": "EHGO"
-    },
-    {
-      "action": "SELL",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": null,
       "exit_intent": "STOP_QTY_SYNC_TARGET_REPAIR",
       "exit_strategy_id": "surge_micro_scout",
       "limit_price": 3.8,
@@ -186,7 +141,7 @@
       "order_id": "5622",
       "order_type": "LMT",
       "parent_id": "0",
-      "position_qty": 37.0,
+      "position_qty": 25.0,
       "quantity": 25.0,
       "raw": {
         "action": "SELL",
@@ -218,8 +173,8 @@
       "symbol": "EHGO"
     }
   ],
-  "operator_read": "Order safety is OK: 4 working order(s) and 2 live position(s) reconciled against the spine.",
-  "overall": "OK",
+  "operator_read": "Order safety is FAIL: 1 unprotected position(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
   "positions": [
     {
       "ah_exit_contract": {
@@ -256,31 +211,28 @@
     },
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
+        "ah_exit_owner_verified": true,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
         "ah_target_orders": [
           "5622"
         ],
         "ah_target_quantity": 25.0,
-        "detail": "AH exit owner is not verified: AH target quantity 25 < position quantity 37; no AH-enabled native stop",
+        "detail": "AH exit owner verified",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 37.0,
+        "full_ah_target_coverage": true,
+        "position_quantity": 25.0,
         "schema": "fem_ah_exit_contract.v1"
       },
       "avg_cost": 3.4770300270270273,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "5621"
-      ],
-      "qty": 37.0,
+      "breach_code": "POSITION_UNPROTECTED_NO_STOP",
+      "detail": "live position has no recognized protective stop/trailing order",
+      "protective_stop_orders": [],
+      "qty": 25.0,
       "related_exit_orders": [
-        "5621",
         "5622"
       ],
-      "severity": "OK",
+      "severity": "FAIL",
       "side": "LONG",
       "symbol": "EHGO",
       "target_orders": [
@@ -292,22 +244,24 @@
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {},
+    "breach_codes": {
+      "POSITION_UNPROTECTED_NO_STOP": 1
+    },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 4,
+    "open_orders": 3,
     "order_fail": 0,
-    "order_ok": 4,
+    "order_ok": 3,
     "order_warn": 0,
     "orphan_exit_orders": 0,
-    "position_fail": 0,
-    "position_ok": 2,
+    "position_fail": 1,
+    "position_ok": 1,
     "position_warn": 0,
     "positions": 2,
-    "unprotected_positions": 0
+    "unprotected_positions": 1
   },
   "trade_date": "2026-07-23"
 }
