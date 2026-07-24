@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.04351377487182617,
+    "age_sec": 0.0440065860748291,
     "alist_fillable_count": 3,
     "alist_proven_moo_candidate_count": 2,
     "alist_row_count": 3,
@@ -14,31 +14,53 @@
     "source_file": "fem_abook_2026-07-24_0403.csv",
     "source_same_day": true
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Reconnect TWS/broker and rerun prime readiness.",
+      "code": "BROKER_NOT_OK",
+      "impact": "Cannot trust entries, exits, or flat state.",
+      "message": "Broker reconcile is FAIL connected=True.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Run broker reconcile and clean the named order issue.",
+      "code": "ORDER_SAFETY_NOT_CLEAN",
+      "impact": "Scalping can create uncontrolled exposure.",
+      "message": "Broker order/position safety is not clean.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Protect or flatten the position before new trades.",
+      "code": "UNPROTECTED_POSITION",
+      "impact": "Account risk is not bounded.",
+      "message": "At least one position is unprotected.",
+      "severity": "PANIC"
+    }
+  ],
   "bot": {
-    "age_sec": 3.3552350997924805,
-    "alive": true,
-    "generated_at": "2026-07-24T06:17:03",
-    "mode": "TRIGGER_LIVE",
-    "n_positions": 5
+    "age_sec": 53.81018424034119,
+    "alive": false,
+    "generated_at": "2026-07-24T06:29:41",
+    "mode": "GIVEBACK_EXIT",
+    "n_positions": 8
   },
   "broker": {
-    "age_sec": 1.5367510318756104,
+    "age_sec": 1.502885103225708,
     "connected": true,
-    "generated_at": "2026-07-24T13:17:04+00:00",
+    "generated_at": "2026-07-24T13:30:34+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 18,
-    "order_fail": 0,
-    "orphan_exit_orders": 0,
-    "overall": "OK",
-    "position_fail": 0,
-    "positions": 6,
-    "unprotected_positions": 0
+    "open_orders": 17,
+    "order_fail": 1,
+    "orphan_exit_orders": 1,
+    "overall": "FAIL",
+    "position_fail": 1,
+    "positions": 7,
+    "unprotected_positions": 1
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-07-24T13:17:07+00:00",
-  "generated_at_et": "2026-07-24T09:17:03-04:00",
+  "generated_at": "2026-07-24T13:30:37+00:00",
+  "generated_at_et": "2026-07-24T09:30:33-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,20 +71,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.1620326042175293,
+    "age_sec": 0.15716767311096191,
     "fail": 0,
-    "generated_at": "2026-07-24T13:17:06+00:00",
+    "generated_at": "2026-07-24T13:30:36+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
     ],
     "overall": "OK",
-    "session": "pre",
+    "session": "rth",
     "warn": 0
   },
-  "money_safe": true,
+  "money_safe": false,
   "morning": {
-    "age_sec": 4.591226816177368,
+    "age_sec": 814.5231332778931,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-07-24",
@@ -78,8 +100,8 @@
   "next_session_startup": {
     "alist_fillable_count": 3,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 18,
-    "carryover_position_count": 6,
+    "carryover_open_order_count": 17,
+    "carryover_position_count": 7,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -101,13 +123,13 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-24 overall=OK orders=18 positions=6 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-07-24 overall=FAIL orders=17 positions=7 order_fail=1 pos_fail=1 cancelled=0\n  ORPHAN_EXIT_POSITION_FLAT: 1\n  POSITION_UNPROTECTED_NO_STOP: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=OK session=pre ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=OK session=rth ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -125,9 +147,9 @@
       },
       {
         "last_run_time": "07/24/2026 06:17:00",
-        "last_task_result": 267009,
+        "last_task_result": 0,
         "next_run_time": "07/27/2026 06:17:00",
-        "state": "Running",
+        "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
       {
@@ -156,7 +178,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 1926.3834323883057,
+    "age_sec": 2736.314339876175,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -170,19 +192,18 @@
       "UNKNOWN"
     ]
   },
-  "session": "pre",
-  "state": "TRADE_READY",
-  "telegram": {
-    "enabled": true,
-    "key": "25e52d3390070f41",
-    "ok": true,
-    "send_count": 1,
-    "status": 200,
-    "uppercase": false
-  },
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "session": "rth",
+  "state": "NOT_TRADE_READY",
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Keep watchdog on; investigate Windows/TWS wakeup separately.",
+      "code": "MORNING_TWS_RECOVERED",
+      "impact": "Recovered wakeup issue; not an AH/RTH trade blocker.",
+      "message": "Morning scan saw TWS down, but current broker/precheck is connected now.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -206,19 +227,19 @@
     }
   ],
   "watchdog": {
-    "age_sec": 57.37070441246033,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 52.728028297424316,
+    "bot_mode": "GIVEBACK_EXIT",
     "broker_connected": true,
-    "broker_open_orders": 13,
+    "broker_open_orders": 23,
     "broker_overall": "OK",
-    "broker_positions": 5,
+    "broker_positions": 7,
     "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": null,
     "overall": "WARN",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
-    "rth_handoff_status": null,
+    "rth_handoff_status": "OK",
     "short_watchlist_count": 67,
     "short_watchlist_is_today": true,
     "trigger_process_count": 1
