@@ -10,6 +10,7 @@
       "decision_audit",
       "decision_receipts",
       "delta_volume_context",
+      "dump_short",
       "execution_truth",
       "gap_eat",
       "live_takeoffs",
@@ -46,7 +47,6 @@
       "daily_120_short_lower_high",
       "daily_120_short_vwap_reject",
       "dilution_short",
-      "dump_short",
       "gap_eat_staircase_long",
       "gap_reject_short",
       "gap_wall_roundtrip_shadow",
@@ -269,11 +269,11 @@
       "dump_short": {
         "allowed_to_trade": false,
         "panel_id": "live_fire_dump",
-        "permission": "TRACK_ONLY",
+        "permission": "BLOCK",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
-        "score_partition": "EXPERIMENT",
+        "score_partition": "UNTAGGED",
         "side": "SHORT"
       },
       "execution_truth": {
@@ -899,7 +899,8 @@
       "panel_id": "live_fire_dump",
       "panel_name": "Live Fire Dump",
       "permissions": {
-        "TRACK_ONLY": 2
+        "BLOCK": 1,
+        "TRACK_ONLY": 1
       },
       "side": "SHORT",
       "strategies": 2
@@ -1227,8 +1228,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-07-24T15:40:17+00:00",
-  "generated_at_et": "2026-07-24T11:40:17-04:00",
+  "generated_at": "2026-07-24T15:56:37+00:00",
+  "generated_at_et": "2026-07-24T11:56:37-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -2126,10 +2127,10 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
-        "score_consumption_permission": "EXPERIMENT_ONLY",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
+        "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
-        "score_partition": "EXPERIMENT",
+        "score_partition": "UNTAGGED",
         "source_ok": true
       },
       "evidence": {
@@ -2146,14 +2147,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "live_fire_dump",
       "panel_name": "Live Fire Dump",
-      "permission": "TRACK_ONLY",
+      "permission": "BLOCK",
       "reasons": [
         "system health was FAIL at build; bot runtime health gate still enforces entries",
-        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4330,6 +4331,13 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "live_fire_dump",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "dump_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "execution_truth",
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
@@ -4623,14 +4631,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 26,
+    "block": 27,
     "ghost_good_skip_groups": 7,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 40,
     "permission_counts": {
-      "BLOCK": 26,
-      "TRACK_ONLY": 40
+      "BLOCK": 27,
+      "TRACK_ONLY": 39
     },
     "registry_overall": "WARN",
     "research_only": 0,
@@ -4641,11 +4649,11 @@
     "score_consumer_lock_overall": "WARN",
     "score_consumer_locked": 66,
     "score_partition_counts": {
-      "EXPERIMENT": 41,
-      "UNTAGGED": 25
+      "EXPERIMENT": 40,
+      "UNTAGGED": 26
     },
     "strategies": 66,
-    "track_only": 40,
+    "track_only": 39,
     "watch_only": 0
   },
   "trade_date": "2026-07-24"
