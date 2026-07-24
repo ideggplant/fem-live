@@ -1,9 +1,11 @@
 {
   "category_counts": {
+    "CONTRACT": 1,
     "DECISION_ACCOUNTING": 1,
     "EVIDENCE": 1,
     "EXECUTION": 1,
     "MISC": 1,
+    "RESEARCH": 1,
     "ROUTE_POLICY": 1
   },
   "certification_path": [
@@ -22,7 +24,7 @@
     {
       "detail": "End open-gate experiment profile and generate a fresh normal session.",
       "label": "Restore normal evidence profile",
-      "status": "DONE",
+      "status": "OPEN",
       "step": 3
     },
     {
@@ -37,303 +39,95 @@
     "blocks_live_trust": true,
     "blocks_normal_learning": true,
     "can_auto_run": false,
-    "category": "MISC",
-    "certification_effect": "operator_review",
+    "category": "CONTRACT",
+    "certification_effect": "required_for_normal_certification",
     "check_ids": [
-      "contract_dashboard",
-      "contract_breaks",
-      "contract_accountability",
-      "contract_source_refresh",
-      "contract_fill_reconcile",
-      "contract_exit_reconcile",
-      "contract_ghost_ledger",
-      "contract_route_readiness",
-      "contract_decision_obligation",
-      "contract_live_fire_accounting",
-      "contract_runtime_drift",
-      "contract_live_readiness",
-      "contract_session_context",
-      "contract_score_provenance",
-      "contract_score_partitions",
-      "contract_latency_audit",
-      "contract_order_sizing_audit",
-      "contract_order_permission_audit",
-      "contract_bot_gate_audit",
-      "contract_evidence_cleanliness",
-      "contract_realized_result",
-      "contract_exit_rules_learning",
-      "contract_strategy_backfill",
-      "contract_strategy_enforcement",
-      "contract_daily_certification",
-      "contract_promotion_gate",
-      "contract_live_trust_recovery",
-      "contract_live_trust_executor",
-      "contract_auction_truth_shadow",
-      "contract_break_ledger_stale",
-      "panel_registry_contracts",
-      "decision_obligation_failures",
-      "latency_accepted_no_order",
-      "exit_rules_learning_pressure"
+      "contract_break_errors"
     ],
     "command": null,
     "evidence": [
-      "FAIL Contract dashboard payload: stale during ah: 71640s old, limit 2700s",
-      "FAIL Contract breach ledger: stale during ah: 71656s old, limit 2700s",
-      "FAIL Contract accountability queue: stale during ah: 813785s old, limit 2700s",
-      "WARN Contract source refresh report: stale during ah: 902622s old, limit 2700s",
-      "FAIL Contract fill reconciliation: stale during ah: 74400s old, limit 2700s",
-      "FAIL Contract exit reconciliation: stale during ah: 6314s old, limit 2700s",
-      "FAIL Contract ghost/skipped trade ledger: stale during ah: 813910s old, limit 2700s",
-      "FAIL Contract bot route readiness audit: stale during ah: 83088s old, limit 2700s",
-      "FAIL Contract decision obligation audit: stale during ah: 79455s old, limit 2700s",
-      "FAIL Contract live-fire accounting backfill: stale during ah: 80500s old, limit 2700s",
-      "FAIL Contract runtime drift audit: stale during ah: 3383s old, limit 2700s",
-      "FAIL Contract live readiness: stale during ah: 3382s old, limit 720s",
-      "FAIL Contract session context / dirty-data guard: stale during ah: 83451s old, limit 720s",
-      "FAIL Contract score provenance / score partition guard: stale during ah: 83451s old, limit 720s"
+      "FAIL Contract validator errors: 12 ERROR breach(es) in current validator output"
     ],
-    "evidence_count": 34,
-    "group_id": "misc_health_followup",
-    "priority": 90,
-    "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
-    "root_cause": "A health check was not mapped to a specific recovery group.",
+    "evidence_count": 1,
+    "group_id": "repair_contract_breaks",
+    "priority": 20,
+    "recovery_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
+    "root_cause": "Validator errors mean the Panel -> Score chain still has broken trace links.",
     "severity": "FAIL",
-    "title": "Miscellaneous health follow-up"
+    "title": "Repair explicit lifecycle contract breaks"
   },
-  "generated_at": "2026-07-24T02:32:18.473427+00:00",
-  "generated_at_et": "2026-07-23T22:32:18.473427-04:00",
+  "generated_at": "2026-07-24T17:25:54.173532+00:00",
+  "generated_at_et": "2026-07-24T13:25:54.173532-04:00",
   "inputs": {
-    "certification_generated_at": "2026-07-24T02:32:17.845639+00:00",
-    "health_generated_at": "2026-07-23T23:55:19+00:00",
-    "live_readiness_generated_at": "2026-07-24T02:32:16+00:00",
-    "remediation_plan_generated_at": "2026-07-14T13:55:00+00:00",
-    "runtime_generated_at": "2026-07-24T02:32:15+00:00"
+    "certification_generated_at": "2026-07-24T17:25:52.439333+00:00",
+    "health_generated_at": "2026-07-24T17:25:51+00:00",
+    "live_readiness_generated_at": "2026-07-24T17:19:45+00:00",
+    "remediation_plan_generated_at": "2026-07-24T15:56:42+00:00",
+    "runtime_generated_at": "2026-07-24T17:19:43+00:00"
   },
   "negative_checks": [
     {
-      "detail": "stale during ah: 71640s old, limit 2700s",
-      "id": "contract_dashboard",
-      "label": "Contract dashboard payload",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 71656s old, limit 2700s",
-      "id": "contract_breaks",
-      "label": "Contract breach ledger",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813785s old, limit 2700s",
-      "id": "contract_accountability",
-      "label": "Contract accountability queue",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 902622s old, limit 2700s",
+      "detail": "stale during rth: 6590s old, limit 2700s",
       "id": "contract_source_refresh",
       "label": "Contract source refresh report",
       "status": "WARN"
     },
     {
-      "detail": "stale during ah: 74400s old, limit 2700s",
-      "id": "contract_fill_reconcile",
-      "label": "Contract fill reconciliation",
+      "detail": "12 ERROR breach(es) in current validator output",
+      "id": "contract_break_errors",
+      "label": "Contract validator errors",
       "status": "FAIL"
     },
     {
-      "detail": "stale during ah: 6314s old, limit 2700s",
-      "id": "contract_exit_reconcile",
-      "label": "Contract exit reconciliation",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813910s old, limit 2700s",
-      "id": "contract_ghost_ledger",
-      "label": "Contract ghost/skipped trade ledger",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 83088s old, limit 2700s",
-      "id": "contract_route_readiness",
-      "label": "Contract bot route readiness audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79455s old, limit 2700s",
-      "id": "contract_decision_obligation",
-      "label": "Contract decision obligation audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 80500s old, limit 2700s",
-      "id": "contract_live_fire_accounting",
-      "label": "Contract live-fire accounting backfill",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 3383s old, limit 2700s",
-      "id": "contract_runtime_drift",
-      "label": "Contract runtime drift audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 3382s old, limit 720s",
-      "id": "contract_live_readiness",
-      "label": "Contract live readiness",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 83451s old, limit 720s",
-      "id": "contract_session_context",
-      "label": "Contract session context / dirty-data guard",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 83451s old, limit 720s",
-      "id": "contract_score_provenance",
-      "label": "Contract score provenance / score partition guard",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 83450s old, limit 720s",
-      "id": "contract_score_partitions",
-      "label": "Contract score partitioned leaderboards",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 82551s old, limit 2700s",
-      "id": "contract_latency_audit",
-      "label": "Contract latency/missed-move audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813632s old, limit 2700s",
-      "id": "contract_order_sizing_audit",
-      "label": "Contract order sizing audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79447s old, limit 2700s",
-      "id": "contract_order_permission_audit",
-      "label": "Contract order permission audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79447s old, limit 2700s",
-      "id": "contract_bot_gate_audit",
-      "label": "Contract bot gate audit",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79446s old, limit 2700s",
-      "id": "contract_evidence_cleanliness",
-      "label": "Contract evidence cleanliness gate",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 6309s old, limit 2700s",
-      "id": "contract_realized_result",
-      "label": "Contract realized-result attribution",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 6308s old, limit 2700s",
-      "id": "contract_exit_rules_learning",
-      "label": "Contract exit-rules learning ledger",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813610s old, limit 2700s",
-      "id": "contract_strategy_backfill",
-      "label": "Contract strategy backfill closure",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813610s old, limit 2700s",
-      "id": "contract_strategy_enforcement",
-      "label": "Contract strategy registry enforcement",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79446s old, limit 2700s",
-      "id": "contract_daily_certification",
-      "label": "Contract daily spine certification",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79446s old, limit 2700s",
-      "id": "contract_promotion_gate",
-      "label": "Contract promotion/demotion gate",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79445s old, limit 2700s",
-      "id": "contract_live_trust_recovery",
-      "label": "Contract live trust recovery",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 79445s old, limit 2700s",
-      "id": "contract_live_trust_executor",
-      "label": "Contract live trust executor",
-      "status": "FAIL"
-    },
-    {
-      "detail": "stale during ah: 813586s old, limit 2700s",
-      "id": "contract_auction_truth_shadow",
-      "label": "Contract auction truth shadow score",
-      "status": "FAIL"
-    },
-    {
-      "detail": "fem_contract_breaks.json is stamped 2026-07-22, not 2026-07-23; ignoring stale breach counts for current health",
-      "id": "contract_break_ledger_stale",
-      "label": "Contract breach ledger stale",
-      "status": "WARN"
-    },
-    {
-      "detail": "13 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=27",
+      "detail": "5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19",
       "id": "panel_registry_contracts",
       "label": "Panel registry contract warnings",
       "status": "WARN"
     },
     {
-      "detail": "2 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk",
+      "detail": "4 open unguarded, 4 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk",
       "id": "exit_reconcile_open_risk",
       "label": "Open exit coverage risk",
       "status": "WARN"
     },
     {
-      "detail": "34 strategy permission(s) are blocked by contract failures",
+      "detail": "1 skipped/ghost group(s) show positive forward evidence",
+      "id": "ghost_ledger_opportunities",
+      "label": "Skipped ghost opportunity groups",
+      "status": "WARN"
+    },
+    {
+      "detail": "27 strategy permission(s) are blocked by contract failures",
       "id": "trade_permissions_blocked",
       "label": "Blocked strategy permissions",
       "status": "WARN"
     },
     {
-      "detail": "387 unaccounted pick group(s); raw unaccounted picks=387",
+      "detail": "110 unaccounted pick group(s); raw unaccounted picks=110",
       "id": "decision_obligation_failures",
       "label": "Picks without explicit bot accounting",
       "status": "FAIL"
     },
     {
-      "detail": "16 live-fire pick(s) were posthoc accounted; candidate_traces=16",
-      "id": "live_fire_accounting_backfilled",
-      "label": "Live-fire decisions backfilled after runtime silence",
+      "detail": "2 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+      "id": "decision_obligation_time_order_warnings",
+      "label": "Decision obligation timestamp ordering warnings",
       "status": "WARN"
     },
     {
-      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=7, hard_safety=3, positions=0, context=8e02cbe0073cc245",
+      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=6, context=b677f30118da7bbe",
       "id": "session_context_dirty_data",
       "label": "Session provenance dirty-data warning",
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, actual_trades=39, ghost_graded=133507, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+      "detail": "partition=EXPERIMENT, actual_trades=124, ghost_graded=128344, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
       "id": "score_provenance_quarantine",
       "label": "Score provenance partition guard",
       "status": "WARN"
     },
     {
-      "detail": "experiment/review evidence=133546, experiment_strategies=40, review_strategies=0",
+      "detail": "experiment/review evidence=128468, experiment_strategies=40, review_strategies=0",
       "id": "score_partitions_no_normal",
       "label": "Normal score leaderboard empty",
       "status": "WARN"
@@ -345,13 +139,13 @@
       "status": "WARN"
     },
     {
-      "detail": "8 accepted decision(s) did not produce an order event",
+      "detail": "3 accepted decision(s) did not produce an order event",
       "id": "latency_accepted_no_order",
       "label": "Accepted decisions without orders",
       "status": "FAIL"
     },
     {
-      "detail": "39 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
+      "detail": "124 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
       "id": "order_permission_pre_lock_review",
       "label": "Pre-lock orders now disallowed",
       "status": "WARN"
@@ -363,7 +157,7 @@
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=39",
+      "detail": "partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=124",
       "id": "evidence_cleanliness_quarantine",
       "label": "Evidence cleanliness quarantine",
       "status": "WARN"
@@ -375,10 +169,31 @@
       "status": "WARN"
     }
   ],
-  "next_action": "Inspect the check detail and add a classifier if this repeats.",
-  "operator_read": "First recovery action: Miscellaneous health follow-up.",
+  "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
+  "operator_read": "First recovery action: Repair explicit lifecycle contract breaks.",
   "overall": "FAIL",
   "recovery_groups": [
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": true,
+      "can_auto_run": false,
+      "category": "CONTRACT",
+      "certification_effect": "required_for_normal_certification",
+      "check_ids": [
+        "contract_break_errors"
+      ],
+      "command": null,
+      "evidence": [
+        "FAIL Contract validator errors: 12 ERROR breach(es) in current validator output"
+      ],
+      "evidence_count": 1,
+      "group_id": "repair_contract_breaks",
+      "priority": 20,
+      "recovery_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
+      "root_cause": "Validator errors mean the Panel -> Score chain still has broken trace links.",
+      "severity": "FAIL",
+      "title": "Repair explicit lifecycle contract breaks"
+    },
     {
       "blocks_live_trust": true,
       "blocks_normal_learning": true,
@@ -390,7 +205,7 @@
       ],
       "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat; _DAILY\\0K_CONTRACT_REALIZED_RESULT.bat",
       "evidence": [
-        "WARN Open exit coverage risk: 2 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
+        "WARN Open exit coverage risk: 4 open unguarded, 4 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
       ],
       "evidence_count": 1,
       "group_id": "repair_execution_reconciliation",
@@ -417,13 +232,13 @@
       ],
       "command": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat; _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat; _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat; _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
       "evidence": [
-        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=7, hard_safety=3, positions=0, context=8e02cbe0073cc245",
-        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=39, ghost_graded=133507, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "WARN Normal score leaderboard empty: experiment/review evidence=133546, experiment_strategies=40, review_strategies=0",
+        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=6, context=b677f30118da7bbe",
+        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=124, ghost_graded=128344, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "WARN Normal score leaderboard empty: experiment/review evidence=128468, experiment_strategies=40, review_strategies=0",
         "WARN Score consumer lock active: 66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
-        "WARN Pre-lock orders now disallowed: 39 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
+        "WARN Pre-lock orders now disallowed: 124 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "WARN Bot gate enforcement disabled: active_entry_enforcement=False, permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
-        "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=39"
+        "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=124"
       ],
       "evidence_count": 7,
       "group_id": "restore_normal_evidence_profile",
@@ -440,11 +255,11 @@
       "category": "DECISION_ACCOUNTING",
       "certification_effect": "required_for_clean_forward_day",
       "check_ids": [
-        "live_fire_accounting_backfilled"
+        "decision_obligation_time_order_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat; _DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
       "evidence": [
-        "WARN Live-fire decisions backfilled after runtime silence: 16 live-fire pick(s) were posthoc accounted; candidate_traces=16"
+        "WARN Decision obligation timestamp ordering warnings: 2 accounted pick(s) had accounting timestamps earlier than pick timestamps"
       ],
       "evidence_count": 1,
       "group_id": "repair_real_time_decision_accounting",
@@ -465,7 +280,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "WARN Blocked strategy permissions: 34 strategy permission(s) are blocked by contract failures"
+        "WARN Blocked strategy permissions: 27 strategy permission(s) are blocked by contract failures"
       ],
       "evidence_count": 1,
       "group_id": "clean_route_policy_permissions",
@@ -476,42 +291,34 @@
       "title": "Clean route policy and permission ambiguity"
     },
     {
-      "blocks_live_trust": true,
-      "blocks_normal_learning": true,
+      "blocks_live_trust": false,
+      "blocks_normal_learning": false,
+      "can_auto_run": false,
+      "category": "RESEARCH",
+      "certification_effect": "research_only_until_normal_day",
+      "check_ids": [
+        "ghost_ledger_opportunities"
+      ],
+      "command": null,
+      "evidence": [
+        "WARN Skipped ghost opportunity groups: 1 skipped/ghost group(s) show positive forward evidence"
+      ],
+      "evidence_count": 1,
+      "group_id": "review_positive_skips",
+      "priority": 70,
+      "recovery_action": "After plumbing is fresh, inspect fem_contract_ghost_ledger.json for loosening candidates.",
+      "root_cause": "Some skipped/ghost groups show positive evidence, but this only becomes actionable after contract trust is restored.",
+      "severity": "WARN",
+      "title": "Review positive skipped opportunities"
+    },
+    {
+      "blocks_live_trust": false,
+      "blocks_normal_learning": false,
       "can_auto_run": false,
       "category": "MISC",
       "certification_effect": "operator_review",
       "check_ids": [
-        "contract_dashboard",
-        "contract_breaks",
-        "contract_accountability",
         "contract_source_refresh",
-        "contract_fill_reconcile",
-        "contract_exit_reconcile",
-        "contract_ghost_ledger",
-        "contract_route_readiness",
-        "contract_decision_obligation",
-        "contract_live_fire_accounting",
-        "contract_runtime_drift",
-        "contract_live_readiness",
-        "contract_session_context",
-        "contract_score_provenance",
-        "contract_score_partitions",
-        "contract_latency_audit",
-        "contract_order_sizing_audit",
-        "contract_order_permission_audit",
-        "contract_bot_gate_audit",
-        "contract_evidence_cleanliness",
-        "contract_realized_result",
-        "contract_exit_rules_learning",
-        "contract_strategy_backfill",
-        "contract_strategy_enforcement",
-        "contract_daily_certification",
-        "contract_promotion_gate",
-        "contract_live_trust_recovery",
-        "contract_live_trust_executor",
-        "contract_auction_truth_shadow",
-        "contract_break_ledger_stale",
         "panel_registry_contracts",
         "decision_obligation_failures",
         "latency_accepted_no_order",
@@ -519,22 +326,13 @@
       ],
       "command": null,
       "evidence": [
-        "FAIL Contract dashboard payload: stale during ah: 71640s old, limit 2700s",
-        "FAIL Contract breach ledger: stale during ah: 71656s old, limit 2700s",
-        "FAIL Contract accountability queue: stale during ah: 813785s old, limit 2700s",
-        "WARN Contract source refresh report: stale during ah: 902622s old, limit 2700s",
-        "FAIL Contract fill reconciliation: stale during ah: 74400s old, limit 2700s",
-        "FAIL Contract exit reconciliation: stale during ah: 6314s old, limit 2700s",
-        "FAIL Contract ghost/skipped trade ledger: stale during ah: 813910s old, limit 2700s",
-        "FAIL Contract bot route readiness audit: stale during ah: 83088s old, limit 2700s",
-        "FAIL Contract decision obligation audit: stale during ah: 79455s old, limit 2700s",
-        "FAIL Contract live-fire accounting backfill: stale during ah: 80500s old, limit 2700s",
-        "FAIL Contract runtime drift audit: stale during ah: 3383s old, limit 2700s",
-        "FAIL Contract live readiness: stale during ah: 3382s old, limit 720s",
-        "FAIL Contract session context / dirty-data guard: stale during ah: 83451s old, limit 720s",
-        "FAIL Contract score provenance / score partition guard: stale during ah: 83451s old, limit 720s"
+        "WARN Contract source refresh report: stale during rth: 6590s old, limit 2700s",
+        "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19",
+        "FAIL Picks without explicit bot accounting: 110 unaccounted pick group(s); raw unaccounted picks=110",
+        "FAIL Accepted decisions without orders: 3 accepted decision(s) did not produce an order event",
+        "WARN Exit-rules learning review queue: 11 high-pressure exit rule group(s) need review"
       ],
-      "evidence_count": 34,
+      "evidence_count": 5,
       "group_id": "misc_health_followup",
       "priority": 90,
       "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
@@ -549,18 +347,18 @@
     "auto_runnable_groups": 4,
     "blocks_live_trust": 2,
     "blocks_normal_learning": 5,
-    "daily_certification": "REJECTED",
-    "fail_groups": 1,
-    "health_fail": 30,
+    "daily_certification": "EXPERIMENT_ONLY",
+    "fail_groups": 2,
+    "health_fail": 3,
     "health_overall": "FAIL",
     "health_warn": 14,
     "live_ready": true,
-    "manual_groups": 1,
-    "negative_checks": 44,
-    "recovery_groups": 5,
+    "manual_groups": 3,
+    "negative_checks": 17,
+    "recovery_groups": 7,
     "remediation_plan_overall": "FAIL",
     "restart_queue": 0,
-    "warn_groups": 4
+    "warn_groups": 5
   },
-  "trade_date": "2026-07-23"
+  "trade_date": "2026-07-24"
 }
