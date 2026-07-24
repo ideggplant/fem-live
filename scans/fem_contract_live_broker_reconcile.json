@@ -15,10 +15,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-07-24T14:11:04+00:00",
-  "generated_at_et": "2026-07-24T10:11:04-04:00",
+  "generated_at": "2026-07-24T14:13:08+00:00",
+  "generated_at_et": "2026-07-24T10:13:08-04:00",
   "inputs": {
-    "exit_intent_rows": 98,
+    "exit_intent_rows": 100,
     "order_strategy_rows": 94,
     "strategy_registry_rows": 66,
     "trade_permission_rows": 65
@@ -957,11 +957,11 @@
       "client_id": 10,
       "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": null,
-      "exit_intent": "LADDER_T0_RUNNER_STOP",
+      "exit_intent": "FIRST_TARGET_RUNNER_BREAKEVEN_STOP",
       "exit_strategy_id": "gap_reject_short",
-      "limit_price": null,
+      "limit_price": 11.34,
       "oca_group": "",
-      "order_id": "5971",
+      "order_id": "5972",
       "order_type": "STP",
       "parent_id": "0",
       "position_qty": -101.0,
@@ -971,61 +971,114 @@
         "client_id": 10,
         "currency": "USD",
         "exchange": "SMART",
-        "limit_price": 0.0,
+        "limit_price": 11.34,
         "oca_group": "",
-        "order_id": 5971,
+        "order_id": 5972,
         "order_ref": "",
         "order_type": "STP",
         "outside_rth": false,
         "parent_id": 0,
-        "perm_id": 243468972,
+        "perm_id": 243468973,
         "quantity": 101.0,
         "sec_type": "STK",
         "status": "PreSubmitted",
-        "stop_price": 11.65,
+        "stop_price": 11.31,
         "symbol": "CLF",
         "tif": "DAY",
-        "trail_stop_price": 11.65,
+        "trail_stop_price": 11.31,
         "trailing_percent": 1.7976931348623157e+308,
         "transmit": true
       },
       "route": null,
       "severity": "OK",
       "status": "PreSubmitted",
-      "stop_price": 11.65,
+      "stop_price": 11.31,
+      "symbol": "CLF"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "RUNNER_T2_TARGET",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 10.75,
+      "oca_group": "",
+      "order_id": "5973",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": -101.0,
+      "quantity": 101.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 10.75,
+        "oca_group": "",
+        "order_id": 5973,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 243468974,
+        "quantity": 101.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "CLF",
+        "tif": "DAY",
+        "trail_stop_price": 11.75,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
       "symbol": "CLF"
     }
   ],
-  "operator_read": "Order safety is OK: 20 working order(s) and 9 live position(s) reconciled against the spine.",
+  "operator_read": "Order safety is OK: 21 working order(s) and 9 live position(s) reconciled against the spine.",
   "overall": "OK",
   "positions": [
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
+        "ah_exit_owner_verified": true,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "ah_target_orders": [
+          "5973"
+        ],
+        "ah_target_quantity": 101.0,
+        "detail": "AH exit owner verified",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
+        "full_ah_target_coverage": true,
         "position_quantity": 101.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 11.2845694272997,
+      "avg_cost": 11.28456945,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
-        "5971"
+        "5972"
       ],
       "qty": -101.0,
       "related_exit_orders": [
-        "5971"
+        "5972",
+        "5973"
       ],
       "severity": "OK",
       "side": "SHORT",
       "symbol": "CLF",
-      "target_orders": []
+      "target_orders": [
+        "5973"
+      ]
     },
     {
       "ah_exit_contract": {
@@ -1075,7 +1128,7 @@
         "position_quantity": 58.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 71.19109368965516,
+      "avg_cost": 71.1910937,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -1174,7 +1227,7 @@
         "position_quantity": 35.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 77.97962357142858,
+      "avg_cost": 77.97962355,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -1207,7 +1260,7 @@
         "position_quantity": 156.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 38.72259390384615,
+      "avg_cost": 38.7225939,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -1273,7 +1326,7 @@
         "position_quantity": 347.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 17.254446443804035,
+      "avg_cost": 17.25444645,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -1302,9 +1355,9 @@
     "cancel_failed": 0,
     "cancelled": 0,
     "invalid_entry_like_orders": 0,
-    "open_orders": 20,
+    "open_orders": 21,
     "order_fail": 0,
-    "order_ok": 20,
+    "order_ok": 21,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
