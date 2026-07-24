@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "ORPHAN_EXIT_ORDERS",
+      "detail": "Exit/protective orders are working while the broker position is flat.",
+      "examples": [
+        "NU#5997:ORPHAN_EXIT_POSITION_FLAT"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -14,12 +17,21 @@
     "offline": false,
     "port": 7497
   },
-  "cancellations": [],
-  "generated_at": "2026-07-24T14:48:29+00:00",
-  "generated_at_et": "2026-07-24T10:48:29-04:00",
+  "cancellations": [
+    {
+      "at": "2026-07-24T14:50:34+00:00",
+      "cancelled": true,
+      "classification": "EXIT_PROTECTION",
+      "order_id": "5997",
+      "reason": "ORPHAN_EXIT_POSITION_FLAT",
+      "symbol": "NU"
+    }
+  ],
+  "generated_at": "2026-07-24T14:50:34+00:00",
+  "generated_at_et": "2026-07-24T10:50:34-04:00",
   "inputs": {
-    "exit_intent_rows": 122,
-    "order_strategy_rows": 112,
+    "exit_intent_rows": 128,
+    "order_strategy_rows": 121,
     "strategy_registry_rows": 66,
     "trade_permission_rows": 65
   },
@@ -1295,61 +1307,13 @@
     },
     {
       "action": "BUY",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
+      "breach_code": "ORPHAN_EXIT_POSITION_FLAT",
+      "cancel_allowed": true,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_EXIT_POSITION_FLAT",
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": null,
-      "exit_intent": "FIRST_TARGET_RUNNER_BREAKEVEN_STOP",
-      "exit_strategy_id": "gap_reject_short",
-      "limit_price": 14.13,
-      "oca_group": "",
-      "order_id": "5996",
-      "order_type": "STP",
-      "parent_id": "0",
-      "position_qty": -128.0,
-      "quantity": 128.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 14.129999999999999,
-        "oca_group": "",
-        "order_id": 5996,
-        "order_ref": "",
-        "order_type": "STP",
-        "outside_rth": false,
-        "parent_id": 0,
-        "perm_id": 243468997,
-        "quantity": 128.0,
-        "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 14.1,
-        "symbol": "NU",
-        "tif": "DAY",
-        "trail_stop_price": 14.1,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": 14.1,
-      "symbol": "NU"
-    },
-    {
-      "action": "BUY",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
+      "detail": "exit-intent order is working while broker position is flat",
       "entry_strategy_id": null,
       "exit_intent": "RUNNER_T2_TARGET",
       "exit_strategy_id": "gap_reject_short",
@@ -1358,7 +1322,7 @@
       "order_id": "5997",
       "order_type": "LMT",
       "parent_id": "0",
-      "position_qty": -128.0,
+      "position_qty": 0.0,
       "quantity": 128.0,
       "raw": {
         "action": "BUY",
@@ -1384,78 +1348,20 @@
         "transmit": true
       },
       "route": null,
-      "severity": "OK",
+      "severity": "FAIL",
       "status": "Submitted",
       "stop_price": null,
       "symbol": "NU"
     },
     {
-      "action": "SELL",
-      "breach_code": "ENTRY_ROUTE_AUDIT_ONLY",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "ENTRY",
-      "client_id": 10,
-      "detail": "entry order is mapped; route lock is audit-only because FEM_ROUTE_LOCK_ENFORCE is off",
-      "entry_strategy_id": "gap_reject_short",
-      "exit_intent": null,
-      "exit_strategy_id": null,
-      "limit_price": 119.57,
-      "oca_group": "",
-      "order_id": "5998",
-      "order_type": "LMT",
-      "parent_id": "0",
-      "position_qty": 0.0,
-      "quantity": 50.0,
-      "raw": {
-        "action": "SELL",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 119.57,
-        "oca_group": "",
-        "order_id": 5998,
-        "order_ref": "",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 0,
-        "perm_id": 243468999,
-        "quantity": 50.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "SXT",
-        "tif": "DAY",
-        "trail_stop_price": 118.57,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": {
-        "allowed": false,
-        "candidate_strategy_ids": [
-          "gap_reject_short"
-        ],
-        "permission": "BLOCK",
-        "permission_id": "gap_reject_short",
-        "reason": "strategy registry marks this route bot_allowed=false",
-        "reason_code": "ROUTE_LOCK_REGISTRY_BOT_BLOCKED",
-        "registry_id": "gap_reject_short"
-      },
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "SXT"
-    },
-    {
       "action": "BUY",
-      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "gap_reject_short",
       "exit_intent": "PROTECTIVE_COVER_STOP",
       "exit_strategy_id": "gap_reject_short",
@@ -1464,7 +1370,7 @@
       "order_id": "5999",
       "order_type": "STP",
       "parent_id": "5998",
-      "position_qty": 0.0,
+      "position_qty": -50.0,
       "quantity": 50.0,
       "raw": {
         "action": "BUY",
@@ -1497,13 +1403,13 @@
     },
     {
       "action": "BUY",
-      "breach_code": "BRACKET_CHILD_PENDING_PARENT",
+      "breach_code": "EXIT_INTENT_OK",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
       "classification": "EXIT_PROTECTION",
       "client_id": 10,
-      "detail": "attached exit is waiting behind an active parent entry; position is flat because parent has not filled",
+      "detail": "working order is declared in exit_intent ledger",
       "entry_strategy_id": "gap_reject_short",
       "exit_intent": "COVER_TARGET_TAKE_PROFIT",
       "exit_strategy_id": "gap_reject_short",
@@ -1512,7 +1418,7 @@
       "order_id": "6000",
       "order_type": "LMT",
       "parent_id": "5998",
-      "position_qty": 0.0,
+      "position_qty": -50.0,
       "quantity": 50.0,
       "raw": {
         "action": "BUY",
@@ -1529,7 +1435,7 @@
         "perm_id": 243469001,
         "quantity": 50.0,
         "sec_type": "STK",
-        "status": "PreSubmitted",
+        "status": "Submitted",
         "stop_price": 0.0,
         "symbol": "SXT",
         "tif": "DAY",
@@ -1539,14 +1445,335 @@
       },
       "route": null,
       "severity": "OK",
-      "status": "PreSubmitted",
+      "status": "Submitted",
       "stop_price": null,
       "symbol": "SXT"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "PROTECTIVE_COVER_STOP",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": null,
+      "oca_group": "243469002",
+      "order_id": "6002",
+      "order_type": "STP",
+      "parent_id": "6001",
+      "position_qty": -96.0,
+      "quantity": 96.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 0.0,
+        "oca_group": "243469002",
+        "order_id": 6002,
+        "order_ref": "",
+        "order_type": "STP",
+        "outside_rth": false,
+        "parent_id": 6001,
+        "perm_id": 243469003,
+        "quantity": 96.0,
+        "sec_type": "STK",
+        "status": "PreSubmitted",
+        "stop_price": 62.75,
+        "symbol": "BMY",
+        "tif": "DAY",
+        "trail_stop_price": 62.75,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "PreSubmitted",
+      "stop_price": 62.75,
+      "symbol": "BMY"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "COVER_TARGET_TAKE_PROFIT",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 61.58,
+      "oca_group": "243469002",
+      "order_id": "6003",
+      "order_type": "LMT",
+      "parent_id": "6001",
+      "position_qty": -96.0,
+      "quantity": 96.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 61.58,
+        "oca_group": "243469002",
+        "order_id": 6003,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 6001,
+        "perm_id": 243469004,
+        "quantity": 96.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "BMY",
+        "tif": "DAY",
+        "trail_stop_price": 62.58,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "BMY"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "PROTECTIVE_COVER_STOP",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": null,
+      "oca_group": "243469005",
+      "order_id": "6005",
+      "order_type": "STP",
+      "parent_id": "6004",
+      "position_qty": -67.0,
+      "quantity": 67.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 0.0,
+        "oca_group": "243469005",
+        "order_id": 6005,
+        "order_ref": "",
+        "order_type": "STP",
+        "outside_rth": false,
+        "parent_id": 6004,
+        "perm_id": 243469006,
+        "quantity": 67.0,
+        "sec_type": "STK",
+        "status": "PreSubmitted",
+        "stop_price": 89.51,
+        "symbol": "CTVA",
+        "tif": "DAY",
+        "trail_stop_price": 89.51,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "PreSubmitted",
+      "stop_price": 89.51,
+      "symbol": "CTVA"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "COVER_TARGET_TAKE_PROFIT",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 87.33,
+      "oca_group": "243469005",
+      "order_id": "6006",
+      "order_type": "LMT",
+      "parent_id": "6004",
+      "position_qty": -67.0,
+      "quantity": 67.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 87.33,
+        "oca_group": "243469005",
+        "order_id": 6006,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 6004,
+        "perm_id": 243469007,
+        "quantity": 67.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "CTVA",
+        "tif": "DAY",
+        "trail_stop_price": 88.33,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "CTVA"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "PROTECTIVE_COVER_STOP",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": null,
+      "oca_group": "243469008",
+      "order_id": "6008",
+      "order_type": "STP",
+      "parent_id": "6007",
+      "position_qty": -41.0,
+      "quantity": 41.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 0.0,
+        "oca_group": "243469008",
+        "order_id": 6008,
+        "order_ref": "",
+        "order_type": "STP",
+        "outside_rth": false,
+        "parent_id": 6007,
+        "perm_id": 243469009,
+        "quantity": 41.0,
+        "sec_type": "STK",
+        "status": "PreSubmitted",
+        "stop_price": 148.53,
+        "symbol": "EMR",
+        "tif": "DAY",
+        "trail_stop_price": 148.53,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "PreSubmitted",
+      "stop_price": 148.53,
+      "symbol": "EMR"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": "gap_reject_short",
+      "exit_intent": "COVER_TARGET_TAKE_PROFIT",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 144.66,
+      "oca_group": "243469008",
+      "order_id": "6009",
+      "order_type": "LMT",
+      "parent_id": "6007",
+      "position_qty": -41.0,
+      "quantity": 41.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 144.66,
+        "oca_group": "243469008",
+        "order_id": 6009,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 6007,
+        "perm_id": 243469010,
+        "quantity": 41.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "EMR",
+        "tif": "DAY",
+        "trail_stop_price": 145.66,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "EMR"
     }
   ],
-  "operator_read": "Order safety is OK: 31 working order(s) and 11 live position(s) reconciled against the spine.",
-  "overall": "OK",
+  "operator_read": "Order safety is FAIL: 1 orphan exit order(s). Mode is ENFORCE; cancelled 1. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
   "positions": [
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": true,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [
+          "6003"
+        ],
+        "ah_target_quantity": 96.0,
+        "detail": "AH exit owner verified",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": true,
+        "position_quantity": 96.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 62.21810339583333,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "6002"
+      ],
+      "qty": -96.0,
+      "related_exit_orders": [
+        "6002",
+        "6003"
+      ],
+      "severity": "OK",
+      "side": "SHORT",
+      "symbol": "BMY",
+      "target_orders": [
+        "6003"
+      ]
+    },
     {
       "ah_exit_contract": {
         "ah_exit_owner_verified": true,
@@ -1611,6 +1838,72 @@
       "symbol": "CLF",
       "target_orders": [
         "5973"
+      ]
+    },
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": true,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [
+          "6006"
+        ],
+        "ah_target_quantity": 67.0,
+        "detail": "AH exit owner verified",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": true,
+        "position_quantity": 67.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 88.63305043283583,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "6005"
+      ],
+      "qty": -67.0,
+      "related_exit_orders": [
+        "6005",
+        "6006"
+      ],
+      "severity": "OK",
+      "side": "SHORT",
+      "symbol": "CTVA",
+      "target_orders": [
+        "6006"
+      ]
+    },
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": true,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [
+          "6009"
+        ],
+        "ah_target_quantity": 41.0,
+        "detail": "AH exit owner verified",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": true,
+        "position_quantity": 41.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 147.10238087804876,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "6008"
+      ],
+      "qty": -41.0,
+      "related_exit_orders": [
+        "6008",
+        "6009"
+      ],
+      "severity": "OK",
+      "side": "SHORT",
+      "symbol": "EMR",
+      "target_orders": [
+        "6009"
       ]
     },
     {
@@ -1784,39 +2077,6 @@
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
         "ah_target_orders": [
-          "5997"
-        ],
-        "ah_target_quantity": 128.0,
-        "detail": "AH exit owner verified",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": true,
-        "position_quantity": 128.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 14.09451155,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "5996"
-      ],
-      "qty": -128.0,
-      "related_exit_orders": [
-        "5996",
-        "5997"
-      ],
-      "severity": "OK",
-      "side": "SHORT",
-      "symbol": "NU",
-      "target_orders": [
-        "5997"
-      ]
-    },
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": true,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [
           "5969"
         ],
         "ah_target_quantity": 156.0,
@@ -1842,6 +2102,39 @@
       "symbol": "ROL",
       "target_orders": [
         "5969"
+      ]
+    },
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": true,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [
+          "6000"
+        ],
+        "ah_target_quantity": 50.0,
+        "detail": "AH exit owner verified",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": true,
+        "position_quantity": 50.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 119.54733886,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "5999"
+      ],
+      "qty": -50.0,
+      "related_exit_orders": [
+        "5999",
+        "6000"
+      ],
+      "severity": "OK",
+      "side": "SHORT",
+      "symbol": "SXT",
+      "target_orders": [
+        "6000"
       ]
     },
     {
@@ -1915,21 +2208,23 @@
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
-    "breach_codes": {},
+    "breach_codes": {
+      "ORPHAN_EXIT_POSITION_FLAT": 1
+    },
     "broker_connected": true,
-    "cancel_candidates": 0,
+    "cancel_candidates": 1,
     "cancel_failed": 0,
-    "cancelled": 0,
+    "cancelled": 1,
     "invalid_entry_like_orders": 0,
-    "open_orders": 31,
-    "order_fail": 0,
-    "order_ok": 31,
+    "open_orders": 35,
+    "order_fail": 1,
+    "order_ok": 34,
     "order_warn": 0,
-    "orphan_exit_orders": 0,
+    "orphan_exit_orders": 1,
     "position_fail": 0,
-    "position_ok": 11,
+    "position_ok": 14,
     "position_warn": 0,
-    "positions": 11,
+    "positions": 14,
     "unprotected_positions": 0
   },
   "trade_date": "2026-07-24"
