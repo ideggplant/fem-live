@@ -2,60 +2,16 @@
   "bot_status": {
     "available": true,
     "date": "2026-07-24",
-    "generated_at": "2026-07-24T10:18:10",
-    "mode": "TRIGGER_LIVE",
-    "n_positions": 6,
+    "generated_at": "2026-07-24T16:57:03",
+    "mode": "TRIGGER_DONE",
+    "n_positions": 0,
     "parse_error": null,
-    "position_modes": [
-      {
-        "count": 6,
-        "mode": "gap_reject_short"
-      }
-    ],
-    "position_sides": {
-      "short": 6
-    },
-    "sample_positions": [
-      {
-        "entry": 62.27,
-        "mode": "gap_reject_short",
-        "qty": -96.0,
-        "ticker": "BMY"
-      },
-      {
-        "entry": 88.53,
-        "mode": "gap_reject_short",
-        "qty": -67.0,
-        "ticker": "CTVA"
-      },
-      {
-        "entry": 88.4,
-        "mode": "gap_reject_short",
-        "qty": -20.0,
-        "ticker": "EW"
-      },
-      {
-        "entry": 48.46,
-        "mode": "gap_reject_short",
-        "qty": -34.0,
-        "ticker": "LW"
-      },
-      {
-        "entry": 38.53,
-        "mode": "gap_reject_short",
-        "qty": -156.0,
-        "ticker": "ROL"
-      },
-      {
-        "entry": 17.3,
-        "mode": "gap_reject_short",
-        "qty": -104.0,
-        "ticker": "VTRS"
-      }
-    ]
+    "position_modes": [],
+    "position_sides": {},
+    "sample_positions": []
   },
   "code_version": "unknown",
-  "config_mtime_utc": "2026-07-24T16:24:31+00:00",
+  "config_mtime_utc": "2026-07-24T19:31:43+00:00",
   "config_source": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_auto_trade.py",
   "gate_blocks": {
     "available": true,
@@ -63,16 +19,16 @@
     "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\gate_blocks_2026-07-24.jsonl",
     "top_kinds": [
       {
-        "count": 237,
+        "count": 492,
         "kind": "surge"
       },
       {
-        "count": 7,
-        "kind": "surge_micro_scout"
+        "count": 10,
+        "kind": "dilution_short"
       },
       {
-        "count": 7,
-        "kind": "dilution_short"
+        "count": 8,
+        "kind": "surge_micro_scout"
       },
       {
         "count": 5,
@@ -81,7 +37,7 @@
     ],
     "top_reasons": [
       {
-        "count": 230,
+        "count": 461,
         "example": {
           "kind": "surge",
           "px": 37.86,
@@ -92,7 +48,18 @@
         "reason": "regime RISK_OFF"
       },
       {
-        "count": 14,
+        "count": 31,
+        "example": {
+          "kind": "surge",
+          "px": 3.13,
+          "reason": "live dilution RED (active offering)",
+          "t": "2026-07-24T09:05:25.510874-04:00",
+          "ticker": "VIVK"
+        },
+        "reason": "live dilution RED (active offering)"
+      },
+      {
+        "count": 17,
         "example": {
           "kind": "surge_micro_scout",
           "px": 3.22,
@@ -103,15 +70,15 @@
         "reason": "MIN_DAILY_VOLUME"
       },
       {
-        "count": 7,
+        "count": 3,
         "example": {
-          "kind": "surge",
-          "px": 3.13,
-          "reason": "live dilution RED (active offering)",
-          "t": "2026-07-24T09:05:25.510874-04:00",
-          "ticker": "VIVK"
+          "kind": "gap_reject_short",
+          "px": 84.81479,
+          "reason": "PRETRADE_GAP_REFRESH_TIMEOUT",
+          "t": "2026-07-24T08:46:33.612182-04:00",
+          "ticker": "MXL"
         },
-        "reason": "live dilution RED (active offering)"
+        "reason": "PRETRADE_GAP_REFRESH_TIMEOUT"
       },
       {
         "count": 3,
@@ -123,20 +90,9 @@
           "ticker": "AMKR"
         },
         "reason": "PRETRADE_GAP_STALE_AFTER_REFRESH"
-      },
-      {
-        "count": 2,
-        "example": {
-          "kind": "gap_reject_short",
-          "px": 84.81479,
-          "reason": "PRETRADE_GAP_REFRESH_TIMEOUT",
-          "t": "2026-07-24T08:46:33.612182-04:00",
-          "ticker": "MXL"
-        },
-        "reason": "PRETRADE_GAP_REFRESH_TIMEOUT"
       }
     ],
-    "total": 256
+    "total": 515
   },
   "gate_posture": [
     {
@@ -200,7 +156,7 @@
       "expected": true,
       "hard_safety": true,
       "label": "Dilution-red long block",
-      "line": 3824,
+      "line": 3835,
       "name": "BLOCK_DILUTION",
       "raw": "True",
       "status": "NORMAL"
@@ -211,7 +167,7 @@
       "expected": 180,
       "hard_safety": true,
       "label": "Stale-fire timeout",
-      "line": 3827,
+      "line": 3838,
       "name": "FIRE_MAX_AGE_SEC",
       "raw": "int(float(os.environ.get('FEM_FIRE_MAX_AGE_SEC', '600')))",
       "status": "UNKNOWN"
@@ -222,7 +178,7 @@
       "expected": 300.0,
       "hard_safety": true,
       "label": "Gap-reject daily risk cap",
-      "line": 3920,
+      "line": 3931,
       "name": "GAP_REJECT_DAILY_CAP",
       "raw": "3000.0",
       "status": "LOOSENED"
@@ -233,7 +189,7 @@
       "expected": true,
       "hard_safety": false,
       "label": "Dump short RTH-only filter",
-      "line": 3923,
+      "line": 3934,
       "name": "DUMP_SHORT_RTH_ONLY",
       "raw": "False",
       "status": "LOOSENED"
@@ -244,7 +200,7 @@
       "expected": 5.0,
       "hard_safety": true,
       "label": "Minimum short price",
-      "line": 3939,
+      "line": 3950,
       "name": "MIN_SHORT_PRICE",
       "raw": "5.0",
       "status": "NORMAL"
@@ -255,7 +211,7 @@
       "expected": true,
       "hard_safety": true,
       "label": "Liquidity participation cap",
-      "line": 3977,
+      "line": 3988,
       "name": "LIQ_CAP_ENABLED",
       "raw": "True",
       "status": "NORMAL"
@@ -266,7 +222,7 @@
       "expected": 1000000,
       "hard_safety": true,
       "label": "Minimum daily volume",
-      "line": 4037,
+      "line": 4048,
       "name": "MIN_DAILY_VOLUME",
       "raw": "400_000",
       "status": "LOOSENED"
@@ -277,7 +233,7 @@
       "expected": 1000000,
       "hard_safety": true,
       "label": "Minimum daily dollar volume",
-      "line": 4043,
+      "line": 4054,
       "name": "MIN_DAILY_DOLLAR_VOLUME",
       "raw": "1_000_000",
       "status": "NORMAL"
@@ -288,7 +244,7 @@
       "expected": 5.0,
       "hard_safety": false,
       "label": "Surge relative-volume floor",
-      "line": 4395,
+      "line": 4406,
       "name": "SURGE_MIN_RELVOL",
       "raw": "float(os.environ.get('FEM_SURGE_MIN_RELVOL', '6.0'))",
       "status": "UNKNOWN"
@@ -299,7 +255,7 @@
       "expected": true,
       "hard_safety": false,
       "label": "Surge risk-on requirement",
-      "line": 4414,
+      "line": 4425,
       "name": "SURGE_REQUIRE_RISK_ON",
       "raw": "True",
       "status": "NORMAL"
@@ -310,7 +266,7 @@
       "expected": 5.0,
       "hard_safety": false,
       "label": "Surge move floor",
-      "line": 4440,
+      "line": 4451,
       "name": "SURGE_MIN_MOVE_PCT",
       "raw": "1.0",
       "status": "LOOSENED"
@@ -321,7 +277,7 @@
       "expected": 600.0,
       "hard_safety": true,
       "label": "Surge daily risk cap",
-      "line": 4445,
+      "line": 4456,
       "name": "SURGE_DAILY_RISK_CAP",
       "raw": "float(os.environ.get('FEM_SURGE_DAILY_RISK_CAP', '0'))",
       "status": "UNKNOWN"
@@ -332,7 +288,7 @@
       "expected": true,
       "hard_safety": false,
       "label": "Surge clear-highway gate",
-      "line": 4461,
+      "line": 4472,
       "name": "SURGE_CLEAR_HIGHWAY",
       "raw": "True",
       "status": "NORMAL"
@@ -343,7 +299,7 @@
       "expected": 60,
       "hard_safety": false,
       "label": "Surge sustain delay",
-      "line": 4465,
+      "line": 4476,
       "name": "SURGE_SUSTAIN_SECS",
       "raw": "int(float(os.environ.get('FEM_SURGE_SUSTAIN_SECS', '60')))",
       "status": "UNKNOWN"
@@ -354,7 +310,7 @@
       "expected": 660,
       "hard_safety": false,
       "label": "Surge end minute",
-      "line": 4469,
+      "line": 4480,
       "name": "SURGE_END_MIN",
       "raw": "15 * 60",
       "status": "LOOSENED"
@@ -365,7 +321,7 @@
       "expected": 11,
       "hard_safety": false,
       "label": "Surge cutoff hour",
-      "line": 4470,
+      "line": 4481,
       "name": "SURGE_CUTOFF_HOUR",
       "raw": "15",
       "status": "LOOSENED"
@@ -376,15 +332,15 @@
       "expected": true,
       "hard_safety": false,
       "label": "Overhead-gap veto",
-      "line": 4551,
+      "line": 4562,
       "name": "BLOCK_OVERHEAD_GAP",
       "raw": "True",
       "status": "NORMAL"
     }
   ],
   "gate_profile_id": "553e75316f59",
-  "generated_at": "2026-07-24T17:19:46+00:00",
-  "generated_at_et": "2026-07-24T13:19:46-04:00",
+  "generated_at": "2026-07-25T00:46:20+00:00",
+  "generated_at_et": "2026-07-24T20:46:20-04:00",
   "hard_safety_loosened_names": [
     "TRADE_PERMISSION_ENFORCE",
     "TRADE_PERMISSION_BLOCK_UNKNOWN",
@@ -406,7 +362,7 @@
     "dirty_data_risk": "HIGH",
     "hard_safety_loosened": 4,
     "loosened_gates": 8,
-    "n_positions": 6,
+    "n_positions": 0,
     "score_policy": "TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
     "session_profile": "EXPERIMENT_OPEN_GATES",
     "trade_permissions_off": true,
@@ -414,8 +370,8 @@
   },
   "recommendation": "Do not blend this session into normal panel-score evidence without the session_context_id/gate_profile_id tag.",
   "schema": "fem_contract_session_context.v1",
-  "session": "rth",
-  "session_context_id": "b677f30118da7bbe",
+  "session": "closed",
+  "session_context_id": "8ea155aec46c3053",
   "summary": {
     "category_counts": {
       "capacity": {
@@ -453,11 +409,11 @@
       }
     },
     "dirty_data_risk": "HIGH",
-    "gate_block_events": 256,
+    "gate_block_events": 515,
     "gate_count": 22,
     "hard_safety_loosened": 4,
     "loosened_gates": 8,
-    "positions": 6,
+    "positions": 0,
     "score_policy": "TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
     "session_profile": "EXPERIMENT_OPEN_GATES",
     "status_counts": {
