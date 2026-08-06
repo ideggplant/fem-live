@@ -26,261 +26,161 @@
   "can_affect_scores": false,
   "card_title": "Live LLM Call",
   "code_version": "unknown",
-  "generated_at": "2026-08-01T20:50:21+00:00",
-  "generated_at_et": "2026-08-01T16:50:21-04:00",
+  "generated_at": "2026-08-06T23:54:20+00:00",
+  "generated_at_et": "2026-08-06T19:54:20-04:00",
   "llm_call": {
     "agent_reviews": [
       {
-        "agent_id": "quant_edge_agent",
-        "confidence": "MEDIUM",
-        "do_not_change_yet": [
-          "Do not promote Mustard X panels.",
-          "Do not change panel score weights.",
-          "Do not loosen route locks or permission gates from this packet.",
-          "Do not blend experiment or ghost evidence into normal score partitions."
+        "agent": "Quant Edge Agent",
+        "confidence": "medium_high_no_action",
+        "key_findings": [
+          "Daily certification is REJECTED and the promotion gate blocks all 25 strategies.",
+          "Panel evidence is dominated by ghost and experiment data: 146313 ghost graded versus 31 actual closed trades.",
+          "Closed actual money evidence is negative in the packet: actual_realized_pnl=-109.3303.",
+          "Gate effectiveness is stale and net negative: total_result_r=-137.4382, avg_result_r=-0.1441, win_rate=35.85%.",
+          "Mustard forward is not actionable: 2026-08-06 daily source is missing, summary has 40 open/pending candidates, 0 graded, and avg_max_favorable_r=0.0033.",
+          "Gap/options agreement is incomplete: only 384 of 5992 traces fully checked, with 3103 gaps missing, 3938 options missing, and 1341 stale options."
         ],
-        "findings": [
-          "AI learning produced 35 hypotheses, 8 high priority, all requiring experiment admission; can_affect_bot=false and can_affect_scores=false.",
-          "Promotion gate blocks all 25 strategies because daily certification is rejected.",
-          "Panel score shows actual_trades=132, actual_closed=31, and actual_realized_pnl=-109.3303, while ghost evidence remains quarantined.",
-          "Mustard forward shows 40 candidates, 33 entered, 0 graded, avg_max_favorable_r=0.0033, and no realized R.",
-          "Detailed Mustard rows include entered track-only shapes and tiny target-versus-risk examples such as VIVK 0.029R, IOVA 0.0495R, IREN 0.0826R, KEEL 0.1074R, and VOR 0.1329R.",
-          "Gap/options agreement has only 384 fully checked traces out of 5992 and no ranked top agreements or conflicts."
-        ],
-        "label": "Quant Edge Agent",
         "money_risks": [
-          "Promoting ghost-positive panels while actual closed P/L is negative.",
-          "Mistaking options/gap agreement labels for edge without realized outcomes.",
-          "Taking sub-0.15R target shapes where spread, slippage, and fees can erase theoretical edge.",
-          "Using stale July evidence for an August 1 packet."
+          "Ghost edge claims do not align with closed realized money.",
+          "Stale source data may make July evidence look relevant to the 2026-08-06 session.",
+          "Mustard and options context may look useful without statistically proven realized edge.",
+          "Broker unavailable plus 0 orders/fills checked leaves execution truth unverified."
         ],
         "priority_actions": [
-          "Treat evidence integrity as the main money task before ranking new edges.",
-          "Require closed realized R from admitted shadow tests before promoting Mustard X or options-gap agreement ideas.",
-          "Tighten or delete no-parent-lineage and tiny target-to-risk Mustard shapes unless they prove positive expectancy after costs.",
-          "Reconcile track-only rows that show entered/fill semantics before using them as trade evidence."
+          "Treat all edge claims as research/display-only until fresh certified forward evidence exists.",
+          "Reconcile actual closed R by strategy against ghost R before trusting any ranking.",
+          "Watch whether fresh fully checked gap/options cases outperform incomplete-map cases next session.",
+          "Track Mustard X only as shadow evidence until it has closed, graded forward samples."
         ],
-        "stance": "Positive edge claims remain research-only because certification is rejected and realized forward evidence is missing or inconsistent.",
-        "status": "ADVISORY_ONLY_RESEARCH_NOT_PROMOTABLE",
-        "watch_next_session": [
-          "Same-day Mustard forward file exists and closes candidates into graded realized R.",
-          "Mustard AGREE rows prove realized R after friction, not just favorable context.",
-          "No-parent-lineage and track-only rows remain simulation-only or explicitly accounted.",
-          "Gap/options fully checked coverage rises materially above 384 of 5992.",
-          "Panel actual realized P/L turns positive alongside ghost expectancy instead of diverging."
-        ]
+        "status": "RESEARCH_ONLY_NO_ACTION_SUPPORTED"
       },
       {
-        "agent_id": "execution_risk_agent",
-        "confidence": "MEDIUM_HIGH_PACKET_CONFIDENCE_LOW_LIVE_EXECUTION_CONFIDENCE",
-        "do_not_change_yet": [
-          "Do not loosen gates based on this packet.",
-          "Do not promote Mustard, gap/options agreement, or AI learning hypotheses into normal scoring.",
-          "Do not tune giveback thresholds from this evidence.",
-          "Do not infer flatness from positions=0 while broker_connected=false."
+        "agent": "Execution Risk Agent",
+        "confidence": "medium",
+        "key_findings": [
+          "Broker reconcile is BROKER_UNAVAILABLE with broker_connected=false, so flatness is not independently proven by this packet.",
+          "Panel score reports actual_trades=132, actual_closed=31, actual_realized_pnl=-109.3303, while live_gate_conformance checked 0 orders and 0 fills.",
+          "Gate posture is mixed: gate_router_enforce=true, daily_pnl_guard_enforce=true, and source_freshness_enforce=true, but route_lock_enforce=false, trade_permission_enforce=false, active_entry_enforcement=false, and profit_lock_enabled=false.",
+          "Health is FAIL with 18 validator errors, 103 unaccounted pick groups, 15 posthoc live-fire accounting records, and 5 timestamp-order warnings.",
+          "Daily certification remains REJECTED."
         ],
-        "findings": [
-          "Broker reconcile is BROKER_UNAVAILABLE and live gate conformance checked 0 orders and 0 fills.",
-          "Route lock, trade permission, legacy trade permission, and active entry enforcement are false in the packet.",
-          "Health is FAIL with 18 validator errors, 103 unaccounted pick groups, 15 posthoc live-fire accounting rows, and 5 timestamp-order warnings.",
-          "Panel_score reports 132 actual trades and 31 closed, but execution_truth_closed=0 and execution_truth_realized_pnl=0.",
-          "Mustard evidence is incomplete: summary says 40 candidates and 33 entered, while the visible detail has fewer rows, all ungraded/open or pending.",
-          "Giveback guard evidence is unusable: graded=0, giveback=null, daily_pnl_now=null, and guard_entry_permission=ALLOW_NEW_ENTRIES.",
-          "Stale-fire evidence exists but is stale because gate_effectiveness is from 2026-07-01."
-        ],
-        "label": "Execution Risk Agent",
         "money_risks": [
-          "Unverified flat state near session end.",
-          "Stops or exits missing despite apparent positions or fills.",
-          "Research route permission leak into live orders.",
-          "Tiny reward-to-risk targets that cannot survive slippage.",
-          "Stale fires causing entries after valid context expired.",
-          "Giveback guard allowing new entries without fresh P/L state."
+          "Cannot verify flat-at-end-of-day from broker truth in this packet.",
+          "Closed/open mismatch could hide residual exposure, stale fills, or accounting gaps.",
+          "Route locks are not shown as enforced while many routes are research/display locked.",
+          "Giveback guard value is unknown: daily_pnl_now is null and 0 candidates are graded."
         ],
         "priority_actions": [
-          "Verify broker connectivity, positions, open orders, orphan exits, and unprotected positions from a fresh broker reconcile before the next live session.",
-          "Reconcile panel_score actual_trades=132 and actual_closed=31 against execution truth and broker records.",
-          "Make permission enforcement status a preflight review item before live entry.",
-          "Quarantine Mustard entered track-only rows until full fills, exits, realized R, and target/stop economics are fresh and graded."
+          "Manually verify broker positions, open orders, and fills before trusting flat status.",
+          "Reconcile actual_trades, actual_closed, execution_truth_closed, and Mustard open/pending traces into one audited ledger view.",
+          "Confirm whether route_lock_enforce=false and trade_permission_enforce=false are expected in this display-only packet.",
+          "Treat all score, promotion, and gate evidence as stale until fresh same-session ledgers exist."
         ],
-        "stance": "Live execution truth is not verified and cannot support scaling, promotion, or live-risk conclusions.",
-        "status": "FAIL_ADVISORY_ONLY",
-        "watch_next_session": [
-          "Fresh broker_reconcile is connected and non-null before any live-risk conclusion.",
-          "orders_checked and fills_checked become greater than zero and reconcile to panel actual trades.",
-          "No track-only, no-parent-lineage, or not-fresh/unproven shape candidate enters real orders.",
-          "All live-fire decisions are accounted at runtime, not backfilled.",
-          "Target R after costs avoids setups where planned reward is below execution friction."
-        ]
+        "status": "WARN_HIGH_RISK_RESEARCH_ONLY"
       },
       {
-        "agent_id": "contract_spine_agent",
-        "confidence": "MEDIUM_HIGH",
-        "do_not_change_yet": [
-          "Do not change panel weights.",
-          "Do not promote Mustard, Gap Reject Short, or any experiment partition strategy.",
-          "Do not loosen route locks or permission gates based on this packet.",
-          "Do not treat giveback evidence as meaningful.",
-          "Do not use stale gate_effectiveness evidence for live policy changes."
+        "agent": "Contract Spine Agent",
+        "confidence": "medium_high",
+        "key_findings": [
+          "Daily certification is REJECTED, health is FAIL, and promotion gate blocks all 25 strategies.",
+          "Normal score partition is empty and experiment/review evidence is quarantined with no normal partition leaks reported.",
+          "Evidence chain is not clean: validator errors, unaccounted picks, backfilled live-fire accounting, and timestamp warnings remain visible.",
+          "Source freshness is uneven: packet and AI learning are current, but health/certification/promotion are from 2026-07-25, gap/options and giveback from 2026-07-24, gate effectiveness from 2026-07-01, and the 2026-08-06 Mustard forward source is missing.",
+          "Structural gate presence is not the same as runtime enforcement; several enforcement flags are false in this packet."
         ],
-        "findings": [
-          "Live gate conformance checked 0 orders and 0 fills with execution truth 0 closed and 0 realized P/L, while panel_score reports 132 actual trades, 31 closed, and -109.3303 realized P/L.",
-          "Gap/options also reports 115 actual trades and 30 actual fills, creating a three-way actual execution mismatch.",
-          "Health is FAIL with 103 unaccounted pick groups, 5 accounting timestamps earlier than pick timestamps, and 15 posthoc live-fire accounting rows.",
-          "Daily certification is REJECTED/FAIL; blocked_reasons is empty while operator_read says critical registry/score/order contract breaches exist.",
-          "Broker reconcile is unavailable, so reported zeros cannot prove the system is flat or protected.",
-          "Promotion registry reports no normal partition leaks and no forward-order breaches, which is useful containment but not promotion evidence.",
-          "The 2026-08-01 Mustard forward source is missing and visible candidates remain ungraded with null realized_r."
-        ],
-        "label": "Contract Spine Agent",
         "money_risks": [
-          "False flatness risk because broker is unavailable.",
-          "Realized P/L misstatement risk because execution truth and panel_score contradict each other.",
-          "Permission leak risk because route_lock and trade_permission enforcement are false.",
-          "Bad promotion risk if experiment/open-gate evidence leaks into score decisions.",
-          "Scalping loss risk from stale or missing evidence driving intraday decisions."
+          "Stale sources can make old blocked/opportunity results look current.",
+          "Unaccounted and backfilled picks weaken the pick-to-order-to-fill-to-exit-to-score audit chain.",
+          "Measured-only route-lock evidence is not proof of runtime enforcement.",
+          "Unknown code_version reduces traceability for the review packet."
         ],
         "priority_actions": [
-          "Rebuild the spine from fresh broker, order, fill, exit, and realized P/L ledgers before trusting any panel score.",
-          "Resolve the 103 unaccounted pick groups and 15 posthoc live-fire accounting rows first.",
-          "Require broker-connected reconciliation before declaring flat, clean, or protected.",
-          "Make daily_certification blocked_reasons explicit and machine-checkable.",
-          "Keep all promotion candidates blocked until certification is accepted and normal-score provenance is clean."
+          "Display-only verify next packet has same-day certification, health, promotion, gap/options, giveback, gate-effectiveness, and Mustard forward timestamps.",
+          "Audit whether every pick has explicit bot accounting before trusting panel scores.",
+          "Separate structural gate presence from runtime enforcement in the next review.",
+          "Keep missing and stale source states explicit in analysis quarantine."
         ],
-        "stance": "The panel-to-realized-result spine is not reconcilable enough to trust panel score, promotion, or gate conclusions.",
-        "status": "FAIL_ADVISORY_ONLY",
-        "watch_next_session": [
-          "Every panel pick receives an explicit decision obligation record in timestamp order.",
-          "orders_checked and fills_checked become nonzero and reconcile to panel_score actual_trades.",
-          "Broker connection is available at review time.",
-          "Mustard forward produces a same-day file and consistent candidate counts.",
-          "Normal score partition stays clean until certified evidence exists."
-        ]
+        "status": "RESEARCH_ONLY_WARN_FAIL"
       },
       {
-        "agent_id": "auction_options_agent",
-        "confidence": "MEDIUM_LOW",
-        "do_not_change_yet": [
-          "Do not loosen live gates from this evidence.",
-          "Do not promote bottom-channel gap-highway long because channel data is missing.",
-          "Do not use no-parent-lineage rows as tradable auction confirmation.",
-          "Do not treat AGREE as runner-qualified when call walls sit before 2R or 3R."
+        "agent": "Auction + Options Agent",
+        "confidence": "medium_low",
+        "key_findings": [
+          "Packet is current, but auction/options inputs are stale: gap/options source is from 2026-07-24 and the 2026-08-06 Mustard forward score file is missing.",
+          "Gap/options coverage is thin: 5992 traces, only 384 fully checked, 3103 gaps missing, 3938 options missing, and 1341 stale/not-fresh options rows.",
+          "Mustard forward summary has 40 candidates, 33 entered, 7 pending, and 0 graded, while the embedded candidate array exposes 12 rows.",
+          "Embedded wall/OI evidence is stale and not usable as current trade signal.",
+          "No explicit premarket/postmarket imbalance-quality evidence is present beyond stale gap/options and parent-lineage context."
         ],
-        "findings": [
-          "Only 384 of 5992 gap/options traces are fully checked.",
-          "Coverage gaps are large: gaps_missing=3103, options_missing=3938, options_stale=1341, and NO_MAPS/unknown=2829.",
-          "Agreement counts include 202 gaps-and-options agree-clear, 4 agree-block, 27 direct clear/block conflicts, and 151 mixed/weak agreements.",
-          "top_agreements and top_conflicts are empty, so the packet lacks inspectable ranked auction/options evidence.",
-          "Parent shelves are present only for a subset of visible Mustard candidates; no-parent-lineage rows should not count as auction confirmation.",
-          "VOR, IREN, KEEL, and IOVA show call walls before 2R/3R, so fixed-target clearance should not be confused with runner clearance.",
-          "Channel evidence for bottom-channel/highway logic is not present beyond a seed hypothesis."
-        ],
-        "label": "Auction + Options Agent",
         "money_risks": [
-          "False confidence from stale options context.",
-          "Runner plans blocked by call walls before 2R/3R.",
-          "No-parent-lineage trades without auction shelf confirmation.",
-          "Ungraded open/pending Mustard evidence appearing useful before realized P/L proves it.",
-          "Missing current Mustard forward file causing dependence on embedded stale snapshot evidence."
+          "False confidence from old options walls/OI and stale gap maps.",
+          "Treating GAPS_MISSING or OPTIONS_MISSING Mustard rows as support-confirmed setups.",
+          "Using clear-highway labels when most rows were not fully checked.",
+          "Assuming auction context is live-current when the key source files are July artifacts."
         ],
         "priority_actions": [
-          "Regenerate fresh gap/options and Mustard forward files with ranked top agreements and conflicts.",
-          "Require parent lineage plus fresh options before treating any Mustard long as auction/options agreement.",
-          "Separate fixed-target clearance from runner clearance in the review notes.",
-          "Keep options-gap-highway agreement as shadow measurement until at least 30 clean graded samples exist."
+          "Before next session, verify fresh same-session gap/options maps, chain liquidity, walls/OI, and parent gap lineage.",
+          "Separate stale research context from current auction evidence in human review.",
+          "Require graded forward samples before drawing money conclusions from Mustard/options agreement.",
+          "Watch spread, volume, imbalance persistence, and stale-print contamination for extended-hours candidates."
         ],
-        "stance": "Auction/options context is useful for research labeling, but too incomplete and stale for live conclusions.",
-        "status": "ADVISORY_WARN",
-        "watch_next_session": [
-          "Fresh fully checked gap/options coverage rate.",
-          "Whether clear-highway fixed-target setups produce realized R.",
-          "Whether call walls before 2R/3R stall runner attempts.",
-          "Whether no-parent-lineage candidates keep entering despite being track-only.",
-          "Any new ranked top_conflicts showing gap clear but options block, or options clear but gap block."
-        ]
+        "status": "WARN_RESEARCH_ONLY_STALE_EVIDENCE"
       }
     ],
-    "called_at": "2026-08-01T20:50:21+00:00",
-    "called_at_et": "2026-08-01T16:50:21-04:00",
-    "confidence": "MEDIUM_LOW: useful for advisory blocking and research triage, limited by broker unavailability, zero checked orders/fills, rejected certification, failing health, missing same-day Mustard forward evidence, stale gap/options and gate effectiveness sources, and inconsistent execution/P/L truth.",
+    "called_at": "2026-08-06T23:54:20+00:00",
+    "called_at_et": "2026-08-06T19:54:20-04:00",
+    "confidence": "MEDIUM_ADVISORY_RESEARCH_ONLY",
     "do_not_change_yet": [
-      "Do not change bot configuration, route policy, trade permissions, panel scores, gates, registry phases, order execution, or live trading behavior from this review.",
-      "Do not loosen SURGE_CHASE_BANNED or any other gate based on early research hypotheses.",
-      "Do not promote Mustard X, Mustard Grind, gap/options agreement, Gap Reject Short, or any experiment partition panel while certification is rejected.",
-      "Do not blend experiment, ghost, or open-gate evidence into normal score partitions.",
-      "Do not infer live flatness solely from broker_reconcile summary while broker_connected=false.",
-      "Do not tune giveback thresholds from this packet because giveback evidence is null or ungraded.",
-      "Do not use stale gate effectiveness or incomplete gap/options maps as operational evidence."
+      "Do not modify bot configuration, route policy, trade permissions, panel scores, gates, registry phases, order execution, or live trading behavior from this review.",
+      "Do not promote any panel or route from this packet.",
+      "Do not loosen or tighten gates based on stale, missing, ghost, or experiment evidence.",
+      "Do not blend experiment/review evidence into normal score partitions.",
+      "Do not treat embedded options walls, OI, gap maps, or Mustard rows as current executable signals.",
+      "Do not infer giveback guard value from this packet because it has no graded counterfactual evidence."
     ],
-    "model": "Codex recurring review with four specialist advisory lenses",
+    "model": "codex_recurring_agent_with_four_specialist_lenses",
     "money_risks": [
-      "Actual realized P/L is negative at -109.3303 across 31 closed panel-score trades.",
-      "Broker unavailable means the system cannot independently confirm flatness from this packet.",
-      "Zero checked orders and fills prevent validation of execution truth, fill quality, stops, exits, and realized P/L.",
-      "P/L truth mismatch can create false confidence in either positive or negative edge.",
-      "Route lock and trade permission enforcement flags are false, creating research-route permission leak risk.",
-      "Large missing/stale options and gap coverage can turn apparent agreement into context noise.",
-      "Open/pending Mustard candidates with no graded realized R are not money evidence.",
-      "Tiny target-versus-risk setups may be erased by spread, slippage, and fees.",
-      "Rejected certification and failing health mean experiment evidence must remain quarantined."
+      "Broker unavailable means zero positions and zero orders are not independently verified by broker truth.",
+      "Negative actual realized PnL and limited actual closed sample conflict with large ghost/experiment evidence.",
+      "Stale source files can create false confidence in old gates, options walls, gap maps, and promotion results.",
+      "Unaccounted and backfilled decisions weaken the audit chain from pick to order to fill to exit to score.",
+      "Route and trade-permission enforcement flags are false in the packet despite research/display route locks.",
+      "Mustard and gap/options agreement are not yet money-proven because current-day source evidence is missing or incomplete.",
+      "Giveback protection cannot be evaluated because daily_pnl_now is null and the counterfactual ledger has 0 graded candidates."
     ],
-    "next_due_et": "2026-08-03T16:50:21-04:00",
+    "next_due_et": "2026-08-08T19:54:20-04:00",
     "open_questions": [
-      "Why is broker_reconcile unavailable, and can a connected reconcile confirm flat positions and zero open orders before the next session?",
-      "Which ledger is authoritative for actual realized P/L when panel_score, live_gate_conformance, gap/options, and broker truth disagree?",
-      "Why is _DAILY/fem_mustard_forward_score_2026-08-01.json missing while the packet embeds Mustard forward rows?",
-      "Why does Mustard summary show 40 candidates and 33 entered while the visible detail contains fewer rows, and which count should be trusted?",
-      "Are tiny Mustard fixed targets intentional after friction, or is target construction/backfill producing distorted R math?",
-      "What exact validator breaches cause daily certification rejection when daily_certification.blocked_reasons is empty?",
-      "Will fresh gap/options maps improve realized or clean shadow expectancy, or only increase contextual labeling?",
-      "Is giveback guard allowing entries because the current P/L context is unknown, stale, or intentionally permissive?"
+      "Why is broker reconciliation unavailable for this live LLM call packet?",
+      "Why is code_version unknown?",
+      "Why is the 2026-08-06 Mustard forward daily file missing while the snapshot summary contains 40 open/pending candidates and the embedded array contains 12 rows?",
+      "Why are health, daily certification, promotion gate, gap/options, giveback, and gate effectiveness not same-session fresh?",
+      "Are route_lock_enforce=false and trade_permission_enforce=false intentional for this review mode, or do they indicate missing runtime enforcement evidence?",
+      "What explains panel_score actual_trades=132 versus actual_closed=31 versus execution_truth_closed=0?",
+      "Why does daily_certification show REJECTED while blocked_reasons is empty?",
+      "Can the next packet expose explicit extended-hours imbalance quality fields?"
     ],
     "priority_actions": [
-      {
-        "action": "Verify broker connectivity, flatness, open orders, orphan exits, and unprotected positions from a fresh broker-connected reconcile before the next live session.",
-        "priority": 1,
-        "type": "human_review_only"
-      },
-      {
-        "action": "Reconcile panel_score actual_trades=132, actual_closed=31, and actual_realized_pnl=-109.3303 against live_gate_conformance execution_truth_closed=0, execution_truth_realized_pnl=0, and broker records.",
-        "priority": 2,
-        "type": "human_review_only"
-      },
-      {
-        "action": "Refresh or explicitly mark stale/missing sources, especially _DAILY/fem_mustard_forward_score_2026-08-01.json, gap/options, giveback, health, promotion gate, and gate effectiveness.",
-        "priority": 3,
-        "type": "data_quality_review_only"
-      },
-      {
-        "action": "Resolve the 103 unaccounted pick groups and 15 posthoc live-fire accounting rows before trusting the pick-to-fill-to-realized spine.",
-        "priority": 4,
-        "type": "contract_spine_review_only"
-      },
-      {
-        "action": "Keep all 35 AI hypotheses and all Mustard/gap/options ideas in admitted shadow or research workflow until certification passes and closed realized R is available.",
-        "priority": 5,
-        "type": "research_governance_only"
-      },
-      {
-        "action": "Watch tiny Mustard target-versus-risk shapes and separate fixed-target clearance from runner clearance when options walls sit before 2R or 3R.",
-        "priority": 6,
-        "type": "research_observation_only"
-      }
+      "Verify broker flatness independently: positions, open orders, fills, and orphan exits must be checked outside this packet because broker_reconcile is BROKER_UNAVAILABLE.",
+      "Reconcile actual_trades=132, actual_closed=31, execution_truth_closed=0, orders_checked=0, fills_checked=0, and Mustard open/pending counts before trusting PnL or score conclusions.",
+      "Refresh or explicitly quarantine stale sources: health/certification/promotion from 2026-07-25, gap/options and giveback from 2026-07-24, gate effectiveness from 2026-07-01, and missing 2026-08-06 Mustard forward file.",
+      "Keep Mustard X, gap/options agreement, and AI hypotheses in admitted shadow/research review only until closed, graded, same-session forward samples exist.",
+      "In the next review, separate structural gate presence from runtime enforcement flags so route_lock_enforce=false and trade_permission_enforce=false are not misread."
     ],
     "status": "LLM_REVIEW_READY",
-    "synthesis": "Display-only advisory review complete for the 2026-08-01 packet generated at 2026-08-01T16:42:35-04:00. The most money-relevant issue is execution and P/L truth quality, not a new trade idea: broker_reconcile is BROKER_UNAVAILABLE, live_gate_conformance checked 0 orders and 0 fills, daily certification is REJECTED/FAIL, health is FAIL, and panel_score reports actual_realized_pnl=-109.3303 across 31 closed trades while execution truth reports 0 closed and 0 realized P/L. Mustard X, gap/options agreement, gate policy, and all 35 AI learning hypotheses remain research context until source freshness, broker truth, order/fill truth, exits, and realized P/L reconcile. Stale or missing sources are part of the finding: same-day Mustard forward for 2026-08-01 is missing; health, certification, and promotion are from 2026-07-25; gap/options and giveback are from 2026-07-24; gate_effectiveness is from 2026-07-01. No bot configuration, route policy, trade permissions, panel scores, gates, registry phases, order execution, or live trading behavior should change from this review.",
+    "synthesis": "Advisory research-only review: do not change live trading behavior. The packet was rebuilt for 2026-08-06, but the money-relevant evidence chain is not clean enough for action. AI learning is fresh and explicitly cannot affect the bot. Daily certification is REJECTED, health is FAIL, promotion remains blocked, broker truth is unavailable, and several core sources are stale or missing. The top focus is verification and reconciliation, not strategy promotion or gate changes.",
     "watch_next_session": [
-      "Broker connection state, positions, open orders, orphan exits, unprotected positions, and stop coverage.",
-      "orders_checked and fills_checked becoming nonzero and reconciling to panel actual trades, gap/options actual fills, and realized P/L.",
-      "Whether panel_score, broker truth, live gate execution truth, and gap/options actual counts agree on actual trades, closed trades, fills, and P/L.",
-      "Mustard candidates closing from OPEN_AFTER_ENTRY/PENDING_ENTRY into graded outcomes with realized R.",
-      "Same-day Mustard forward file creation and candidate count consistency between summary and detail.",
-      "Fresh gap/options coverage, especially fully_checked, gaps_missing, options_missing, options_stale, NO_MAPS, and direct clear/block conflicts.",
-      "Health validator errors, unaccounted pick groups, posthoc live-fire accounting, and score provenance quarantine.",
-      "Giveback guard value once counterfactual evidence has graded rows and non-null P/L context."
+      "Broker connection status and independent flat-at-end-of-day proof.",
+      "Fresh same-day daily_certification, health, promotion_gate, gap_options, giveback, gate_effectiveness, and Mustard forward files.",
+      "Reduction of validator errors, unaccounted pick groups, posthoc live-fire accounting, and timestamp-order warnings.",
+      "Closed realized R by strategy versus ghost/experiment R, net of costs and slippage.",
+      "Fully checked gap/options subset performance versus incomplete-map cases.",
+      "Mustard candidates with actual closed realized R, not just open/pending MFE.",
+      "Premarket/postmarket quality fields: spread, volume, imbalance persistence, and stale-print contamination.",
+      "Whether daily certification blocked reasons are explicit if certification remains REJECTED."
     ]
   },
-  "operator_read": "Display-only advisory review complete for the 2026-08-01 packet generated at 2026-08-01T16:42:35-04:00. The most money-relevant issue is execution and P/L truth quality, not a new trade idea: broker_reconcile is BROKER_UNAVAILABLE, live_gat",
+  "operator_read": "Advisory research-only review: do not change live trading behavior. The packet was rebuilt for 2026-08-06, but the money-relevant evidence chain is not clean enough for action. AI learning is fresh and explicitly cannot affect the bot. Dail",
   "overall": "OK",
   "safety_rules": {
     "allowed": [
@@ -325,8 +225,8 @@
       }
     ],
     "code_version": "unknown",
-    "generated_at": "2026-08-01T20:50:21+00:00",
-    "generated_at_et": "2026-08-01T16:50:21-04:00",
+    "generated_at": "2026-08-06T23:54:20+00:00",
+    "generated_at_et": "2026-08-06T19:54:20-04:00",
     "review_questions": [
       "What is the single most money-relevant thing to fix or watch before the next session?",
       "Which current hypothesis deserves more samples, and which deserves deletion/tightening?",
@@ -2682,42 +2582,42 @@
     },
     "sources": {
       "ai_learning": {
-        "age_seconds": 469.9,
+        "age_seconds": 218.1,
         "bytes": 181612,
         "exists": true,
-        "modified_at": "2026-08-01T20:42:31+00:00",
+        "modified_at": "2026-08-06T23:50:42+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_ai_learning_layer.json"
       },
       "daily_certification": {
-        "age_seconds": 674057.2,
+        "age_seconds": 1117096.7,
         "bytes": 5149,
         "exists": true,
         "modified_at": "2026-07-25T01:36:03+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_daily_certification.json"
       },
       "gap_options": {
-        "age_seconds": 695602.7,
+        "age_seconds": 1138642.2,
         "bytes": 35156056,
         "exists": true,
         "modified_at": "2026-07-24T19:36:58+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_options_agreement.json"
       },
       "gate_effectiveness": {
-        "age_seconds": 2703753.9,
+        "age_seconds": 3146793.3,
         "bytes": 1592767,
         "exists": true,
         "modified_at": "2026-07-01T13:47:47+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gate_effectiveness_ledger.json"
       },
       "giveback": {
-        "age_seconds": 695647.5,
+        "age_seconds": 1138687.0,
         "bytes": 3470,
         "exists": true,
         "modified_at": "2026-07-24T19:36:13+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_giveback_counterfactual_ledger.json"
       },
       "health": {
-        "age_seconds": 674055.1,
+        "age_seconds": 1117094.5,
         "bytes": 39960,
         "exists": true,
         "modified_at": "2026-07-25T01:36:06+00:00",
@@ -2725,17 +2625,17 @@
       },
       "mustard_forward": {
         "exists": false,
-        "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_mustard_forward_score_2026-08-01.json"
+        "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_mustard_forward_score_2026-08-06.json"
       },
       "promotion_gate": {
-        "age_seconds": 674057.0,
+        "age_seconds": 1117096.4,
         "bytes": 72617,
         "exists": true,
         "modified_at": "2026-07-25T01:36:04+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_promotion_gate.json"
       }
     },
-    "trade_date": "2026-08-01"
+    "trade_date": "2026-08-06"
   },
-  "trade_date": "2026-08-01"
+  "trade_date": "2026-08-06"
 }
