@@ -1,39 +1,39 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.04000234603881836,
+    "age_sec": 0.036997079849243164,
     "alist_fillable_count": 4,
-    "alist_proven_moo_candidate_count": 2,
+    "alist_proven_moo_candidate_count": 3,
     "alist_row_count": 4,
-    "attention_reason": "A-list source is not today: fem_abook_2026-08-14_0401.csv source_date=2026-08-14 today=2026-08-17",
-    "bridge_state": "ALIST_NOT_READY",
+    "attention_reason": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
+    "bridge_state": "ALIST_FILLED_BUT_NOT_EXECUTABLE",
     "moo_executable_ticket_count": 0,
     "moo_tradeable": false,
     "moo_tws_order_rows": 0,
-    "needs_attention": false,
-    "source_file": "fem_abook_2026-08-14_0401.csv",
-    "source_same_day": false
+    "needs_attention": true,
+    "source_file": "fem_abook_2026-08-17_0401.csv",
+    "source_same_day": true
   },
   "blockers": [
     {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 4 critical/panic alert(s).",
+      "action": "Run morning health/scanner check.",
+      "code": "MORNING_SCANS_NOT_CONFIRMED",
+      "impact": "Universe may be stale or incomplete.",
+      "message": "Morning scanner/TWS health is not confirmed OK.",
       "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 17.5041401386261,
-    "alive": true,
-    "generated_at": "2026-08-17T03:54:50",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 4.634855270385742,
+    "alive": false,
+    "generated_at": "2026-08-17T12:48:36",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.4276096820831299,
+    "age_sec": 0.22007346153259277,
     "connected": true,
-    "generated_at": "2026-08-17T10:55:07+00:00",
+    "generated_at": "2026-08-17T19:48:41+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -43,10 +43,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-08-17T10:55:11+00:00",
-  "generated_at_et": "2026-08-17T06:55:06-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-08-17T19:48:42+00:00",
+  "generated_at_et": "2026-08-17T15:48:39-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,27 +57,27 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.15900516510009766,
-    "fail": 0,
-    "generated_at": "2026-08-17T10:55:08+00:00",
-    "live_ready": true,
+    "age_sec": 0.15307140350341797,
+    "fail": 1,
+    "generated_at": "2026-08-17T19:48:41+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "WARN",
-    "session": "pre",
-    "warn": 2
+    "overall": "FAIL",
+    "session": "rth",
+    "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 7.040077447891235,
+    "age_sec": 2.3555068969726562,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-08-17",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": null,
-    "rth_status": null,
+    "rth_bot": "STARTED",
+    "rth_status": "OK",
     "scanner": null,
     "scanner_status": null,
     "scanner_tws": null,
@@ -104,7 +104,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "A-list tradeability: rows=4 fillable=4 proven_moo=2 moo_orders=0 state=ALIST_NOT_READY\nAttention: A-list source is not today: fem_abook_2026-08-14_0401.csv source_date=2026-08-14 today=2026-08-17\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
+      "stdout": "A-list tradeability: rows=4 fillable=4 proven_moo=3 moo_orders=0 state=ALIST_FILLED_BUT_NOT_EXECUTABLE\nAttention: Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.\nWrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\latest_alist_tradeability.json"
     },
     "broker_reconcile": {
       "ran": true,
@@ -116,7 +116,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=pre ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -128,16 +128,16 @@
     "ok": false,
     "rows": [
       {
-        "last_run_time": "08/14/2026 04:00:00",
+        "last_run_time": "08/17/2026 04:00:00",
         "last_task_result": 0,
-        "next_run_time": "08/17/2026 04:00:00",
+        "next_run_time": "08/18/2026 04:00:00",
         "state": "Ready",
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "08/14/2026 06:17:17",
+        "last_run_time": "08/17/2026 06:17:17",
         "last_task_result": 0,
-        "next_run_time": "08/17/2026 06:17:17",
+        "next_run_time": "08/18/2026 06:17:17",
         "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
@@ -167,24 +167,24 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 250641.05211997032,
+    "age_sec": 23456.944775104523,
     "overall": "WARN",
-    "rankings_count": 25,
+    "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.008001089096069336,
+    "snapshot_age_seconds": 0.008000373840332031,
     "snapshot_fresh": true,
     "unknown_symbol_count": 7,
     "unknown_symbols": [
       "AAOZ",
+      "AMDL",
       "ARKG",
       "ASTX",
-      "BBBY.WS",
-      "BFH",
+      "AVS",
       "NEUTRAL",
       "UNKNOWN"
     ]
   },
-  "session": "pre",
+  "session": "rth",
   "state": "NOT_TRADE_READY",
   "telegram": {
     "enabled": false,
@@ -194,10 +194,17 @@
   "trade_ready": false,
   "watch_items": [
     {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
+    {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "7 active symbol(s) have no sector mapping: AAOZ, ARKG, ASTX, BBBY.WS, BFH, NEUTRAL, UNKNOWN.",
+      "message": "7 active symbol(s) have no sector mapping: AAOZ, AMDL, ARKG, ASTX, AVS, NEUTRAL, UNKNOWN.",
       "severity": "WARN"
     },
     {
@@ -206,24 +213,31 @@
       "impact": "Tomorrow or next-session startup may fail silently.",
       "message": "Schedule issue: missing=[] not_ready=['FEM 1305 AH Trade Bot'] no_next=[].",
       "severity": "WARN"
+    },
+    {
+      "action": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
+      "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
+      "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
+      "message": "A-list has fillable candidates but no executable MOO handoff.",
+      "severity": "WARN"
     }
   ],
   "watchdog": {
-    "age_sec": 4.454348087310791,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 61.42420411109924,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 4,
+    "critical_or_panic_count": 3,
     "morning_scanner": null,
     "morning_tws": null,
     "overall": "CRITICAL",
     "penny_morning_count": 370,
-    "penny_morning_is_today": false,
-    "rth_handoff_status": null,
-    "short_watchlist_count": 116,
-    "short_watchlist_is_today": false,
-    "trigger_process_count": 1
+    "penny_morning_is_today": true,
+    "rth_handoff_status": "OK",
+    "short_watchlist_count": 24,
+    "short_watchlist_is_today": true,
+    "trigger_process_count": 0
   }
 }
