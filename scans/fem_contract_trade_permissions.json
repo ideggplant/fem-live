@@ -13,7 +13,6 @@
       "dump_short",
       "execution_truth",
       "gap_eat",
-      "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "live_trust_executor",
       "live_trust_recovery",
@@ -50,6 +49,7 @@
       "gap_eat_staircase_long",
       "gap_reject_INVERTED",
       "gap_reject_short",
+      "gap_wall_roundtrip_shadow",
       "live_fire_dump",
       "live_fire_gap_eat",
       "live_fire_gap_fail_short",
@@ -330,7 +330,7 @@
       "gap_wall_roundtrip_shadow": {
         "allowed_to_trade": false,
         "panel_id": "gap_wall_roundtrip",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -910,7 +910,7 @@
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "MIXED",
       "strategies": 1
@@ -1250,8 +1250,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-08-21T00:59:12+00:00",
-  "generated_at_et": "2026-08-20T20:59:12-04:00",
+  "generated_at": "2026-08-21T01:17:42+00:00",
+  "generated_at_et": "2026-08-20T21:17:42-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1955,21 +1955,21 @@
     },
     "decision_audit": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1985,14 +1985,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "decision_audit",
       "panel_name": "Decision Audit",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2185,21 +2185,21 @@
     },
     "execution_truth": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2215,14 +2215,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "execution_truth",
       "panel_name": "Execution Truth",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2298,13 +2298,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9548,
-        "ghost_fires": 173,
-        "ghost_graded": 59,
-        "ghost_run_rate": 1.69,
+        "ghost_avg_target_r": -0.9487,
+        "ghost_fires": 218,
+        "ghost_graded": 52,
+        "ghost_run_rate": 3.85,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 1.69
+        "ghost_target_hit_rate": 1.92
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -2416,44 +2416,44 @@
     },
     "gap_wall_roundtrip_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": null,
-        "ghost_fires": 7842,
-        "ghost_graded": 0,
-        "ghost_run_rate": null,
+        "ghost_avg_target_r": -0.9026,
+        "ghost_fires": 7959,
+        "ghost_graded": 493,
+        "ghost_run_rate": 9.53,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": null
+        "ghost_target_hit_rate": 4.87
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2484,7 +2484,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.8792,
-        "ghost_fires": 7769,
+        "ghost_fires": 7779,
         "ghost_graded": 6378,
         "ghost_run_rate": 9.08,
         "ghost_skip_avg_r": null,
@@ -2578,7 +2578,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.9705,
-        "ghost_fires": 7652,
+        "ghost_fires": 7678,
         "ghost_graded": 6411,
         "ghost_run_rate": 4.48,
         "ghost_skip_avg_r": null,
@@ -2719,7 +2719,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.7927,
-        "ghost_fires": 7883,
+        "ghost_fires": 7959,
         "ghost_graded": 7140,
         "ghost_run_rate": 15.21,
         "ghost_skip_avg_r": null,
@@ -3962,7 +3962,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.7927,
-        "ghost_fires": 7883,
+        "ghost_fires": 7959,
         "ghost_graded": 7140,
         "ghost_run_rate": 15.21,
         "ghost_skip_avg_r": null,
@@ -4007,13 +4007,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.1152,
+        "ghost_avg_target_r": 0.1376,
         "ghost_fires": 30,
-        "ghost_graded": 28,
-        "ghost_run_rate": 75.0,
+        "ghost_graded": 17,
+        "ghost_run_rate": 76.47,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 32.14
+        "ghost_target_hit_rate": 41.18
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -4372,7 +4372,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "decision_audit",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "decision_audit"
     },
@@ -4407,7 +4407,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "execution_truth",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "execution_truth"
     },
@@ -4417,13 +4417,6 @@
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
       "strategy_id": "gap_eat"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "gap_wall_roundtrip",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "MIXED",
-      "strategy_id": "gap_wall_roundtrip_shadow"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4699,14 +4692,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 27,
+    "block": 26,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 41,
     "permission_counts": {
-      "BLOCK": 27,
-      "TRACK_ONLY": 40
+      "BLOCK": 26,
+      "TRACK_ONLY": 41
     },
     "registry_overall": "WARN",
     "research_only": 0,
@@ -4721,7 +4714,7 @@
       "UNTAGGED": 26
     },
     "strategies": 67,
-    "track_only": 40,
+    "track_only": 41,
     "watch_only": 0
   },
   "trade_date": "2026-08-20"
