@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "INVALID_ENTRY_ORDERS",
+      "detail": "Working entry orders exist that are not currently allowed by the spine route contract.",
+      "examples": [
+        "CRCL#288:MISSING_ORDER_STRATEGY"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -15,8 +18,8 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-08-21T13:38:07+00:00",
-  "generated_at_et": "2026-08-21T09:38:07-04:00",
+  "generated_at": "2026-08-21T13:41:14+00:00",
+  "generated_at_et": "2026-08-21T09:41:14-04:00",
   "inputs": {
     "exit_intent_rows": 9,
     "order_strategy_rows": 4,
@@ -63,7 +66,7 @@
         "stop_price": 1.7976931348623157e+308,
         "symbol": "PURR",
         "tif": "DAY",
-        "trail_stop_price": 10.33,
+        "trail_stop_price": 10.43,
         "trailing_percent": 4.43,
         "transmit": true
       },
@@ -120,9 +123,105 @@
       "status": "PreSubmitted",
       "stop_price": 1.7976931348623157e+308,
       "symbol": "MARA"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "MISSING_ORDER_STRATEGY",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "UNKNOWN_ENTRY_LIKE",
+      "client_id": 29,
+      "detail": "entry-like working order has no order_strategy row",
+      "entry_strategy_id": null,
+      "exit_intent": null,
+      "exit_strategy_id": null,
+      "limit_price": 90.9,
+      "oca_group": "",
+      "order_id": "288",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": 0.0,
+      "quantity": 5.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 29,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 90.9,
+        "oca_group": "",
+        "order_id": 288,
+        "order_ref": "",
+        "order_type": "LMT",
+        "outside_rth": false,
+        "parent_id": 0,
+        "perm_id": 790098804,
+        "quantity": 5.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "CRCL",
+        "tif": "DAY",
+        "trail_stop_price": 91.9,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "FAIL",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "CRCL"
+    },
+    {
+      "action": "SELL",
+      "breach_code": "MISSING_EXIT_INTENT_FOR_CHILD",
+      "cancel_allowed": false,
+      "cancel_candidate": true,
+      "cancel_reason": "ORPHAN_CHILD_POSITION_FLAT",
+      "classification": "BRACKET_CHILD_UNMAPPED",
+      "client_id": 29,
+      "detail": "order has a broker parentId but no exit_intent row",
+      "entry_strategy_id": null,
+      "exit_intent": null,
+      "exit_strategy_id": null,
+      "limit_price": null,
+      "oca_group": "790098804",
+      "order_id": "289",
+      "order_type": "TRAIL",
+      "parent_id": "288",
+      "position_qty": 0.0,
+      "quantity": 5.0,
+      "raw": {
+        "action": "SELL",
+        "client_id": 29,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 0.0,
+        "oca_group": "790098804",
+        "order_id": 289,
+        "order_ref": "",
+        "order_type": "TRAIL",
+        "outside_rth": false,
+        "parent_id": 288,
+        "perm_id": 790098805,
+        "quantity": 5.0,
+        "sec_type": "STK",
+        "status": "PreSubmitted",
+        "stop_price": 1.7976931348623157e+308,
+        "symbol": "CRCL",
+        "tif": "DAY",
+        "trail_stop_price": 1.7976931348623157e+308,
+        "trailing_percent": 2.9,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "FAIL",
+      "status": "PreSubmitted",
+      "stop_price": 1.7976931348623157e+308,
+      "symbol": "CRCL"
     }
   ],
-  "operator_read": "Order safety is FAIL: one or more live-order contract breaches. Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 1 invalid entry order(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
@@ -138,7 +237,7 @@
         "position_quantity": 41.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 12.124393243902439,
+      "avg_cost": 12.12439325,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -166,7 +265,7 @@
         "position_quantity": 45.0,
         "schema": "fem_ah_exit_contract.v1"
       },
-      "avg_cost": 10.792225222222221,
+      "avg_cost": 10.7922252,
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
@@ -187,15 +286,16 @@
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "MISSING_EXIT_INTENT_FOR_CHILD": 2
+      "MISSING_EXIT_INTENT_FOR_CHILD": 3,
+      "MISSING_ORDER_STRATEGY": 1
     },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
-    "invalid_entry_like_orders": 0,
-    "open_orders": 2,
-    "order_fail": 2,
+    "invalid_entry_like_orders": 1,
+    "open_orders": 4,
+    "order_fail": 4,
     "order_ok": 0,
     "order_warn": 0,
     "orphan_exit_orders": 0,
