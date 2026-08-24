@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.04300546646118164,
+    "age_sec": 0.07299661636352539,
     "alist_fillable_count": 2,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 2,
@@ -16,6 +16,13 @@
   },
   "blockers": [
     {
+      "action": "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "code": "LIVE_READINESS_BLOCKED",
+      "impact": "FEM may be alive but unable to trade valid scalps.",
+      "message": "Live readiness is blocked.",
+      "severity": "CRITICAL"
+    },
+    {
       "action": "Open fem_watchdog_status.json and resolve the critical alert.",
       "code": "WATCHDOG_CRITICAL",
       "impact": "A money-readiness condition is failing.",
@@ -23,24 +30,31 @@
       "severity": "CRITICAL"
     },
     {
-      "action": "Start the scheduled bot handoff or trade bot.",
-      "code": "TRIGGER_BOT_NOT_VISIBLE",
-      "impact": "FEM cannot enter/manage intended scalps.",
-      "message": "No trigger bot process is visible during a trading session.",
+      "action": "Run morning health/scanner check.",
+      "code": "MORNING_SCANS_NOT_CONFIRMED",
+      "impact": "Universe may be stale or incomplete.",
+      "message": "Morning scanner/TWS health is not confirmed OK.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Refresh short scan before relying on trading.",
+      "code": "SHORT_SCAN_NOT_CURRENT",
+      "impact": "Short opportunities may be invisible.",
+      "message": "Short watchlist is empty or not current.",
       "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 14.675556182861328,
+    "age_sec": 314.8935935497284,
     "alive": true,
-    "generated_at": "2026-08-24T06:18:02",
+    "generated_at": "2026-08-24T06:25:13",
     "mode": "TRIGGER_LIVE",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 0.9420013427734375,
+    "age_sec": 1.993680477142334,
     "connected": true,
-    "generated_at": "2026-08-24T13:18:15+00:00",
+    "generated_at": "2026-08-24T13:30:27+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -52,8 +66,8 @@
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-08-24T13:18:17+00:00",
-  "generated_at_et": "2026-08-24T09:18:14-04:00",
+  "generated_at": "2026-08-24T13:30:31+00:00",
+  "generated_at_et": "2026-08-24T09:30:25-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -64,20 +78,21 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.18099594116210938,
-    "fail": 0,
-    "generated_at": "2026-08-24T13:18:16+00:00",
-    "live_ready": true,
+    "age_sec": 0.31600046157836914,
+    "fail": 2,
+    "generated_at": "2026-08-24T13:30:28+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
     ],
-    "overall": "WARN",
-    "session": "pre",
+    "overall": "FAIL",
+    "session": "rth",
     "warn": 2
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 23.247173309326172,
+    "age_sec": 22.435263872146606,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-08-24",
@@ -123,7 +138,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=pre ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=5/2/2\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nNEXT: Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -142,7 +157,7 @@
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "08/24/2026 06:17:17",
+        "last_run_time": "08/24/2026 06:30:30",
         "last_task_result": 0,
         "next_run_time": "08/25/2026 06:17:17",
         "state": "Ready",
@@ -174,7 +189,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 23.35417675971985,
+    "age_sec": 755.8638391494751,
     "overall": "WARN",
     "rankings_count": 25,
     "refresh_error": null,
@@ -191,12 +206,8 @@
       "UNKNOWN"
     ]
   },
-  "session": "pre",
+  "session": "rth",
   "state": "NOT_TRADE_READY",
-  "telegram": {
-    "enabled": false,
-    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
-  },
   "title": "FEM Blocked",
   "trade_ready": false,
   "watch_items": [
@@ -223,8 +234,8 @@
     }
   ],
   "watchdog": {
-    "age_sec": 62.14722990989685,
-    "bot_mode": "TRIGGER_DONE",
+    "age_sec": 48.87727475166321,
+    "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
@@ -238,6 +249,6 @@
     "rth_handoff_status": "OK",
     "short_watchlist_count": 67,
     "short_watchlist_is_today": false,
-    "trigger_process_count": 0
+    "trigger_process_count": 1
   }
 }
