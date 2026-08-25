@@ -17,18 +17,29 @@
     "0Y_CONTRACT_SCORE_PARTITIONS.bat",
     "0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat"
   ],
-  "code_version": "ea663c15",
-  "generated_at": "2026-08-22T00:39:38+00:00",
-  "generated_at_et": "2026-08-21T20:39:38-04:00",
+  "code_version": "ab2d7fc8",
+  "generated_at": "2026-08-25T00:42:47+00:00",
+  "generated_at_et": "2026-08-24T20:42:47-04:00",
   "manual_blockers": [
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": false,
+      "check_ids": [
+        "runtime_drift_restart_required"
+      ],
+      "group_id": "restart_stale_runtime",
+      "recovery_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "severity": "FAIL",
+      "title": "Restart stale live windows"
+    },
     {
       "blocks_live_trust": true,
       "blocks_normal_learning": true,
       "check_ids": [
         "contract_dashboard",
         "contract_breaks",
+        "panel_score",
         "contract_accountability",
-        "contract_source_refresh",
         "contract_fill_reconcile",
         "contract_exit_reconcile",
         "contract_ghost_ledger",
@@ -39,6 +50,7 @@
         "contract_session_context",
         "contract_score_provenance",
         "contract_score_partitions",
+        "contract_score_consumer_lock",
         "contract_latency_audit",
         "contract_order_sizing_audit",
         "contract_order_permission_audit",
@@ -46,18 +58,19 @@
         "contract_evidence_cleanliness",
         "contract_realized_result",
         "contract_exit_rules_learning",
+        "contract_strategy_resolver",
         "contract_strategy_backfill",
         "contract_strategy_enforcement",
         "contract_daily_certification",
         "contract_promotion_gate",
         "contract_live_trust_recovery",
         "contract_live_trust_executor",
+        "contract_ai_learning_layer",
         "contract_auction_truth_shadow",
         "contract_break_ledger_stale",
         "panel_registry_contracts",
         "realized_result_tape_missing",
         "decision_obligation_failures",
-        "live_readiness_warn",
         "bot_gate_failures",
         "evidence_cleanliness_failed",
         "exit_rules_learning_pressure"
@@ -73,6 +86,21 @@
   "overall": "WARN",
   "post_refresh": [],
   "results": [
+    {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "executed": false,
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "status": "READY",
+      "title": "Restore live readiness",
+      "valid": true
+    },
     {
       "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
       "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
@@ -227,6 +255,19 @@
   "schema": "fem_contract_live_trust_executor.v1",
   "selected_steps": [
     {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "title": "Restore live readiness",
+      "valid": true
+    },
+    {
       "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
       "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
       "command_text": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
@@ -364,18 +405,19 @@
     "groups": [
       "clean_route_policy_permissions",
       "repair_real_time_decision_accounting",
+      "restore_live_readiness",
       "restore_normal_evidence_profile"
     ],
-    "hard_manual_blockers": 1,
+    "hard_manual_blockers": 2,
     "invalid_steps": 0,
-    "manual_blockers": 1,
+    "manual_blockers": 2,
     "post_refresh_steps": 0,
-    "ready_steps": 10,
-    "recovery_generated_at": "2026-08-22T00:39:38.582654+00:00",
-    "recovery_groups": 4,
+    "ready_steps": 11,
+    "recovery_generated_at": "2026-08-25T00:42:47.303221+00:00",
+    "recovery_groups": 6,
     "recovery_overall": "FAIL",
-    "selected_steps": 10,
-    "total_auto_steps": 10
+    "selected_steps": 11,
+    "total_auto_steps": 11
   },
-  "trade_date": "2026-08-21"
+  "trade_date": "2026-08-24"
 }
