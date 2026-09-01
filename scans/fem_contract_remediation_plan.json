@@ -13,18 +13,16 @@
       "reason": "Clean invalid route-policy overrides"
     }
   ],
-  "code_version": "unknown",
+  "code_version": "6ea3195e",
   "execution_order": [
     "repair_contract_breaks",
     "repair_decision_accounting",
-    "restore_bot_enforcement",
     "keep_evidence_quarantined",
     "clean_route_policy",
-    "review_skipped_opportunities",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-07-28T03:07:06+00:00",
-  "generated_at_et": "2026-07-27T23:07:06-04:00",
+  "generated_at": "2026-09-01T01:16:19+00:00",
+  "generated_at_et": "2026-08-31T21:16:19-04:00",
   "groups": [
     {
       "batch_path": null,
@@ -38,8 +36,8 @@
       ],
       "command": null,
       "evidence": [
-        "12 ERROR breach(es) in current validator output",
-        "6 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19"
+        "9 ERROR breach(es) in current validator output",
+        "1 active panel registry failure(s)"
       ],
       "evidence_count": 2,
       "group_id": "repair_contract_breaks",
@@ -62,9 +60,9 @@
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "evidence": [
-        "224 unaccounted pick group(s); raw unaccounted picks=224",
-        "243 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "missed=10481, no_decision=224, slow_decisions=1725, slow_orders=11, order_after_peak=4"
+        "3 unaccounted pick group(s); raw unaccounted picks=3",
+        "206 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "missed=2313, no_decision=3, slow_decisions=4666, slow_orders=7, order_after_peak=0"
       ],
       "evidence_count": 3,
       "group_id": "repair_decision_accounting",
@@ -73,28 +71,6 @@
       "root_cause": "Backfilled or inferred decisions are useful for study, but they are not the same as a live contract link.",
       "severity": "WARN",
       "title": "Make picks produce explicit bot accounting in real time"
-    },
-    {
-      "batch_path": null,
-      "blocks_live_trading": true,
-      "blocks_normal_scoring": true,
-      "can_auto_run": false,
-      "category": "BOT_GATES",
-      "check_ids": [
-        "bot_gate_enforcement_disabled"
-      ],
-      "command": null,
-      "evidence": [
-        "active_entry_enforcement=False, permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
-        "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False"
-      ],
-      "evidence_count": 2,
-      "group_id": "restore_bot_enforcement",
-      "next_action": "Turn enforcement switches back on when the experiment is over: TRADE_PERMISSION_ENFORCE, CONTRACT_HEALTH_ENFORCE, and TRADE_PERMISSION_BLOCK_UNKNOWN.",
-      "priority": 45,
-      "root_cause": "Orders placed while enforcement switches are off are experiment evidence by definition.",
-      "severity": "WARN",
-      "title": "Restore bot permission enforcement before normal scoring"
     },
     {
       "batch_path": null,
@@ -107,25 +83,24 @@
         "score_provenance_quarantine",
         "score_partitions_no_normal",
         "score_consumer_lock_active",
-        "order_permission_pre_lock_review",
-        "evidence_cleanliness_quarantine"
+        "order_permission_pre_lock_review"
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=80bb6496cdd03542",
-        "partition=EXPERIMENT, actual_trades=165, ghost_graded=159328, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "experiment/review evidence=159493, experiment_strategies=42, review_strategies=0",
-        "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=42, review=0",
-        "165 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
-        "partition=EXPERIMENT, normal_blockers=8, review_flags=1, actual_trades=165",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=872ef7dacbf3c46e",
+        "partition=EXPERIMENT, actual_trades=55, ghost_graded=174667, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "experiment/review evidence=174722, experiment_strategies=40, review_strategies=0",
+        "67 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
+        "55 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=159493, review=0",
-        "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=27, track_only=39",
-        "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL"
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=174722, review=0",
+        "SCORE_CONSUMER_LOCK_ACTIVE: 67 score-consuming route(s) are locked to research/display and no normal score routes are available",
+        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=31, track_only=36",
+        "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
+        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 55 historical order(s) predate the current permission lock and would be blocked or track-only now"
       ],
-      "evidence_count": 13,
+      "evidence_count": 12,
       "group_id": "keep_evidence_quarantined",
       "next_action": "Use the experiment leaderboard for research only; wait for a clean NORMAL session before promoting routes.",
       "priority": 50,
@@ -144,7 +119,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "27 strategy permission(s) are blocked by contract failures",
+        "31 strategy permission(s) are blocked by contract failures",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
       "evidence_count": 2,
@@ -160,38 +135,21 @@
       "blocks_live_trading": false,
       "blocks_normal_scoring": false,
       "can_auto_run": false,
-      "category": "RESEARCH",
-      "check_ids": [
-        "ghost_ledger_opportunities"
-      ],
-      "command": null,
-      "evidence": [
-        "1 skipped/ghost group(s) show positive forward evidence"
-      ],
-      "evidence_count": 1,
-      "group_id": "review_skipped_opportunities",
-      "next_action": "After the contract pipeline is fresh, inspect fem_contract_ghost_ledger.json opportunity groups.",
-      "priority": 70,
-      "root_cause": "Positive ghost evidence matters, but only after freshness, runtime, and scoring partitions are clean.",
-      "severity": "WARN",
-      "title": "Review skipped opportunities after plumbing is fresh"
-    },
-    {
-      "batch_path": null,
-      "blocks_live_trading": false,
-      "blocks_normal_scoring": false,
-      "can_auto_run": false,
       "category": "MISC",
       "check_ids": [
         "realized_result_tape_missing",
+        "bot_gate_failures",
+        "evidence_cleanliness_failed",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
-        "4 closed trade(s) could not be graded from post-exit minute bars",
+        "1 closed trade(s) could not be graded from post-exit minute bars",
+        "1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
+        "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "13 high-pressure exit rule group(s) need review"
       ],
-      "evidence_count": 2,
+      "evidence_count": 4,
       "group_id": "misc_contract_followup",
       "next_action": "Inspect fem_contract_health.json for remaining checks.",
       "priority": 90,
@@ -212,8 +170,8 @@
     ],
     "command": null,
     "evidence": [
-      "12 ERROR breach(es) in current validator output",
-      "6 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19"
+      "9 ERROR breach(es) in current validator output",
+      "1 active panel registry failure(s)"
     ],
     "evidence_count": 2,
     "group_id": "repair_contract_breaks",
@@ -229,16 +187,16 @@
   "session": "closed",
   "summary": {
     "auto_runnable": 2,
-    "blocks_live_trading": 2,
-    "blocks_normal_scoring": 5,
-    "evidence_overall": "WARN",
-    "evidence_partition": "EXPERIMENT",
+    "blocks_live_trading": 1,
+    "blocks_normal_scoring": 4,
+    "evidence_overall": "FAIL",
+    "evidence_partition": "UNTAGGED",
     "fail_groups": 1,
-    "groups": 7,
+    "groups": 5,
     "health_overall": "FAIL",
-    "manual": 5,
+    "manual": 3,
     "normal_evidence_allowed": false,
-    "warn_groups": 6
+    "warn_groups": 4
   },
-  "trade_date": "2026-07-27"
+  "trade_date": "2026-08-31"
 }
