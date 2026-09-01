@@ -2,8 +2,8 @@
   "bot_status": {
     "available": true,
     "broker_open_orders": 0,
-    "generated_at": "2026-09-01T04:07:16",
-    "mode": "TRIGGER_LIVE",
+    "generated_at": "2026-09-01T04:45:29",
+    "mode": "HALTED_SENSOR",
     "n_positions": 0,
     "position_source": "broker_reconcile",
     "positions_count": 0,
@@ -13,7 +13,7 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-09-01T11:08:23+00:00",
+    "generated_at": "2026-09-01T12:30:20+00:00",
     "open_orders": 0,
     "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
     "overall": "OK",
@@ -57,40 +57,40 @@
       "status": "OK"
     },
     {
-      "age_seconds": 38,
+      "age_seconds": 12,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-09-01T11:07:46+00:00",
+      "mtime_utc": "2026-09-01T12:30:08+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 202139,
+      "size_bytes": 366495,
       "status": "OK"
     },
     {
-      "age_seconds": 22,
+      "age_seconds": 3,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-09-01T11:08:03+00:00",
+      "mtime_utc": "2026-09-01T12:30:17+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 2249,
+      "size_bytes": 2248,
       "status": "OK"
     },
     {
-      "age_seconds": 68,
-      "detail": "fresh",
+      "age_seconds": 2691,
+      "detail": "stale: 2691s old, limit 240s",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-09-01T11:07:17+00:00",
+      "mtime_utc": "2026-09-01T11:45:29+00:00",
       "path": "fem_bot_status.json",
       "required": true,
       "schema": null,
-      "size_bytes": 10460,
-      "status": "OK"
+      "size_bytes": 11217,
+      "status": "FAIL"
     },
     {
       "detail": "missing",
@@ -109,36 +109,24 @@
       "status": "WARN"
     },
     {
-      "age_seconds": 0,
+      "age_seconds": 62,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-09-01T11:08:25+00:00",
+      "mtime_utc": "2026-09-01T12:29:19+00:00",
       "path": "_DAILY\\contract_events_2026-09-01.jsonl",
       "required": false,
-      "size_bytes": 317154029,
+      "size_bytes": 358845975,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-09-01T11:08:25+00:00",
-  "generated_at_et": "2026-09-01T07:08:25-04:00",
+  "generated_at": "2026-09-01T12:30:21+00:00",
+  "generated_at_et": "2026-09-01T08:30:21-04:00",
   "next_actions": [
-    "Live readiness blockers are clear."
+    "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
   ],
-  "overall": "WARN",
+  "overall": "FAIL",
   "processes": [
-    {
-      "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
-      "creation_date": "2026-09-01T01:05:16.3196660-07:00",
-      "name": "py.exe",
-      "process_id": 12804
-    },
-    {
-      "command_line": "\"C:\\Program Files\\Python312\\python.exe\" fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
-      "creation_date": "2026-09-01T01:05:16.3335220-07:00",
-      "name": "python.exe",
-      "process_id": 14012
-    },
     {
       "command_line": "C:\\Windows\\system32\\cmd.exe /c C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat",
       "creation_date": "2026-09-01T01:05:27.7527730-07:00",
@@ -204,17 +192,29 @@
       "creation_date": "2026-09-01T04:04:24.1121660-07:00",
       "name": "python.exe",
       "process_id": 8320
+    },
+    {
+      "command_line": "py  -3.12 fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
+      "creation_date": "2026-09-01T04:37:14.0784060-07:00",
+      "name": "py.exe",
+      "process_id": 15088
+    },
+    {
+      "command_line": "\"C:\\Program Files\\Python312\\python.exe\" fem_auto_trade.py --mode trigger --port 7497 --until 09:15",
+      "creation_date": "2026-09-01T04:37:14.0897100-07:00",
+      "name": "python.exe",
+      "process_id": 8336
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
   "session": "pre",
   "summary": {
     "checks": 9,
-    "fail": 0,
-    "live_ready": true,
-    "ok": 7,
+    "fail": 1,
+    "live_ready": false,
+    "ok": 6,
     "warn": 2,
-    "warning_only": true
+    "warning_only": false
   },
   "trade_date": "2026-09-01"
 }
