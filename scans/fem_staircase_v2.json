@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-08-31T08:32:39-04:00",
+ "generated_at": "2026-08-31T21:25:37-04:00",
  "trade_date": "2026-08-31",
  "staircase_source": "fem_gap_eat_staircase_long.json",
  "staircase_is_today": false,
@@ -13,19 +13,20 @@
  },
  "spec": "eat -> accept x2(10m) -> road>=2% -> vol>=1.5x -> rsi>55 rising + ema23 -> fresh floors below",
  "counts": {
-  "CLEAR_AIR_GAP_BUILD_WATCH": 4,
-  "WATCHING": 24,
+  "CLEAR_AIR_GAP_BUILD_WATCH": 3,
+  "WATCHING": 26,
   "NO_BARS": 1,
-  "ACCEPTED_WAITING": 10,
+  "ACCEPTED_WAITING": 8,
+  "NO_GAP_MAP": 1,
   "EATEN": 1
  },
  "condition_blockers": {
-  "1_eaten": 24,
-  "2_accepted": 25,
-  "6_floors": 31,
-  "4_volume": 25,
+  "1_eaten": 26,
+  "2_accepted": 27,
+  "6_floors": 28,
+  "4_volume": 23,
   "5_momentum": 30,
-  "3_road": 18
+  "3_road": 19
  },
  "rows": [
   {
@@ -1617,7 +1618,7 @@
     "3_road": false,
     "4_volume": true,
     "5_momentum": false,
-    "6_floors": false
+    "6_floors": true
    },
    "state": "ACCEPTED_WAITING",
    "plan": null,
@@ -1742,238 +1743,37 @@
    "road_pct": 1.29,
    "relvol": 3.76,
    "rsi": 45.2,
-   "floors": [],
+   "floors": [
+    {
+     "tf": "5m",
+     "top": 8.595,
+     "bottom": 8.59,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 8.6,
+     "bottom": 8.595,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 8.605,
+     "bottom": 8.599,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 8.615,
+     "bottom": 8.605,
+     "weight": 1
+    }
+   ],
    "blockers": [
     "3_road",
-    "5_momentum",
-    "6_floors"
+    "5_momentum"
    ],
-   "conditions_met": 3
-  },
-  {
-   "ticker": "SYRE",
-   "score": 100,
-   "gap_top": null,
-   "conditions": {
-    "1_no_mapped_overhead": true,
-    "2_mustard_gap_synthesis": true,
-    "3_bull_shelves_below": true
-   },
-   "state": "CLEAR_AIR_GAP_BUILD_WATCH",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "BEAR_GAP_EATEN_15M_VOLUME",
-    "large_bear_gap": {
-     "bottom": 91.5,
-     "top": 93.615,
-     "timeframe": "15m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 1.35,
-     "tick_width": 212.0,
-     "genesis_rank_pct": 0.246,
-     "creation_vol": 740.713983,
-     "conviction_tier": "VACUUM"
-    },
-    "last_15m": {
-     "close": 94.21,
-     "high": 94.66,
-     "low": 93.56,
-     "volume": 73330.96,
-     "relvol_20": 1.7,
-     "volume_ok": true,
-     "entered_from_below": false,
-     "closed_inside_gap": false,
-     "closed_above_gap": true
-    },
-    "research_only": true,
-    "live_behavior_changed": false,
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "10m": 4,
-      "15m": 3,
-      "1h": 1,
-      "1m": 2,
-      "30m": 2,
-      "45m": 2,
-      "5m": 4,
-      "daily": 2
-     }
-    },
-    "bull_gap_build_15m_below": {
-     "checked": true,
-     "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-     "count_15m_bull_gaps_below": 0,
-     "high_volume_count": 0,
-     "top_15m_bull_gaps_below": [],
-     "coverage": {
-      "state_timeframes": [
-       "weekly",
-       "daily",
-       "4h",
-       "1h",
-       "45m",
-       "30m",
-       "15m",
-       "10m",
-       "5m",
-       "1m"
-      ],
-      "missing_required_timeframes": [
-       "2h"
-      ],
-      "support_by_tf": {
-       "1h": 3,
-       "1m": 1,
-       "30m": 4,
-       "45m": 4,
-       "daily": 3,
-       "weekly": 2
-      }
-     },
-     "research_only": true,
-     "live_behavior_changed": false,
-     "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
-    },
-    "operator_note": "large bearish overhead gap is being accepted/eaten on a 15m close with volume"
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
-    "symbol": "SYRE",
-    "channel": {
-     "available": true,
-     "direction": "ASC",
-     "timeframe": "4h",
-     "position": "OUTSIDE_DOWN",
-     "lower_rail_now": 113.77,
-     "upper_rail_now": 118.68,
-     "rail_width": 4.91,
-     "score": 64.88
-    },
-    "bear_gap_transfer_15m_state": "BEAR_GAP_EATEN_15M_VOLUME",
-    "large_bear_gap": {
-     "bottom": 91.5,
-     "top": 93.615,
-     "timeframe": "15m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 1.35,
-     "tick_width": 212.0,
-     "genesis_rank_pct": 0.246,
-     "creation_vol": 740.713983,
-     "conviction_tier": "VACUUM"
-    },
-    "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-    "bull_15m_floor_count": 0,
-    "high_volume_15m_floor_count": 0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-08-28",
-     "contract_generated_at": "2026-08-28T21:47:24-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "mustard_gap_synthesis": {
-    "blockers": [
-     "mustard_parent_shelf_missing"
-    ],
-    "mustard": {
-     "last_price": 96.88,
-     "parent_gap": {
-      "hi": null,
-      "lo": null,
-      "tf": null
-     },
-     "score": 0.0,
-     "setup_class": "NO_PARENT_EDGE",
-     "timeframe": "15m",
-     "trade_geometry": {
-      "entry": 96.88,
-      "stop": 88.1694,
-      "target": 98.0426
-     },
-     "verdict": "AVOID_STALLED_RETEST"
-    },
-    "mustard_x_future_read": {
-     "active_overhead_gap": null,
-     "bull_gaps_built": 56.0,
-     "confidence": "LOW",
-     "future_mustard_x_zone": {
-      "bottom": 86.63,
-      "bullish": true,
-      "creation_vol": 6138522.098972,
-      "genesis_rank_pct": 0.968,
-      "label": "gap_timeframe_parent_support",
-      "magnet_score": 504.29,
-      "mid": 86.95,
-      "tick_width": 65.0,
-      "timeframe": "weekly",
-      "top": 87.27,
-      "type": "vi",
-      "watch_rule": "future Mustard X is a sweep/reject/reclaim around this support shelf; first touch is data, reclaimed touch on volume is the cleaner long"
-     },
-     "live_behavior_changed": false,
-     "mode": "OPEN_OR_UNKNOWN_ROAD",
-     "operator_note": "no red-gap transfer/rejection read strong enough from current inputs",
-     "overhead_distance_pct": null,
-     "price": 98.0,
-     "research_only": true,
-     "road_quality": "REAL_CLEAR_HIGHWAY_NO_MAPPED_OVERHEAD",
-     "support_stack_depth": 20.0
-    },
-    "original_gap_trade_candidate": false,
-    "panel_id": "mustard_gap_synthesis",
-    "reasons": [
-     "deep_bull_gap_shelf_stack",
-     "many_bull_gaps_built_below",
-     "no_mapped_overhead_clear_air",
-     "walker_conditions_partial"
-    ],
-    "synthesis_score": 52,
-    "walker_priority": "WALK_WATCH"
-   },
-   "synthesis_forced_walk": true,
-   "blockers": [],
-   "conditions_met": 3,
-   "road_quality": "REAL_CLEAR_HIGHWAY_NO_MAPPED_OVERHEAD",
-   "bull_gaps_built": 56.0,
-   "support_stack_depth": 20.0
+   "conditions_met": 4
   },
   {
    "ticker": "TBLA",
@@ -2390,17 +2190,10 @@
   },
   {
    "ticker": "PD",
-   "score": 45,
-   "gap_top": 10.465,
-   "conditions": {
-    "1_eaten": true,
-    "2_accepted": true,
-    "3_road": false,
-    "4_volume": false,
-    "5_momentum": false,
-    "6_floors": false
-   },
-   "state": "ACCEPTED_WAITING",
+   "score": 53,
+   "gap_top": null,
+   "conditions": {},
+   "state": "NO_GAP_MAP",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
@@ -2421,13 +2214,13 @@
     "symbol": "PD",
     "channel": {
      "available": true,
-     "direction": "ASC",
-     "timeframe": "15m",
-     "position": "AT_UPPER",
-     "lower_rail_now": 10.33,
-     "upper_rail_now": 10.5,
+     "direction": null,
+     "timeframe": null,
+     "position": null,
+     "lower_rail_now": null,
+     "upper_rail_now": null,
      "rail_width": null,
-     "score": 66.68
+     "score": null
     },
     "bear_gap_transfer_15m_state": "INSUFFICIENT_GAP_CONTRACT_COVERAGE",
     "large_bear_gap": null,
@@ -2519,18 +2312,242 @@
     "synthesis_score": 52,
     "walker_priority": "WALK_WATCH"
    },
+   "synthesis_forced_walk": true
+  },
+  {
+   "ticker": "SYRE",
+   "score": 10,
+   "gap_top": 107.2,
+   "conditions": {
+    "1_eaten": false,
+    "2_accepted": false,
+    "3_road": false,
+    "4_volume": true,
+    "5_momentum": false,
+    "6_floors": false
+   },
+   "state": "WATCHING",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
+    "state": "BEAR_GAP_EATEN_15M_VOLUME",
+    "large_bear_gap": {
+     "bottom": 91.5,
+     "top": 93.615,
+     "timeframe": "15m",
+     "type": "gap",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 1.35,
+     "tick_width": 212.0,
+     "genesis_rank_pct": 0.246,
+     "creation_vol": 740.713983,
+     "conviction_tier": "VACUUM"
+    },
+    "last_15m": {
+     "close": 94.21,
+     "high": 94.66,
+     "low": 93.56,
+     "volume": 73330.96,
+     "relvol_20": 1.7,
+     "volume_ok": true,
+     "entered_from_below": false,
+     "closed_inside_gap": false,
+     "closed_above_gap": true
+    },
+    "research_only": true,
+    "live_behavior_changed": false,
+    "coverage": {
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "overhead_by_tf": {
+      "10m": 4,
+      "15m": 3,
+      "1h": 1,
+      "1m": 2,
+      "30m": 2,
+      "45m": 2,
+      "5m": 4,
+      "daily": 2
+     }
+    },
+    "bull_gap_build_15m_below": {
+     "checked": true,
+     "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+     "count_15m_bull_gaps_below": 0,
+     "high_volume_count": 0,
+     "top_15m_bull_gaps_below": [],
+     "coverage": {
+      "state_timeframes": [
+       "weekly",
+       "daily",
+       "4h",
+       "1h",
+       "45m",
+       "30m",
+       "15m",
+       "10m",
+       "5m",
+       "1m"
+      ],
+      "missing_required_timeframes": [
+       "2h"
+      ],
+      "support_by_tf": {
+       "1h": 3,
+       "1m": 1,
+       "30m": 4,
+       "45m": 4,
+       "daily": 3,
+       "weekly": 2
+      }
+     },
+     "research_only": true,
+     "live_behavior_changed": false,
+     "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
+    },
+    "operator_note": "large bearish overhead gap is being accepted/eaten on a 15m close with volume"
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
+    "symbol": "SYRE",
+    "channel": {
+     "available": true,
+     "direction": "ASC",
+     "timeframe": "4h",
+     "position": "OUTSIDE_DOWN",
+     "lower_rail_now": 113.77,
+     "upper_rail_now": 118.68,
+     "rail_width": 4.91,
+     "score": 64.88
+    },
+    "bear_gap_transfer_15m_state": "BEAR_GAP_EATEN_15M_VOLUME",
+    "large_bear_gap": {
+     "bottom": 91.5,
+     "top": 93.615,
+     "timeframe": "15m",
+     "type": "gap",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 1.35,
+     "tick_width": 212.0,
+     "genesis_rank_pct": 0.246,
+     "creation_vol": 740.713983,
+     "conviction_tier": "VACUUM"
+    },
+    "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+    "bull_15m_floor_count": 0,
+    "high_volume_15m_floor_count": 0,
+    "coverage": {
+     "contract_symbol_present": true,
+     "contract_date": "2026-08-28",
+     "contract_generated_at": "2026-08-28T21:47:24-04:00",
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "live_tracks_all_research_timeframes": false
+    },
+    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   },
+   "mustard_gap_synthesis": {
+    "blockers": [
+     "mustard_parent_shelf_missing"
+    ],
+    "mustard": {
+     "last_price": 96.88,
+     "parent_gap": {
+      "hi": null,
+      "lo": null,
+      "tf": null
+     },
+     "score": 0.0,
+     "setup_class": "NO_PARENT_EDGE",
+     "timeframe": "15m",
+     "trade_geometry": {
+      "entry": 96.88,
+      "stop": 88.1694,
+      "target": 98.0426
+     },
+     "verdict": "AVOID_STALLED_RETEST"
+    },
+    "mustard_x_future_read": {
+     "active_overhead_gap": null,
+     "bull_gaps_built": 56.0,
+     "confidence": "LOW",
+     "future_mustard_x_zone": {
+      "bottom": 86.63,
+      "bullish": true,
+      "creation_vol": 6138522.098972,
+      "genesis_rank_pct": 0.968,
+      "label": "gap_timeframe_parent_support",
+      "magnet_score": 504.29,
+      "mid": 86.95,
+      "tick_width": 65.0,
+      "timeframe": "weekly",
+      "top": 87.27,
+      "type": "vi",
+      "watch_rule": "future Mustard X is a sweep/reject/reclaim around this support shelf; first touch is data, reclaimed touch on volume is the cleaner long"
+     },
+     "live_behavior_changed": false,
+     "mode": "OPEN_OR_UNKNOWN_ROAD",
+     "operator_note": "no red-gap transfer/rejection read strong enough from current inputs",
+     "overhead_distance_pct": null,
+     "price": 98.0,
+     "research_only": true,
+     "road_quality": "REAL_CLEAR_HIGHWAY_NO_MAPPED_OVERHEAD",
+     "support_stack_depth": 20.0
+    },
+    "original_gap_trade_candidate": false,
+    "panel_id": "mustard_gap_synthesis",
+    "reasons": [
+     "deep_bull_gap_shelf_stack",
+     "many_bull_gaps_built_below",
+     "no_mapped_overhead_clear_air",
+     "walker_conditions_partial"
+    ],
+    "synthesis_score": 52,
+    "walker_priority": "WALK_WATCH"
+   },
    "synthesis_forced_walk": true,
-   "road_pct": 0.57,
-   "relvol": 0.67,
-   "rsi": 48.7,
+   "road_pct": 1.03,
+   "relvol": 2.18,
+   "rsi": 46.6,
    "floors": [],
    "blockers": [
+    "1_eaten",
+    "2_accepted",
     "3_road",
-    "4_volume",
     "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 2
+   "conditions_met": 1
   },
   {
    "ticker": "TGTX",
@@ -2947,7 +2964,7 @@
     "3_road": false,
     "4_volume": false,
     "5_momentum": false,
-    "6_floors": false
+    "6_floors": true
    },
    "state": "ACCEPTED_WAITING",
    "plan": null,
@@ -3226,14 +3243,315 @@
    "road_pct": 0.58,
    "relvol": 0.54,
    "rsi": 55.6,
-   "floors": [],
+   "floors": [
+    {
+     "tf": "5m",
+     "top": 159.35,
+     "bottom": 159.2,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 159.77,
+     "bottom": 159.62,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 157.805,
+     "bottom": 157.58,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 158.76,
+     "bottom": 157.8,
+     "weight": 1
+    }
+   ],
    "blockers": [
     "3_road",
+    "4_volume",
+    "5_momentum"
+   ],
+   "conditions_met": 3
+  },
+  {
+   "ticker": "PTRN",
+   "score": 85,
+   "gap_top": 29.62,
+   "conditions": {
+    "1_eaten": false,
+    "2_accepted": false,
+    "3_road": true,
+    "4_volume": false,
+    "5_momentum": false,
+    "6_floors": false
+   },
+   "state": "WATCHING",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
+    "state": "BELOW_LARGE_BEAR_GAP",
+    "research_only": true,
+    "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 29.424,
+      "top": 29.62,
+      "timeframe": "1m",
+      "type": "gap",
+      "source_key": "nearest_overhead",
+      "distance_pct": 0.42,
+      "tick_width": 20.0,
+      "genesis_rank_pct": 0.313,
+      "creation_vol": 1000.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 21.825,
+      "top": 21.93,
+      "timeframe": "5m",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 0.81,
+      "tick_width": 11.0,
+      "genesis_rank_pct": 0.579,
+      "creation_vol": 32015.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 22.49,
+      "top": 23.63,
+      "timeframe": "daily",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 3.88,
+      "tick_width": 115.0,
+      "genesis_rank_pct": 1.0,
+      "creation_vol": 3316671.208846,
+      "conviction_tier": "CONVICTION"
+     }
+    ],
+    "coverage": {
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "overhead_by_tf": {
+      "10m": 2,
+      "15m": 2,
+      "1h": 1,
+      "1m": 10,
+      "30m": 1,
+      "45m": 1,
+      "5m": 2,
+      "daily": 1
+     }
+    },
+    "bull_gap_build_15m_below": {
+     "checked": true,
+     "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+     "count_15m_bull_gaps_below": 1,
+     "high_volume_count": 0,
+     "top_15m_bull_gaps_below": [
+      {
+       "bottom": 20.87,
+       "top": 21.06,
+       "timeframe": "15m",
+       "type": "gap",
+       "source_key": null,
+       "distance_pct": 2.73,
+       "tick_width": 19.0,
+       "genesis_rank_pct": 0.158,
+       "creation_vol": 199.0,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      }
+     ],
+     "coverage": {
+      "state_timeframes": [
+       "weekly",
+       "daily",
+       "4h",
+       "1h",
+       "45m",
+       "30m",
+       "15m",
+       "10m",
+       "5m",
+       "1m"
+      ],
+      "missing_required_timeframes": [
+       "2h"
+      ],
+      "support_by_tf": {
+       "10m": 2,
+       "15m": 2,
+       "1h": 1,
+       "1m": 4,
+       "30m": 2,
+       "45m": 2,
+       "5m": 3,
+       "daily": 2
+      }
+     },
+     "research_only": true,
+     "live_behavior_changed": false,
+     "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
+    }
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "NO_FRACTAL_TRANSFER_READ",
+    "symbol": "PTRN",
+    "channel": {
+     "available": true,
+     "direction": "FLAT",
+     "timeframe": "30m",
+     "position": "MID",
+     "lower_rail_now": 21.28,
+     "upper_rail_now": 21.99,
+     "rail_width": 0.71,
+     "score": 84.0
+    },
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "large_bear_gap": {
+     "bottom": 29.424,
+     "top": 29.62,
+     "timeframe": "1m",
+     "type": "gap",
+     "source_key": "nearest_overhead",
+     "distance_pct": 0.42,
+     "tick_width": 20.0,
+     "genesis_rank_pct": 0.313,
+     "creation_vol": 1000.0,
+     "conviction_tier": "MINOR"
+    },
+    "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+    "bull_15m_floor_count": 1.0,
+    "high_volume_15m_floor_count": 0,
+    "coverage": {
+     "contract_symbol_present": true,
+     "contract_date": "2026-08-28",
+     "contract_generated_at": "2026-08-28T21:47:24-04:00",
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "live_tracks_all_research_timeframes": false
+    },
+    "operator_note": "no higher-timeframe red-gap transfer plus floor-building pattern was proven",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   },
+   "mustard_gap_synthesis": {
+    "blockers": [
+     "mustard_parent_shelf_missing"
+    ],
+    "mustard": {
+     "last_price": 29.13,
+     "parent_gap": {
+      "hi": null,
+      "lo": null,
+      "tf": null
+     },
+     "score": 35.0,
+     "setup_class": "NO_PARENT_EDGE",
+     "timeframe": "15m",
+     "trade_geometry": {
+      "entry": 29.13,
+      "stop": 28.4031,
+      "target": 29.3799
+     },
+     "verdict": "AVOID_STALLED_RETEST"
+    },
+    "mustard_x_future_read": {
+     "active_overhead_gap": {
+      "bottom": 29.424,
+      "bullish": false,
+      "creation_vol": 1000.0,
+      "genesis_rank_pct": 0.313,
+      "label": "active_overhead_gap",
+      "magnet_score": 6.13,
+      "mid": 29.522,
+      "tick_width": 20.0,
+      "timeframe": "1m",
+      "top": 29.62,
+      "type": "gap"
+     },
+     "bull_gaps_built": 33.0,
+     "confidence": "MEDIUM",
+     "future_mustard_x_zone": {
+      "bottom": 25.19,
+      "bullish": true,
+      "creation_vol": 3260220.456853,
+      "genesis_rank_pct": 0.918,
+      "label": "gap_timeframe_parent_support",
+      "magnet_score": 270.98,
+      "mid": 25.21,
+      "tick_width": 4.0,
+      "timeframe": "daily",
+      "top": 25.23,
+      "type": "vi",
+      "watch_rule": "future Mustard X is a sweep/reject/reclaim around this support shelf; first touch is data, reclaimed touch on volume is the cleaner long"
+     },
+     "live_behavior_changed": false,
+     "mode": "LOW_TF_GAP_EAT_FUEL",
+     "operator_note": "nearby red traffic is small/eatable and has green shelf support below",
+     "overhead_distance_pct": 0.42,
+     "price": 29.3,
+     "research_only": true,
+     "road_quality": "LOW_TF_EATABLE_TRAFFIC",
+     "support_stack_depth": 20.0
+    },
+    "original_gap_trade_candidate": false,
+    "panel_id": "mustard_gap_synthesis",
+    "reasons": [
+     "deep_bull_gap_shelf_stack",
+     "many_bull_gaps_built_below",
+     "low_tf_gap_eat_fuel"
+    ],
+    "synthesis_score": 38,
+    "walker_priority": "RESEARCH_ONLY"
+   },
+   "synthesis_forced_walk": true,
+   "road_pct": null,
+   "relvol": 0.63,
+   "rsi": 24.5,
+   "floors": [],
+   "blockers": [
+    "1_eaten",
+    "2_accepted",
     "4_volume",
     "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 2
+   "conditions_met": 1
   },
   {
    "ticker": "RLAY",
@@ -3897,7 +4215,7 @@
     "3_road": false,
     "4_volume": false,
     "5_momentum": false,
-    "6_floors": false
+    "6_floors": true
    },
    "state": "ACCEPTED_WAITING",
    "plan": null,
@@ -4068,14 +4386,38 @@
    "road_pct": 0.44,
    "relvol": 0.51,
    "rsi": 44.0,
-   "floors": [],
+   "floors": [
+    {
+     "tf": "5m",
+     "top": 321.21,
+     "bottom": 320.04,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 321.16,
+     "bottom": 320.41,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 322.6,
+     "bottom": 322.24,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 323.3,
+     "bottom": 322.6,
+     "weight": 1
+    }
+   ],
    "blockers": [
     "3_road",
     "4_volume",
-    "5_momentum",
-    "6_floors"
+    "5_momentum"
    ],
-   "conditions_met": 2
+   "conditions_met": 3
   },
   {
    "ticker": "VOR",
@@ -4344,6 +4686,18 @@
    "relvol": 0.67,
    "rsi": 60.9,
    "floors": [
+    {
+     "tf": "5m",
+     "top": 22.39,
+     "bottom": 22.38,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 22.44,
+     "bottom": 22.375,
+     "weight": 1
+    },
     {
      "tf": "10m",
      "top": 23.76,
@@ -4939,269 +5293,6 @@
    "conditions_met": 1
   },
   {
-   "ticker": "PTRN",
-   "score": 0,
-   "gap_top": 21.59,
-   "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
-    "3_road": false,
-    "4_volume": false,
-    "5_momentum": false,
-    "6_floors": false
-   },
-   "state": "WATCHING",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
-    "large_bear_gap": {
-     "bottom": 21.06,
-     "top": 21.59,
-     "timeframe": "45m",
-     "type": "gap",
-     "source_key": "nearest_meaningful_overhead",
-     "distance_pct": 0.91,
-     "tick_width": 54.0,
-     "genesis_rank_pct": 0.576,
-     "creation_vol": 5731.0,
-     "conviction_tier": "MINOR"
-    },
-    "last_15m": {
-     "close": 21.125,
-     "high": 21.14,
-     "low": 21.08,
-     "volume": 17780.99,
-     "relvol_20": 0.58,
-     "volume_ok": false,
-     "entered_from_below": false,
-     "closed_inside_gap": true,
-     "closed_above_gap": false
-    },
-    "research_only": true,
-    "live_behavior_changed": false,
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "10m": 2,
-      "15m": 2,
-      "1h": 1,
-      "1m": 10,
-      "30m": 1,
-      "45m": 1,
-      "5m": 2,
-      "daily": 1
-     }
-    },
-    "bull_gap_build_15m_below": {
-     "checked": true,
-     "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-     "count_15m_bull_gaps_below": 1,
-     "high_volume_count": 0,
-     "top_15m_bull_gaps_below": [
-      {
-       "bottom": 20.87,
-       "top": 21.06,
-       "timeframe": "15m",
-       "type": "gap",
-       "source_key": null,
-       "distance_pct": 2.73,
-       "tick_width": 19.0,
-       "genesis_rank_pct": 0.158,
-       "creation_vol": 199.0,
-       "conviction_tier": "MINOR",
-       "high_volume": false
-      }
-     ],
-     "coverage": {
-      "state_timeframes": [
-       "weekly",
-       "daily",
-       "4h",
-       "1h",
-       "45m",
-       "30m",
-       "15m",
-       "10m",
-       "5m",
-       "1m"
-      ],
-      "missing_required_timeframes": [
-       "2h"
-      ],
-      "support_by_tf": {
-       "10m": 2,
-       "15m": 2,
-       "1h": 1,
-       "1m": 4,
-       "30m": 2,
-       "45m": 2,
-       "5m": 3,
-       "daily": 2
-      }
-     },
-     "research_only": true,
-     "live_behavior_changed": false,
-     "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
-    },
-    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
-    "symbol": "PTRN",
-    "channel": {
-     "available": true,
-     "direction": "FLAT",
-     "timeframe": "30m",
-     "position": "MID",
-     "lower_rail_now": 21.28,
-     "upper_rail_now": 21.99,
-     "rail_width": 0.71,
-     "score": 84.0
-    },
-    "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
-    "large_bear_gap": {
-     "bottom": 21.06,
-     "top": 21.59,
-     "timeframe": "45m",
-     "type": "gap",
-     "source_key": "nearest_meaningful_overhead",
-     "distance_pct": 0.91,
-     "tick_width": 54.0,
-     "genesis_rank_pct": 0.576,
-     "creation_vol": 5731.0,
-     "conviction_tier": "MINOR"
-    },
-    "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-    "bull_15m_floor_count": 1.0,
-    "high_volume_15m_floor_count": 0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-08-28",
-     "contract_generated_at": "2026-08-28T21:47:24-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "mustard_gap_synthesis": {
-    "blockers": [
-     "mustard_parent_shelf_missing"
-    ],
-    "mustard": {
-     "last_price": 29.13,
-     "parent_gap": {
-      "hi": null,
-      "lo": null,
-      "tf": null
-     },
-     "score": 35.0,
-     "setup_class": "NO_PARENT_EDGE",
-     "timeframe": "15m",
-     "trade_geometry": {
-      "entry": 29.13,
-      "stop": 28.4031,
-      "target": 29.3799
-     },
-     "verdict": "AVOID_STALLED_RETEST"
-    },
-    "mustard_x_future_read": {
-     "active_overhead_gap": {
-      "bottom": 29.424,
-      "bullish": false,
-      "creation_vol": 1000.0,
-      "genesis_rank_pct": 0.313,
-      "label": "active_overhead_gap",
-      "magnet_score": 6.13,
-      "mid": 29.522,
-      "tick_width": 20.0,
-      "timeframe": "1m",
-      "top": 29.62,
-      "type": "gap"
-     },
-     "bull_gaps_built": 33.0,
-     "confidence": "MEDIUM",
-     "future_mustard_x_zone": {
-      "bottom": 25.19,
-      "bullish": true,
-      "creation_vol": 3260220.456853,
-      "genesis_rank_pct": 0.918,
-      "label": "gap_timeframe_parent_support",
-      "magnet_score": 270.98,
-      "mid": 25.21,
-      "tick_width": 4.0,
-      "timeframe": "daily",
-      "top": 25.23,
-      "type": "vi",
-      "watch_rule": "future Mustard X is a sweep/reject/reclaim around this support shelf; first touch is data, reclaimed touch on volume is the cleaner long"
-     },
-     "live_behavior_changed": false,
-     "mode": "LOW_TF_GAP_EAT_FUEL",
-     "operator_note": "nearby red traffic is small/eatable and has green shelf support below",
-     "overhead_distance_pct": 0.42,
-     "price": 29.3,
-     "research_only": true,
-     "road_quality": "LOW_TF_EATABLE_TRAFFIC",
-     "support_stack_depth": 20.0
-    },
-    "original_gap_trade_candidate": false,
-    "panel_id": "mustard_gap_synthesis",
-    "reasons": [
-     "deep_bull_gap_shelf_stack",
-     "many_bull_gaps_built_below",
-     "low_tf_gap_eat_fuel"
-    ],
-    "synthesis_score": 38,
-    "walker_priority": "RESEARCH_ONLY"
-   },
-   "synthesis_forced_walk": true,
-   "road_pct": 0.91,
-   "relvol": 0.63,
-   "rsi": 24.5,
-   "floors": [],
-   "blockers": [
-    "1_eaten",
-    "2_accepted",
-    "3_road",
-    "4_volume",
-    "5_momentum",
-    "6_floors"
-   ],
-   "conditions_met": 0
-  },
-  {
    "ticker": "ABSI",
    "score": 12,
    "gap_top": 11.6093,
@@ -5395,7 +5486,7 @@
     "3_road": true,
     "4_volume": false,
     "5_momentum": false,
-    "6_floors": false
+    "6_floors": true
    },
    "state": "ACCEPTED_WAITING",
    "plan": null,
@@ -5707,351 +5798,35 @@
    "road_pct": 3.33,
    "relvol": 0.61,
    "rsi": 62.1,
-   "floors": [],
-   "blockers": [
-    "4_volume",
-    "5_momentum",
-    "6_floors"
-   ],
-   "conditions_met": 3
-  },
-  {
-   "ticker": "ADTX",
-   "score": 100,
-   "gap_top": 0.0054,
-   "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
-    "3_road": true,
-    "4_volume": false,
-    "5_momentum": false,
-    "6_floors": false
-   },
-   "state": "WATCHING",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "NO_LARGE_BEAR_OVERHEAD",
-    "research_only": true,
-    "live_behavior_changed": false,
-    "operator_note": "no large bearish overhead gap mapped for 15m transfer check",
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "1h": 1,
-      "1m": 1
-     }
-    }
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "NO_FRACTAL_TRANSFER_READ",
-    "symbol": "ADTX",
-    "channel": {
-     "available": true,
-     "direction": "ASC",
-     "timeframe": "5m",
-     "position": "OUTSIDE_UP",
-     "lower_rail_now": 0.01,
-     "upper_rail_now": 0.01,
-     "rail_width": 0.0,
-     "score": 61.23
-    },
-    "bear_gap_transfer_15m_state": "NO_LARGE_BEAR_OVERHEAD",
-    "large_bear_gap": null,
-    "bull_gap_build_15m_below_state": null,
-    "bull_15m_floor_count": 0,
-    "high_volume_15m_floor_count": 0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-08-28",
-     "contract_generated_at": "2026-08-28T21:47:24-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "no higher-timeframe red-gap transfer plus floor-building pattern was proven",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "road_pct": null,
-   "relvol": 0.02,
-   "rsi": 40.9,
-   "floors": [],
-   "blockers": [
-    "1_eaten",
-    "2_accepted",
-    "4_volume",
-    "5_momentum",
-    "6_floors"
-   ],
-   "conditions_met": 1
-  },
-  {
-   "ticker": "AG",
-   "score": 100,
-   "gap_top": 21.19,
-   "conditions": {
-    "1_eaten": true,
-    "2_accepted": true,
-    "3_road": false,
-    "4_volume": false,
-    "5_momentum": true,
-    "6_floors": true
-   },
-   "state": "ACCEPTED_WAITING",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "BELOW_LARGE_BEAR_GAP",
-    "research_only": true,
-    "live_behavior_changed": false,
-    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
-    "large_bear_overheads": [
-     {
-      "bottom": 21.36,
-      "top": 22.66,
-      "timeframe": "daily",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 1.42,
-      "tick_width": 131.0,
-      "genesis_rank_pct": 0.967,
-      "creation_vol": 18246007.656953,
-      "conviction_tier": "CONVICTION"
-     },
-     {
-      "bottom": 21.97,
-      "top": 22.68,
-      "timeframe": "1h",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 4.32,
-      "tick_width": 72.0,
-      "genesis_rank_pct": 0.808,
-      "creation_vol": 222732.911389,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 22.15,
-      "top": 22.21,
-      "timeframe": "30m",
-      "type": "vi",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 5.18,
-      "tick_width": 7.0,
-      "genesis_rank_pct": 0.767,
-      "creation_vol": 1232289.372772,
-      "conviction_tier": "MINOR"
-     }
-    ],
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "10m": 2,
-      "15m": 1,
-      "1h": 5,
-      "1m": 4,
-      "30m": 1,
-      "5m": 3,
-      "daily": 2
-     }
-    },
-    "bull_gap_build_15m_below": {
-     "checked": true,
-     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
-     "count_15m_bull_gaps_below": 2,
-     "high_volume_count": 2,
-     "top_15m_bull_gaps_below": [
-      {
-       "bottom": 19.79,
-       "top": 19.8,
-       "timeframe": "15m",
-       "type": "vi",
-       "source_key": null,
-       "distance_pct": 5.98,
-       "tick_width": 2.0,
-       "genesis_rank_pct": 0.667,
-       "creation_vol": 1586315.3028219999,
-       "conviction_tier": "MINOR",
-       "high_volume": true
-      },
-      {
-       "bottom": 17.3282,
-       "top": 17.93,
-       "timeframe": "15m",
-       "type": "gap",
-       "source_key": null,
-       "distance_pct": 14.86,
-       "tick_width": 61.0,
-       "genesis_rank_pct": 0.675,
-       "creation_vol": 52456.134943,
-       "conviction_tier": "MINOR",
-       "high_volume": true
-      }
-     ],
-     "coverage": {
-      "state_timeframes": [
-       "weekly",
-       "daily",
-       "4h",
-       "1h",
-       "45m",
-       "30m",
-       "15m",
-       "10m",
-       "5m",
-       "1m"
-      ],
-      "missing_required_timeframes": [
-       "2h"
-      ],
-      "support_by_tf": {
-       "10m": 2,
-       "15m": 2,
-       "1m": 2,
-       "30m": 4,
-       "45m": 3,
-       "5m": 2,
-       "daily": 2,
-       "weekly": 1
-      }
-     },
-     "research_only": true,
-     "live_behavior_changed": false,
-     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
-    }
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
-    "symbol": "AG",
-    "channel": {
-     "available": true,
-     "direction": "FLAT",
-     "timeframe": "1h",
-     "position": "OUTSIDE_UP",
-     "lower_rail_now": 16.58,
-     "upper_rail_now": 16.99,
-     "rail_width": 0.41,
-     "score": 84.0
-    },
-    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
-    "large_bear_gap": {
-     "bottom": 21.36,
-     "top": 22.66,
-     "timeframe": "daily",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 1.42,
-     "tick_width": 131.0,
-     "genesis_rank_pct": 0.967,
-     "creation_vol": 18246007.656953,
-     "conviction_tier": "CONVICTION"
-    },
-    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
-    "bull_15m_floor_count": 2.0,
-    "high_volume_15m_floor_count": 2.0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-08-28",
-     "contract_generated_at": "2026-08-28T21:47:24-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "road_pct": 0.33,
-   "relvol": 0.06,
-   "rsi": 72.1,
    "floors": [
     {
      "tf": "5m",
-     "top": 20.78,
-     "bottom": 20.75,
+     "top": 13.29,
+     "bottom": 13.285,
      "weight": 1
     },
     {
      "tf": "5m",
-     "top": 20.8784,
-     "bottom": 20.86,
+     "top": 13.335,
+     "bottom": 13.29,
      "weight": 1
     },
     {
      "tf": "5m",
-     "top": 20.94,
-     "bottom": 20.9,
+     "top": 13.385,
+     "bottom": 13.38,
      "weight": 1
     },
     {
      "tf": "5m",
-     "top": 20.87,
-     "bottom": 20.855,
+     "top": 13.63,
+     "bottom": 13.42,
      "weight": 1
     }
    ],
    "blockers": [
-    "3_road",
-    "4_volume"
+    "4_volume",
+    "5_momentum"
    ],
    "conditions_met": 4
   },
@@ -6481,14 +6256,26 @@
    "floors": [
     {
      "tf": "5m",
-     "top": 19.46,
-     "bottom": 19.3519,
+     "top": 18.6,
+     "bottom": 18.56,
      "weight": 1
     },
     {
      "tf": "5m",
-     "top": 19.46,
-     "bottom": 19.33,
+     "top": 18.619,
+     "bottom": 18.61,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 18.57,
+     "bottom": 18.56,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 18.59,
+     "bottom": 18.58,
      "weight": 1
     }
    ],
@@ -6498,13 +6285,13 @@
    "conditions_met": 5
   },
   {
-   "ticker": "BIAF",
+   "ticker": "BAH",
    "score": 100,
-   "gap_top": 6.363,
+   "gap_top": 77.9499,
    "conditions": {
     "1_eaten": false,
     "2_accepted": false,
-    "3_road": true,
+    "3_road": false,
     "4_volume": false,
     "5_momentum": false,
     "6_floors": false
@@ -6519,39 +6306,39 @@
     "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
     "large_bear_overheads": [
      {
-      "bottom": 5.0311,
-      "top": 5.0799,
+      "bottom": 77.83,
+      "top": 77.9499,
+      "timeframe": "15m",
+      "type": "vi",
+      "source_key": "nearest_overhead",
+      "distance_pct": 0.75,
+      "tick_width": 12.0,
+      "genesis_rank_pct": 0.343,
+      "creation_vol": 6334.977723999999,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 75.51,
+      "top": 75.695,
+      "timeframe": "5m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 0.79,
+      "tick_width": 19.0,
+      "genesis_rank_pct": 0.439,
+      "creation_vol": 4716.665502,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 75.53,
+      "top": 75.77,
       "timeframe": "1m",
       "type": "gap",
       "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 0.02,
-      "tick_width": 5.0,
-      "genesis_rank_pct": 0.184,
-      "creation_vol": 393.0,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 5.0442,
-      "top": 5.2451,
-      "timeframe": "45m",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 0.28,
-      "tick_width": 21.0,
-      "genesis_rank_pct": 0.741,
-      "creation_vol": 8251.602200000001,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 5.0442,
-      "top": 5.2451,
-      "timeframe": "15m",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 0.28,
-      "tick_width": 21.0,
-      "genesis_rank_pct": 0.633,
-      "creation_vol": 1436.0,
+      "distance_pct": 0.82,
+      "tick_width": 24.0,
+      "genesis_rank_pct": 0.394,
+      "creation_vol": 2546.16019,
       "conviction_tier": "MINOR"
      }
     ],
@@ -6574,12 +6361,13 @@
      "overhead_by_tf": {
       "10m": 2,
       "15m": 2,
-      "1h": 4,
+      "1h": 6,
       "1m": 2,
-      "30m": 3,
-      "45m": 4,
+      "30m": 2,
+      "45m": 2,
+      "4h": 1,
       "5m": 2,
-      "daily": 1
+      "weekly": 1
      }
     },
     "bull_gap_build_15m_below": {
@@ -6605,13 +6393,15 @@
        "2h"
       ],
       "support_by_tf": {
-       "10m": 1,
-       "15m": 1,
-       "1h": 1,
-       "1m": 1,
+       "10m": 2,
+       "15m": 2,
+       "1h": 4,
+       "1m": 2,
        "30m": 2,
-       "45m": 1,
-       "5m": 1
+       "45m": 2,
+       "5m": 2,
+       "daily": 3,
+       "weekly": 1
       }
      },
      "research_only": true,
@@ -6622,28 +6412,28 @@
    "fractal_channel_gap_context": {
     "checked": true,
     "state": "NO_FRACTAL_TRANSFER_READ",
-    "symbol": "BIAF",
+    "symbol": "BAH",
     "channel": {
      "available": true,
      "direction": "FLAT",
-     "timeframe": "10m",
-     "position": "AT_LOWER",
-     "lower_rail_now": 5.04,
-     "upper_rail_now": 5.12,
-     "rail_width": 0.08,
-     "score": 90.0
+     "timeframe": "5m",
+     "position": "MID",
+     "lower_rail_now": 74.77,
+     "upper_rail_now": 75.21,
+     "rail_width": 0.44,
+     "score": 100.0
     },
     "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
     "large_bear_gap": {
-     "bottom": 5.0311,
-     "top": 5.0799,
-     "timeframe": "1m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 0.02,
-     "tick_width": 5.0,
-     "genesis_rank_pct": 0.184,
-     "creation_vol": 393.0,
+     "bottom": 77.83,
+     "top": 77.9499,
+     "timeframe": "15m",
+     "type": "vi",
+     "source_key": "nearest_overhead",
+     "distance_pct": 0.75,
+     "tick_width": 12.0,
+     "genesis_rank_pct": 0.343,
+     "creation_vol": 6334.977723999999,
      "conviction_tier": "MINOR"
     },
     "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
@@ -6675,221 +6465,19 @@
     "research_only": true,
     "live_behavior_changed": false
    },
-   "road_pct": 13.27,
-   "relvol": 0.11,
-   "rsi": 40.5,
+   "road_pct": 1.18,
+   "relvol": 1.14,
+   "rsi": 26.8,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
+    "3_road",
     "4_volume",
     "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
-  },
-  {
-   "ticker": "BILL",
-   "score": 100,
-   "gap_top": 50.565,
-   "conditions": {
-    "1_eaten": false,
-    "2_accepted": false,
-    "3_road": true,
-    "4_volume": false,
-    "5_momentum": false,
-    "6_floors": false
-   },
-   "state": "WATCHING",
-   "plan": null,
-   "bear_gap_transfer_15m": {
-    "checked": true,
-    "state": "BELOW_LARGE_BEAR_GAP",
-    "research_only": true,
-    "live_behavior_changed": false,
-    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
-    "large_bear_overheads": [
-     {
-      "bottom": 53.2602,
-      "top": 53.7,
-      "timeframe": "4h",
-      "type": "vi",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 7.47,
-      "tick_width": 44.0,
-      "genesis_rank_pct": 0.852,
-      "creation_vol": 514276.0,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 53.52,
-      "top": 53.7,
-      "timeframe": "daily",
-      "type": "vi",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 7.99,
-      "tick_width": 18.0,
-      "genesis_rank_pct": 0.864,
-      "creation_vol": 3084613.0,
-      "conviction_tier": "COMPRESSION"
-     },
-     {
-      "bottom": 54.0,
-      "top": 54.35,
-      "timeframe": "4h",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 8.96,
-      "tick_width": 36.0,
-      "genesis_rank_pct": 0.795,
-      "creation_vol": 469373.0,
-      "conviction_tier": "MINOR"
-     }
-    ],
-    "coverage": {
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "overhead_by_tf": {
-      "1m": 2,
-      "4h": 4,
-      "5m": 1,
-      "daily": 2
-     }
-    },
-    "bull_gap_build_15m_below": {
-     "checked": true,
-     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
-     "count_15m_bull_gaps_below": 1,
-     "high_volume_count": 1,
-     "top_15m_bull_gaps_below": [
-      {
-       "bottom": 44.32,
-       "top": 44.95,
-       "timeframe": "15m",
-       "type": "gap",
-       "source_key": null,
-       "distance_pct": 9.3,
-       "tick_width": 64.0,
-       "genesis_rank_pct": 0.682,
-       "creation_vol": 109062.903161,
-       "conviction_tier": "MINOR",
-       "high_volume": true
-      }
-     ],
-     "coverage": {
-      "state_timeframes": [
-       "weekly",
-       "daily",
-       "4h",
-       "1h",
-       "45m",
-       "30m",
-       "15m",
-       "10m",
-       "5m",
-       "1m"
-      ],
-      "missing_required_timeframes": [
-       "2h"
-      ],
-      "support_by_tf": {
-       "10m": 1,
-       "15m": 2,
-       "1h": 2,
-       "1m": 2,
-       "30m": 2,
-       "45m": 2,
-       "5m": 2,
-       "daily": 4,
-       "weekly": 2
-      }
-     },
-     "research_only": true,
-     "live_behavior_changed": false,
-     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
-    }
-   },
-   "fractal_channel_gap_context": {
-    "checked": true,
-    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
-    "symbol": "BILL",
-    "channel": {
-     "available": true,
-     "direction": "FLAT",
-     "timeframe": "1h",
-     "position": "OUTSIDE_UP",
-     "lower_rail_now": 46.57,
-     "upper_rail_now": 48.53,
-     "rail_width": 1.96,
-     "score": 84.0
-    },
-    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
-    "large_bear_gap": {
-     "bottom": 53.2602,
-     "top": 53.7,
-     "timeframe": "4h",
-     "type": "vi",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 7.47,
-     "tick_width": 44.0,
-     "genesis_rank_pct": 0.852,
-     "creation_vol": 514276.0,
-     "conviction_tier": "MINOR"
-    },
-    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
-    "bull_15m_floor_count": 1.0,
-    "high_volume_15m_floor_count": 1.0,
-    "coverage": {
-     "contract_symbol_present": true,
-     "contract_date": "2026-08-28",
-     "contract_generated_at": "2026-08-28T21:47:24-04:00",
-     "state_timeframes": [
-      "weekly",
-      "daily",
-      "4h",
-      "1h",
-      "45m",
-      "30m",
-      "15m",
-      "10m",
-      "5m",
-      "1m"
-     ],
-     "missing_required_timeframes": [
-      "2h"
-     ],
-     "live_tracks_all_research_timeframes": false
-    },
-    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
-    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
-    "research_only": true,
-    "live_behavior_changed": false
-   },
-   "road_pct": 11.42,
-   "relvol": 0.54,
-   "rsi": 54.7,
-   "floors": [],
-   "blockers": [
-    "1_eaten",
-    "2_accepted",
-    "4_volume",
-    "5_momentum",
-    "6_floors"
-   ],
-   "conditions_met": 1
+   "conditions_met": 0
   },
   {
    "ticker": "BIVI",
@@ -7690,40 +7278,283 @@
    "conditions_met": 1
   },
   {
-   "ticker": "CAKE",
+   "ticker": "CECO",
    "score": 100,
-   "gap_top": 114.04,
+   "gap_top": 72.34,
    "conditions": {
-    "1_eaten": true,
-    "2_accepted": true,
+    "1_eaten": false,
+    "2_accepted": false,
+    "3_road": true,
+    "4_volume": true,
+    "5_momentum": true,
+    "6_floors": false
+   },
+   "state": "WATCHING",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
+    "state": "BELOW_LARGE_BEAR_GAP",
+    "research_only": true,
+    "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 70.78,
+      "top": 71.04,
+      "timeframe": "1h",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.03,
+      "tick_width": 27.0,
+      "genesis_rank_pct": 0.638,
+      "creation_vol": 48334.793569999994,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 70.78,
+      "top": 71.04,
+      "timeframe": "30m",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.03,
+      "tick_width": 27.0,
+      "genesis_rank_pct": 0.56,
+      "creation_vol": 27234.098413999993,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 71.27,
+      "top": 72.18,
+      "timeframe": "1m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.73,
+      "tick_width": 92.0,
+      "genesis_rank_pct": 0.362,
+      "creation_vol": 1245.047499,
+      "conviction_tier": "MINOR"
+     }
+    ],
+    "coverage": {
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "overhead_by_tf": {
+      "10m": 2,
+      "15m": 2,
+      "1h": 3,
+      "1m": 2,
+      "30m": 4,
+      "45m": 1,
+      "4h": 3,
+      "5m": 2,
+      "weekly": 1
+     }
+    },
+    "bull_gap_build_15m_below": {
+     "checked": true,
+     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
+     "count_15m_bull_gaps_below": 4,
+     "high_volume_count": 1,
+     "top_15m_bull_gaps_below": [
+      {
+       "bottom": 69.89,
+       "top": 69.9,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 0.23,
+       "tick_width": 2.0,
+       "genesis_rank_pct": 0.39,
+       "creation_vol": 68537.24141300001,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 65.9656,
+       "top": 66.22,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 5.48,
+       "tick_width": 26.0,
+       "genesis_rank_pct": 0.489,
+       "creation_vol": 17863.764399,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 60.07,
+       "top": 64.67,
+       "timeframe": "15m",
+       "type": "gap",
+       "source_key": null,
+       "distance_pct": 7.69,
+       "tick_width": 461.0,
+       "genesis_rank_pct": 0.766,
+       "creation_vol": 10017.0,
+       "conviction_tier": "VACUUM",
+       "high_volume": true
+      },
+      {
+       "bottom": 59.66,
+       "top": 60.17,
+       "timeframe": "15m",
+       "type": "gap",
+       "source_key": null,
+       "distance_pct": 14.12,
+       "tick_width": 52.0,
+       "genesis_rank_pct": 0.149,
+       "creation_vol": 291.0,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      }
+     ],
+     "coverage": {
+      "state_timeframes": [
+       "weekly",
+       "daily",
+       "4h",
+       "1h",
+       "45m",
+       "30m",
+       "15m",
+       "10m",
+       "5m",
+       "1m"
+      ],
+      "missing_required_timeframes": [
+       "2h"
+      ],
+      "support_by_tf": {
+       "10m": 1,
+       "15m": 4,
+       "1h": 4,
+       "30m": 2,
+       "45m": 4,
+       "4h": 2,
+       "5m": 3
+      }
+     },
+     "research_only": true,
+     "live_behavior_changed": false,
+     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
+    }
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
+    "symbol": "CECO",
+    "channel": {
+     "available": true,
+     "direction": "FLAT",
+     "timeframe": "4h",
+     "position": "OUTSIDE_DOWN",
+     "lower_rail_now": 77.2,
+     "upper_rail_now": 100.0,
+     "rail_width": 22.8,
+     "score": 72.0
+    },
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "large_bear_gap": {
+     "bottom": 70.78,
+     "top": 71.04,
+     "timeframe": "1h",
+     "type": "vi",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 1.03,
+     "tick_width": 27.0,
+     "genesis_rank_pct": 0.638,
+     "creation_vol": 48334.793569999994,
+     "conviction_tier": "MINOR"
+    },
+    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
+    "bull_15m_floor_count": 4.0,
+    "high_volume_15m_floor_count": 1.0,
+    "coverage": {
+     "contract_symbol_present": true,
+     "contract_date": "2026-08-28",
+     "contract_generated_at": "2026-08-28T21:47:24-04:00",
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "live_tracks_all_research_timeframes": false
+    },
+    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   },
+   "road_pct": 7.87,
+   "relvol": 7.77,
+   "rsi": 70.3,
+   "floors": [],
+   "blockers": [
+    "1_eaten",
+    "2_accepted",
+    "6_floors"
+   ],
+   "conditions_met": 3
+  },
+  {
+   "ticker": "CLYM",
+   "score": 100,
+   "gap_top": 17.54,
+   "conditions": {
+    "1_eaten": false,
+    "2_accepted": false,
     "3_road": false,
     "4_volume": false,
     "5_momentum": false,
-    "6_floors": true
+    "6_floors": false
    },
-   "state": "ACCEPTED_WAITING",
+   "state": "WATCHING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
     "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
-     "bottom": 113.95,
-     "top": 114.04,
-     "timeframe": "10m",
+     "bottom": 14.86,
+     "top": 15.06,
+     "timeframe": "daily",
      "type": "vi",
-     "source_key": "nearest_overhead",
-     "distance_pct": 0.4,
-     "tick_width": 10.0,
-     "genesis_rank_pct": 0.345,
-     "creation_vol": 27978.771108999998,
-     "conviction_tier": "MINOR"
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 0.41,
+     "tick_width": 21.0,
+     "genesis_rank_pct": 0.973,
+     "creation_vol": 1557293.067177,
+     "conviction_tier": "COMPRESSION"
     },
     "last_15m": {
-     "close": 115.43,
-     "high": 115.5,
-     "low": 115.16,
-     "volume": 17114.19,
-     "relvol_20": 0.29,
+     "close": 16.625,
+     "high": 16.625,
+     "low": 16.46,
+     "volume": 28140.15,
+     "relvol_20": 0.92,
      "volume_ok": false,
      "entered_from_below": false,
      "closed_inside_gap": false,
@@ -7749,46 +7580,72 @@
      ],
      "overhead_by_tf": {
       "10m": 2,
-      "15m": 3,
-      "1h": 3,
+      "15m": 4,
+      "1h": 4,
       "1m": 2,
-      "30m": 3,
+      "30m": 2,
       "45m": 3,
-      "5m": 3,
+      "5m": 2,
       "daily": 1
      }
     },
     "bull_gap_build_15m_below": {
      "checked": true,
-     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
-     "count_15m_bull_gaps_below": 2,
-     "high_volume_count": 2,
+     "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+     "count_15m_bull_gaps_below": 4,
+     "high_volume_count": 0,
      "top_15m_bull_gaps_below": [
       {
-       "bottom": 105.85,
-       "top": 105.89,
+       "bottom": 14.11,
+       "top": 14.42,
        "timeframe": "15m",
-       "type": "vi",
+       "type": "gap",
        "source_key": null,
-       "distance_pct": 5.93,
-       "tick_width": 5.0,
-       "genesis_rank_pct": 0.567,
-       "creation_vol": 158026.017626,
+       "distance_pct": 2.57,
+       "tick_width": 32.0,
+       "genesis_rank_pct": 0.259,
+       "creation_vol": 604.0,
        "conviction_tier": "MINOR",
-       "high_volume": true
+       "high_volume": false
       },
       {
-       "bottom": 102.16,
-       "top": 102.32,
+       "bottom": 13.54,
+       "top": 13.57,
        "timeframe": "15m",
        "type": "vi",
        "source_key": null,
-       "distance_pct": 9.11,
-       "tick_width": 16.0,
-       "genesis_rank_pct": 0.656,
-       "creation_vol": 103965.968304,
+       "distance_pct": 8.31,
+       "tick_width": 4.0,
+       "genesis_rank_pct": 0.381,
+       "creation_vol": 14800.0,
        "conviction_tier": "MINOR",
-       "high_volume": true
+       "high_volume": false
+      },
+      {
+       "bottom": 13.51,
+       "top": 13.52,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 8.65,
+       "tick_width": 1.0,
+       "genesis_rank_pct": 0.32,
+       "creation_vol": 37026.237460000004,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 13.11,
+       "top": 13.12,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 11.35,
+       "tick_width": 1.0,
+       "genesis_rank_pct": 0.327,
+       "creation_vol": 40091.848092,
+       "conviction_tier": "MINOR",
+       "high_volume": false
       }
      ],
      "coverage": {
@@ -7809,52 +7666,50 @@
       ],
       "support_by_tf": {
        "10m": 2,
-       "15m": 2,
-       "1h": 4,
+       "15m": 4,
+       "1h": 3,
        "1m": 2,
-       "30m": 2,
-       "45m": 3,
-       "5m": 2,
-       "daily": 2,
-       "weekly": 1
+       "30m": 3,
+       "45m": 5,
+       "daily": 1
       }
      },
      "research_only": true,
      "live_behavior_changed": false,
-     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
+     "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
     },
     "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
    },
    "fractal_channel_gap_context": {
     "checked": true,
-    "state": "RED_GAP_ACCEPTANCE_WITH_15M_FLOORS",
-    "symbol": "CAKE",
+    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
+    "symbol": "CLYM",
     "channel": {
      "available": true,
-     "direction": "FLAT",
-     "timeframe": "15m",
+     "direction": "ASC",
+     "timeframe": "4h",
      "position": "MID",
-     "lower_rail_now": 110.31,
-     "upper_rail_now": 115.61,
-     "rail_width": 5.3,
-     "score": 70.0
+     "lower_rail_now": 13.94,
+     "upper_rail_now": 16.14,
+     "rail_width": 2.2,
+     "score": 66.48
     },
     "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
-     "bottom": 113.95,
-     "top": 114.04,
-     "timeframe": "10m",
+     "bottom": 14.86,
+     "top": 15.06,
+     "timeframe": "daily",
      "type": "vi",
-     "source_key": "nearest_overhead",
-     "distance_pct": 0.4,
-     "tick_width": 10.0,
-     "genesis_rank_pct": 0.345,
-     "creation_vol": 27978.771108999998,
-     "conviction_tier": "MINOR"
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 0.41,
+     "tick_width": 21.0,
+     "genesis_rank_pct": 0.973,
+     "creation_vol": 1557293.067177,
+     "conviction_tier": "COMPRESSION"
     },
-    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
-    "bull_15m_floor_count": 2.0,
-    "high_volume_15m_floor_count": 2.0,
+    "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
+    "bull_15m_floor_count": 4.0,
+    "high_volume_15m_floor_count": 0,
     "coverage": {
      "contract_symbol_present": true,
      "contract_date": "2026-08-28",
@@ -7876,28 +7731,24 @@
      ],
      "live_tracks_all_research_timeframes": false
     },
-    "operator_note": "price is accepting into/through red overhead traffic while 15m green floors build below",
+    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
     "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
     "research_only": true,
     "live_behavior_changed": false
    },
-   "road_pct": 0.54,
-   "relvol": 0.44,
-   "rsi": 59.7,
-   "floors": [
-    {
-     "tf": "10m",
-     "top": 115.16,
-     "bottom": 114.55,
-     "weight": 2
-    }
-   ],
+   "road_pct": 1.53,
+   "relvol": 0.8,
+   "rsi": 34.3,
+   "floors": [],
    "blockers": [
+    "1_eaten",
+    "2_accepted",
     "3_road",
     "4_volume",
-    "5_momentum"
+    "5_momentum",
+    "6_floors"
    ],
-   "conditions_met": 3
+   "conditions_met": 0
   },
   {
    "ticker": "CRWD",
@@ -8076,6 +7927,209 @@
    "road_pct": 0.01,
    "relvol": 0.9,
    "rsi": 40.9,
+   "floors": [],
+   "blockers": [
+    "1_eaten",
+    "2_accepted",
+    "3_road",
+    "4_volume",
+    "5_momentum",
+    "6_floors"
+   ],
+   "conditions_met": 0
+  },
+  {
+   "ticker": "CYPH",
+   "score": 100,
+   "gap_top": 1.715,
+   "conditions": {
+    "1_eaten": false,
+    "2_accepted": false,
+    "3_road": false,
+    "4_volume": false,
+    "5_momentum": false,
+    "6_floors": false
+   },
+   "state": "WATCHING",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
+    "state": "BELOW_LARGE_BEAR_GAP",
+    "research_only": true,
+    "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 1.82,
+      "top": 1.8239,
+      "timeframe": "5m",
+      "type": "vi",
+      "source_key": "nearest_meaningful_overhead",
+      "distance_pct": 7.69,
+      "tick_width": 1.0,
+      "genesis_rank_pct": 0.739,
+      "creation_vol": 698045.937735,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 1.8515,
+      "top": 1.855,
+      "timeframe": "1h",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 11.2,
+      "tick_width": 1.0,
+      "genesis_rank_pct": 0.822,
+      "creation_vol": 1091111.0642559999,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 1.8515,
+      "top": 1.86,
+      "timeframe": "45m",
+      "type": "vi",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 11.2,
+      "tick_width": 1.0,
+      "genesis_rank_pct": 0.785,
+      "creation_vol": 627313.941442,
+      "conviction_tier": "MINOR"
+     }
+    ],
+    "coverage": {
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "overhead_by_tf": {
+      "10m": 3,
+      "15m": 2,
+      "1h": 1,
+      "1m": 3,
+      "30m": 3,
+      "45m": 2,
+      "5m": 6
+     }
+    },
+    "bull_gap_build_15m_below": {
+     "checked": true,
+     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
+     "count_15m_bull_gaps_below": 1,
+     "high_volume_count": 1,
+     "top_15m_bull_gaps_below": [
+      {
+       "bottom": 1.44,
+       "top": 1.45,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 12.91,
+       "tick_width": 2.0,
+       "genesis_rank_pct": 0.85,
+       "creation_vol": 706798.0,
+       "conviction_tier": "MINOR",
+       "high_volume": true
+      }
+     ],
+     "coverage": {
+      "state_timeframes": [
+       "weekly",
+       "daily",
+       "4h",
+       "1h",
+       "45m",
+       "30m",
+       "15m",
+       "10m",
+       "5m",
+       "1m"
+      ],
+      "missing_required_timeframes": [
+       "2h"
+      ],
+      "support_by_tf": {
+       "15m": 1,
+       "1h": 1,
+       "45m": 1,
+       "5m": 1,
+       "weekly": 1
+      }
+     },
+     "research_only": true,
+     "live_behavior_changed": false,
+     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
+    }
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
+    "symbol": "CYPH",
+    "channel": {
+     "available": true,
+     "direction": "ASC",
+     "timeframe": "daily",
+     "position": "AT_LOWER",
+     "lower_rail_now": 1.08,
+     "upper_rail_now": 4.84,
+     "rail_width": 3.76,
+     "score": 49.45
+    },
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "large_bear_gap": {
+     "bottom": 1.82,
+     "top": 1.8239,
+     "timeframe": "5m",
+     "type": "vi",
+     "source_key": "nearest_meaningful_overhead",
+     "distance_pct": 7.69,
+     "tick_width": 1.0,
+     "genesis_rank_pct": 0.739,
+     "creation_vol": 698045.937735,
+     "conviction_tier": "MINOR"
+    },
+    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
+    "bull_15m_floor_count": 1.0,
+    "high_volume_15m_floor_count": 1.0,
+    "coverage": {
+     "contract_symbol_present": true,
+     "contract_date": "2026-08-28",
+     "contract_generated_at": "2026-08-28T21:47:24-04:00",
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "live_tracks_all_research_timeframes": false
+    },
+    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   },
+   "road_pct": 1.53,
+   "relvol": 1.11,
+   "rsi": 31.8,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -8517,9 +8571,9 @@
    "conditions_met": 2
   },
   {
-   "ticker": "ENTX",
+   "ticker": "EMBC",
    "score": 100,
-   "gap_top": 3.3736,
+   "gap_top": 5.335,
    "conditions": {
     "1_eaten": false,
     "2_accepted": false,
@@ -8532,25 +8586,258 @@
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
+    "state": "BELOW_LARGE_BEAR_GAP",
+    "research_only": true,
+    "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 5.05,
+      "top": 5.1816,
+      "timeframe": "15m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 0.5,
+      "tick_width": 14.0,
+      "genesis_rank_pct": 0.169,
+      "creation_vol": 400.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 5.05,
+      "top": 5.1816,
+      "timeframe": "10m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 0.5,
+      "tick_width": 14.0,
+      "genesis_rank_pct": 0.169,
+      "creation_vol": 400.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 5.065,
+      "top": 9.14,
+      "timeframe": "daily",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 0.8,
+      "tick_width": 408.0,
+      "genesis_rank_pct": 1.0,
+      "creation_vol": 16136475.357029,
+      "conviction_tier": "CONVICTION"
+     }
+    ],
+    "coverage": {
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "overhead_by_tf": {
+      "10m": 3,
+      "15m": 3,
+      "1h": 2,
+      "1m": 2,
+      "30m": 2,
+      "45m": 2,
+      "5m": 4,
+      "daily": 2
+     }
+    },
+    "bull_gap_build_15m_below": {
+     "checked": true,
+     "state": "BULL_15M_FLOORS_BUILDING_BELOW",
+     "count_15m_bull_gaps_below": 3,
+     "high_volume_count": 1,
+     "top_15m_bull_gaps_below": [
+      {
+       "bottom": 4.965,
+       "top": 4.97,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 1.09,
+       "tick_width": 1.0,
+       "genesis_rank_pct": 0.441,
+       "creation_vol": 114449.92984900001,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 4.835,
+       "top": 4.84,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 3.68,
+       "tick_width": 1.0,
+       "genesis_rank_pct": 0.381,
+       "creation_vol": 81362.626578,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 4.525,
+       "top": 4.53,
+       "timeframe": "15m",
+       "type": "vi",
+       "source_key": null,
+       "distance_pct": 9.85,
+       "tick_width": 1.0,
+       "genesis_rank_pct": 0.542,
+       "creation_vol": 310907.347519,
+       "conviction_tier": "MINOR",
+       "high_volume": true
+      }
+     ],
+     "coverage": {
+      "state_timeframes": [
+       "weekly",
+       "daily",
+       "4h",
+       "1h",
+       "45m",
+       "30m",
+       "15m",
+       "10m",
+       "5m",
+       "1m"
+      ],
+      "missing_required_timeframes": [
+       "2h"
+      ],
+      "support_by_tf": {
+       "10m": 2,
+       "15m": 3,
+       "1h": 4,
+       "1m": 2,
+       "30m": 2,
+       "45m": 3,
+       "5m": 2,
+       "daily": 1,
+       "weekly": 1
+      }
+     },
+     "research_only": true,
+     "live_behavior_changed": false,
+     "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
+    }
+   },
+   "fractal_channel_gap_context": {
+    "checked": true,
+    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
+    "symbol": "EMBC",
+    "channel": {
+     "available": true,
+     "direction": "FLAT",
+     "timeframe": "daily",
+     "position": "OUTSIDE_UP",
+     "lower_rail_now": 3.02,
+     "upper_rail_now": 3.29,
+     "rail_width": 0.27,
+     "score": 54.0
+    },
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "large_bear_gap": {
+     "bottom": 5.05,
+     "top": 5.1816,
+     "timeframe": "15m",
+     "type": "gap",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 0.5,
+     "tick_width": 14.0,
+     "genesis_rank_pct": 0.169,
+     "creation_vol": 400.0,
+     "conviction_tier": "MINOR"
+    },
+    "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
+    "bull_15m_floor_count": 3.0,
+    "high_volume_15m_floor_count": 1.0,
+    "coverage": {
+     "contract_symbol_present": true,
+     "contract_date": "2026-08-28",
+     "contract_generated_at": "2026-08-28T21:47:24-04:00",
+     "state_timeframes": [
+      "weekly",
+      "daily",
+      "4h",
+      "1h",
+      "45m",
+      "30m",
+      "15m",
+      "10m",
+      "5m",
+      "1m"
+     ],
+     "missing_required_timeframes": [
+      "2h"
+     ],
+     "live_tracks_all_research_timeframes": false
+    },
+    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
+    "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
+    "research_only": true,
+    "live_behavior_changed": false
+   },
+   "road_pct": 2.47,
+   "relvol": 0.34,
+   "rsi": 40.0,
+   "floors": [],
+   "blockers": [
+    "1_eaten",
+    "2_accepted",
+    "4_volume",
+    "5_momentum",
+    "6_floors"
+   ],
+   "conditions_met": 1
+  },
+  {
+   "ticker": "EXPD",
+   "score": 100,
+   "gap_top": 188.5,
+   "conditions": {
+    "1_eaten": true,
+    "2_accepted": true,
+    "3_road": false,
+    "4_volume": false,
+    "5_momentum": false,
+    "6_floors": true
+   },
+   "state": "ACCEPTED_WAITING",
+   "plan": null,
+   "bear_gap_transfer_15m": {
+    "checked": true,
     "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
-     "bottom": 3.15,
-     "top": 3.265,
+     "bottom": 190.15,
+     "top": 190.27,
      "timeframe": "1m",
      "type": "gap",
      "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 2.89,
-     "tick_width": 12.0,
-     "genesis_rank_pct": 0.74,
-     "creation_vol": 6875.0,
+     "distance_pct": 0.01,
+     "tick_width": 13.0,
+     "genesis_rank_pct": 0.134,
+     "creation_vol": 973.4981,
      "conviction_tier": "MINOR"
     },
     "last_15m": {
-     "close": 3.17,
-     "high": 3.17,
-     "low": 3.115,
-     "volume": 15972.0,
-     "relvol_20": 1.87,
+     "close": 190.24,
+     "high": 190.715,
+     "low": 190.085,
+     "volume": 12811.29,
+     "relvol_20": 0.96,
      "volume_ok": false,
      "entered_from_below": false,
      "closed_inside_gap": true,
@@ -8575,13 +8862,9 @@
       "2h"
      ],
      "overhead_by_tf": {
-      "10m": 3,
-      "15m": 4,
-      "1h": 1,
-      "1m": 2,
-      "30m": 4,
-      "45m": 3,
-      "5m": 3
+      "1m": 8,
+      "5m": 1,
+      "daily": 1
      }
     },
     "bull_gap_build_15m_below": {
@@ -8591,28 +8874,28 @@
      "high_volume_count": 2,
      "top_15m_bull_gaps_below": [
       {
-       "bottom": 2.94,
-       "top": 2.9525,
+       "bottom": 189.7663,
+       "top": 189.99,
        "timeframe": "15m",
        "type": "vi",
        "source_key": null,
-       "distance_pct": 3.56,
-       "tick_width": 2.0,
-       "genesis_rank_pct": 0.702,
-       "creation_vol": 18027.792096,
+       "distance_pct": 0.07,
+       "tick_width": 23.0,
+       "genesis_rank_pct": 0.647,
+       "creation_vol": 26101.707156,
        "conviction_tier": "MINOR",
        "high_volume": true
       },
       {
-       "bottom": 2.9,
-       "top": 2.93,
+       "bottom": 184.25,
+       "top": 185.0,
        "timeframe": "15m",
-       "type": "vi",
+       "type": "gap",
        "source_key": null,
-       "distance_pct": 4.29,
-       "tick_width": 4.0,
-       "genesis_rank_pct": 0.558,
-       "creation_vol": 3569.502696,
+       "distance_pct": 2.7,
+       "tick_width": 75.0,
+       "genesis_rank_pct": 0.731,
+       "creation_vol": 25271.069014999997,
        "conviction_tier": "MINOR",
        "high_volume": true
       }
@@ -8636,13 +8919,12 @@
       "support_by_tf": {
        "10m": 2,
        "15m": 2,
-       "1h": 2,
+       "1h": 4,
        "1m": 2,
        "30m": 2,
-       "45m": 3,
-       "4h": 2,
+       "45m": 2,
        "5m": 2,
-       "daily": 2,
+       "daily": 3,
        "weekly": 1
       }
      },
@@ -8655,28 +8937,28 @@
    "fractal_channel_gap_context": {
     "checked": true,
     "state": "HTF_CHANNEL_BREAK_RED_GAP_TRANSFER_WITH_15M_FLOORS",
-    "symbol": "ENTX",
+    "symbol": "EXPD",
     "channel": {
      "available": true,
      "direction": "FLAT",
-     "timeframe": "4h",
-     "position": "AT_UPPER",
-     "lower_rail_now": 2.75,
-     "upper_rail_now": 3.21,
-     "rail_width": 0.46,
-     "score": 66.0
+     "timeframe": "1h",
+     "position": "OUTSIDE_UP",
+     "lower_rail_now": 186.75,
+     "upper_rail_now": 189.18,
+     "rail_width": 2.43,
+     "score": 100.0
     },
     "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
-     "bottom": 3.15,
-     "top": 3.265,
+     "bottom": 190.15,
+     "top": 190.27,
      "timeframe": "1m",
      "type": "gap",
      "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 2.89,
-     "tick_width": 12.0,
-     "genesis_rank_pct": 0.74,
-     "creation_vol": 6875.0,
+     "distance_pct": 0.01,
+     "tick_width": 13.0,
+     "genesis_rank_pct": 0.134,
+     "creation_vol": 973.4981,
      "conviction_tier": "MINOR"
     },
     "bull_gap_build_15m_below_state": "BULL_15M_FLOORS_BUILDING_BELOW",
@@ -8708,18 +8990,41 @@
     "research_only": true,
     "live_behavior_changed": false
    },
-   "road_pct": 4.06,
-   "relvol": 1.34,
-   "rsi": 52.1,
-   "floors": [],
-   "blockers": [
-    "1_eaten",
-    "2_accepted",
-    "4_volume",
-    "5_momentum",
-    "6_floors"
+   "road_pct": 0.81,
+   "relvol": 0.65,
+   "rsi": 33.7,
+   "floors": [
+    {
+     "tf": "5m",
+     "top": 189.73,
+     "bottom": 189.69,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 189.76,
+     "bottom": 189.72,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 189.8,
+     "bottom": 189.56,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 190.03,
+     "bottom": 189.93,
+     "weight": 1
+    }
    ],
-   "conditions_met": 1
+   "blockers": [
+    "3_road",
+    "4_volume",
+    "5_momentum"
+   ],
+   "conditions_met": 3
   }
  ]
 }
