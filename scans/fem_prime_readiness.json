@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.04900074005126953,
+    "age_sec": 0.08699607849121094,
     "alist_fillable_count": 4,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 4,
@@ -16,31 +16,24 @@
   },
   "blockers": [
     {
-      "action": "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes.",
-      "code": "LIVE_READINESS_BLOCKED",
-      "impact": "FEM may be alive but unable to trade valid scalps.",
-      "message": "Live readiness is blocked.",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 2 critical/panic alert(s).",
+      "action": "Run morning health/scanner check.",
+      "code": "MORNING_SCANS_NOT_CONFIRMED",
+      "impact": "Universe may be stale or incomplete.",
+      "message": "Morning scanner/TWS health is not confirmed OK.",
       "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 2691.930976867676,
+    "age_sec": 7.373550653457642,
     "alive": false,
-    "generated_at": "2026-09-01T04:45:29",
-    "mode": "HALTED_SENSOR",
+    "generated_at": "2026-09-01T12:48:27",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.1390016078948975,
+    "age_sec": 2.5250051021575928,
     "connected": true,
-    "generated_at": "2026-09-01T12:30:20+00:00",
+    "generated_at": "2026-09-01T19:48:32+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -50,10 +43,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-09-01T12:30:22+00:00",
-  "generated_at_et": "2026-09-01T08:30:19-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-09-01T19:48:36+00:00",
+  "generated_at_et": "2026-09-01T15:48:31-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -64,27 +57,27 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.15000438690185547,
+    "age_sec": 0.32900142669677734,
     "fail": 1,
-    "generated_at": "2026-09-01T12:30:21+00:00",
+    "generated_at": "2026-09-01T19:48:34+00:00",
     "live_ready": false,
     "next_actions": [
-      "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
     "overall": "FAIL",
-    "session": "pre",
-    "warn": 2
+    "session": "rth",
+    "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 135.28018522262573,
+    "age_sec": 4.275009870529175,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-09-01",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": null,
-    "rth_status": null,
+    "rth_bot": "TRIGGER_RETRY",
+    "rth_status": "OK",
     "scanner": null,
     "scanner_status": null,
     "scanner_tws": null,
@@ -123,7 +116,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=FAIL session=pre ok/warn/fail=6/2/1\nNEXT: Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -142,9 +135,9 @@
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "08/31/2026 06:17:17",
+        "last_run_time": "09/01/2026 06:17:17",
         "last_task_result": 0,
-        "next_run_time": "09/01/2026 06:17:17",
+        "next_run_time": "09/02/2026 06:17:17",
         "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
@@ -174,11 +167,11 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 2.4915380477905273,
+    "age_sec": 23402.35201239586,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.0070002079010009766,
+    "snapshot_age_seconds": 0.012997627258300781,
     "snapshot_fresh": true,
     "unknown_symbol_count": 10,
     "unknown_symbols": [
@@ -194,11 +187,22 @@
       "UNKNOWN"
     ]
   },
-  "session": "pre",
+  "session": "rth",
   "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
   "title": "FEM Blocked",
   "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -222,21 +226,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 9.362607479095459,
-    "bot_mode": "HALTED_SENSOR",
+    "age_sec": 42.62176823616028,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 2,
+    "critical_or_panic_count": 3,
     "morning_scanner": null,
     "morning_tws": null,
     "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
-    "rth_handoff_status": null,
-    "short_watchlist_count": 84,
-    "short_watchlist_is_today": false,
-    "trigger_process_count": 1
+    "rth_handoff_status": "OK",
+    "short_watchlist_count": 87,
+    "short_watchlist_is_today": true,
+    "trigger_process_count": 0
   }
 }
