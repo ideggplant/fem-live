@@ -2,12 +2,6 @@
   "auto_run_sequence": [
     {
       "batch_path": null,
-      "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
-      "group_id": "repair_exit_and_fill_coverage",
-      "reason": "Repair fill and exit coverage before grading"
-    },
-    {
-      "batch_path": null,
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "group_id": "repair_decision_accounting",
       "reason": "Make picks produce explicit bot accounting in real time"
@@ -19,9 +13,8 @@
       "reason": "Clean invalid route-policy overrides"
     }
   ],
-  "code_version": "da7e0e41",
+  "code_version": "de92dd90",
   "execution_order": [
-    "repair_exit_and_fill_coverage",
     "repair_contract_breaks",
     "repair_decision_accounting",
     "keep_evidence_quarantined",
@@ -29,30 +22,9 @@
     "review_skipped_opportunities",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-09-02T02:33:16+00:00",
-  "generated_at_et": "2026-09-01T22:33:16-04:00",
+  "generated_at": "2026-09-03T03:19:24+00:00",
+  "generated_at_et": "2026-09-02T23:19:24-04:00",
   "groups": [
-    {
-      "batch_path": null,
-      "blocks_live_trading": true,
-      "blocks_normal_scoring": true,
-      "can_auto_run": true,
-      "category": "EXECUTION_SAFETY",
-      "check_ids": [
-        "exit_reconcile_open_risk"
-      ],
-      "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
-      "evidence": [
-        "1 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
-      ],
-      "evidence_count": 1,
-      "group_id": "repair_exit_and_fill_coverage",
-      "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
-      "priority": 30,
-      "root_cause": "Open/partial exits and adverse fills can make realized edge look better or worse than it really was.",
-      "severity": "WARN",
-      "title": "Repair fill and exit coverage before grading"
-    },
     {
       "batch_path": null,
       "blocks_live_trading": true,
@@ -81,15 +53,17 @@
       "can_auto_run": true,
       "category": "DECISION_ACCOUNTING",
       "check_ids": [
+        "decision_obligation_failures",
         "decision_obligation_time_order_warnings",
         "latency_missed_move_warnings"
       ],
       "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
       "evidence": [
-        "3854 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "missed=4463, no_decision=0, slow_decisions=14869, slow_orders=3, order_after_peak=1"
+        "4 unaccounted pick group(s); raw unaccounted picks=6",
+        "1805 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "missed=8344, no_decision=8, slow_decisions=16910, slow_orders=1, order_after_peak=0"
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "group_id": "repair_decision_accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat after fresh data.",
       "priority": 40,
@@ -112,18 +86,18 @@
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=850ae07721ce1a6e",
-        "partition=EXPERIMENT, actual_trades=10, ghost_graded=204216, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "experiment/review evidence=204226, experiment_strategies=41, review_strategies=0",
-        "67 score-consuming strategy route(s) locked to research/display; normal=0, experiment=41, review=0",
-        "10 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=e516d83f4c15f091",
+        "partition=EXPERIMENT, actual_trades=6, ghost_graded=209156, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "experiment/review evidence=209162, experiment_strategies=40, review_strategies=0",
+        "67 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
+        "6 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=204226, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=209162, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 67 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=27, track_only=40",
+        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=28, track_only=39",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
-        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 10 historical order(s) predate the current permission lock and would be blocked or track-only now"
+        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 6 historical order(s) predate the current permission lock and would be blocked or track-only now"
       ],
       "evidence_count": 12,
       "group_id": "keep_evidence_quarantined",
@@ -144,7 +118,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "27 strategy permission(s) are blocked by contract failures",
+        "28 strategy permission(s) are blocked by contract failures",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
       "evidence_count": 2,
@@ -166,7 +140,7 @@
       ],
       "command": null,
       "evidence": [
-        "1 skipped/ghost group(s) show positive forward evidence"
+        "3 skipped/ghost group(s) show positive forward evidence"
       ],
       "evidence_count": 1,
       "group_id": "review_skipped_opportunities",
@@ -190,7 +164,7 @@
       ],
       "command": null,
       "evidence": [
-        "78 warning breach(es) in current validator output",
+        "112 warning breach(es) in current validator output",
         "1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
         "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "13 high-pressure exit rule group(s) need review"
@@ -208,39 +182,39 @@
     "batch_path": null,
     "blocks_live_trading": true,
     "blocks_normal_scoring": true,
-    "can_auto_run": true,
-    "category": "EXECUTION_SAFETY",
+    "can_auto_run": false,
+    "category": "CONTRACT",
     "check_ids": [
-      "exit_reconcile_open_risk"
+      "panel_registry_contracts"
     ],
-    "command": "_DAILY\\0H_CONTRACT_FILL_RECONCILE.bat; _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat; _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat",
+    "command": null,
     "evidence": [
-      "1 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
+      "7 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=21"
     ],
     "evidence_count": 1,
-    "group_id": "repair_exit_and_fill_coverage",
-    "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
-    "priority": 30,
-    "root_cause": "Open/partial exits and adverse fills can make realized edge look better or worse than it really was.",
-    "severity": "WARN",
-    "title": "Repair fill and exit coverage before grading"
+    "group_id": "repair_contract_breaks",
+    "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
+    "priority": 35,
+    "root_cause": "These are real broken lifecycle links, not market opinions.",
+    "severity": "FAIL",
+    "title": "Resolve explicit contract validator errors"
   },
-  "operator_read": "First action: Repair fill and exit coverage before grading.",
+  "operator_read": "First action: Resolve explicit contract validator errors.",
   "overall": "FAIL",
   "schema": "fem_contract_remediation_plan.v1",
   "session": "closed",
   "summary": {
-    "auto_runnable": 3,
-    "blocks_live_trading": 2,
-    "blocks_normal_scoring": 5,
+    "auto_runnable": 2,
+    "blocks_live_trading": 1,
+    "blocks_normal_scoring": 4,
     "evidence_overall": "FAIL",
     "evidence_partition": "UNTAGGED",
     "fail_groups": 1,
-    "groups": 7,
+    "groups": 6,
     "health_overall": "FAIL",
     "manual": 4,
     "normal_evidence_allowed": false,
-    "warn_groups": 6
+    "warn_groups": 5
   },
-  "trade_date": "2026-09-01"
+  "trade_date": "2026-09-02"
 }
