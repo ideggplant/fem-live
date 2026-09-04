@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-09-04T12:25:22-04:00",
+ "generated_at": "2026-09-04T12:35:34-04:00",
  "trade_date": "2026-09-04",
  "staircase_source": "fem_gap_eat_staircase_long_2026-09-04.json",
  "staircase_is_today": true,
@@ -13,18 +13,18 @@
  },
  "spec": "eat -> accept x2(10m) -> road>=2% -> vol>=1.5x -> rsi>55 rising + ema23 -> fresh floors below",
  "counts": {
-  "CLEAR_AIR_GAP_BUILD_WATCH": 8,
+  "CLEAR_AIR_GAP_BUILD_WATCH": 7,
   "NO_BARS": 1,
+  "ACCEPTED_WAITING": 6,
   "WATCHING": 25,
-  "ACCEPTED_WAITING": 5,
   "EATEN": 1
  },
  "condition_blockers": {
+  "3_road": 23,
+  "5_momentum": 26,
   "1_eaten": 25,
   "2_accepted": 26,
-  "3_road": 22,
   "4_volume": 28,
-  "5_momentum": 25,
   "6_floors": 26
  },
  "rows": [
@@ -867,14 +867,17 @@
   },
   {
    "ticker": "TENB",
-   "score": 100,
-   "gap_top": null,
+   "score": 0,
+   "gap_top": 34.22,
    "conditions": {
-    "1_no_mapped_overhead": true,
-    "2_mustard_gap_synthesis": true,
-    "3_bull_shelves_below": true
+    "1_eaten": true,
+    "2_accepted": true,
+    "3_road": false,
+    "4_volume": true,
+    "5_momentum": false,
+    "6_floors": true
    },
-   "state": "CLEAR_AIR_GAP_BUILD_WATCH",
+   "state": "ACCEPTED_WAITING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
@@ -1113,11 +1116,40 @@
     "walker_priority": "WALK_WATCH"
    },
    "synthesis_forced_walk": true,
-   "blockers": [],
-   "conditions_met": 3,
-   "road_quality": "REAL_CLEAR_HIGHWAY_NO_MAPPED_OVERHEAD",
-   "bull_gaps_built": 26.0,
-   "support_stack_depth": 20.0
+   "road_pct": 0.8,
+   "relvol": 3.53,
+   "rsi": 22.4,
+   "floors": [
+    {
+     "tf": "5m",
+     "top": 34.49,
+     "bottom": 34.41,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 34.5,
+     "bottom": 34.49,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 34.24,
+     "bottom": 34.14,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 34.31,
+     "bottom": 34.25,
+     "weight": 1
+    }
+   ],
+   "blockers": [
+    "3_road",
+    "5_momentum"
+   ],
+   "conditions_met": 4
   },
   {
    "ticker": "SNDX",
@@ -2015,12 +2047,6 @@
    "floors": [
     {
      "tf": "5m",
-     "top": 8.605,
-     "bottom": 8.59,
-     "weight": 1
-    },
-    {
-     "tf": "5m",
      "top": 8.645,
      "bottom": 8.615,
      "weight": 1
@@ -2029,6 +2055,12 @@
      "tf": "5m",
      "top": 8.69,
      "bottom": 8.645,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 8.71,
+     "bottom": 8.7,
      "weight": 1
     },
     {
@@ -5272,7 +5304,7 @@
   },
   {
    "ticker": "ALHC",
-   "score": 100,
+   "score": 78,
    "gap_top": 13.815,
    "conditions": {
     "1_eaten": false,
