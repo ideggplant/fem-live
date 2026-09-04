@@ -17,10 +17,21 @@
     "0Y_CONTRACT_SCORE_PARTITIONS.bat",
     "0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat"
   ],
-  "code_version": "de92dd90",
-  "generated_at": "2026-09-03T03:19:41+00:00",
-  "generated_at_et": "2026-09-02T23:19:41-04:00",
+  "code_version": "6602a500",
+  "generated_at": "2026-09-04T03:46:03+00:00",
+  "generated_at_et": "2026-09-03T23:46:03-04:00",
   "manual_blockers": [
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": false,
+      "check_ids": [
+        "runtime_drift_restart_required"
+      ],
+      "group_id": "restart_stale_runtime",
+      "recovery_action": "Close and restart the listed live/bot windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "severity": "FAIL",
+      "title": "Restart stale live windows"
+    },
     {
       "blocks_live_trust": false,
       "blocks_normal_learning": false,
@@ -43,6 +54,21 @@
   "overall": "WARN",
   "post_refresh": [],
   "results": [
+    {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "executed": false,
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "status": "READY",
+      "title": "Restore live readiness",
+      "valid": true
+    },
     {
       "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
       "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
@@ -197,6 +223,19 @@
   "schema": "fem_contract_live_trust_executor.v1",
   "selected_steps": [
     {
+      "batch_name": "0V_CONTRACT_LIVE_READINESS.bat",
+      "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "command_text": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "group_id": "restore_live_readiness",
+      "invalid_reason": null,
+      "reason": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "source_groups": [
+        "restore_live_readiness"
+      ],
+      "title": "Restore live readiness",
+      "valid": true
+    },
+    {
       "batch_name": "0W_CONTRACT_SESSION_CONTEXT.bat",
       "batch_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
       "command_text": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat",
@@ -334,18 +373,19 @@
     "groups": [
       "clean_route_policy_permissions",
       "repair_real_time_decision_accounting",
+      "restore_live_readiness",
       "restore_normal_evidence_profile"
     ],
-    "hard_manual_blockers": 1,
+    "hard_manual_blockers": 2,
     "invalid_steps": 0,
-    "manual_blockers": 1,
+    "manual_blockers": 2,
     "post_refresh_steps": 0,
-    "ready_steps": 10,
-    "recovery_generated_at": "2026-09-03T03:19:41.263495+00:00",
-    "recovery_groups": 5,
+    "ready_steps": 11,
+    "recovery_generated_at": "2026-09-04T03:46:03.424921+00:00",
+    "recovery_groups": 7,
     "recovery_overall": "FAIL",
-    "selected_steps": 10,
-    "total_auto_steps": 10
+    "selected_steps": 11,
+    "total_auto_steps": 11
   },
-  "trade_date": "2026-09-02"
+  "trade_date": "2026-09-03"
 }
