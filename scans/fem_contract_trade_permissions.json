@@ -4,9 +4,6 @@
     "allow_probe": [],
     "bench": [],
     "block": [
-      "bull_bounce_pending",
-      "clock_long",
-      "clock_short",
       "contract_spine",
       "daily_liquid_120",
       "decision_audit",
@@ -16,13 +13,10 @@
       "dump_short",
       "execution_truth",
       "gap_eat",
-      "gap_eat_staircase_long",
-      "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "live_trust_executor",
       "live_trust_recovery",
       "meta_confluence",
-      "micro_clock_buy_zone",
       "moo_ticket",
       "options_context",
       "options_roundtrip_long",
@@ -30,13 +24,11 @@
       "runner_exit_decision",
       "scan_stage_drop_audit",
       "short_mid",
-      "stock_clock_shadow",
       "surge_probe",
       "surge_watch_probe",
       "timesfm_shadow",
       "trapped_short",
       "upside_down_cow_short",
-      "value_area_fortress",
       "watchlist_gap_eat"
     ],
     "research_only": [],
@@ -44,21 +36,27 @@
       "all_time_high_long",
       "ath_long",
       "bear_rejection_pending",
+      "bull_bounce_pending",
       "channel_shelf_reclaim_swing",
+      "clock_long",
+      "clock_short",
       "daily_120_short",
       "daily_120_short_breakdown",
       "daily_120_short_gapdown_cont",
       "daily_120_short_grade",
       "daily_120_short_lower_high",
       "daily_120_short_vwap_reject",
+      "gap_eat_staircase_long",
       "gap_reclaim_trigger",
       "gap_reject_short",
+      "gap_wall_roundtrip_shadow",
       "live_fire_dump",
       "live_fire_gap_eat",
       "live_fire_gap_fail_short",
       "live_fire_gap_reclaim",
       "live_fire_reclaim",
       "live_fire_surge",
+      "micro_clock_buy_zone",
       "mustard_grind_long",
       "mustard_mixed_research",
       "mustard_reload",
@@ -72,8 +70,10 @@
       "short_universe_vwap_reject",
       "sma_reclaim_long",
       "state_lookup",
+      "stock_clock_shadow",
       "surge_chase",
-      "surge_micro_scout"
+      "surge_micro_scout",
+      "value_area_fortress"
     ],
     "watch_only": [],
     "weights": {
@@ -110,11 +110,11 @@
       "bull_bounce_pending": {
         "allowed_to_trade": false,
         "panel_id": "state_lookup",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "side": "LONG"
       },
       "channel_shelf_reclaim_swing": {
@@ -130,7 +130,7 @@
       "clock_long": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -140,7 +140,7 @@
       "clock_short": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -299,8 +299,8 @@
       },
       "gap_eat_staircase_long": {
         "allowed_to_trade": false,
-        "panel_id": "watchlist_gap_eat",
-        "permission": "BLOCK",
+        "panel_id": "gap_eat_staircase",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -330,7 +330,7 @@
       "gap_wall_roundtrip_shadow": {
         "allowed_to_trade": false,
         "panel_id": "gap_wall_roundtrip",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -440,7 +440,7 @@
       "micro_clock_buy_zone": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -650,7 +650,7 @@
       "stock_clock_shadow": {
         "allowed_to_trade": false,
         "panel_id": "stock_clock",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -730,7 +730,7 @@
       "value_area_fortress": {
         "allowed_to_trade": false,
         "panel_id": "value_area_fortress",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -871,6 +871,17 @@
       "side": "LONG",
       "strategies": 1
     },
+    "gap_eat_staircase": {
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
+      "panel_id": "gap_eat_staircase",
+      "panel_name": "Gap Eat Staircase",
+      "permissions": {
+        "TRACK_ONLY": 1
+      },
+      "side": "LONG",
+      "strategies": 1
+    },
     "gap_reclaim_trigger": {
       "allowed_strategies": [],
       "max_route_weight": 0.0,
@@ -899,7 +910,7 @@
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "MIXED",
       "strategies": 1
@@ -1143,8 +1154,8 @@
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
       "permissions": {
-        "BLOCK": 2,
-        "TRACK_ONLY": 2
+        "BLOCK": 1,
+        "TRACK_ONLY": 3
       },
       "side": "SHORT",
       "strategies": 4
@@ -1155,7 +1166,7 @@
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
       "permissions": {
-        "BLOCK": 4
+        "TRACK_ONLY": 4
       },
       "side": "LONG",
       "strategies": 4
@@ -1222,7 +1233,7 @@
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1233,14 +1244,14 @@
       "panel_id": "watchlist_gap_eat",
       "panel_name": "Watchlist Gap-Eat",
       "permissions": {
-        "BLOCK": 4
+        "BLOCK": 3
       },
       "side": "LONG",
-      "strategies": 4
+      "strategies": 3
     }
   },
-  "generated_at": "2026-09-03T12:51:03+00:00",
-  "generated_at_et": "2026-09-03T08:51:03-04:00",
+  "generated_at": "2026-09-04T03:45:40+00:00",
+  "generated_at_et": "2026-09-03T23:45:40-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1264,7 +1275,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1276,7 +1287,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 1,
+        "ghost_fires": 4,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1310,7 +1321,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1322,7 +1333,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 1,
+        "ghost_fires": 4,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1356,7 +1367,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1368,7 +1379,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 38,
+        "ghost_fires": 20,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1402,19 +1413,19 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
-        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
-        "actual_realized_pnl": null,
+        "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 15,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -1422,14 +1433,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
         "system health was FAIL at build; bot runtime health gate still enforces entries",
-        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1448,7 +1459,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1484,44 +1495,44 @@
     },
     "clock_long": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.242,
-        "ghost_fires": 1171,
-        "ghost_graded": 1171,
-        "ghost_run_rate": 30.32,
+        "ghost_avg_target_r": -0.133,
+        "ghost_fires": 1617,
+        "ghost_graded": 1617,
+        "ghost_run_rate": 34.69,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 30.32
+        "ghost_target_hit_rate": 34.69
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1530,44 +1541,44 @@
     },
     "clock_short": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": 0.096,
-        "ghost_fires": 1179,
-        "ghost_graded": 1179,
-        "ghost_run_rate": 43.94,
+        "ghost_avg_target_r": 0.021,
+        "ghost_fires": 1650,
+        "ghost_graded": 1650,
+        "ghost_run_rate": 40.79,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 43.94
+        "ghost_target_hit_rate": 40.79
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -1586,7 +1597,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1632,7 +1643,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1678,7 +1689,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1724,7 +1735,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1770,7 +1781,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1816,7 +1827,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1862,7 +1873,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -1908,7 +1919,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -1954,7 +1965,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2000,7 +2011,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2046,7 +2057,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2092,7 +2103,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2138,7 +2149,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2174,21 +2185,21 @@
     },
     "execution_truth": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2204,14 +2215,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "execution_truth",
       "panel_name": "Execution Truth",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2230,7 +2241,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2266,21 +2277,21 @@
     },
     "gap_eat_staircase_long": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2288,22 +2299,22 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -1.0,
-        "ghost_fires": 270,
-        "ghost_graded": 137,
-        "ghost_run_rate": 1.46,
+        "ghost_fires": 278,
+        "ghost_graded": 144,
+        "ghost_run_rate": 0.69,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": 0.0
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
-      "panel_id": "watchlist_gap_eat",
-      "panel_name": "Watchlist Gap-Eat",
-      "permission": "BLOCK",
+      "panel_id": "gap_eat_staircase",
+      "panel_name": "Gap Eat Staircase",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2322,17 +2333,17 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
         "source_ok": true
       },
       "evidence": {
-        "actual_avg_r": 0.2896,
-        "actual_closed": 2,
-        "actual_realized_pnl": 8.77,
-        "actual_trades": 6,
+        "actual_avg_r": -1.0,
+        "actual_closed": 1,
+        "actual_realized_pnl": -24.0,
+        "actual_trades": 3,
         "ghost_avg_target_r": null,
         "ghost_fires": 0,
         "ghost_graded": 0,
@@ -2369,7 +2380,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2380,9 +2391,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": 0.02,
-        "ghost_fires": 113812,
-        "ghost_graded": 113812,
+        "ghost_avg_target_r": 0.018,
+        "ghost_fires": 114292,
+        "ghost_graded": 114292,
         "ghost_run_rate": 36.6,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
@@ -2405,44 +2416,44 @@
     },
     "gap_wall_roundtrip_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9351,
-        "ghost_fires": 8181,
-        "ghost_graded": 647,
-        "ghost_run_rate": 5.56,
+        "ghost_avg_target_r": -0.9559,
+        "ghost_fires": 9100,
+        "ghost_graded": 861,
+        "ghost_run_rate": 7.9,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 3.25
+        "ghost_target_hit_rate": 2.21
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2461,7 +2472,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2472,13 +2483,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.939,
-        "ghost_fires": 7808,
-        "ghost_graded": 6387,
-        "ghost_run_rate": 4.49,
-        "ghost_skip_avg_r": -0.9389,
+        "ghost_avg_target_r": -0.9189,
+        "ghost_fires": 7791,
+        "ghost_graded": 6279,
+        "ghost_run_rate": 5.06,
+        "ghost_skip_avg_r": -0.9188,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 2.29
+        "ghost_target_hit_rate": 3.04
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2508,7 +2519,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2519,17 +2530,17 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9838,
-        "ghost_fires": 824,
-        "ghost_graded": 822,
-        "ghost_run_rate": 1.46,
-        "ghost_skip_avg_r": -0.9838,
+        "ghost_avg_target_r": -0.9852,
+        "ghost_fires": 722,
+        "ghost_graded": 719,
+        "ghost_run_rate": 1.53,
+        "ghost_skip_avg_r": -0.9851,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 0.61
+        "ghost_target_hit_rate": 0.56
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
-        "skip_verdicts=ACTIONABLE_GOOD_SKIP,EARLY_GOOD_SKIP"
+        "skip_verdicts=ACTIONABLE_GOOD_SKIP,EARLY_GOOD_SKIP,TOO_THIN"
       ],
       "panel_id": "live_fire_gap_eat",
       "panel_name": "Live Fire Gap Eat",
@@ -2555,7 +2566,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2566,13 +2577,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.9858,
-        "ghost_fires": 12087,
-        "ghost_graded": 9547,
-        "ghost_run_rate": 2.04,
-        "ghost_skip_avg_r": -0.9857,
+        "ghost_avg_target_r": -0.9677,
+        "ghost_fires": 12458,
+        "ghost_graded": 9894,
+        "ghost_run_rate": 2.98,
+        "ghost_skip_avg_r": -0.9677,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 0.53
+        "ghost_target_hit_rate": 1.21
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2603,7 +2614,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2614,13 +2625,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.991,
-        "ghost_fires": 898,
-        "ghost_graded": 892,
-        "ghost_run_rate": 0.56,
-        "ghost_skip_avg_r": -0.991,
+        "ghost_avg_target_r": -0.994,
+        "ghost_fires": 888,
+        "ghost_graded": 882,
+        "ghost_run_rate": 0.68,
+        "ghost_skip_avg_r": -0.9939,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 0.34
+        "ghost_target_hit_rate": 0.23
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2650,7 +2661,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2661,13 +2672,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -1.0,
-        "ghost_fires": 3,
-        "ghost_graded": 3,
-        "ghost_run_rate": 0.0,
-        "ghost_skip_avg_r": -1.0,
+        "ghost_avg_target_r": 0.3334,
+        "ghost_fires": 2,
+        "ghost_graded": 2,
+        "ghost_run_rate": 50.0,
+        "ghost_skip_avg_r": 0.3334,
         "ghost_skip_verdict": "TOO_THIN",
-        "ghost_target_hit_rate": 0.0
+        "ghost_target_hit_rate": 50.0
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
@@ -2697,7 +2708,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -2708,17 +2719,17 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.828,
-        "ghost_fires": 8181,
-        "ghost_graded": 6498,
-        "ghost_run_rate": 12.03,
-        "ghost_skip_avg_r": -0.828,
+        "ghost_avg_target_r": -0.8426,
+        "ghost_fires": 9100,
+        "ghost_graded": 8014,
+        "ghost_run_rate": 11.47,
+        "ghost_skip_avg_r": -0.8426,
         "ghost_skip_verdict": "ACTIONABLE_GOOD_SKIP",
-        "ghost_target_hit_rate": 6.45
+        "ghost_target_hit_rate": 5.9
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT",
-        "skip_verdicts=ACTIONABLE_GOOD_SKIP,ACTIONABLE_MIXED"
+        "skip_verdicts=ACTIONABLE_GOOD_SKIP,TOO_THIN"
       ],
       "panel_id": "live_fire_surge",
       "panel_name": "Live Fire Surge",
@@ -2744,7 +2755,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2780,21 +2791,21 @@
     },
     "live_trust_executor": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2810,14 +2821,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "live_trust_executor",
       "panel_name": "Live Trust Executor",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2826,21 +2837,21 @@
     },
     "live_trust_recovery": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2856,14 +2867,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "live_trust_recovery",
       "panel_name": "Live Trust Recovery",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2882,7 +2893,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -2918,21 +2929,21 @@
     },
     "micro_clock_buy_zone": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2948,14 +2959,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2974,7 +2985,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3020,7 +3031,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3066,7 +3077,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3112,7 +3123,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3158,7 +3169,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3204,7 +3215,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3250,7 +3261,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3296,7 +3307,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3342,7 +3353,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3378,21 +3389,21 @@
     },
     "scan_stage_drop_audit": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3408,14 +3419,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "scan_stage_drop_audit",
       "panel_name": "Scan Stage Drop Audit",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3434,7 +3445,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3445,13 +3456,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.0243,
-        "ghost_fires": 37479,
-        "ghost_graded": 37309,
-        "ghost_run_rate": 47.18,
+        "ghost_avg_target_r": -0.0225,
+        "ghost_fires": 38074,
+        "ghost_graded": 37870,
+        "ghost_run_rate": 47.29,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 47.18
+        "ghost_target_hit_rate": 47.29
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3480,7 +3491,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -3526,7 +3537,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3537,13 +3548,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.1675,
-        "ghost_fires": 6443,
-        "ghost_graded": 6399,
-        "ghost_run_rate": 33.27,
+        "ghost_avg_target_r": -0.172,
+        "ghost_fires": 6533,
+        "ghost_graded": 6506,
+        "ghost_run_rate": 33.11,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 33.27
+        "ghost_target_hit_rate": 33.11
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3572,7 +3583,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3583,13 +3594,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.342,
-        "ghost_fires": 422,
-        "ghost_graded": 422,
-        "ghost_run_rate": 26.3,
+        "ghost_avg_target_r": -0.331,
+        "ghost_fires": 430,
+        "ghost_graded": 430,
+        "ghost_run_rate": 26.74,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 26.3
+        "ghost_target_hit_rate": 26.74
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3618,7 +3629,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3629,13 +3640,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.156,
-        "ghost_fires": 569,
-        "ghost_graded": 569,
-        "ghost_run_rate": 33.74,
+        "ghost_avg_target_r": -0.16,
+        "ghost_fires": 583,
+        "ghost_graded": 583,
+        "ghost_run_rate": 33.62,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 33.74
+        "ghost_target_hit_rate": 33.62
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3664,7 +3675,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3675,13 +3686,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.1667,
-        "ghost_fires": 6393,
-        "ghost_graded": 6393,
-        "ghost_run_rate": 33.3,
+        "ghost_avg_target_r": -0.1691,
+        "ghost_fires": 6483,
+        "ghost_graded": 6483,
+        "ghost_run_rate": 33.23,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 33.3
+        "ghost_target_hit_rate": 33.23
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3710,7 +3721,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3721,9 +3732,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.177,
-        "ghost_fires": 2321,
-        "ghost_graded": 2321,
+        "ghost_avg_target_r": -0.178,
+        "ghost_fires": 2339,
+        "ghost_graded": 2339,
         "ghost_run_rate": 32.92,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
@@ -3756,7 +3767,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3767,13 +3778,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.137,
-        "ghost_fires": 3081,
-        "ghost_graded": 3081,
-        "ghost_run_rate": 34.5,
+        "ghost_avg_target_r": -0.142,
+        "ghost_fires": 3131,
+        "ghost_graded": 3131,
+        "ghost_run_rate": 34.3,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 34.5
+        "ghost_target_hit_rate": 34.3
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3802,7 +3813,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3814,7 +3825,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 4,
+        "ghost_fires": 7,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3848,7 +3859,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3884,21 +3895,21 @@
     },
     "stock_clock_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3906,7 +3917,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 207,
+        "ghost_fires": 369,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3914,14 +3925,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "stock_clock",
       "panel_name": "Stock Clock / Micro Clocks",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3940,7 +3951,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3951,13 +3962,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.828,
-        "ghost_fires": 8181,
-        "ghost_graded": 6498,
-        "ghost_run_rate": 12.03,
+        "ghost_avg_target_r": -0.8426,
+        "ghost_fires": 9100,
+        "ghost_graded": 8014,
+        "ghost_run_rate": 11.47,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 6.45
+        "ghost_target_hit_rate": 5.9
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3986,7 +3997,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
@@ -3997,13 +4008,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.5682,
+        "ghost_avg_target_r": -0.7085,
         "ghost_fires": 30,
-        "ghost_graded": 20,
-        "ghost_run_rate": 70.0,
+        "ghost_graded": 28,
+        "ghost_run_rate": 57.14,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 15.0
+        "ghost_target_hit_rate": 10.71
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -4032,7 +4043,7 @@
         "panel_status": "WARN",
         "publisher_ok": false,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": false,
         "score_partition": "UNTAGGED",
@@ -4079,7 +4090,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -4125,7 +4136,7 @@
         "panel_status": "RESEARCH",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -4171,7 +4182,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -4217,7 +4228,7 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -4253,21 +4264,21 @@
     },
     "value_area_fortress": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -4275,22 +4286,22 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": -0.06,
-        "ghost_fires": 116,
-        "ghost_graded": 115,
-        "ghost_run_rate": 2.61,
+        "ghost_fires": 124,
+        "ghost_graded": 119,
+        "ghost_run_rate": 2.52,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 2.61
+        "ghost_target_hit_rate": 2.52
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4309,7 +4320,7 @@
         "panel_status": "WARN",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "no score evidence",
+        "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
@@ -4345,27 +4356,6 @@
     }
   },
   "recommendations": [
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "state_lookup",
-      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
-      "side": "LONG",
-      "strategy_id": "bull_bounce_pending"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "clock_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "clock_short"
-    },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "contract_spine",
@@ -4418,7 +4408,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "execution_truth",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "execution_truth"
     },
@@ -4434,33 +4424,19 @@
       "panel_id": "watchlist_gap_eat",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
-      "strategy_id": "gap_eat_staircase_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "gap_wall_roundtrip",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "MIXED",
-      "strategy_id": "gap_wall_roundtrip_shadow"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "watchlist_gap_eat",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
       "strategy_id": "live_takeoffs"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "live_trust_executor",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "live_trust_executor"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "live_trust_recovery",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "live_trust_recovery"
     },
@@ -4470,13 +4446,6 @@
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
       "strategy_id": "meta_confluence"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "micro_clock_buy_zone"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4516,7 +4485,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "scan_stage_drop_audit",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "scan_stage_drop_audit"
     },
@@ -4526,13 +4495,6 @@
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "SHORT",
       "strategy_id": "short_mid"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "stock_clock",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "stock_clock_shadow"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4554,6 +4516,27 @@
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
       "strategy_id": "timesfm_shadow"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "state_lookup",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "trapped_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "upside_down_cow",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "upside_down_cow_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "watchlist_gap_eat",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "LONG",
+      "strategy_id": "watchlist_gap_eat"
     }
   ],
   "route_policy": {
@@ -4710,14 +4693,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 34,
-    "ghost_good_skip_groups": 38,
-    "ghost_opportunity_groups": 3,
+    "block": 26,
+    "ghost_good_skip_groups": 33,
+    "ghost_opportunity_groups": 2,
     "health_overall": "FAIL",
-    "panel_score_strategies": 40,
+    "panel_score_strategies": 41,
     "permission_counts": {
-      "BLOCK": 34,
-      "TRACK_ONLY": 33
+      "BLOCK": 26,
+      "TRACK_ONLY": 41
     },
     "registry_overall": "WARN",
     "research_only": 0,
@@ -4728,11 +4711,11 @@
     "score_consumer_lock_overall": "WARN",
     "score_consumer_locked": 67,
     "score_partition_counts": {
-      "EXPERIMENT": 40,
-      "UNTAGGED": 27
+      "EXPERIMENT": 41,
+      "UNTAGGED": 26
     },
     "strategies": 67,
-    "track_only": 33,
+    "track_only": 41,
     "watch_only": 0
   },
   "trade_date": "2026-09-03"
