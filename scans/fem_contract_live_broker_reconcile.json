@@ -1,12 +1,9 @@
 {
   "action_items": [
     {
-      "code": "INVALID_ENTRY_ORDERS",
-      "detail": "Working entry orders exist that are not currently allowed by the spine route contract.",
-      "examples": [
-        "ACHR#1052115:MISSING_ORDER_STRATEGY"
-      ],
-      "severity": "FAIL"
+      "code": "ORDER_SAFETY_CLEAN",
+      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
+      "severity": "OK"
     }
   ],
   "broker": {
@@ -18,8 +15,8 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-09-09T14:15:41+00:00",
-  "generated_at_et": "2026-09-09T10:15:41-04:00",
+  "generated_at": "2026-09-09T14:19:51+00:00",
+  "generated_at_et": "2026-09-09T10:19:51-04:00",
   "inputs": {
     "exit_intent_rows": 0,
     "order_strategy_rows": 0,
@@ -221,59 +218,11 @@
       "symbol": "PATH"
     },
     {
-      "action": "BUY",
-      "breach_code": "MISSING_ORDER_STRATEGY",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "UNKNOWN_ENTRY_LIKE",
-      "client_id": 31,
-      "detail": "entry-like working order has no order_strategy row",
-      "entry_strategy_id": null,
-      "exit_intent": null,
-      "exit_strategy_id": null,
-      "limit_price": 5.69,
-      "oca_group": "",
-      "order_id": "1052115",
-      "order_type": "LMT",
-      "parent_id": "0",
-      "position_qty": 0.0,
-      "quantity": 176.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 31,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 5.69,
-        "oca_group": "",
-        "order_id": 1052115,
-        "order_ref": "INVDUMP",
-        "order_type": "LMT",
-        "outside_rth": false,
-        "parent_id": 0,
-        "perm_id": 1033968049,
-        "quantity": 176.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "ACHR",
-        "tif": "DAY",
-        "trail_stop_price": 6.69,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "FAIL",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "ACHR"
-    },
-    {
       "action": "SELL",
       "breach_code": "MISSING_EXIT_INTENT_FOR_CHILD",
       "cancel_allowed": false,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_CHILD_POSITION_FLAT",
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "BRACKET_CHILD_UNMAPPED",
       "client_id": 31,
       "detail": "order has a broker parentId but no exit_intent row",
@@ -285,7 +234,7 @@
       "order_id": "1052116",
       "order_type": "LMT",
       "parent_id": "1052115",
-      "position_qty": 0.0,
+      "position_qty": 176.0,
       "quantity": 176.0,
       "raw": {
         "action": "SELL",
@@ -302,7 +251,7 @@
         "perm_id": 1033968050,
         "quantity": 176.0,
         "sec_type": "STK",
-        "status": "PreSubmitted",
+        "status": "Submitted",
         "stop_price": 0.0,
         "symbol": "ACHR",
         "tif": "DAY",
@@ -312,7 +261,7 @@
       },
       "route": null,
       "severity": "FAIL",
-      "status": "PreSubmitted",
+      "status": "Submitted",
       "stop_price": null,
       "symbol": "ACHR"
     },
@@ -320,8 +269,8 @@
       "action": "SELL",
       "breach_code": "MISSING_EXIT_INTENT_FOR_CHILD",
       "cancel_allowed": false,
-      "cancel_candidate": true,
-      "cancel_reason": "ORPHAN_CHILD_POSITION_FLAT",
+      "cancel_candidate": false,
+      "cancel_reason": null,
       "classification": "BRACKET_CHILD_UNMAPPED",
       "client_id": 31,
       "detail": "order has a broker parentId but no exit_intent row",
@@ -333,7 +282,7 @@
       "order_id": "1052117",
       "order_type": "STP",
       "parent_id": "1052115",
-      "position_qty": 0.0,
+      "position_qty": 176.0,
       "quantity": 176.0,
       "raw": {
         "action": "SELL",
@@ -365,9 +314,40 @@
       "symbol": "ACHR"
     }
   ],
-  "operator_read": "Order safety is FAIL: 1 invalid entry order(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: one or more live-order contract breaches. Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
+    {
+      "ah_exit_contract": {
+        "ah_exit_owner_verified": false,
+        "ah_stop_orders": [],
+        "ah_stop_quantity": 0,
+        "ah_target_orders": [],
+        "ah_target_quantity": 0,
+        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
+        "full_ah_stop_coverage": false,
+        "full_ah_target_coverage": false,
+        "position_quantity": 176.0,
+        "schema": "fem_ah_exit_contract.v1"
+      },
+      "avg_cost": 5.695684818181818,
+      "breach_code": "POSITION_HAS_STOP",
+      "detail": "position has at least one opposite-side stop/trailing order",
+      "protective_stop_orders": [
+        "1052117"
+      ],
+      "qty": 176.0,
+      "related_exit_orders": [
+        "1052116",
+        "1052117"
+      ],
+      "severity": "OK",
+      "side": "LONG",
+      "symbol": "ACHR",
+      "target_orders": [
+        "1052116"
+      ]
+    },
     {
       "ah_exit_contract": {
         "ah_exit_owner_verified": false,
@@ -436,23 +416,22 @@
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "MISSING_EXIT_INTENT_FOR_CHILD": 6,
-      "MISSING_ORDER_STRATEGY": 1
+      "MISSING_EXIT_INTENT_FOR_CHILD": 6
     },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
-    "invalid_entry_like_orders": 1,
-    "open_orders": 7,
-    "order_fail": 7,
+    "invalid_entry_like_orders": 0,
+    "open_orders": 6,
+    "order_fail": 6,
     "order_ok": 0,
     "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
-    "position_ok": 2,
+    "position_ok": 3,
     "position_warn": 0,
-    "positions": 2,
+    "positions": 3,
     "unprotected_positions": 0
   },
   "trade_date": "2026-09-09"
