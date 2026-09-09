@@ -15,7 +15,7 @@
       "dump_short",
       "execution_truth",
       "gap_eat",
-      "gap_wall_roundtrip_shadow",
+      "live_fire_gap_fail_short",
       "live_takeoffs",
       "live_trust_executor",
       "live_trust_recovery",
@@ -29,7 +29,6 @@
       "short_genesis",
       "short_mid",
       "state_lookup",
-      "surge_micro_scout",
       "surge_probe",
       "surge_watch_probe",
       "timesfm_shadow",
@@ -52,6 +51,7 @@
       "daily_120_short_vwap_reject",
       "gap_eat_staircase_long",
       "gap_reject_short",
+      "gap_wall_roundtrip_shadow",
       "live_fire_dump",
       "live_fire_gap_eat",
       "live_fire_gap_reclaim",
@@ -71,6 +71,7 @@
       "sma_reclaim_long",
       "stock_clock_shadow",
       "surge_chase",
+      "surge_micro_scout",
       "value_area_fortress"
     ],
     "watch_only": [],
@@ -318,7 +319,7 @@
       "gap_wall_roundtrip_shadow": {
         "allowed_to_trade": false,
         "panel_id": "gap_wall_roundtrip",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -343,6 +344,16 @@
         "route_weight": 0.0,
         "score_consumer_locked": true,
         "score_partition": "EXPERIMENT",
+        "side": "LONG"
+      },
+      "live_fire_gap_fail_short": {
+        "allowed_to_trade": false,
+        "panel_id": "live_fire_gap_fail_short",
+        "permission": "BLOCK",
+        "risk_multiplier": 0.0,
+        "route_weight": 0.0,
+        "score_consumer_locked": true,
+        "score_partition": "UNTAGGED",
         "side": "LONG"
       },
       "live_fire_gap_reclaim": {
@@ -648,7 +659,7 @@
       "surge_micro_scout": {
         "allowed_to_trade": false,
         "panel_id": "surge_micro",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -877,7 +888,7 @@
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "MIXED",
       "strategies": 1
@@ -901,6 +912,17 @@
       "panel_name": "Live Fire Gap Eat",
       "permissions": {
         "TRACK_ONLY": 1
+      },
+      "side": "LONG",
+      "strategies": 1
+    },
+    "live_fire_gap_fail_short": {
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
+      "panel_id": "live_fire_gap_fail_short",
+      "panel_name": "live_fire_gap_fail_short",
+      "permissions": {
+        "BLOCK": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1132,7 +1154,8 @@
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permissions": {
-        "BLOCK": 2
+        "BLOCK": 1,
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 2
@@ -1204,8 +1227,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-09-09T00:53:54+00:00",
-  "generated_at_et": "2026-09-08T20:53:54-04:00",
+  "generated_at": "2026-09-09T01:00:21+00:00",
+  "generated_at_et": "2026-09-08T21:00:21-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1470,13 +1493,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.122,
-        "ghost_fires": 1822,
-        "ghost_graded": 1822,
-        "ghost_run_rate": 35.13,
+        "ghost_avg_target_r": -0.113,
+        "ghost_fires": 1868,
+        "ghost_graded": 1868,
+        "ghost_run_rate": 35.49,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 35.13
+        "ghost_target_hit_rate": 35.49
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -1516,13 +1539,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.019,
-        "ghost_fires": 1871,
-        "ghost_graded": 1871,
-        "ghost_run_rate": 39.18,
+        "ghost_avg_target_r": -0.027,
+        "ghost_fires": 1911,
+        "ghost_graded": 1911,
+        "ghost_run_rate": 38.88,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 39.18
+        "ghost_target_hit_rate": 38.88
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -1909,21 +1932,21 @@
     },
     "decision_audit": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -1939,14 +1962,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "decision_audit",
       "panel_name": "Decision Audit",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2139,21 +2162,21 @@
     },
     "execution_truth": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2169,14 +2192,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "execution_truth",
       "panel_name": "Execution Truth",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2297,7 +2320,7 @@
         "actual_avg_r": null,
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
-        "actual_trades": 0,
+        "actual_trades": 6,
         "ghost_avg_target_r": 0.015,
         "ghost_fires": 118625,
         "ghost_graded": 118625,
@@ -2323,21 +2346,21 @@
     },
     "gap_wall_roundtrip_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2345,7 +2368,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 4426,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2353,14 +2376,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2391,15 +2414,16 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 4418,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
-        "ghost_skip_verdict": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_dump",
       "panel_name": "Live Fire Dump",
@@ -2437,15 +2461,16 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 746,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
-        "ghost_skip_verdict": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_gap_eat",
       "panel_name": "Live Fire Gap Eat",
@@ -2458,6 +2483,54 @@
       "route_weight": 0.0,
       "side": "LONG",
       "strategy_id": "live_fire_gap_eat"
+    },
+    "live_fire_gap_fail_short": {
+      "allowed_to_trade": false,
+      "confidence": "SCORE_CONSUMER_LOCK",
+      "contract": {
+        "bot_required": false,
+        "bot_route_ok": true,
+        "dashboard_ok": true,
+        "health_overall": "FAIL",
+        "normal_score_eligible": false,
+        "panel_status": "WARN",
+        "publisher_ok": true,
+        "score_consumer_locked": true,
+        "score_consumer_reason": "strategy score missing score-provenance lock",
+        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_ok": true,
+        "score_partition": "UNTAGGED",
+        "source_ok": true
+      },
+      "evidence": {
+        "actual_avg_r": null,
+        "actual_closed": 0,
+        "actual_realized_pnl": 0.0,
+        "actual_trades": 0,
+        "ghost_avg_target_r": null,
+        "ghost_fires": 6812,
+        "ghost_graded": 0,
+        "ghost_run_rate": null,
+        "ghost_skip_avg_r": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
+        "ghost_target_hit_rate": null
+      },
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED",
+        "skip_verdicts=PENDING_GHOST_RESULT",
+        "strategy present in score/ghost evidence but not panel registry"
+      ],
+      "panel_id": "live_fire_gap_fail_short",
+      "panel_name": "live_fire_gap_fail_short",
+      "permission": "BLOCK",
+      "reasons": [
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+      ],
+      "risk_multiplier": 0.0,
+      "route_weight": 0.0,
+      "side": "LONG",
+      "strategy_id": "live_fire_gap_fail_short"
     },
     "live_fire_gap_reclaim": {
       "allowed_to_trade": false,
@@ -2483,15 +2556,16 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 764,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
-        "ghost_skip_verdict": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_gap_reclaim",
       "panel_name": "Live Fire Gap Reclaim",
@@ -2529,15 +2603,16 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 3,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
-        "ghost_skip_verdict": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_reclaim",
       "panel_name": "Live Fire Reclaim",
@@ -2575,15 +2650,16 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 4426,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
-        "ghost_skip_verdict": null,
+        "ghost_skip_verdict": "PENDING_GHOST_RESULT",
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:EXPERIMENT"
+        "score_consumer_lock:EXPERIMENT",
+        "skip_verdicts=PENDING_GHOST_RESULT"
       ],
       "panel_id": "live_fire_surge",
       "panel_name": "Live Fire Surge",
@@ -2805,7 +2881,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 10,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2897,7 +2973,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": 0.0226,
-        "ghost_fires": 4419,
+        "ghost_fires": 4418,
         "ghost_graded": 4417,
         "ghost_run_rate": 82.23,
         "ghost_skip_avg_r": null,
@@ -2943,7 +3019,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": 0.0916,
-        "ghost_fires": 355,
+        "ghost_fires": 356,
         "ghost_graded": 317,
         "ghost_run_rate": 65.93,
         "ghost_skip_avg_r": null,
@@ -3310,13 +3386,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.0302,
-        "ghost_fires": 39766,
-        "ghost_graded": 39707,
-        "ghost_run_rate": 46.98,
+        "ghost_avg_target_r": -0.0301,
+        "ghost_fires": 40555,
+        "ghost_graded": 40497,
+        "ghost_run_rate": 46.7,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 46.98
+        "ghost_target_hit_rate": 46.7
       },
       "evidence_flags": [],
       "panel_id": "short_genesis",
@@ -3401,9 +3477,9 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.1723,
-        "ghost_fires": 6551,
-        "ghost_graded": 6510,
+        "ghost_avg_target_r": -0.1725,
+        "ghost_fires": 6560,
+        "ghost_graded": 6523,
         "ghost_run_rate": 33.1,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
@@ -3447,13 +3523,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.331,
-        "ghost_fires": 430,
-        "ghost_graded": 430,
-        "ghost_run_rate": 26.74,
+        "ghost_avg_target_r": -0.333,
+        "ghost_fires": 431,
+        "ghost_graded": 431,
+        "ghost_run_rate": 26.68,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 26.74
+        "ghost_target_hit_rate": 26.68
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3493,13 +3569,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.161,
-        "ghost_fires": 584,
-        "ghost_graded": 584,
-        "ghost_run_rate": 33.56,
+        "ghost_avg_target_r": -0.162,
+        "ghost_fires": 585,
+        "ghost_graded": 585,
+        "ghost_run_rate": 33.5,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 33.56
+        "ghost_target_hit_rate": 33.5
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3539,13 +3615,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.1712,
-        "ghost_fires": 6501,
-        "ghost_graded": 6501,
-        "ghost_run_rate": 33.15,
+        "ghost_avg_target_r": -0.1716,
+        "ghost_fires": 6510,
+        "ghost_graded": 6510,
+        "ghost_run_rate": 33.13,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 33.15
+        "ghost_target_hit_rate": 33.13
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3585,13 +3661,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.181,
-        "ghost_fires": 2346,
-        "ghost_graded": 2346,
-        "ghost_run_rate": 32.78,
+        "ghost_avg_target_r": -0.18,
+        "ghost_fires": 2348,
+        "ghost_graded": 2348,
+        "ghost_run_rate": 32.79,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 32.78
+        "ghost_target_hit_rate": 32.79
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3631,13 +3707,13 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.144,
-        "ghost_fires": 3141,
-        "ghost_graded": 3141,
-        "ghost_run_rate": 34.19,
+        "ghost_avg_target_r": -0.145,
+        "ghost_fires": 3146,
+        "ghost_graded": 3146,
+        "ghost_run_rate": 34.2,
         "ghost_skip_avg_r": null,
         "ghost_skip_verdict": null,
-        "ghost_target_hit_rate": 34.19
+        "ghost_target_hit_rate": 34.2
       },
       "evidence_flags": [
         "score_consumer_lock:EXPERIMENT"
@@ -3678,7 +3754,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 3,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3770,7 +3846,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 637,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3816,7 +3892,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 4426,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -3840,21 +3916,21 @@
     },
     "surge_micro_scout": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "FAIL",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3869,14 +3945,15 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "score_consumer_lock:EXPERIMENT"
+      ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "panel registry status FAIL",
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3932,21 +4009,21 @@
     },
     "surge_watch_probe": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "FAIL",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -3961,14 +4038,15 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED"
+      ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permission": "BLOCK",
       "reasons": [
-        "panel registry status FAIL",
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4136,8 +4214,8 @@
         "actual_closed": 0,
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
-        "ghost_avg_target_r": -0.07,
-        "ghost_fires": 127,
+        "ghost_avg_target_r": -0.08,
+        "ghost_fires": 128,
         "ghost_graded": 127,
         "ghost_run_rate": 2.36,
         "ghost_skip_avg_r": null,
@@ -4238,7 +4316,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "decision_audit",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "decision_audit"
     },
@@ -4273,7 +4351,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "execution_truth",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "execution_truth"
     },
@@ -4286,10 +4364,10 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "gap_wall_roundtrip",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "MIXED",
-      "strategy_id": "gap_wall_roundtrip_shadow"
+      "panel_id": "live_fire_gap_fail_short",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "LONG",
+      "strategy_id": "live_fire_gap_fail_short"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4384,13 +4462,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "surge_micro",
-      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "surge_micro_scout"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "surge_probe_shadow",
       "reason": "required score missing; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4399,7 +4470,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "surge_micro",
-      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "LONG",
       "strategy_id": "surge_watch_probe"
     },
@@ -4416,6 +4487,13 @@
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "trapped_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "upside_down_cow",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "upside_down_cow_short"
     }
   ],
   "route_policy": {
@@ -4572,14 +4650,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 32,
+    "block": 31,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
-    "panel_score_strategies": 39,
+    "panel_score_strategies": 40,
     "permission_counts": {
-      "BLOCK": 32,
-      "TRACK_ONLY": 33
+      "BLOCK": 31,
+      "TRACK_ONLY": 35
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4588,13 +4666,13 @@
     "route_policy_overrides": 8,
     "score_consumer_allowed": 0,
     "score_consumer_lock_overall": "WARN",
-    "score_consumer_locked": 65,
+    "score_consumer_locked": 66,
     "score_partition_counts": {
       "EXPERIMENT": 39,
-      "UNTAGGED": 26
+      "UNTAGGED": 27
     },
-    "strategies": 65,
-    "track_only": 33,
+    "strategies": 66,
+    "track_only": 35,
     "watch_only": 0
   },
   "trade_date": "2026-09-08"
