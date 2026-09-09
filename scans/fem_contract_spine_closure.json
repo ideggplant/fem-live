@@ -2,16 +2,18 @@
   "blocking_live_trading_gates": [
     "CONTRACT_ERRORS_CLEAR",
     "RUNTIME_READY",
+    "EXECUTION_COVERAGE_CLEAN",
     "BOT_ENFORCEMENT_ON"
   ],
   "blocking_normal_scoring_gates": [
     "CONTRACT_ERRORS_CLEAR",
+    "EXECUTION_COVERAGE_CLEAN",
     "DECISION_ACCOUNTING_CLEAN",
     "EVIDENCE_NORMAL_ALLOWED",
     "BOT_ENFORCEMENT_ON",
     "ROUTE_POLICY_CLEAN"
   ],
-  "code_version": "d2cfb852",
+  "code_version": "6d6923e2",
   "gates": [
     {
       "blocking_live_trading": false,
@@ -32,7 +34,7 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
-        "FAIL Panel registry contract failures: 6 active panel registry failure(s)"
+        "FAIL Panel registry contract failures: 1 active panel registry failure(s)"
       ],
       "evidence_count": 1,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -47,46 +49,51 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Live readiness overall:"
+        "FAIL Runtime process restart required: 2 runtime role(s) started before watched code changed; restart_queue=2",
+        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=EOD_FLATTENED, positions=0",
+        "FAIL Runtime drift overall:",
+        "FAIL Live readiness overall:"
       ],
-      "evidence_count": 1,
+      "evidence_count": 4,
       "gate_id": "RUNTIME_READY",
       "label": "Live/bot runtime matches disk code",
       "next_action": "Restart stale/missing runtime windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
       "priority": 30,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "fem_contract_runtime_drift.json + fem_contract_live_readiness.json",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
-      "blocking_live_trading": false,
-      "blocking_normal_scoring": false,
+      "blocking_live_trading": true,
+      "blocking_normal_scoring": true,
       "evidence": [
-        "Fill and exit reconcile checks are clean."
+        "WARN Open exit coverage risk: 2 open unguarded, 0 partial-open trace(s); broker reconcile reports 0 unprotected positions and 0 orphan exit orders, so this is an accounting/backfill gap rather than live open-risk"
       ],
       "evidence_count": 1,
       "gate_id": "EXECUTION_COVERAGE_CLEAN",
       "label": "Orders, fills, and exits are reconcilable",
-      "next_action": "No action required.",
+      "next_action": "Run _DAILY\\0H_CONTRACT_FILL_RECONCILE.bat, _DAILY\\0I_CONTRACT_EXIT_INTENT_BACKFILL.bat, and _DAILY\\0J_CONTRACT_EXIT_RECONCILE.bat.",
       "priority": 40,
-      "severity": "OK",
+      "severity": "WARN",
       "source": "fill/exit reconcile reports",
-      "status": "CLOSED"
+      "status": "REVIEW"
     },
     {
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Latency / missed move warnings: missed=207, no_decision=0, slow_decisions=0, slow_orders=0, order_after_peak=0"
+        "FAIL Picks without explicit bot accounting: 74 unaccounted pick group(s); raw unaccounted picks=74",
+        "WARN Decision obligation timestamp ordering warnings: 103 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=4443, no_decision=74, slow_decisions=9111, slow_orders=0, order_after_peak=0"
       ],
-      "evidence_count": 1,
+      "evidence_count": 3,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
       "priority": 50,
-      "severity": "WARN",
+      "severity": "FAIL",
       "source": "decision obligation/live-fire/latency reports",
-      "status": "REVIEW"
+      "status": "OPEN"
     },
     {
       "blocking_live_trading": false,
@@ -94,14 +101,15 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=186737, review=0",
-        "SCORE_CONSUMER_LOCK_ACTIVE: 65 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=49, track_only=16",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=187515, review=0",
+        "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
+        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=30, track_only=36",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
+        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 6 historical order(s) predate the current permission lock and would be blocked or track-only now",
         "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
-      "evidence_count": 8,
+      "evidence_count": 9,
       "gate_id": "EVIDENCE_NORMAL_ALLOWED",
       "label": "Evidence can enter normal scoring",
       "next_action": "Keep this session quarantined as EXPERIMENT until the listed blockers clear.",
@@ -184,13 +192,13 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-09-08T04:30:30+00:00",
-  "generated_at_et": "2026-09-08T00:30:30-04:00",
+  "generated_at": "2026-09-09T01:08:25+00:00",
+  "generated_at_et": "2026-09-08T21:08:25-04:00",
   "next_gate": {
     "blocking_live_trading": true,
     "blocking_normal_scoring": true,
     "evidence": [
-      "FAIL Panel registry contract failures: 6 active panel registry failure(s)"
+      "FAIL Panel registry contract failures: 1 active panel registry failure(s)"
     ],
     "evidence_count": 1,
     "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -207,21 +215,21 @@
   "session": "closed",
   "spine_stage": "BOOTSTRAP",
   "summary": {
-    "blocking_live_trading": 3,
-    "blocking_normal_scoring": 5,
-    "closed_gates": 4,
-    "closure_percent": 40.0,
+    "blocking_live_trading": 4,
+    "blocking_normal_scoring": 6,
+    "closed_gates": 3,
+    "closure_percent": 30.0,
     "evidence_overall": "FAIL",
     "evidence_partition": "UNTAGGED",
     "gates": 10,
     "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
-    "open_gates": 3,
+    "open_gates": 5,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
-    "review_gates": 3
+    "review_gates": 2
   },
   "trade_date": "2026-09-08"
 }
