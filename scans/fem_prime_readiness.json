@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.05300331115722656,
+    "age_sec": 0.029001712799072266,
     "alist_fillable_count": 1,
     "alist_proven_moo_candidate_count": 0,
     "alist_row_count": 1,
@@ -14,31 +14,53 @@
     "source_file": "fem_abook_2026-09-10_0404.csv",
     "source_same_day": true
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "action": "Reconnect TWS/broker and rerun prime readiness.",
+      "code": "BROKER_NOT_OK",
+      "impact": "Cannot trust entries, exits, or flat state.",
+      "message": "Broker reconcile is FAIL connected=True.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Run broker reconcile and clean the named order issue.",
+      "code": "ORDER_SAFETY_NOT_CLEAN",
+      "impact": "Scalping can create uncontrolled exposure.",
+      "message": "Broker order/position safety is not clean.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
+      "code": "WATCHDOG_CRITICAL",
+      "impact": "A money-readiness condition is failing.",
+      "message": "Watchdog has 2 critical/panic alert(s).",
+      "severity": "CRITICAL"
+    }
+  ],
   "bot": {
-    "age_sec": 13.496034860610962,
-    "alive": true,
-    "generated_at": "2026-09-10T07:00:06",
-    "mode": "TRIGGER_LIVE",
-    "n_positions": 0
+    "age_sec": 1.766613245010376,
+    "alive": false,
+    "generated_at": "2026-09-10T07:30:22",
+    "mode": "HALTED_SENSOR",
+    "n_positions": 3
   },
   "broker": {
-    "age_sec": 0.595003604888916,
+    "age_sec": 1.2786140441894531,
     "connected": true,
-    "generated_at": "2026-09-10T14:00:19+00:00",
-    "invalid_entry_like_orders": 0,
-    "open_orders": 0,
-    "order_fail": 0,
+    "generated_at": "2026-09-10T14:30:23+00:00",
+    "invalid_entry_like_orders": 1,
+    "open_orders": 7,
+    "order_fail": 5,
     "orphan_exit_orders": 0,
-    "overall": "OK",
+    "overall": "FAIL",
     "position_fail": 0,
-    "positions": 0,
+    "positions": 3,
     "unprotected_positions": 0
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-09-10T14:00:21+00:00",
-  "generated_at_et": "2026-09-10T10:00:17-04:00",
+  "generated_at": "2026-09-10T14:30:25+00:00",
+  "generated_at_et": "2026-09-10T10:30:21-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,20 +71,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.27499938011169434,
+    "age_sec": 0.15999698638916016,
     "fail": 0,
-    "generated_at": "2026-09-10T14:00:20+00:00",
+    "generated_at": "2026-09-10T14:30:24+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
     ],
-    "overall": "WARN",
+    "overall": "OK",
     "session": "rth",
-    "warn": 2
+    "warn": 0
   },
-  "money_safe": true,
+  "money_safe": false,
   "morning": {
-    "age_sec": 2532.7346756458282,
+    "age_sec": 4336.829879999161,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-09-10",
@@ -78,8 +100,8 @@
   "next_session_startup": {
     "alist_fillable_count": 1,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 0,
-    "carryover_position_count": 0,
+    "carryover_open_order_count": 7,
+    "carryover_position_count": 3,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -102,13 +124,13 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-09-10 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-09-10 overall=FAIL orders=7 positions=3 order_fail=5 pos_fail=0 cancelled=0\n  EXIT_LIKE_MISSING_INTENT: 2\n  MISSING_EXIT_INTENT_FOR_CHILD: 4\n  MISSING_ORDER_STRATEGY: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=OK session=rth ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -159,7 +181,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 2532.844748735428,
+    "age_sec": 4336.934957027435,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -181,9 +203,9 @@
     ]
   },
   "session": "rth",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "state": "NOT_TRADE_READY",
+  "title": "FEM Blocked",
+  "trade_ready": false,
   "watch_items": [
     {
       "action": "Hydrate/override the unmapped symbols.",
@@ -200,13 +222,6 @@
       "severity": "WARN"
     },
     {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
-      "severity": "WARN"
-    },
-    {
       "action": "Review latest_alist_tradeability.json.",
       "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
       "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
@@ -215,16 +230,16 @@
     }
   ],
   "watchdog": {
-    "age_sec": 61.862765312194824,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 25.000659704208374,
+    "bot_mode": "HALTED_SENSOR",
     "broker_connected": true,
-    "broker_open_orders": 0,
-    "broker_overall": "OK",
-    "broker_positions": 0,
-    "critical_or_panic_count": 0,
+    "broker_open_orders": 7,
+    "broker_overall": "FAIL",
+    "broker_positions": 3,
+    "critical_or_panic_count": 2,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "PANIC",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
