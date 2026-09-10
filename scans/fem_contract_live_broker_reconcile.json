@@ -1,9 +1,13 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "INVALID_ENTRY_ORDERS",
+      "detail": "Working entry orders exist that are not currently allowed by the spine route contract.",
+      "examples": [
+        "WMB#24:MISSING_ORDER_STRATEGY",
+        "NBIS#28:MISSING_ORDER_STRATEGY"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -15,10 +19,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-09-10T16:14:34+00:00",
-  "generated_at_et": "2026-09-10T12:14:34-04:00",
+  "generated_at": "2026-09-10T16:17:45+00:00",
+  "generated_at_et": "2026-09-10T12:17:45-04:00",
   "inputs": {
-    "exit_intent_rows": 20,
+    "exit_intent_rows": 24,
     "order_strategy_rows": 25,
     "strategy_registry_rows": 68,
     "trade_permission_rows": 66
@@ -27,13 +31,13 @@
   "open_orders": [
     {
       "action": "BUY",
-      "breach_code": "EXIT_LIKE_MISSING_INTENT",
+      "breach_code": "MISSING_ORDER_STRATEGY",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
-      "classification": "UNKNOWN_EXIT_LIKE",
+      "classification": "UNKNOWN_ENTRY_LIKE",
       "client_id": 41,
-      "detail": "order appears exit-like against current position but has no exit_intent row",
+      "detail": "entry-like working order has no order_strategy row",
       "entry_strategy_id": null,
       "exit_intent": null,
       "exit_strategy_id": null,
@@ -42,7 +46,7 @@
       "order_id": "24",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": -67.0,
+      "position_qty": 0.0,
       "quantity": 67.0,
       "raw": {
         "action": "BUY",
@@ -68,20 +72,20 @@
         "transmit": true
       },
       "route": null,
-      "severity": "WARN",
+      "severity": "FAIL",
       "status": "PreSubmitted",
       "stop_price": 75.15,
       "symbol": "WMB"
     },
     {
       "action": "BUY",
-      "breach_code": "EXIT_LIKE_MISSING_INTENT",
+      "breach_code": "MISSING_ORDER_STRATEGY",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
-      "classification": "UNKNOWN_EXIT_LIKE",
+      "classification": "UNKNOWN_ENTRY_LIKE",
       "client_id": 41,
-      "detail": "order appears exit-like against current position but has no exit_intent row",
+      "detail": "entry-like working order has no order_strategy row",
       "entry_strategy_id": null,
       "exit_intent": null,
       "exit_strategy_id": null,
@@ -90,7 +94,7 @@
       "order_id": "28",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": -21.0,
+      "position_qty": 0.0,
       "quantity": 21.0,
       "raw": {
         "action": "BUY",
@@ -116,7 +120,7 @@
         "transmit": true
       },
       "route": null,
-      "severity": "WARN",
+      "severity": "FAIL",
       "status": "PreSubmitted",
       "stop_price": 236.9,
       "symbol": "NBIS"
@@ -216,102 +220,6 @@
       "status": "PreSubmitted",
       "stop_price": 20.22,
       "symbol": "AG"
-    },
-    {
-      "action": "BUY",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": "gap_reject_short",
-      "exit_intent": "PROTECTIVE_COVER_STOP",
-      "exit_strategy_id": "gap_reject_short",
-      "limit_price": null,
-      "oca_group": "1753062757",
-      "order_id": "1208836",
-      "order_type": "STP",
-      "parent_id": "1208835",
-      "position_qty": -142.0,
-      "quantity": 142.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 0.0,
-        "oca_group": "1753062757",
-        "order_id": 1208836,
-        "order_ref": "FEMBOT",
-        "order_type": "STP",
-        "outside_rth": false,
-        "parent_id": 1208835,
-        "perm_id": 1753062758,
-        "quantity": 142.0,
-        "sec_type": "STK",
-        "status": "PreSubmitted",
-        "stop_price": 42.12,
-        "symbol": "CNM",
-        "tif": "DAY",
-        "trail_stop_price": 42.12,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "PreSubmitted",
-      "stop_price": 42.12,
-      "symbol": "CNM"
-    },
-    {
-      "action": "BUY",
-      "breach_code": "EXIT_INTENT_OK",
-      "cancel_allowed": false,
-      "cancel_candidate": false,
-      "cancel_reason": null,
-      "classification": "EXIT_PROTECTION",
-      "client_id": 10,
-      "detail": "working order is declared in exit_intent ledger",
-      "entry_strategy_id": "gap_reject_short",
-      "exit_intent": "COVER_TARGET_TAKE_PROFIT",
-      "exit_strategy_id": "gap_reject_short",
-      "limit_price": 40.15,
-      "oca_group": "1753062757",
-      "order_id": "1208837",
-      "order_type": "LMT",
-      "parent_id": "1208835",
-      "position_qty": -142.0,
-      "quantity": 142.0,
-      "raw": {
-        "action": "BUY",
-        "client_id": 10,
-        "currency": "USD",
-        "exchange": "SMART",
-        "limit_price": 40.15,
-        "oca_group": "1753062757",
-        "order_id": 1208837,
-        "order_ref": "FEMBOT",
-        "order_type": "LMT",
-        "outside_rth": true,
-        "parent_id": 1208835,
-        "perm_id": 1753062759,
-        "quantity": 142.0,
-        "sec_type": "STK",
-        "status": "Submitted",
-        "stop_price": 0.0,
-        "symbol": "CNM",
-        "tif": "DAY",
-        "trail_stop_price": 41.15,
-        "trailing_percent": 1.7976931348623157e+308,
-        "transmit": true
-      },
-      "route": null,
-      "severity": "OK",
-      "status": "Submitted",
-      "stop_price": null,
-      "symbol": "CNM"
     },
     {
       "action": "BUY",
@@ -850,9 +758,105 @@
       "status": "PreSubmitted",
       "stop_price": null,
       "symbol": "NCLH"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "BREAKEVEN_LOCK_STOP",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 41.5,
+      "oca_group": "",
+      "order_id": "1208855",
+      "order_type": "STP",
+      "parent_id": "0",
+      "position_qty": -142.0,
+      "quantity": 142.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 41.5,
+        "oca_group": "",
+        "order_id": 1208855,
+        "order_ref": "FEMBOT",
+        "order_type": "STP",
+        "outside_rth": false,
+        "parent_id": 0,
+        "perm_id": 1753063350,
+        "quantity": 142.0,
+        "sec_type": "STK",
+        "status": "PreSubmitted",
+        "stop_price": 41.47,
+        "symbol": "CNM",
+        "tif": "DAY",
+        "trail_stop_price": 41.47,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "PreSubmitted",
+      "stop_price": 41.47,
+      "symbol": "CNM"
+    },
+    {
+      "action": "BUY",
+      "breach_code": "EXIT_INTENT_OK",
+      "cancel_allowed": false,
+      "cancel_candidate": false,
+      "cancel_reason": null,
+      "classification": "EXIT_PROTECTION",
+      "client_id": 10,
+      "detail": "working order is declared in exit_intent ledger",
+      "entry_strategy_id": null,
+      "exit_intent": "MISSING_TARGET_REPAIR",
+      "exit_strategy_id": "gap_reject_short",
+      "limit_price": 40.15,
+      "oca_group": "",
+      "order_id": "1208856",
+      "order_type": "LMT",
+      "parent_id": "0",
+      "position_qty": -142.0,
+      "quantity": 95.0,
+      "raw": {
+        "action": "BUY",
+        "client_id": 10,
+        "currency": "USD",
+        "exchange": "SMART",
+        "limit_price": 40.15,
+        "oca_group": "",
+        "order_id": 1208856,
+        "order_ref": "FEMBOT",
+        "order_type": "LMT",
+        "outside_rth": true,
+        "parent_id": 0,
+        "perm_id": 1753063378,
+        "quantity": 95.0,
+        "sec_type": "STK",
+        "status": "Submitted",
+        "stop_price": 0.0,
+        "symbol": "CNM",
+        "tif": "DAY",
+        "trail_stop_price": 41.15,
+        "trailing_percent": 1.7976931348623157e+308,
+        "transmit": true
+      },
+      "route": null,
+      "severity": "OK",
+      "status": "Submitted",
+      "stop_price": null,
+      "symbol": "CNM"
     }
   ],
-  "operator_read": "Order safety is FAIL: one or more live-order contract breaches. Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "operator_read": "Order safety is FAIL: 2 invalid entry order(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
   "overall": "FAIL",
   "positions": [
     {
@@ -921,16 +925,16 @@
     },
     {
       "ah_exit_contract": {
-        "ah_exit_owner_verified": true,
+        "ah_exit_owner_verified": false,
         "ah_stop_orders": [],
         "ah_stop_quantity": 0,
         "ah_target_orders": [
-          "1208837"
+          "1208856"
         ],
-        "ah_target_quantity": 142.0,
-        "detail": "AH exit owner verified",
+        "ah_target_quantity": 95.0,
+        "detail": "AH exit owner is not verified: AH target quantity 95 < position quantity 142; no AH-enabled native stop",
         "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": true,
+        "full_ah_target_coverage": false,
         "position_quantity": 142.0,
         "schema": "fem_ah_exit_contract.v1"
       },
@@ -938,18 +942,18 @@
       "breach_code": "POSITION_HAS_STOP",
       "detail": "position has at least one opposite-side stop/trailing order",
       "protective_stop_orders": [
-        "1208836"
+        "1208855"
       ],
       "qty": -142.0,
       "related_exit_orders": [
-        "1208836",
-        "1208837"
+        "1208855",
+        "1208856"
       ],
       "severity": "OK",
       "side": "SHORT",
       "symbol": "CNM",
       "target_orders": [
-        "1208837"
+        "1208856"
       ]
     },
     {
@@ -984,34 +988,6 @@
       "target_orders": [
         "1208849"
       ]
-    },
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 21.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 229.94744495,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "28"
-      ],
-      "qty": -21.0,
-      "related_exit_orders": [
-        "28"
-      ],
-      "severity": "OK",
-      "side": "SHORT",
-      "symbol": "NBIS",
-      "target_orders": []
     },
     {
       "ah_exit_contract": {
@@ -1078,34 +1054,6 @@
       "target_orders": [
         "1208843"
       ]
-    },
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 67.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 73.75335695,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "24"
-      ],
-      "qty": -67.0,
-      "related_exit_orders": [
-        "24"
-      ],
-      "severity": "OK",
-      "side": "SHORT",
-      "symbol": "WMB",
-      "target_orders": []
     }
   ],
   "schema": "fem_contract_live_broker_reconcile.v1",
@@ -1113,23 +1061,23 @@
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "EXIT_LIKE_MISSING_INTENT": 2,
-      "MISSING_EXIT_INTENT_FOR_CHILD": 2
+      "MISSING_EXIT_INTENT_FOR_CHILD": 2,
+      "MISSING_ORDER_STRATEGY": 2
     },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
-    "invalid_entry_like_orders": 0,
+    "invalid_entry_like_orders": 2,
     "open_orders": 17,
-    "order_fail": 2,
+    "order_fail": 4,
     "order_ok": 13,
-    "order_warn": 2,
+    "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
-    "position_ok": 8,
+    "position_ok": 6,
     "position_warn": 0,
-    "positions": 8,
+    "positions": 6,
     "unprotected_positions": 0
   },
   "trade_date": "2026-09-10"
