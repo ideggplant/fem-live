@@ -2,12 +2,6 @@
   "auto_run_sequence": [
     {
       "batch_path": null,
-      "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
-      "group_id": "repair_decision_accounting",
-      "reason": "Make picks produce explicit bot accounting in real time"
-    },
-    {
-      "batch_path": null,
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "group_id": "clean_route_policy",
       "reason": "Clean invalid route-policy overrides"
@@ -17,13 +11,12 @@
   "execution_order": [
     "restart_runtime_windows",
     "repair_contract_breaks",
-    "repair_decision_accounting",
     "keep_evidence_quarantined",
     "clean_route_policy",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-09-11T03:56:14+00:00",
-  "generated_at_et": "2026-09-10T23:56:14-04:00",
+  "generated_at": "2026-09-11T04:01:03+00:00",
+  "generated_at_et": "2026-09-11T00:01:03-04:00",
   "groups": [
     {
       "batch_path": null,
@@ -38,7 +31,7 @@
       "command": null,
       "evidence": [
         "2 runtime role(s) started before watched code changed; restart_queue=2",
-        "live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=EOD_FLATTENED, positions=0"
+        "live_ready=False, checks ok/warn/fail=5/3/1, bot_mode=EOD_FLATTENED, positions=0"
       ],
       "evidence_count": 2,
       "group_id": "restart_runtime_windows",
@@ -55,15 +48,13 @@
       "can_auto_run": false,
       "category": "CONTRACT",
       "check_ids": [
-        "contract_break_errors",
         "panel_registry_contracts"
       ],
       "command": null,
       "evidence": [
-        "6 ERROR breach(es) in current validator output",
         "3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=15"
       ],
-      "evidence_count": 2,
+      "evidence_count": 1,
       "group_id": "repair_contract_breaks",
       "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated breach group first.",
       "priority": 35,
@@ -75,56 +66,28 @@
       "batch_path": null,
       "blocks_live_trading": false,
       "blocks_normal_scoring": true,
-      "can_auto_run": true,
-      "category": "DECISION_ACCOUNTING",
-      "check_ids": [
-        "decision_obligation_failures",
-        "decision_obligation_time_order_warnings",
-        "latency_missed_move_warnings"
-      ],
-      "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat",
-      "evidence": [
-        "248 unaccounted pick group(s); raw unaccounted picks=248",
-        "2609 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "missed=3961, no_decision=248, slow_decisions=9282, slow_orders=4, order_after_peak=1"
-      ],
-      "evidence_count": 3,
-      "group_id": "repair_decision_accounting",
-      "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat after fresh data.",
-      "priority": 40,
-      "root_cause": "Backfilled or inferred decisions are useful for study, but they are not the same as a live contract link.",
-      "severity": "WARN",
-      "title": "Make picks produce explicit bot accounting in real time"
-    },
-    {
-      "batch_path": null,
-      "blocks_live_trading": false,
-      "blocks_normal_scoring": true,
       "can_auto_run": false,
       "category": "EVIDENCE",
       "check_ids": [
         "session_context_dirty_data",
         "score_provenance_quarantine",
         "score_partitions_no_normal",
-        "score_consumer_lock_active",
-        "order_permission_pre_lock_review"
+        "score_consumer_lock_active"
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=7ec53062121a4b59",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=c5508fb9c1c751c7",
         "partition=EXPERIMENT, actual_trades=33, ghost_graded=217777, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "experiment/review evidence=217810, experiment_strategies=40, review_strategies=0",
         "67 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
-        "33 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=217810, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 67 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=27, track_only=40",
-        "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
-        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 33 historical order(s) predate the current permission lock and would be blocked or track-only now"
+        "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL"
       ],
-      "evidence_count": 12,
+      "evidence_count": 10,
       "group_id": "keep_evidence_quarantined",
       "next_action": "Use the experiment leaderboard for research only; wait for a clean NORMAL session before promoting routes.",
       "priority": 50,
@@ -161,17 +124,21 @@
       "can_auto_run": false,
       "category": "MISC",
       "check_ids": [
+        "contract_event_stream",
+        "contract_break_ledger_stale",
         "bot_gate_failures",
         "evidence_cleanliness_failed",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
+        "no contract event JSONL file for today",
+        "fem_contract_breaks.json is stamped 2026-09-10, not 2026-09-11; ignoring stale breach counts for current health",
         "1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
         "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "13 high-pressure exit rule group(s) need review"
       ],
-      "evidence_count": 3,
+      "evidence_count": 5,
       "group_id": "misc_contract_followup",
       "next_action": "Inspect fem_contract_health.json for remaining checks.",
       "priority": 90,
@@ -193,7 +160,7 @@
     "command": null,
     "evidence": [
       "2 runtime role(s) started before watched code changed; restart_queue=2",
-      "live_ready=False, checks ok/warn/fail=8/0/1, bot_mode=EOD_FLATTENED, positions=0"
+      "live_ready=False, checks ok/warn/fail=5/3/1, bot_mode=EOD_FLATTENED, positions=0"
     ],
     "evidence_count": 2,
     "group_id": "restart_runtime_windows",
@@ -208,17 +175,17 @@
   "schema": "fem_contract_remediation_plan.v1",
   "session": "closed",
   "summary": {
-    "auto_runnable": 2,
+    "auto_runnable": 1,
     "blocks_live_trading": 2,
-    "blocks_normal_scoring": 5,
+    "blocks_normal_scoring": 4,
     "evidence_overall": "FAIL",
     "evidence_partition": "UNTAGGED",
     "fail_groups": 3,
-    "groups": 6,
+    "groups": 5,
     "health_overall": "FAIL",
     "manual": 4,
     "normal_evidence_allowed": false,
-    "warn_groups": 3
+    "warn_groups": 2
   },
-  "trade_date": "2026-09-10"
+  "trade_date": "2026-09-11"
 }
