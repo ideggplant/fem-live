@@ -1,9 +1,12 @@
 {
   "action_items": [
     {
-      "code": "ORDER_SAFETY_CLEAN",
-      "detail": "No working-order or live-position safety breach was detected in this broker snapshot.",
-      "severity": "OK"
+      "code": "INVALID_ENTRY_ORDERS",
+      "detail": "Working entry orders exist that are not currently allowed by the spine route contract.",
+      "examples": [
+        "SNDK#34:MISSING_ORDER_STRATEGY"
+      ],
+      "severity": "FAIL"
     }
   ],
   "broker": {
@@ -15,10 +18,10 @@
     "port": 7497
   },
   "cancellations": [],
-  "generated_at": "2026-09-11T14:02:58+00:00",
-  "generated_at_et": "2026-09-11T10:02:58-04:00",
+  "generated_at": "2026-09-11T14:05:07+00:00",
+  "generated_at_et": "2026-09-11T10:05:07-04:00",
   "inputs": {
-    "exit_intent_rows": 0,
+    "exit_intent_rows": 1,
     "order_strategy_rows": 0,
     "strategy_registry_rows": 68,
     "trade_permission_rows": 66
@@ -27,13 +30,13 @@
   "open_orders": [
     {
       "action": "BUY",
-      "breach_code": "EXIT_LIKE_MISSING_INTENT",
+      "breach_code": "MISSING_ORDER_STRATEGY",
       "cancel_allowed": false,
       "cancel_candidate": false,
       "cancel_reason": null,
-      "classification": "UNKNOWN_EXIT_LIKE",
+      "classification": "UNKNOWN_ENTRY_LIKE",
       "client_id": 41,
-      "detail": "order appears exit-like against current position but has no exit_intent row",
+      "detail": "entry-like working order has no order_strategy row",
       "entry_strategy_id": null,
       "exit_intent": null,
       "exit_strategy_id": null,
@@ -42,7 +45,7 @@
       "order_id": "34",
       "order_type": "STP",
       "parent_id": "0",
-      "position_qty": -3.0,
+      "position_qty": 0.0,
       "quantity": 3.0,
       "raw": {
         "action": "BUY",
@@ -68,65 +71,36 @@
         "transmit": true
       },
       "route": null,
-      "severity": "WARN",
+      "severity": "FAIL",
       "status": "PreSubmitted",
       "stop_price": 1680.8,
       "symbol": "SNDK"
     }
   ],
-  "operator_read": "Order safety is WARN: no hard live-position breach, but 1 order warning(s) and 0 position warning(s) need review. Mode is ENFORCE.",
-  "overall": "WARN",
-  "positions": [
-    {
-      "ah_exit_contract": {
-        "ah_exit_owner_verified": false,
-        "ah_stop_orders": [],
-        "ah_stop_quantity": 0,
-        "ah_target_orders": [],
-        "ah_target_quantity": 0,
-        "detail": "AH exit owner is not verified: no AH-enabled target/flatten order; no AH-enabled native stop",
-        "full_ah_stop_coverage": false,
-        "full_ah_target_coverage": false,
-        "position_quantity": 3.0,
-        "schema": "fem_ah_exit_contract.v1"
-      },
-      "avg_cost": 1631.4728526666665,
-      "breach_code": "POSITION_HAS_STOP",
-      "detail": "position has at least one opposite-side stop/trailing order",
-      "protective_stop_orders": [
-        "34"
-      ],
-      "qty": -3.0,
-      "related_exit_orders": [
-        "34"
-      ],
-      "severity": "OK",
-      "side": "SHORT",
-      "symbol": "SNDK",
-      "target_orders": []
-    }
-  ],
+  "operator_read": "Order safety is FAIL: 1 invalid entry order(s). Mode is ENFORCE; cancelled 0. Inspect before starting or continuing the bot.",
+  "overall": "FAIL",
+  "positions": [],
   "schema": "fem_contract_live_broker_reconcile.v1",
   "session": "rth",
   "summary": {
     "ah_exit_owner_unverified_positions": 0,
     "breach_codes": {
-      "EXIT_LIKE_MISSING_INTENT": 1
+      "MISSING_ORDER_STRATEGY": 1
     },
     "broker_connected": true,
     "cancel_candidates": 0,
     "cancel_failed": 0,
     "cancelled": 0,
-    "invalid_entry_like_orders": 0,
+    "invalid_entry_like_orders": 1,
     "open_orders": 1,
-    "order_fail": 0,
+    "order_fail": 1,
     "order_ok": 0,
-    "order_warn": 1,
+    "order_warn": 0,
     "orphan_exit_orders": 0,
     "position_fail": 0,
-    "position_ok": 1,
+    "position_ok": 0,
     "position_warn": 0,
-    "positions": 1,
+    "positions": 0,
     "unprotected_positions": 0
   },
   "trade_date": "2026-09-11"
