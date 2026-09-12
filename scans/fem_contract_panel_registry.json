@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T13:17:39+00:00",
+  "generated_at": "2026-09-12T01:14:54+00:00",
   "overall": "WARN",
   "panels": [
     {
@@ -36,7 +36,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 40744,
+          "age_seconds": 83779,
           "count": 5,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -95,7 +95,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 4961217,
+          "age_seconds": 5004252,
           "count": 7,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -121,183 +121,6 @@
       "status": "WARN",
       "strategy_ids": [
         "decision_receipts"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Execution Truth",
-      "experiment_phase": "CONTROL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 1,
-      "next_action": "Regenerate today's source output for Execution Truth; stale source data cannot be trusted.",
-      "notes": "Single execution truth ledger: reconstructs parent orders, fills, exits, and realized PnL.",
-      "operator_role": "CONTROL",
-      "panel_id": "execution_truth",
-      "primary_source": "fem_execution_truth.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": false,
-      "score_partition": "control::execution_truth",
-      "score_required": false,
-      "score_rows": [],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
-      },
-      "side": "BOTH",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 33697,
-          "count": 8,
-          "date_source": "payload.trade_date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.trade_date date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T03:56:00+00:00",
-          "path": "fem_execution_truth.json",
-          "pattern": "fem_execution_truth.json",
-          "size_bytes": 18491,
-          "source_date": "2026-09-10"
-        }
-      ],
-      "stale_source_count": 1,
-      "status": "WARN",
-      "strategy_ids": [
-        "execution_truth"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [
-        "gap_channel_context",
-        "options_context"
-      ],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Gap Wall Roundtrip",
-      "experiment_phase": "SHADOW_PANEL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 9,
-      "next_action": "Regenerate today's source output for Gap Wall Roundtrip; stale source data cannot be trusted.",
-      "notes": "Shadow only: every surge gets a gap-wall plan, then wall touch is scored as eat/acceptance versus rejection short.",
-      "operator_role": "SHADOW_TRADER",
-      "panel_id": "gap_wall_roundtrip",
-      "primary_source": "fem_gap_wall_roundtrip.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": true,
-      "score_partition": "shadow_panel::gap_wall_roundtrip",
-      "score_required": true,
-      "score_rows": [
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": -0.9434,
-          "ghost_fires": 3842,
-          "ghost_graded": 495,
-          "ghost_run_rate": 6.46,
-          "ghost_runners": 32,
-          "panel_name": "Gap Wall Roundtrip",
-          "strategy_id": "gap_wall_roundtrip_shadow",
-          "verdict": "CUT_GHOST"
-        }
-      ],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 3842,
-        "ghost_graded": 495
-      },
-      "side": "MIXED",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 41559,
-          "count": 3842,
-          "date_source": "payload.date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.date date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T01:44:58+00:00",
-          "path": "fem_gap_wall_roundtrip.json",
-          "pattern": "fem_gap_wall_roundtrip.json",
-          "size_bytes": 10335420,
-          "source_date": "2026-09-10"
-        },
-        {
-          "age_seconds": 38,
-          "count": 2051,
-          "date_source": "pattern",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
-          "path": "_DAILY/live_fires_2026-09-11.jsonl",
-          "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
-          "source_date": "2026-09-11"
-        },
-        {
-          "age_seconds": 31241,
-          "count": 14,
-          "date_source": "payload.date",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "payload.date date 2026-09-11 matches 2026-09-11",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T04:36:56+00:00",
-          "path": "fem_gap_timeframe_contract.json",
-          "pattern": "fem_gap_timeframe_contract.json",
-          "size_bytes": 34886285,
-          "source_date": "2026-09-11"
-        },
-        {
-          "age_seconds": 31240,
-          "count": 1523,
-          "date_source": "payload.generated_at",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T04:36:58+00:00",
-          "path": "fem_gap_staircase_lens.json",
-          "pattern": "fem_gap_staircase_lens.json",
-          "size_bytes": 5065044,
-          "source_date": "2026-09-11"
-        }
-      ],
-      "stale_source_count": 1,
-      "status": "WARN",
-      "strategy_ids": [
-        "gap_wall_roundtrip_shadow"
       ],
       "truth_label": "SOURCE STALE",
       "truth_reason": "source file is missing or stale; refresh before trusting this panel",
@@ -342,7 +165,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 6285277,
+          "age_seconds": 6328312,
           "count": 8,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -356,7 +179,7 @@
           "source_date": "2026-06-30"
         },
         {
-          "age_seconds": 5440725,
+          "age_seconds": 5483760,
           "count": 13,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -416,7 +239,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 33689,
+          "age_seconds": 76725,
           "count": 8,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -438,17 +261,17 @@
           "pattern": "_DAILY/fem_runner_exit_decision_{date}.json"
         },
         {
-          "age_seconds": 33,
-          "count": 2051,
+          "age_seconds": 685,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -456,248 +279,6 @@
       "status": "WARN",
       "strategy_ids": [
         "runner_exit_decision"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Scan Stage Drop Audit",
-      "experiment_phase": "ACCOUNTABILITY",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 1,
-      "next_action": "Regenerate today's source output for Scan Stage Drop Audit; stale source data cannot be trusted.",
-      "notes": "EOD accountability for movers that were on the watchlist but dropped before PANEL/PICK/bot routing.",
-      "operator_role": "CONTROL",
-      "panel_id": "scan_stage_drop_audit",
-      "primary_source": "fem_scan_stage_drop_audit.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": false,
-      "score_partition": "accountability::scan_stage_drop",
-      "score_required": false,
-      "score_rows": [],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
-      },
-      "side": "BOTH",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 46614,
-          "count": 12,
-          "date_source": "payload.trade_date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.trade_date date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:20:38+00:00",
-          "path": "fem_scan_stage_drop_audit.json",
-          "pattern": "fem_scan_stage_drop_audit.json",
-          "size_bytes": 1944,
-          "source_date": "2026-09-10"
-        },
-        {
-          "exists": false,
-          "fresh": false,
-          "freshness_detail": "source file missing",
-          "freshness_status": "MISSING",
-          "path": "_DAILY/fem_scan_stage_drop_audit_2026-09-11.json",
-          "pattern": "_DAILY/fem_scan_stage_drop_audit_{date}.json"
-        },
-        {
-          "age_seconds": 46647,
-          "count": 16,
-          "date_source": "mtime_et",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "mtime_et date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:20:05+00:00",
-          "path": "latest_postmortem.txt",
-          "pattern": "latest_postmortem.txt",
-          "size_bytes": 881,
-          "source_date": "2026-09-10"
-        }
-      ],
-      "stale_source_count": 2,
-      "status": "WARN",
-      "strategy_ids": [
-        "scan_stage_drop_audit"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [
-        "clock_context",
-        "gap_channel_context",
-        "fem_authority_context"
-      ],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Stock Clock / Micro Clocks",
-      "experiment_phase": "SHADOW_PANEL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 8,
-      "next_action": "Regenerate today's source output for Stock Clock / Micro Clocks; stale source data cannot be trusted.",
-      "notes": "Clock phase/reload-cycle lens. Shadow tracked only; it must earn forward evidence before trading.",
-      "operator_role": "SHADOW_TRADER",
-      "panel_id": "stock_clock",
-      "primary_source": "fem_clock_trade_grade.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": true,
-      "score_partition": "shadow_panel::stock_clock",
-      "score_required": true,
-      "score_rows": [
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": -0.094,
-          "ghost_fires": 2040,
-          "ghost_graded": 2040,
-          "ghost_run_rate": 36.18,
-          "ghost_runners": 738,
-          "panel_name": "Stock Clock Long",
-          "strategy_id": "clock_long",
-          "verdict": "CUT_GHOST"
-        },
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": -0.045,
-          "ghost_fires": 2068,
-          "ghost_graded": 2068,
-          "ghost_run_rate": 38.2,
-          "ghost_runners": 790,
-          "panel_name": "Stock Clock Short",
-          "strategy_id": "clock_short",
-          "verdict": "CUT_GHOST"
-        },
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
-          "panel_name": "Stock Clock",
-          "strategy_id": "stock_clock_shadow",
-          "verdict": "NO_DATA"
-        },
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
-          "panel_name": "Micro Clocks",
-          "strategy_id": "micro_clock_buy_zone",
-          "verdict": "NO_DATA"
-        }
-      ],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 4108,
-        "ghost_graded": 4108
-      },
-      "side": "LONG",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 44380,
-          "count": 9,
-          "date_source": "payload.generated_at",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.generated_at date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:57:58+00:00",
-          "path": "fem_clock_trade_grade.json",
-          "pattern": "fem_clock_trade_grade.json",
-          "size_bytes": 18167,
-          "source_date": "2026-09-10"
-        },
-        {
-          "age_seconds": 44381,
-          "count": 319,
-          "date_source": "payload.date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.date date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:57:57+00:00",
-          "path": "fem_clock_contract_bridge.json",
-          "pattern": "fem_clock_contract_bridge.json",
-          "size_bytes": 632021,
-          "source_date": "2026-09-10"
-        },
-        {
-          "age_seconds": 817,
-          "count": 9,
-          "date_source": "payload.generated_at",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:04:01+00:00",
-          "path": "fem_clock_positions.json",
-          "pattern": "fem_clock_positions.json",
-          "size_bytes": 1815044,
-          "source_date": "2026-09-11"
-        },
-        {
-          "age_seconds": 2674,
-          "count": 2740,
-          "date_source": "payload.generated_at",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T12:33:04+00:00",
-          "path": "fem_micro_clocks.json",
-          "pattern": "fem_micro_clocks.json",
-          "size_bytes": 3693460,
-          "source_date": "2026-09-11"
-        }
-      ],
-      "stale_source_count": 2,
-      "status": "WARN",
-      "strategy_ids": [
-        "clock_long",
-        "clock_short",
-        "stock_clock_shadow",
-        "micro_clock_buy_zone"
       ],
       "truth_label": "SOURCE STALE",
       "truth_reason": "source file is missing or stale; refresh before trusting this panel",
@@ -741,21 +322,21 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 125,
-          "count": 174,
+          "age_seconds": 102,
+          "count": 6098,
           "date_source": "payload.day",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.day date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:15:27+00:00",
+          "mtime_utc": "2026-09-12T01:13:05+00:00",
           "path": "fem_surge_micro_plan.json",
           "pattern": "fem_surge_micro_plan.json",
-          "size_bytes": 552732,
+          "size_bytes": 16253887,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 8209,
+          "age_seconds": 51244,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -769,17 +350,17 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 33,
-          "count": 2051,
+          "age_seconds": 684,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -793,81 +374,6 @@
       "warnings": [
         "PANEL_SCORE_MISSING",
         "PUBLISHER_MISSING"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [
-        "gap_channel_context"
-      ],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Value Area Fortress",
-      "experiment_phase": "SHADOW_PANEL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 80,
-      "next_action": "Regenerate today's source output for Value Area Fortress; stale source data cannot be trusted.",
-      "notes": "Structural floor/value-area long lens from fem_penny_scanner; tracked as shadow only.",
-      "operator_role": "RESEARCH",
-      "panel_id": "value_area_fortress",
-      "primary_source": "fem_value_area_fortress_picks.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": true,
-      "score_partition": "shadow_panel::value_area_fortress",
-      "score_required": true,
-      "score_rows": [
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": -0.07,
-          "ghost_fires": 124,
-          "ghost_graded": 124,
-          "ghost_run_rate": 2.42,
-          "ghost_runners": 3,
-          "panel_name": "Value Area Fortress",
-          "strategy_id": "value_area_fortress",
-          "verdict": "CUT_GHOST"
-        }
-      ],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 124,
-        "ghost_graded": 124
-      },
-      "side": "LONG",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 45687,
-          "count": 1,
-          "date_source": "payload.day",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.day date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:36:11+00:00",
-          "path": "fem_value_area_fortress_picks.json",
-          "pattern": "fem_value_area_fortress_picks.json",
-          "size_bytes": 150512,
-          "source_date": "2026-09-10"
-        }
-      ],
-      "stale_source_count": 1,
-      "status": "WARN",
-      "strategy_ids": [
-        "value_area_fortress"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
       ]
     },
     {
@@ -921,7 +427,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 5350055,
+          "age_seconds": 5393090,
           "count": 843,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -935,7 +441,7 @@
           "source_date": "2026-07-10"
         },
         {
-          "age_seconds": 31238,
+          "age_seconds": 74273,
           "count": 481,
           "date_source": "payload.date",
           "exists": true,
@@ -949,17 +455,17 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 37,
-          "count": 2051,
+          "age_seconds": 689,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -1013,7 +519,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 2613,
+          "age_seconds": 45648,
           "count": 21,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1027,7 +533,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 2613,
+          "age_seconds": 45648,
           "count": 0,
           "date_source": "mtime_et",
           "exists": true,
@@ -1079,7 +585,7 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 4,
+          "ghost_fires": 3,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
@@ -1092,7 +598,7 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 4,
+          "ghost_fires": 3,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
@@ -1103,7 +609,7 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 8,
+        "ghost_fires": 6,
         "ghost_graded": 0
       },
       "side": "LONG",
@@ -1113,7 +619,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 7803,
+          "age_seconds": 50839,
           "count": 3,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1135,7 +641,7 @@
           "pattern": "fem_ath_scan.json"
         },
         {
-          "age_seconds": 2670,
+          "age_seconds": 45705,
           "count": 37,
           "date_source": "mtime_et",
           "exists": true,
@@ -1193,7 +699,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 31211,
+          "age_seconds": 74247,
           "count": 18,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1207,7 +713,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 31550,
+          "age_seconds": 74585,
           "count": 7,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1221,7 +727,7 @@
           "source_date": "2026-09-10"
         },
         {
-          "age_seconds": 33393,
+          "age_seconds": 76428,
           "count": 14,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1235,7 +741,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 33393,
+          "age_seconds": 76428,
           "count": 11,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1375,7 +881,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 5174865,
+          "age_seconds": 5217900,
           "count": 18,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1389,7 +895,7 @@
           "source_date": "2026-07-13"
         },
         {
-          "age_seconds": 5174865,
+          "age_seconds": 5217900,
           "count": 167,
           "date_source": "payload.date",
           "exists": true,
@@ -1403,7 +909,7 @@
           "source_date": "2026-07-13"
         },
         {
-          "age_seconds": 8014,
+          "age_seconds": 51049,
           "count": 120,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1465,7 +971,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 8014,
+          "age_seconds": 51049,
           "count": 120,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1479,7 +985,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 8014,
+          "age_seconds": 51049,
           "count": 120,
           "date_source": "mtime_et",
           "exists": true,
@@ -1493,7 +999,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 8014,
+          "age_seconds": 51049,
           "count": 120,
           "date_source": "pattern",
           "exists": true,
@@ -1564,6 +1070,63 @@
     {
       "bot_required": false,
       "bot_route_ok": true,
+      "context_contract": [],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Execution Truth",
+      "experiment_phase": "CONTROL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 1,
+      "next_action": "No immediate registry action required.",
+      "notes": "Single execution truth ledger: reconstructs parent orders, fills, exits, and realized PnL.",
+      "operator_role": "CONTROL",
+      "panel_id": "execution_truth",
+      "primary_source": "fem_execution_truth.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": false,
+      "score_partition": "control::execution_truth",
+      "score_required": false,
+      "score_rows": [],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 0,
+        "ghost_graded": 0
+      },
+      "side": "BOTH",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 645,
+          "count": 0,
+          "date_source": "payload.trade_date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.trade_date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:04:06+00:00",
+          "path": "fem_execution_truth.json",
+          "pattern": "fem_execution_truth.json",
+          "size_bytes": 1789,
+          "source_date": "2026-09-11"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "execution_truth"
+      ],
+      "truth_label": "CONTROL",
+      "truth_reason": "operator control panel; explains decisions, trust, and breaks but is not a trader",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
       "context_contract": [
         "gap_channel_context",
         "options_context",
@@ -1613,17 +1176,17 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 120,
-          "count": 2,
+          "age_seconds": 78,
+          "count": 0,
           "date_source": "payload.date",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.date date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:15:38+00:00",
+          "mtime_utc": "2026-09-12T01:13:35+00:00",
           "path": "fem_channel_shelf_reclaim_swing.json",
           "pattern": "fem_channel_shelf_reclaim_swing.json",
-          "size_bytes": 21804,
+          "size_bytes": 1103,
           "source_date": "2026-09-11"
         }
       ],
@@ -1687,7 +1250,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 31238,
+          "age_seconds": 74273,
           "count": 481,
           "date_source": "payload.date",
           "exists": true,
@@ -1701,7 +1264,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 31239,
+          "age_seconds": 74274,
           "count": 1523,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1715,7 +1278,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 31242,
+          "age_seconds": 74277,
           "count": 12,
           "date_source": "payload.date",
           "exists": true,
@@ -1729,7 +1292,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 31240,
+          "age_seconds": 74276,
           "count": 14,
           "date_source": "payload.date",
           "exists": true,
@@ -1782,10 +1345,10 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": 0.014,
-          "ghost_fires": 122220,
-          "ghost_graded": 122220,
+          "ghost_fires": 123355,
+          "ghost_graded": 123355,
           "ghost_run_rate": 36.4,
-          "ghost_runners": 44488,
+          "ghost_runners": 44901,
           "panel_name": "Gap Reject Short",
           "strategy_id": "gap_reject_short",
           "verdict": "KEEP_GHOST"
@@ -1793,8 +1356,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 122220,
-        "ghost_graded": 122220
+        "ghost_fires": 123355,
+        "ghost_graded": 123355
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -1803,7 +1366,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 7800,
+          "age_seconds": 50835,
           "count": 7,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1817,7 +1380,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 7800,
+          "age_seconds": 50835,
           "count": 123355,
           "date_source": "payload.date",
           "exists": true,
@@ -1835,6 +1398,122 @@
       "status": "OK",
       "strategy_ids": [
         "gap_reject_short"
+      ],
+      "truth_label": "SHADOW ONLY",
+      "truth_reason": "candidate source is tracked and scored, but not allowed to trade live yet",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
+      "context_contract": [
+        "gap_channel_context",
+        "options_context"
+      ],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Gap Wall Roundtrip",
+      "experiment_phase": "SHADOW_PANEL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 9,
+      "next_action": "No immediate registry action required.",
+      "notes": "Shadow only: every surge gets a gap-wall plan, then wall touch is scored as eat/acceptance versus rejection short.",
+      "operator_role": "SHADOW_TRADER",
+      "panel_id": "gap_wall_roundtrip",
+      "primary_source": "fem_gap_wall_roundtrip.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": true,
+      "score_partition": "shadow_panel::gap_wall_roundtrip",
+      "score_required": true,
+      "score_rows": [
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": -0.8963,
+          "ghost_fires": 6104,
+          "ghost_graded": 540,
+          "ghost_run_rate": 11.11,
+          "ghost_runners": 60,
+          "panel_name": "Gap Wall Roundtrip",
+          "strategy_id": "gap_wall_roundtrip_shadow",
+          "verdict": "CUT_GHOST"
+        }
+      ],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 6104,
+        "ghost_graded": 540
+      },
+      "side": "MIXED",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 647,
+          "count": 6104,
+          "date_source": "payload.date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:04:05+00:00",
+          "path": "fem_gap_wall_roundtrip.json",
+          "pattern": "fem_gap_wall_roundtrip.json",
+          "size_bytes": 16701493,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 690,
+          "count": 26995,
+          "date_source": "pattern",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
+          "path": "_DAILY/live_fires_2026-09-11.jsonl",
+          "pattern": "_DAILY/live_fires_{date}.jsonl",
+          "size_bytes": 8968486,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 74276,
+          "count": 14,
+          "date_source": "payload.date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-11T04:36:56+00:00",
+          "path": "fem_gap_timeframe_contract.json",
+          "pattern": "fem_gap_timeframe_contract.json",
+          "size_bytes": 34886285,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 74275,
+          "count": 1523,
+          "date_source": "payload.generated_at",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-11T04:36:58+00:00",
+          "path": "fem_gap_staircase_lens.json",
+          "pattern": "fem_gap_staircase_lens.json",
+          "size_bytes": 5065044,
+          "source_date": "2026-09-11"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "gap_wall_roundtrip_shadow"
       ],
       "truth_label": "SHADOW ONLY",
       "truth_reason": "candidate source is tracked and scored, but not allowed to trade live yet",
@@ -1874,7 +1553,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 33230,
+          "age_seconds": 76265,
           "count": 14,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1931,7 +1610,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 33230,
+          "age_seconds": 76265,
           "count": 16,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -2010,7 +1689,7 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": 9.6104,
-          "ghost_fires": 175,
+          "ghost_fires": 174,
           "ghost_graded": 174,
           "ghost_run_rate": 73.56,
           "ghost_runners": 128,
@@ -2023,7 +1702,7 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": 0.0916,
-          "ghost_fires": 356,
+          "ghost_fires": 357,
           "ghost_graded": 317,
           "ghost_run_rate": 65.93,
           "ghost_runners": 209,
@@ -2044,17 +1723,17 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 7785,
-          "count": 9,
+          "age_seconds": 5916,
+          "count": 8,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T11:07:53+00:00",
+          "mtime_utc": "2026-09-11T23:36:17+00:00",
           "path": "fem_mustard_reload_lab.json",
           "pattern": "fem_mustard_reload_lab.json",
-          "size_bytes": 189410,
+          "size_bytes": 185698,
           "source_date": "2026-09-11"
         }
       ],
@@ -2099,18 +1778,18 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 0,
+          "ghost_fires": 5,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
           "panel_name": "SMA Reclaim",
           "strategy_id": "sma_reclaim_long",
-          "verdict": "NO_DATA"
+          "verdict": "PENDING_GRADE"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
+        "ghost_fires": 5,
         "ghost_graded": 0
       },
       "side": "LONG",
@@ -2120,7 +1799,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 8170,
+          "age_seconds": 51205,
           "count": 5,
           "date_source": "payload.date",
           "exists": true,
@@ -2134,7 +1813,7 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 8170,
+          "age_seconds": 51205,
           "count": 586,
           "date_source": "payload.date",
           "exists": true,
@@ -2148,17 +1827,17 @@
           "source_date": "2026-06-17"
         },
         {
-          "age_seconds": 70,
-          "count": 83,
+          "age_seconds": 18721,
+          "count": 134,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:27+00:00",
+          "mtime_utc": "2026-09-11T20:02:51+00:00",
           "path": "_DAILY/fam_state_ideas_2026-09-11.jsonl",
           "pattern": "_DAILY/fam_state_ideas_{date}.jsonl",
-          "size_bytes": 96805,
+          "size_bytes": 157332,
           "source_date": "2026-09-11"
         }
       ],
@@ -2169,6 +1848,91 @@
       ],
       "truth_label": "LIVE PROBE",
       "truth_reason": "bot route is wired; waiting for enough attributed live samples",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
+      "context_contract": [],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Scan Stage Drop Audit",
+      "experiment_phase": "ACCOUNTABILITY",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 1,
+      "next_action": "No immediate registry action required.",
+      "notes": "EOD accountability for movers that were on the watchlist but dropped before PANEL/PICK/bot routing.",
+      "operator_role": "CONTROL",
+      "panel_id": "scan_stage_drop_audit",
+      "primary_source": "fem_scan_stage_drop_audit.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": false,
+      "score_partition": "accountability::scan_stage_drop",
+      "score_required": false,
+      "score_rows": [],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 0,
+        "ghost_graded": 0
+      },
+      "side": "BOTH",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 3168,
+          "count": 12,
+          "date_source": "payload.trade_date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.trade_date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T00:22:00+00:00",
+          "path": "fem_scan_stage_drop_audit.json",
+          "pattern": "fem_scan_stage_drop_audit.json",
+          "size_bytes": 1944,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 3168,
+          "count": 12,
+          "date_source": "pattern",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T00:22:00+00:00",
+          "path": "_DAILY/fem_scan_stage_drop_audit_2026-09-11.json",
+          "pattern": "_DAILY/fem_scan_stage_drop_audit_{date}.json",
+          "size_bytes": 1944,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 3281,
+          "count": 22,
+          "date_source": "mtime_et",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "mtime_et date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T00:20:06+00:00",
+          "path": "latest_postmortem.txt",
+          "pattern": "latest_postmortem.txt",
+          "size_bytes": 1135,
+          "source_date": "2026-09-11"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "scan_stage_drop_audit"
+      ],
+      "truth_label": "CONTROL",
+      "truth_reason": "operator control panel; explains decisions, trust, and breaks but is not a trader",
       "warnings": []
     },
     {
@@ -2199,11 +1963,11 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.0287,
-          "ghost_fires": 42574,
-          "ghost_graded": 42115,
-          "ghost_run_rate": 46.85,
-          "ghost_runners": 19731,
+          "ghost_avg_target_r": -0.042,
+          "ghost_fires": 48062,
+          "ghost_graded": 47873,
+          "ghost_run_rate": 46.31,
+          "ghost_runners": 22172,
           "panel_name": "Short Genesis",
           "strategy_id": "short_genesis",
           "verdict": "CUT_GHOST"
@@ -2211,8 +1975,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 42574,
-        "ghost_graded": 42115
+        "ghost_fires": 48062,
+        "ghost_graded": 47873
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -2221,21 +1985,21 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 70,
-          "count": 83,
+          "age_seconds": 18721,
+          "count": 134,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:27+00:00",
+          "mtime_utc": "2026-09-11T20:02:51+00:00",
           "path": "_DAILY/fam_state_ideas_2026-09-11.jsonl",
           "pattern": "_DAILY/fam_state_ideas_{date}.jsonl",
-          "size_bytes": 96805,
+          "size_bytes": 157332,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 2371,
+          "age_seconds": 45406,
           "count": 24,
           "date_source": "mtime_et",
           "exists": true,
@@ -2249,21 +2013,21 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 45724,
+          "age_seconds": 1963,
           "count": 10,
           "date_source": "payload.trade_date",
           "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.trade_date date 2026-09-10 != 2026-09-11",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T00:35:33+00:00",
+          "fresh": true,
+          "freshness_detail": "payload.trade_date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T00:42:08+00:00",
           "path": "fem_short_stats.json",
           "pattern": "fem_short_stats.json",
-          "size_bytes": 350806,
-          "source_date": "2026-09-10"
+          "size_bytes": 373325,
+          "source_date": "2026-09-11"
         }
       ],
-      "stale_source_count": 1,
+      "stale_source_count": 0,
       "status": "OK",
       "strategy_ids": [
         "short_genesis"
@@ -2300,11 +2064,11 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.1688,
-          "ghost_fires": 6650,
-          "ghost_graded": 6622,
-          "ghost_run_rate": 33.21,
-          "ghost_runners": 2199,
+          "ghost_avg_target_r": -0.1765,
+          "ghost_fires": 6700,
+          "ghost_graded": 6670,
+          "ghost_run_rate": 32.92,
+          "ghost_runners": 2196,
           "panel_name": "Short Universe",
           "strategy_id": "short_universe",
           "verdict": "CUT_GHOST"
@@ -2313,11 +2077,11 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.1679,
-          "ghost_fires": 6600,
-          "ghost_graded": 6600,
-          "ghost_run_rate": 33.24,
-          "ghost_runners": 2194,
+          "ghost_avg_target_r": -0.174,
+          "ghost_fires": 6650,
+          "ghost_graded": 6650,
+          "ghost_run_rate": 33.02,
+          "ghost_runners": 2196,
           "panel_name": "Short Universe",
           "strategy_id": "short_universe_grade",
           "verdict": "CUT_GHOST"
@@ -2325,8 +2089,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 13250,
-        "ghost_graded": 13222
+        "ghost_fires": 13350,
+        "ghost_graded": 13320
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -2335,35 +2099,35 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 12,
+          "age_seconds": 1916,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/fem_short_universe_grade.json",
           "pattern": "_DAILY/fem_short_universe_grade.json",
-          "size_bytes": 17272,
+          "size_bytes": 17245,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 12,
-          "count": 17588,
+          "age_seconds": 1916,
+          "count": 17849,
           "date_source": "payload.date",
           "exists": true,
           "fresh": false,
           "freshness_detail": "payload.date date 2026-06-04 != 2026-09-11",
           "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/short_universe_fires.jsonl",
           "pattern": "_DAILY/short_universe_fires.jsonl",
-          "size_bytes": 3949838,
+          "size_bytes": 4008700,
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 8214,
+          "age_seconds": 51249,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2417,10 +2181,10 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.325,
-          "ghost_fires": 437,
-          "ghost_graded": 437,
-          "ghost_run_rate": 27.0,
+          "ghost_avg_target_r": -0.328,
+          "ghost_fires": 439,
+          "ghost_graded": 439,
+          "ghost_run_rate": 26.88,
           "ghost_runners": 118,
           "panel_name": "Short Universe",
           "strategy_id": "short_universe_breakdown",
@@ -2429,8 +2193,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 437,
-        "ghost_graded": 437
+        "ghost_fires": 439,
+        "ghost_graded": 439
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -2439,35 +2203,35 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 12,
+          "age_seconds": 1916,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/fem_short_universe_grade.json",
           "pattern": "_DAILY/fem_short_universe_grade.json",
-          "size_bytes": 17272,
+          "size_bytes": 17245,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 12,
-          "count": 17588,
+          "age_seconds": 1916,
+          "count": 17849,
           "date_source": "payload.date",
           "exists": true,
           "fresh": false,
           "freshness_detail": "payload.date date 2026-06-04 != 2026-09-11",
           "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/short_universe_fires.jsonl",
           "pattern": "_DAILY/short_universe_fires.jsonl",
-          "size_bytes": 3949838,
+          "size_bytes": 4008700,
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 8214,
+          "age_seconds": 51249,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2541,35 +2305,35 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 12,
+          "age_seconds": 1916,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/fem_short_universe_grade.json",
           "pattern": "_DAILY/fem_short_universe_grade.json",
-          "size_bytes": 17272,
+          "size_bytes": 17245,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 12,
-          "count": 17588,
+          "age_seconds": 1916,
+          "count": 17849,
           "date_source": "payload.date",
           "exists": true,
           "fresh": false,
           "freshness_detail": "payload.date date 2026-06-04 != 2026-09-11",
           "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/short_universe_fires.jsonl",
           "pattern": "_DAILY/short_universe_fires.jsonl",
-          "size_bytes": 3949838,
+          "size_bytes": 4008700,
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 8214,
+          "age_seconds": 51249,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2621,11 +2385,11 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.174,
-          "ghost_fires": 2374,
-          "ghost_graded": 2374,
-          "ghost_run_rate": 32.98,
-          "ghost_runners": 783,
+          "ghost_avg_target_r": -0.18,
+          "ghost_fires": 2391,
+          "ghost_graded": 2391,
+          "ghost_run_rate": 32.79,
+          "ghost_runners": 784,
           "panel_name": "Short Universe",
           "strategy_id": "short_universe_lower_high",
           "verdict": "CUT_GHOST"
@@ -2633,8 +2397,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 2374,
-        "ghost_graded": 2374
+        "ghost_fires": 2391,
+        "ghost_graded": 2391
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -2643,35 +2407,35 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 12,
+          "age_seconds": 1916,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/fem_short_universe_grade.json",
           "pattern": "_DAILY/fem_short_universe_grade.json",
-          "size_bytes": 17272,
+          "size_bytes": 17245,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 12,
-          "count": 17588,
+          "age_seconds": 1916,
+          "count": 17849,
           "date_source": "payload.date",
           "exists": true,
           "fresh": false,
           "freshness_detail": "payload.date date 2026-06-04 != 2026-09-11",
           "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/short_universe_fires.jsonl",
           "pattern": "_DAILY/short_universe_fires.jsonl",
-          "size_bytes": 3949838,
+          "size_bytes": 4008700,
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 8214,
+          "age_seconds": 51249,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2723,10 +2487,10 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": -0.141,
-          "ghost_fires": 3191,
-          "ghost_graded": 3191,
-          "ghost_run_rate": 34.32,
+          "ghost_avg_target_r": -0.149,
+          "ghost_fires": 3222,
+          "ghost_graded": 3222,
+          "ghost_run_rate": 33.99,
           "ghost_runners": 1095,
           "panel_name": "Short Universe",
           "strategy_id": "short_universe_vwap_reject",
@@ -2735,8 +2499,8 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 3191,
-        "ghost_graded": 3191
+        "ghost_fires": 3222,
+        "ghost_graded": 3222
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -2745,35 +2509,35 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 12,
+          "age_seconds": 1916,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/fem_short_universe_grade.json",
           "pattern": "_DAILY/fem_short_universe_grade.json",
-          "size_bytes": 17272,
+          "size_bytes": 17245,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 12,
-          "count": 17588,
+          "age_seconds": 1916,
+          "count": 17849,
           "date_source": "payload.date",
           "exists": true,
           "fresh": false,
           "freshness_detail": "payload.date date 2026-06-04 != 2026-09-11",
           "freshness_status": "STALE",
-          "mtime_utc": "2026-09-11T13:17:24+00:00",
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
           "path": "_DAILY/short_universe_fires.jsonl",
           "pattern": "_DAILY/short_universe_fires.jsonl",
-          "size_bytes": 3949838,
+          "size_bytes": 4008700,
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 8214,
+          "age_seconds": 51249,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2838,7 +2602,20 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 38,
+          "ghost_fires": 4,
+          "ghost_graded": 0,
+          "ghost_run_rate": null,
+          "ghost_runners": 0,
+          "panel_name": "State Lookup",
+          "strategy_id": "bull_bounce_pending",
+          "verdict": "PENDING_GRADE"
+        },
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": null,
+          "ghost_fires": 35,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
@@ -2849,7 +2626,7 @@
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 78,
+        "ghost_fires": 79,
         "ghost_graded": 0
       },
       "side": "MIXED",
@@ -2859,45 +2636,45 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 71,
+          "age_seconds": 18723,
           "count": 14,
           "date_source": "payload.day",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.day date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:27+00:00",
+          "mtime_utc": "2026-09-11T20:02:51+00:00",
           "path": "fam_state_idea_tracker.json",
           "pattern": "fam_state_idea_tracker.json",
-          "size_bytes": 65702,
+          "size_bytes": 70252,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 71,
-          "count": 83,
+          "age_seconds": 18723,
+          "count": 134,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:27+00:00",
+          "mtime_utc": "2026-09-11T20:02:51+00:00",
           "path": "_DAILY/fam_state_ideas_2026-09-11.jsonl",
           "pattern": "_DAILY/fam_state_ideas_{date}.jsonl",
-          "size_bytes": 96805,
+          "size_bytes": 157332,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 1726,
+          "age_seconds": 19937,
           "count": 118,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T12:48:52+00:00",
+          "mtime_utc": "2026-09-11T19:42:36+00:00",
           "path": "_DAILY/fam_entry_freeze_2026-09-11.json",
           "pattern": "_DAILY/fam_entry_freeze_{date}.json",
-          "size_bytes": 23700,
+          "size_bytes": 34357,
           "source_date": "2026-09-11"
         }
       ],
@@ -2911,6 +2688,165 @@
       ],
       "truth_label": "RESEARCH",
       "truth_reason": "research/watchlist lens; use for study until promoted by evidence",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
+      "context_contract": [
+        "clock_context",
+        "gap_channel_context",
+        "fem_authority_context"
+      ],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Stock Clock / Micro Clocks",
+      "experiment_phase": "SHADOW_PANEL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 8,
+      "next_action": "No immediate registry action required.",
+      "notes": "Clock phase/reload-cycle lens. Shadow tracked only; it must earn forward evidence before trading.",
+      "operator_role": "SHADOW_TRADER",
+      "panel_id": "stock_clock",
+      "primary_source": "fem_clock_trade_grade.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": true,
+      "score_partition": "shadow_panel::stock_clock",
+      "score_required": true,
+      "score_rows": [
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": -0.098,
+          "ghost_fires": 2096,
+          "ghost_graded": 2096,
+          "ghost_run_rate": 36.12,
+          "ghost_runners": 757,
+          "panel_name": "Stock Clock Long",
+          "strategy_id": "clock_long",
+          "verdict": "CUT_GHOST"
+        },
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": -0.047,
+          "ghost_fires": 2131,
+          "ghost_graded": 2131,
+          "ghost_run_rate": 38.1,
+          "ghost_runners": 812,
+          "panel_name": "Stock Clock Short",
+          "strategy_id": "clock_short",
+          "verdict": "CUT_GHOST"
+        },
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": null,
+          "ghost_fires": 171,
+          "ghost_graded": 0,
+          "ghost_run_rate": null,
+          "ghost_runners": 0,
+          "panel_name": "Stock Clock",
+          "strategy_id": "stock_clock_shadow",
+          "verdict": "PENDING_GRADE"
+        },
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": null,
+          "ghost_fires": 10,
+          "ghost_graded": 0,
+          "ghost_run_rate": null,
+          "ghost_runners": 0,
+          "panel_name": "Micro Clocks",
+          "strategy_id": "micro_clock_buy_zone",
+          "verdict": "PENDING_GRADE"
+        }
+      ],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 4408,
+        "ghost_graded": 4227
+      },
+      "side": "LONG",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 639,
+          "count": 9,
+          "date_source": "payload.generated_at",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:04:14+00:00",
+          "path": "fem_clock_trade_grade.json",
+          "pattern": "fem_clock_trade_grade.json",
+          "size_bytes": 18148,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 647,
+          "count": 181,
+          "date_source": "payload.date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.date date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:04:07+00:00",
+          "path": "fem_clock_contract_bridge.json",
+          "pattern": "fem_clock_contract_bridge.json",
+          "size_bytes": 399728,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 442,
+          "count": 9,
+          "date_source": "payload.generated_at",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T01:07:31+00:00",
+          "path": "fem_clock_positions.json",
+          "pattern": "fem_clock_positions.json",
+          "size_bytes": 1818486,
+          "source_date": "2026-09-11"
+        },
+        {
+          "age_seconds": 45709,
+          "count": 2740,
+          "date_source": "payload.generated_at",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.generated_at date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-11T12:33:04+00:00",
+          "path": "fem_micro_clocks.json",
+          "pattern": "fem_micro_clocks.json",
+          "size_bytes": 3693460,
+          "source_date": "2026-09-11"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "clock_long",
+        "clock_short",
+        "stock_clock_shadow",
+        "micro_clock_buy_zone"
+      ],
+      "truth_label": "SHADOW ONLY",
+      "truth_reason": "candidate source is tracked and scored, but not allowed to trade live yet",
       "warnings": []
     },
     {
@@ -2941,20 +2877,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.5018,
+          "ghost_fires": 30,
+          "ghost_graded": 23,
+          "ghost_run_rate": 69.57,
+          "ghost_runners": 16,
           "panel_name": "Surge Micro",
           "strategy_id": "surge_micro_scout",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 30,
+        "ghost_graded": 23
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -2963,21 +2899,21 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 125,
-          "count": 174,
+          "age_seconds": 102,
+          "count": 6098,
           "date_source": "payload.day",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.day date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:15:27+00:00",
+          "mtime_utc": "2026-09-12T01:13:05+00:00",
           "path": "fem_surge_micro_plan.json",
           "pattern": "fem_surge_micro_plan.json",
-          "size_bytes": 552732,
+          "size_bytes": 16253887,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 8209,
+          "age_seconds": 51244,
           "count": 0,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2991,17 +2927,17 @@
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 33,
-          "count": 2051,
+          "age_seconds": 685,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3052,21 +2988,21 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 2316,
+          "age_seconds": 1,
           "count": 0,
           "date_source": "payload.trade_date",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.trade_date date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T12:38:56+00:00",
+          "mtime_utc": "2026-09-12T01:14:47+00:00",
           "path": "latest_moo_radar_manifest.json",
           "pattern": "latest_moo_radar_manifest.json",
           "size_bytes": 967,
           "source_date": "2026-09-11"
         },
         {
-          "age_seconds": 2613,
+          "age_seconds": 45648,
           "count": 21,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -3087,6 +3023,79 @@
       ],
       "truth_label": "LIVE PROBE",
       "truth_reason": "bot route is wired; waiting for enough attributed live samples",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
+      "context_contract": [
+        "gap_channel_context"
+      ],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Value Area Fortress",
+      "experiment_phase": "SHADOW_PANEL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 80,
+      "next_action": "No immediate registry action required.",
+      "notes": "Structural floor/value-area long lens from fem_penny_scanner; tracked as shadow only.",
+      "operator_role": "RESEARCH",
+      "panel_id": "value_area_fortress",
+      "primary_source": "fem_value_area_fortress_picks.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": true,
+      "score_partition": "shadow_panel::value_area_fortress",
+      "score_required": true,
+      "score_rows": [
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": -0.07,
+          "ghost_fires": 123,
+          "ghost_graded": 123,
+          "ghost_run_rate": 2.44,
+          "ghost_runners": 3,
+          "panel_name": "Value Area Fortress",
+          "strategy_id": "value_area_fortress",
+          "verdict": "CUT_GHOST"
+        }
+      ],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 123,
+        "ghost_graded": 123
+      },
+      "side": "LONG",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 1896,
+          "count": 0,
+          "date_source": "payload.day",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.day date 2026-09-11 matches 2026-09-11",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-09-12T00:43:17+00:00",
+          "path": "fem_value_area_fortress_picks.json",
+          "pattern": "fem_value_area_fortress_picks.json",
+          "size_bytes": 149031,
+          "source_date": "2026-09-11"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "value_area_fortress"
+      ],
+      "truth_label": "RESEARCH",
+      "truth_reason": "research/watchlist lens; use for study until promoted by evidence",
       "warnings": []
     },
     {
@@ -3123,7 +3132,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 31244,
+          "age_seconds": 74279,
           "count": 9,
           "date_source": "payload.date",
           "exists": true,
@@ -3174,20 +3183,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.9392,
+          "ghost_fires": 7620,
+          "ghost_graded": 6009,
+          "ghost_run_rate": 4.96,
+          "ghost_runners": 298,
           "panel_name": "Live Fire Dump",
           "strategy_id": "live_fire_dump",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 7620,
+        "ghost_graded": 6009
       },
       "side": "SHORT",
       "source_fresh_ok": true,
@@ -3196,17 +3205,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 37,
-          "count": 2051,
+          "age_seconds": 689,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3248,20 +3257,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.9822,
+          "ghost_fires": 750,
+          "ghost_graded": 749,
+          "ghost_run_rate": 2.0,
+          "ghost_runners": 15,
           "panel_name": "Live Fire Gap Eat",
           "strategy_id": "live_fire_gap_eat",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 750,
+        "ghost_graded": 749
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -3270,17 +3279,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 37,
-          "count": 2051,
+          "age_seconds": 689,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3321,20 +3330,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.9892,
+          "ghost_fires": 745,
+          "ghost_graded": 739,
+          "ghost_run_rate": 0.68,
+          "ghost_runners": 5,
           "panel_name": "Live Fire Gap Reclaim",
           "strategy_id": "live_fire_gap_reclaim",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 745,
+        "ghost_graded": 739
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -3343,17 +3352,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 39,
-          "count": 2051,
+          "age_seconds": 691,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3394,20 +3403,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.4667,
+          "ghost_fires": 5,
+          "ghost_graded": 5,
+          "ghost_run_rate": 40.0,
+          "ghost_runners": 2,
           "panel_name": "Live Fire Reclaim",
           "strategy_id": "live_fire_reclaim",
-          "verdict": "NO_DATA"
+          "verdict": "WATCH"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 5,
+        "ghost_graded": 5
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -3416,17 +3425,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 39,
-          "count": 2051,
+          "age_seconds": 691,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3467,20 +3476,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.8399,
+          "ghost_fires": 6104,
+          "ghost_graded": 5113,
+          "ghost_run_rate": 11.58,
+          "ghost_runners": 592,
           "panel_name": "Live Fire Surge",
           "strategy_id": "live_fire_surge",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 6104,
+        "ghost_graded": 5113
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -3489,17 +3498,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 37,
-          "count": 2051,
+          "age_seconds": 689,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3546,17 +3555,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 99,
+          "age_seconds": 66,
           "count": 10,
           "date_source": "payload.day",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.day date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:15:59+00:00",
+          "mtime_utc": "2026-09-12T01:13:48+00:00",
           "path": "fem_meta_confluence_score.json",
           "pattern": "fem_meta_confluence_score.json",
-          "size_bytes": 260942,
+          "size_bytes": 234724,
           "source_date": "2026-09-11"
         }
       ],
@@ -3605,7 +3614,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 5440725,
+          "age_seconds": 5483760,
           "count": 13,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -3656,20 +3665,20 @@
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
-          "ghost_avg_target_r": null,
-          "ghost_fires": 0,
-          "ghost_graded": 0,
-          "ghost_run_rate": null,
-          "ghost_runners": 0,
+          "ghost_avg_target_r": -0.8399,
+          "ghost_fires": 6104,
+          "ghost_graded": 5113,
+          "ghost_run_rate": 11.58,
+          "ghost_runners": 592,
           "panel_name": "Surge Trader",
           "strategy_id": "surge_chase",
-          "verdict": "NO_DATA"
+          "verdict": "CUT_GHOST"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
+        "ghost_fires": 6104,
+        "ghost_graded": 5113
       },
       "side": "LONG",
       "source_fresh_ok": true,
@@ -3678,17 +3687,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 33,
-          "count": 2051,
+          "age_seconds": 684,
+          "count": 26995,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-09-11 matches 2026-09-11",
           "freshness_status": "OK",
-          "mtime_utc": "2026-09-11T13:16:59+00:00",
+          "mtime_utc": "2026-09-12T01:03:23+00:00",
           "path": "_DAILY/live_fires_2026-09-11.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 744003,
+          "size_bytes": 8968486,
           "source_date": "2026-09-11"
         }
       ],
@@ -3737,7 +3746,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 7307535,
+          "age_seconds": 7350570,
           "count": 8,
           "date_source": "payload.day",
           "exists": true,
@@ -3764,20 +3773,20 @@
   "schema": "fem_contract_panel_registry.v1",
   "summary": {
     "active_fail": 0,
-    "active_warn": 10,
+    "active_warn": 5,
     "bot_required": 6,
     "bot_routed": 6,
-    "fresh_sourced": 28,
+    "fresh_sourced": 33,
     "panels": 43,
     "scored": 25,
-    "sourced": 32,
-    "stale_source_panels": 23,
-    "stale_sources": 27,
+    "sourced": 37,
+    "stale_source_panels": 17,
+    "stale_sources": 19,
     "status_counts": {
       "FAIL": 0,
-      "OK": 22,
+      "OK": 27,
       "RESEARCH": 10,
-      "WARN": 11
+      "WARN": 6
     }
   },
   "trade_date": "2026-09-11"
