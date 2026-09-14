@@ -1,42 +1,516 @@
 {
   "all_known": false,
   "dry_run": false,
-  "generated_at": "2026-09-11T12:38:59+00:00",
-  "generated_at_et": "2026-09-11T08:38:59-04:00",
+  "generated_at": "2026-09-14T08:07:56+00:00",
+  "generated_at_et": "2026-09-14T04:07:56-04:00",
   "include_research": false,
-  "panels": [],
+  "panels": [
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_sma_reclaim_long.py"
+          ],
+          "elapsed_seconds": 41.62,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "SMA-reclaim long signals 2026-09-14: 8",
+            "  ACVA   entry  10.41 stop   9.71 tgt  11.46 x142   (ATR 5.6%) LATE_RECLAIM ch=30",
+            "  ACHR   entry   5.58 stop   5.27 tgt   6.05 x322   (ATR 4.6%) CLEAR_HIGHWAY ch=100",
+            "  IBRX   entry   7.91 stop   7.41 tgt   8.66 x200   (ATR 5.3%) LATE_RECLAIM ch=49",
+            "  BETA   entry  21.17 stop  19.31 tgt  23.96 x53    (ATR 7.3%) MIXED_RECLAIM ch=69",
+            "  KD     entry  13.15 stop  12.47 tgt  14.17 x147   (ATR 4.3%) MIXED_RECLAIM ch=69",
+            "  VYX    entry   8.55 stop    7.9 tgt   9.53 x153   (ATR 6.3%) MIXED_RECLAIM ch=69",
+            "  ATEC   entry  10.58 stop   9.99 tgt  11.46 x169   (ATR 4.6%) LATE_RECLAIM ch=30",
+            "  PAR    entry     18 stop  16.92 tgt  19.62 x92    (ATR 5.0%) LATE_RECLAIM ch=49"
+          ],
+          "timeout_seconds": 600
+        }
+      ],
+      "display_name": "SMA Reclaim",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:22+00:00",
+          "path": "sma_reclaim_today.json",
+          "size_bytes": 4951
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:22+00:00",
+          "path": "sma_reclaim_ledger.jsonl",
+          "size_bytes": 345376
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-11T11:01:26+00:00",
+          "path": "sma_reclaim_today.json",
+          "size_bytes": 3123
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-11T11:01:26+00:00",
+          "path": "sma_reclaim_ledger.jsonl",
+          "size_bytes": 340577
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "sma_reclaim",
+      "primary_source": "sma_reclaim_today.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_sma_reclaim_long.py"
+          ]
+        ],
+        "expected_files": [
+          "sma_reclaim_today.json",
+          "sma_reclaim_ledger.jsonl"
+        ],
+        "notes": "Rebuilds the bot's SMA reclaim source file and forward-test ledger.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
+          ],
+          "elapsed_seconds": 16.92,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "scanning 121 names x 1 sessions ...",
+            "  [  1/121] MDLN    (+0 fires so far)",
+            "  [ 15/121] BLDR    (+0 fires so far)",
+            "  [ 30/121] BETA    (+0 fires so far)",
+            "  [ 45/121] LPX     (+0 fires so far)",
+            "  [ 60/121] ACM     (+0 fires so far)",
+            "  [ 75/121] VOYG    (+0 fires so far)",
+            "  [ 90/121] CAE     (+0 fires so far)",
+            "  [105/121] ICHR    (+0 fires so far)",
+            "  [120/121] SPSC    (+0 fires so far)",
+            "short-universe: 121 names today, +0 new fires, 17849 total in archive",
+            "  vwap_reject    fired=7852 resolved=3222 win=34.0 avgR=-0.149 -> BAD",
+            "  breakdown      fired=1491 resolved=439 win=26.9 avgR=-0.328 -> BAD",
+            "  gapdown_cont   fired=1185 resolved=598 win=33.1 avgR=-0.172 -> BAD",
+            "  lower_high     fired=7321 resolved=2391 win=32.8 avgR=-0.18 -> BAD",
+            "  CHAMPION -> none yet (no setup has n>=10 + positive avgR) \u2014 still gathering"
+          ],
+          "timeout_seconds": 900
+        }
+      ],
+      "display_name": "Short Universe",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:39+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17245
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:39+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 4008700
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
+          "path": "_DAILY/fem_short_universe_grade.json",
+          "size_bytes": 17245
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-12T00:42:55+00:00",
+          "path": "_DAILY/short_universe_fires.jsonl",
+          "size_bytes": 4008700
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "short_universe",
+      "primary_source": "_DAILY/fem_short_universe_grade.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_short_universe_scan.py",
+            "--days",
+            "1",
+            "--no-publish"
+          ]
+        ],
+        "expected_files": [
+          "_DAILY/fem_short_universe_grade.json",
+          "_DAILY/short_universe_fires.jsonl"
+        ],
+        "notes": "Refreshes the live bot's short-universe bridge source.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_surge_micro_plan.py",
+            "--max",
+            "30"
+          ],
+          "elapsed_seconds": 0.17,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan.json",
+            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_surge_micro_plan_dashboard.json",
+            "day=2026-09-12 raw=4 planned=4 scout=0 starter=0 late=0",
+            "RUM    WATCH_ONLY         score=34.0 fire=8.919 move=4.93 rv=28.1 tp1=9.6087 need=7.73% qty=87 risk=$34.92",
+            "RUM    SKIP               score= 4.0 fire=8.63 move=20.64 rv=0.07 tp1=9.2967 need=7.72% qty=90 risk=$34.95",
+            "SKDD   SKIP               score= 4.0 fire=7.84 move=12.07 rv=0.05 tp1=8.4461 need=7.73% qty=99 risk=$34.93",
+            "SOXS   SKIP               score= 4.0 fire=49.41 move=11.85 rv=0.01 tp1=53.41 need=8.1% qty=15 risk=$33.35"
+          ],
+          "timeout_seconds": 420
+        }
+      ],
+      "display_name": "Surge Micro",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:40+00:00",
+          "path": "fem_surge_micro_plan.json",
+          "size_bytes": 22384
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:06:43+00:00",
+          "path": "fem_surge_micro_plan.json",
+          "size_bytes": 22384
+        }
+      ],
+      "mode": "bot",
+      "panel_id": "surge_micro",
+      "primary_source": "fem_surge_micro_plan.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_surge_micro_plan.py",
+            "--max",
+            "30"
+          ]
+        ],
+        "expected_files": [
+          "fem_surge_micro_plan.json"
+        ],
+        "notes": "Rebuilds the small-risk surge plan from the latest live fires.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "FAIL"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_ath_long_plan.py",
+            "--max",
+            "40"
+          ],
+          "elapsed_seconds": 0.91,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "ath-long-plan: wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_ath_long_plan.json",
+            "  source=36 price_5_20=7 common=7 excluded=0 elapsed=0.8s",
+            "  LILAK  ACTIONABLE_WATCH score=   73 APPROACHING off= 1.8% entry=8.58-8.75 stop=8.28 tp1=8.84 tp2=9.44 rr2=2.0",
+            "  CMBT   ACTIONABLE_WATCH score=   71 APPROACHING off=2.64% entry=19.15-19.54 stop=18.48 tp1=19.91 tp2=21.07 rr2=2.0",
+            "  HAFN   ACTIONABLE_WATCH score=   65 APPROACHING off=1.84% entry=9.25-9.43 stop=8.92 tp1=9.54 tp2=10.18 rr2=2.0",
+            "  SFL    ACTIONABLE_WATCH score=   62 APPROACHING off=2.01% entry=12.53-12.78 stop=12.09 tp1=12.94 tp2=13.79 rr2=2.0",
+            "  AVAH   ACTIONABLE_WATCH score=   62 APPROACHING off= 2.1% entry=13.69-13.97 stop=13.21 tp1=14.16 tp2=15.07 rr2=2.0",
+            "  LFST   WATCH_ONLY       score=   53 APPROACHING off= 2.0% entry=12.84-13.1 stop=12.39 tp1=13.27 tp2=14.13 rr2=2.0",
+            "  NAT    WATCH_ONLY       score=   50 APPROACHING off=1.84% entry=7.12-7.27 stop=6.87 tp1=7.34 tp2=7.84 rr2=2.0"
+          ],
+          "timeout_seconds": 420
+        }
+      ],
+      "display_name": "All-Time High Long",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:40+00:00",
+          "path": "fem_ath_long_plan.json",
+          "size_bytes": 20053
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-11T11:07:35+00:00",
+          "path": "fem_ath_long_plan.json",
+          "size_bytes": 9414
+        }
+      ],
+      "mode": "tracked",
+      "panel_id": "ath_long",
+      "primary_source": "fem_ath_long_plan.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_ath_long_plan.py",
+            "--max",
+            "40"
+          ]
+        ],
+        "expected_files": [
+          "fem_ath_long_plan.json"
+        ],
+        "notes": "Uses the existing ATH scan/watchlist and rebuilds long plans.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "WARN"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_gap_reject_short.py"
+          ],
+          "elapsed_seconds": 2.12,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [
+            "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_reject_short.py:143: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).",
+            "  d = datetime.datetime.utcfromtimestamp(b[\"t\"] / 1000).strftime(\"%Y-%m-%d\")",
+            "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_reject_short.py:67: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).",
+            "  et = datetime.datetime.utcfromtimestamp(b[\"t\"] / 1000 - 4 * 3600)"
+          ],
+          "stdout_tail": [
+            "grading gap-rejection shorts: 95 names, ~15d lookback...",
+            "  forward ledger: +258 new today, 123613 cumulative setups",
+            "==================================================================",
+            "  GAP-REJECTION SHORT GRADE  (trapped-longs-at-the-ceiling)",
+            "  95 names \u00b7 ~15d \u00b7 123613 setups found",
+            "==================================================================",
+            "  OVERALL: n=123613  win%=36.4  avgR=0.014  sumR=1731.1",
+            "  --- RE-ARM TEST: alpha (good on UP/FLAT) vs beta (only DOWN days) ---",
+            "    SPY DOWN days:  n=36028  win%=40.5  avgR=0.122",
+            "    SPY FLAT days:  n=69879  win%=36.2  avgR=0.004",
+            "    SPY UP   days:  n=17706  win%=28.9  avgR=-0.168",
+            "  --- by gap type (down/red = bearish supply) ---",
+            "    down-gap:  n=72335  win%=36.4  avgR=0.005",
+            "    up  -gap:  n=51278  win%=36.5  avgR=0.027",
+            "------------------------------------------------------------------",
+            "  VERDICT: not proven independent of down-days (beta/unclear). Keep dumps off;",
+            "           do NOT arm. Re-grade with more history or a tighter setup first.",
+            "  detail -> _DAILY/gap_reject_short_detail.csv   summary -> gap_reject_short_grade.json"
+          ],
+          "timeout_seconds": 600
+        }
+      ],
+      "display_name": "Gap Reject Short",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:43+00:00",
+          "path": "gap_reject_short_grade.json",
+          "size_bytes": 816
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:42+00:00",
+          "path": "_DAILY/gap_reject_ledger.jsonl",
+          "size_bytes": 19402283
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-11T11:07:37+00:00",
+          "path": "gap_reject_short_grade.json",
+          "size_bytes": 816
+        },
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-11T11:07:36+00:00",
+          "path": "_DAILY/gap_reject_ledger.jsonl",
+          "size_bytes": 19361734
+        }
+      ],
+      "mode": "tracked",
+      "panel_id": "gap_reject_short",
+      "primary_source": "gap_reject_short_grade.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_gap_reject_short.py"
+          ]
+        ],
+        "expected_files": [
+          "gap_reject_short_grade.json",
+          "_DAILY/gap_reject_ledger.jsonl"
+        ],
+        "notes": "Grades the trapped-longs-at-the-ceiling short thesis.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "WARN"
+    },
+    {
+      "action": "REFRESHED",
+      "command_results": [
+        {
+          "command": [
+            "py",
+            "-3.12",
+            "fem_mustard_reload_lab.py"
+          ],
+          "elapsed_seconds": 13.69,
+          "returncode": 0,
+          "status": "OK",
+          "stderr_tail": [],
+          "stdout_tail": [
+            "wrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_mustard_reload_lab.json",
+            "scanned=40 grind=0 runner=0 mixed=3 exhausted=5 spine_events=200",
+            "CAL    MUSTARD_MIXED_RESEARCH         score= 49.0 entry=12.8056 stop=11.7048 target=12.9592 rr=0.14 stage=BOUNCED_WAITING",
+            "CMPS   MUSTARD_EXHAUSTED              score= 49.0 entry=14.3486 stop=13.1903 target=14.3884 rr=0.03 stage=BOUNCED_WAITING",
+            "XP     AVOID_STALLED_RETEST           score= 49.0 entry=19.86 stop=19.5822 target=19.8402 rr=-0.07 stage=BOUNCED_WAITING",
+            "BTE    AVOID_STALLED_RETEST           score= 49.0 entry=5.0362 stop=4.8114 target=5.0966 rr=0.27 stage=BOUNCED_WAITING",
+            "KEY    AVOID_STALLED_RETEST           score= 49.0 entry=21.84 stop=21.5672 target=22.0446 rr=0.75 stage=BOUNCED_WAITING",
+            "BMY    AVOID_STALLED_RETEST           score= 49.0 entry=63.7022 stop=62.9145 target=63.6644 rr=-0.05 stage=BOUNCED_WAITING",
+            "COMP   AVOID_STALLED_RETEST           score= 49.0 entry=10.5461 stop=10.3604 target=10.6726 rr=0.68 stage=BOUNCED_WAITING",
+            "BAX    AVOID_STALLED_RETEST           score= 49.0 entry=23.8476 stop=23.5406 target=23.974 rr=0.41 stage=BOUNCED_WAITING",
+            "COUR   AVOID_STALLED_RETEST           score= 49.0 entry=5.3006 stop=5.2321 target=5.347 rr=0.68 stage=BOUNCED_WAITING",
+            "AVTR   AVOID_STALLED_RETEST           score= 49.0 entry=14.81 stop=14.553 target=14.8227 rr=0.05 stage=BOUNCED_WAITING",
+            "PTEN   AVOID_STALLED_RETEST           score= 49.0 entry=12.8557 stop=12.6868 target=12.9823 rr=0.75 stage=BOUNCED_WAITING",
+            "HCA    AVOID_STALLED_RETEST           score= 49.0 entry=426.94 stop=421.4232 target=431.0776 rr=0.75 stage=BOUNCED_WAITING"
+          ],
+          "timeout_seconds": 420
+        }
+      ],
+      "display_name": "Mustard Reload Lab",
+      "files_after": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-14T08:07:56+00:00",
+          "path": "fem_mustard_reload_lab.json",
+          "size_bytes": 185892
+        }
+      ],
+      "files_before": [
+        {
+          "exists": true,
+          "mtime_utc": "2026-09-13T23:36:14+00:00",
+          "path": "fem_mustard_reload_lab.json",
+          "size_bytes": 185856
+        }
+      ],
+      "mode": "tracked",
+      "panel_id": "mustard_reload",
+      "primary_source": "fem_mustard_reload_lab.json",
+      "primary_source_freshness_before": "STALE",
+      "refresh_spec": {
+        "commands": [
+          [
+            "py",
+            "-3.12",
+            "fem_mustard_reload_lab.py"
+          ]
+        ],
+        "expected_files": [
+          "fem_mustard_reload_lab.json"
+        ],
+        "notes": "Rebuilds buyer-shelf reload/reclaim candidates.",
+        "research": false
+      },
+      "source_fresh_ok_before": false,
+      "status": "OK",
+      "status_before": "WARN"
+    }
+  ],
   "publish_result": null,
-  "registry_generated_at": "2026-09-11T12:38:59+00:00",
+  "registry_generated_at": "2026-09-14T08:06:41+00:00",
   "registry_overall_before": "FAIL",
   "registry_summary_before": {
-    "active_fail": 1,
-    "active_warn": 10,
+    "active_fail": 6,
+    "active_warn": 19,
     "bot_required": 6,
     "bot_routed": 6,
-    "fresh_sourced": 27,
+    "fresh_sourced": 2,
     "panels": 43,
     "scored": 25,
-    "sourced": 31,
-    "stale_source_panels": 24,
-    "stale_sources": 28,
+    "sourced": 11,
+    "stale_source_panels": 34,
+    "stale_sources": 68,
     "status_counts": {
-      "FAIL": 1,
-      "OK": 21,
+      "FAIL": 6,
+      "OK": 7,
       "RESEARCH": 10,
-      "WARN": 11
+      "WARN": 20
     }
   },
   "requested_panels": [],
   "schema": "fem_contract_source_refresh.v1",
   "summary": {
-    "active_warn_before": 10,
-    "attempted": 0,
+    "active_warn_before": 19,
+    "attempted": 6,
     "failed": 0,
     "publish_status": "NOT_REQUESTED",
-    "selected": 0,
+    "selected": 6,
     "skipped": 0,
-    "stale_source_panels_before": 24,
-    "succeeded": 0
+    "stale_source_panels_before": 34,
+    "succeeded": 6
   },
-  "trade_date": "2026-09-11"
+  "trade_date": "2026-09-14"
 }
