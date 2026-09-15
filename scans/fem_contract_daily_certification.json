@@ -1,21 +1,21 @@
 {
   "certification": "EXPERIMENT_ONLY",
-  "code_version": "66a920e9",
+  "code_version": "ec1c33b4",
   "decision_matrix": {
     "bot_route_permission_learning": "BLOCK",
     "experiment_research": "ALLOW",
     "normal_panel_score": "BLOCK",
     "panel_promotion": "BLOCK"
   },
-  "generated_at": "2026-09-12T05:22:49.136345+00:00",
-  "generated_at_et": "2026-09-12T01:22:49.136345-04:00",
+  "generated_at": "2026-09-15T01:16:09.202014+00:00",
+  "generated_at_et": "2026-09-14T21:16:09.202014-04:00",
   "inputs": {
-    "closure_generated_at": "2026-09-12T05:22:20+00:00",
-    "enforcement_generated_at": "2026-09-12T05:22:49.008068+00:00",
-    "evidence_generated_at": "2026-09-12T05:22:20+00:00",
-    "health_generated_at": "2026-09-12T05:22:20+00:00",
-    "lock_generated_at": "2026-09-12T05:22:19+00:00",
-    "partitions_generated_at": "2026-09-12T05:22:19+00:00"
+    "closure_generated_at": "2026-09-15T01:15:43+00:00",
+    "enforcement_generated_at": "2026-09-15T01:16:09.034011+00:00",
+    "evidence_generated_at": "2026-09-15T01:15:42+00:00",
+    "health_generated_at": "2026-09-15T01:15:42+00:00",
+    "lock_generated_at": "2026-09-15T01:15:41+00:00",
+    "partitions_generated_at": "2026-09-15T01:15:41+00:00"
   },
   "next_action": "Run 0ZO promotion gate for research ranking only; keep all promotions blocked.",
   "operator_read": "Daily spine is experiment-only: keep evidence visible for research, but do not train normal edge or promote panels.",
@@ -25,6 +25,7 @@
     "HEALTH_WARNINGS_PRESENT": 1,
     "NONCRITICAL_HEALTH_FAILURE": 4,
     "NO_NORMAL_LEADERBOARD": 1,
+    "PRELOCK_OR_NONNORMAL_ORDER_EVIDENCE": 1,
     "REVIEW_FLAGS_PRESENT": 1,
     "SPINE_BLOCKS_NORMAL_SCORING": 1
   },
@@ -44,22 +45,29 @@
       "source": "fem_contract_score_partitions"
     },
     {
+      "code": "PRELOCK_OR_NONNORMAL_ORDER_EVIDENCE",
+      "detail": "7 historical/pre-lock order row(s) need review",
+      "effect": "review_only",
+      "severity": "WARN",
+      "source": "fem_contract_strategy_enforcement"
+    },
+    {
       "code": "SPINE_BLOCKS_NORMAL_SCORING",
-      "detail": "4 closure gate(s) block normal scoring",
+      "detail": "5 closure gate(s) block normal scoring",
       "effect": "experiment_only",
       "severity": "WARN",
       "source": "fem_contract_spine_closure"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_event_stream: no contract event JSONL file for today",
+      "detail": "panel_registry_contracts: 3 active panel registry failure(s)",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "panel_registry_contracts: 5 active panel registry failure(s)",
+      "detail": "decision_obligation_failures: 4 unaccounted pick group(s); raw unaccounted picks=4",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -87,7 +95,7 @@
     },
     {
       "code": "HEALTH_WARNINGS_PRESENT",
-      "detail": "9 warning check(s) present",
+      "detail": "10 warning check(s) present",
       "effect": "partial_review",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -95,25 +103,25 @@
   ],
   "schema": "fem_contract_daily_certification.v1",
   "severity_counts": {
-    "WARN": 9
+    "WARN": 10
   },
   "summary": {
-    "actual_realized_pnl": 0.0,
+    "actual_realized_pnl": -87.27,
     "bot_promotion_allowed": false,
     "certification": "EXPERIMENT_ONLY",
     "evidence_partition": "UNTAGGED",
-    "experiment_actual_trades": 0,
+    "experiment_actual_trades": 7,
     "experiment_learning_allowed": true,
-    "experiment_reasons": 7,
+    "experiment_reasons": 8,
     "health_fail": 4,
     "health_overall": "FAIL",
-    "health_warn": 9,
+    "health_warn": 10,
     "normal_actual_trades": 0,
     "normal_learning_allowed": false,
     "partial_reasons": 2,
-    "reason_count": 9,
+    "reason_count": 10,
     "rejecting_reasons": 0,
     "review_required": true
   },
-  "trade_date": "2026-09-12"
+  "trade_date": "2026-09-14"
 }
