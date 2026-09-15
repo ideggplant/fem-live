@@ -242,8 +242,8 @@
       "severity": "WARN"
     }
   ],
-  "generated_at": "2026-09-15T01:16:06.042867+00:00",
-  "generated_at_et": "2026-09-14T21:16:06.042867-04:00",
+  "generated_at": "2026-09-15T11:02:56.491659+00:00",
+  "generated_at_et": "2026-09-15T07:02:56.491659-04:00",
   "new_idea_intake_template": {
     "context_requirements": [],
     "deletion_rule": "",
@@ -256,7 +256,7 @@
     "required_data": [],
     "shadow_test_days": 3
   },
-  "operator_read": "Experiment admission has 13 blocker panel(s). Do not promote new ideas until those rows are resolved.",
+  "operator_read": "Experiment admission has 14 blocker panel(s). Do not promote new ideas until those rows are resolved.",
   "overall": "FAIL",
   "panels": [
     {
@@ -327,7 +327,7 @@
       "score_required": true,
       "side": "SHORT",
       "source_paths": [
-        "_DAILY/fam_state_ideas_2026-09-14.jsonl",
+        "_DAILY/fam_state_ideas_2026-09-15.jsonl",
         "_DAILY/fam_state_ideas_{date}.jsonl",
         "fem_short_stats.json",
         "latest_short.txt"
@@ -335,6 +335,48 @@
       "source_required": true,
       "strategy_ids": [
         "short_genesis"
+      ]
+    },
+    {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": true,
+      "context_requirements": [
+        "gap_channel_context"
+      ],
+      "display_name": "Surge Micro",
+      "findings": [
+        {
+          "code": "REGISTRY_STATUS_FAIL",
+          "detail": "panel registry row is failing",
+          "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "FAIL"
+        }
+      ],
+      "mode": "bot",
+      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
+      "panel_id": "surge_micro",
+      "phase": "PAPER_LIVE",
+      "phase_source": "declared",
+      "score_partition": "paper_live::surge_micro",
+      "score_required": true,
+      "side": "LONG",
+      "source_paths": [
+        "_DAILY/live_fires_2026-09-15.jsonl",
+        "_DAILY/live_fires_{date}.jsonl",
+        "fem_surge_micro_plan.json",
+        "penny_surge_universe.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "surge_micro_scout",
+        "surge_watch_probe"
       ]
     },
     {
@@ -381,6 +423,93 @@
       "bot_permission": "BLOCKED",
       "bot_required": false,
       "context_requirements": [],
+      "display_name": "Contract Spine",
+      "findings": [
+        {
+          "code": "PHASE_INVALID",
+          "detail": "invalid declared phase CONTROL",
+          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "contract_spine",
+      "phase": "CONTROL",
+      "phase_source": "declared",
+      "score_partition": "control::contract_spine",
+      "score_required": false,
+      "side": "BOTH",
+      "source_paths": [
+        "fem_contract_dashboard.json",
+        "fem_contract_funnel.json",
+        "fem_contract_spine_closure.json",
+        "fem_contract_spine_history.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "contract_spine"
+      ]
+    },
+    {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": false,
+      "context_requirements": [],
+      "display_name": "Decision Audit",
+      "findings": [
+        {
+          "code": "PHASE_INVALID",
+          "detail": "invalid declared phase CONTROL",
+          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "decision_audit",
+      "phase": "CONTROL",
+      "phase_source": "declared",
+      "score_partition": "control::decision_audit",
+      "score_required": false,
+      "side": "BOTH",
+      "source_paths": [
+        "fem_contract_decision_audit.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "decision_audit"
+      ]
+    },
+    {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": false,
+      "context_requirements": [],
       "display_name": "Decision Receipts",
       "findings": [
         {
@@ -411,13 +540,55 @@
       "score_required": false,
       "side": "BOTH",
       "source_paths": [
-        "_DAILY/fem_decision_receipts_2026-09-14.json",
+        "_DAILY/fem_decision_receipts_2026-09-15.json",
         "_DAILY/fem_decision_receipts_{date}.json",
         "fem_decision_receipts.json"
       ],
       "source_required": true,
       "strategy_ids": [
         "decision_receipts"
+      ]
+    },
+    {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": false,
+      "context_requirements": [],
+      "display_name": "Execution Truth",
+      "findings": [
+        {
+          "code": "PHASE_INVALID",
+          "detail": "invalid declared phase CONTROL",
+          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "execution_truth",
+      "phase": "CONTROL",
+      "phase_source": "declared",
+      "score_partition": "control::execution_truth",
+      "score_required": false,
+      "side": "BOTH",
+      "source_paths": [
+        "fem_execution_truth.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "execution_truth"
       ]
     },
     {
@@ -459,6 +630,48 @@
       "source_required": true,
       "strategy_ids": [
         "gap_eat_staircase_long"
+      ]
+    },
+    {
+      "admission_status": "WARN",
+      "bot_permission": "NO_ORDERING",
+      "bot_required": false,
+      "context_requirements": [
+        "gap_channel_context"
+      ],
+      "display_name": "Gap Wall Roundtrip",
+      "findings": [
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "gap_wall_roundtrip",
+      "phase": "SHADOW_PANEL",
+      "phase_source": "declared",
+      "score_partition": "shadow_panel::gap_wall_roundtrip",
+      "score_required": true,
+      "side": "MIXED",
+      "source_paths": [
+        "_DAILY/live_fires_2026-09-15.jsonl",
+        "_DAILY/live_fires_{date}.jsonl",
+        "fem_gap_staircase_lens.json",
+        "fem_gap_timeframe_contract.json",
+        "fem_gap_wall_roundtrip.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "gap_wall_roundtrip_shadow"
       ]
     },
     {
@@ -587,6 +800,97 @@
       ]
     },
     {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": false,
+      "context_requirements": [],
+      "display_name": "Runner Exit Decision",
+      "findings": [
+        {
+          "code": "PHASE_INVALID",
+          "detail": "invalid declared phase EXIT_CONTROL",
+          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "runner_exit_decision",
+      "phase": "EXIT_CONTROL",
+      "phase_source": "declared",
+      "score_partition": "control::runner_exit_decision",
+      "score_required": false,
+      "side": "BOTH",
+      "source_paths": [
+        "_DAILY/fem_runner_exit_decision_2026-09-15.json",
+        "_DAILY/fem_runner_exit_decision_{date}.json",
+        "_DAILY/live_fires_2026-09-15.jsonl",
+        "_DAILY/live_fires_{date}.jsonl",
+        "fem_runner_exit_decision.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "runner_exit_decision"
+      ]
+    },
+    {
+      "admission_status": "FAIL",
+      "bot_permission": "BLOCKED",
+      "bot_required": false,
+      "context_requirements": [],
+      "display_name": "Scan Stage Drop Audit",
+      "findings": [
+        {
+          "code": "PHASE_INVALID",
+          "detail": "invalid declared phase ACCOUNTABILITY",
+          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+          "severity": "FAIL"
+        },
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "scan_stage_drop_audit",
+      "phase": "ACCOUNTABILITY",
+      "phase_source": "declared",
+      "score_partition": "accountability::scan_stage_drop",
+      "score_required": false,
+      "side": "BOTH",
+      "source_paths": [
+        "_DAILY/fem_scan_stage_drop_audit_2026-09-15.json",
+        "_DAILY/fem_scan_stage_drop_audit_{date}.json",
+        "fem_scan_stage_drop_audit.json",
+        "latest_postmortem.txt"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "scan_stage_drop_audit"
+      ]
+    },
+    {
       "admission_status": "WARN",
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
@@ -617,9 +921,9 @@
       "score_required": true,
       "side": "MIXED",
       "source_paths": [
-        "_DAILY/fam_entry_freeze_2026-09-14.json",
+        "_DAILY/fam_entry_freeze_2026-09-15.json",
         "_DAILY/fam_entry_freeze_{date}.json",
-        "_DAILY/fam_state_ideas_2026-09-14.jsonl",
+        "_DAILY/fam_state_ideas_2026-09-15.jsonl",
         "_DAILY/fam_state_ideas_{date}.jsonl",
         "fam_state_idea_tracker.json"
       ],
@@ -629,6 +933,50 @@
         "bull_bounce_pending",
         "state_lookup",
         "trapped_short"
+      ]
+    },
+    {
+      "admission_status": "WARN",
+      "bot_permission": "NO_ORDERING",
+      "bot_required": false,
+      "context_requirements": [
+        "short_context"
+      ],
+      "display_name": "Stock Clock / Micro Clocks",
+      "findings": [
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "stock_clock",
+      "phase": "SHADOW_PANEL",
+      "phase_source": "declared",
+      "score_partition": "shadow_panel::stock_clock",
+      "score_required": true,
+      "side": "LONG",
+      "source_paths": [
+        "fem_clock_contract_bridge.json",
+        "fem_clock_positions.json",
+        "fem_clock_trade_grade.json",
+        "fem_micro_clocks.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "clock_long",
+        "clock_short",
+        "micro_clock_buy_zone",
+        "stock_clock_shadow"
       ]
     },
     {
@@ -668,7 +1016,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl",
         "fem_surge_micro_plan.json",
         "penny_surge_universe.json"
@@ -676,6 +1024,42 @@
       "source_required": false,
       "strategy_ids": [
         "surge_probe"
+      ]
+    },
+    {
+      "admission_status": "WARN",
+      "bot_permission": "NO_ORDERING",
+      "bot_required": false,
+      "context_requirements": [],
+      "display_name": "Value Area Fortress",
+      "findings": [
+        {
+          "code": "REGISTRY_STATUS_WARN",
+          "detail": "panel registry row is warning",
+          "next_action": "Inspect registry warnings before promotion.",
+          "severity": "WARN"
+        },
+        {
+          "code": "SOURCE_STALE",
+          "detail": "required source artifact is stale",
+          "next_action": "Run the source builder before this panel can influence decisions.",
+          "severity": "WARN"
+        }
+      ],
+      "mode": "tracked",
+      "next_action": "Inspect registry warnings before promotion.",
+      "panel_id": "value_area_fortress",
+      "phase": "SHADOW_PANEL",
+      "phase_source": "declared",
+      "score_partition": "shadow_panel::value_area_fortress",
+      "score_required": true,
+      "side": "LONG",
+      "source_paths": [
+        "fem_value_area_fortress_picks.json"
+      ],
+      "source_required": true,
+      "strategy_ids": [
+        "value_area_fortress"
       ]
     },
     {
@@ -709,7 +1093,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl",
         "fem_gap_eat_split.json",
         "fem_gap_eat_staircase_long.json"
@@ -748,39 +1132,6 @@
       "strategy_ids": [
         "all_time_high_long",
         "ath_long"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Contract Spine",
-      "findings": [
-        {
-          "code": "PHASE_INVALID",
-          "detail": "invalid declared phase CONTROL",
-          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "contract_spine",
-      "phase": "CONTROL",
-      "phase_source": "declared",
-      "score_partition": "control::contract_spine",
-      "score_required": false,
-      "side": "BOTH",
-      "source_paths": [
-        "fem_contract_dashboard.json",
-        "fem_contract_funnel.json",
-        "fem_contract_spine_closure.json",
-        "fem_contract_spine_history.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "contract_spine"
       ]
     },
     {
@@ -839,7 +1190,7 @@
       "score_required": false,
       "side": "BOTH",
       "source_paths": [
-        "_DAILY/fem_daily_liquid_universe_2026-09-14.json",
+        "_DAILY/fem_daily_liquid_universe_2026-09-15.json",
         "_DAILY/fem_daily_liquid_universe_{date}.json",
         "daily_liquid_universe.txt",
         "fem_daily_liquid_universe.json"
@@ -847,36 +1198,6 @@
       "source_required": true,
       "strategy_ids": [
         "daily_liquid_120"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Decision Audit",
-      "findings": [
-        {
-          "code": "PHASE_INVALID",
-          "detail": "invalid declared phase CONTROL",
-          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "decision_audit",
-      "phase": "CONTROL",
-      "phase_source": "declared",
-      "score_partition": "control::decision_audit",
-      "score_required": false,
-      "side": "BOTH",
-      "source_paths": [
-        "fem_contract_decision_audit.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "decision_audit"
       ]
     },
     {
@@ -907,36 +1228,6 @@
       "source_required": false,
       "strategy_ids": [
         "dilution_short"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Execution Truth",
-      "findings": [
-        {
-          "code": "PHASE_INVALID",
-          "detail": "invalid declared phase CONTROL",
-          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "execution_truth",
-      "phase": "CONTROL",
-      "phase_source": "declared",
-      "score_partition": "control::execution_truth",
-      "score_required": false,
-      "side": "BOTH",
-      "source_paths": [
-        "fem_execution_truth.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "execution_truth"
       ]
     },
     {
@@ -998,35 +1289,6 @@
       "context_requirements": [
         "gap_channel_context"
       ],
-      "display_name": "Gap Wall Roundtrip",
-      "findings": [],
-      "mode": "tracked",
-      "next_action": "Admitted as research/shadow. Keep it out of live ordering.",
-      "panel_id": "gap_wall_roundtrip",
-      "phase": "SHADOW_PANEL",
-      "phase_source": "declared",
-      "score_partition": "shadow_panel::gap_wall_roundtrip",
-      "score_required": true,
-      "side": "MIXED",
-      "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
-        "_DAILY/live_fires_{date}.jsonl",
-        "fem_gap_staircase_lens.json",
-        "fem_gap_timeframe_contract.json",
-        "fem_gap_wall_roundtrip.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "gap_wall_roundtrip_shadow"
-      ]
-    },
-    {
-      "admission_status": "OK",
-      "bot_permission": "NO_ORDERING",
-      "bot_required": false,
-      "context_requirements": [
-        "gap_channel_context"
-      ],
       "display_name": "Mustard Reload Lab",
       "findings": [],
       "mode": "tracked",
@@ -1049,40 +1311,6 @@
       ]
     },
     {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Runner Exit Decision",
-      "findings": [
-        {
-          "code": "PHASE_INVALID",
-          "detail": "invalid declared phase EXIT_CONTROL",
-          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "runner_exit_decision",
-      "phase": "EXIT_CONTROL",
-      "phase_source": "declared",
-      "score_partition": "control::runner_exit_decision",
-      "score_required": false,
-      "side": "BOTH",
-      "source_paths": [
-        "_DAILY/fem_runner_exit_decision_2026-09-14.json",
-        "_DAILY/fem_runner_exit_decision_{date}.json",
-        "_DAILY/live_fires_2026-09-14.jsonl",
-        "_DAILY/live_fires_{date}.jsonl",
-        "fem_runner_exit_decision.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "runner_exit_decision"
-      ]
-    },
-    {
       "admission_status": "OK",
       "bot_permission": "ALLOWED_BY_ADMISSION",
       "bot_required": true,
@@ -1100,7 +1328,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/fam_state_ideas_2026-09-14.jsonl",
+        "_DAILY/fam_state_ideas_2026-09-15.jsonl",
         "_DAILY/fam_state_ideas_{date}.jsonl",
         "sma_reclaim_ledger.jsonl",
         "sma_reclaim_today.json"
@@ -1108,39 +1336,6 @@
       "source_required": true,
       "strategy_ids": [
         "sma_reclaim_long"
-      ]
-    },
-    {
-      "admission_status": "FAIL",
-      "bot_permission": "BLOCKED",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Scan Stage Drop Audit",
-      "findings": [
-        {
-          "code": "PHASE_INVALID",
-          "detail": "invalid declared phase ACCOUNTABILITY",
-          "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-          "severity": "FAIL"
-        }
-      ],
-      "mode": "tracked",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "scan_stage_drop_audit",
-      "phase": "ACCOUNTABILITY",
-      "phase_source": "declared",
-      "score_partition": "accountability::scan_stage_drop",
-      "score_required": false,
-      "side": "BOTH",
-      "source_paths": [
-        "_DAILY/fem_scan_stage_drop_audit_2026-09-14.json",
-        "_DAILY/fem_scan_stage_drop_audit_{date}.json",
-        "fem_scan_stage_drop_audit.json",
-        "latest_postmortem.txt"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "scan_stage_drop_audit"
       ]
     },
     {
@@ -1285,89 +1480,6 @@
       "admission_status": "OK",
       "bot_permission": "NO_ORDERING",
       "bot_required": false,
-      "context_requirements": [
-        "short_context"
-      ],
-      "display_name": "Stock Clock / Micro Clocks",
-      "findings": [],
-      "mode": "tracked",
-      "next_action": "Admitted as research/shadow. Keep it out of live ordering.",
-      "panel_id": "stock_clock",
-      "phase": "SHADOW_PANEL",
-      "phase_source": "declared",
-      "score_partition": "shadow_panel::stock_clock",
-      "score_required": true,
-      "side": "LONG",
-      "source_paths": [
-        "fem_clock_contract_bridge.json",
-        "fem_clock_positions.json",
-        "fem_clock_trade_grade.json",
-        "fem_micro_clocks.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "clock_long",
-        "clock_short",
-        "micro_clock_buy_zone",
-        "stock_clock_shadow"
-      ]
-    },
-    {
-      "admission_status": "OK",
-      "bot_permission": "ALLOWED_BY_ADMISSION",
-      "bot_required": true,
-      "context_requirements": [
-        "gap_channel_context"
-      ],
-      "display_name": "Surge Micro",
-      "findings": [],
-      "mode": "bot",
-      "next_action": "Admitted. Continue tracking execution quality and score evidence.",
-      "panel_id": "surge_micro",
-      "phase": "PAPER_LIVE",
-      "phase_source": "declared",
-      "score_partition": "paper_live::surge_micro",
-      "score_required": true,
-      "side": "LONG",
-      "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
-        "_DAILY/live_fires_{date}.jsonl",
-        "fem_surge_micro_plan.json",
-        "penny_surge_universe.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "surge_micro_scout",
-        "surge_watch_probe"
-      ]
-    },
-    {
-      "admission_status": "OK",
-      "bot_permission": "NO_ORDERING",
-      "bot_required": false,
-      "context_requirements": [],
-      "display_name": "Value Area Fortress",
-      "findings": [],
-      "mode": "tracked",
-      "next_action": "Admitted as research/shadow. Keep it out of live ordering.",
-      "panel_id": "value_area_fortress",
-      "phase": "SHADOW_PANEL",
-      "phase_source": "declared",
-      "score_partition": "shadow_panel::value_area_fortress",
-      "score_required": true,
-      "side": "LONG",
-      "source_paths": [
-        "fem_value_area_fortress_picks.json"
-      ],
-      "source_required": true,
-      "strategy_ids": [
-        "value_area_fortress"
-      ]
-    },
-    {
-      "admission_status": "OK",
-      "bot_permission": "NO_ORDERING",
-      "bot_required": false,
       "context_requirements": [],
       "display_name": "Delta Volume Context",
       "findings": [],
@@ -1412,7 +1524,7 @@
       "score_required": true,
       "side": "SHORT",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1446,7 +1558,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1479,7 +1591,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1512,7 +1624,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1545,7 +1657,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1626,7 +1738,7 @@
       "score_required": true,
       "side": "LONG",
       "source_paths": [
-        "_DAILY/live_fires_2026-09-14.jsonl",
+        "_DAILY/live_fires_2026-09-15.jsonl",
         "_DAILY/live_fires_{date}.jsonl"
       ],
       "source_required": false,
@@ -1687,13 +1799,13 @@
   "schema": "fem_contract_experiment_admission.v1",
   "summary": {
     "bot_permissions": {
-      "ALLOWED_BY_ADMISSION": 3,
-      "BLOCKED": 13,
+      "ALLOWED_BY_ADMISSION": 2,
+      "BLOCKED": 14,
       "NO_ORDERING": 27
     },
-    "fail": 13,
+    "fail": 14,
     "floating_artifacts": 40,
-    "ok": 19,
+    "ok": 15,
     "panels": 43,
     "phase_counts": {
       "ACCOUNTABILITY": 1,
@@ -1707,7 +1819,7 @@
       "SHADOW_PANEL": 16
     },
     "unregistered_strategies": 3,
-    "warn": 11
+    "warn": 14
   },
   "top_findings": [
     {
@@ -1745,6 +1857,22 @@
     {
       "code": "REGISTRY_STATUS_FAIL",
       "detail": "panel registry row is failing",
+      "display_name": "Surge Micro",
+      "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
+      "panel_id": "surge_micro",
+      "severity": "FAIL"
+    },
+    {
+      "code": "SOURCE_STALE",
+      "detail": "required source artifact is stale",
+      "display_name": "Surge Micro",
+      "next_action": "Run the source builder before this panel can influence decisions.",
+      "panel_id": "surge_micro",
+      "severity": "FAIL"
+    },
+    {
+      "code": "REGISTRY_STATUS_FAIL",
+      "detail": "panel registry row is failing",
       "display_name": "Upside Down Cow",
       "next_action": "Open fem_contract_panel_registry.json and fix this panel before admitting it.",
       "panel_id": "upside_down_cow",
@@ -1761,9 +1889,33 @@
     {
       "code": "PHASE_INVALID",
       "detail": "invalid declared phase CONTROL",
+      "display_name": "Contract Spine",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "contract_spine",
+      "severity": "FAIL"
+    },
+    {
+      "code": "PHASE_INVALID",
+      "detail": "invalid declared phase CONTROL",
+      "display_name": "Decision Audit",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "decision_audit",
+      "severity": "FAIL"
+    },
+    {
+      "code": "PHASE_INVALID",
+      "detail": "invalid declared phase CONTROL",
       "display_name": "Decision Receipts",
       "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
       "panel_id": "decision_receipts",
+      "severity": "FAIL"
+    },
+    {
+      "code": "PHASE_INVALID",
+      "detail": "invalid declared phase CONTROL",
+      "display_name": "Execution Truth",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "execution_truth",
       "severity": "FAIL"
     },
     {
@@ -1784,46 +1936,6 @@
     },
     {
       "code": "PHASE_INVALID",
-      "detail": "invalid declared phase CONTROL",
-      "display_name": "Contract Spine",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "contract_spine",
-      "severity": "FAIL"
-    },
-    {
-      "code": "PHASE_INVALID",
-      "detail": "invalid declared phase CONTEXT_SOURCE",
-      "display_name": "Daily Liquid 120",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "daily_liquid_120",
-      "severity": "FAIL"
-    },
-    {
-      "code": "PHASE_INVALID",
-      "detail": "invalid declared phase CONTROL",
-      "display_name": "Decision Audit",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "decision_audit",
-      "severity": "FAIL"
-    },
-    {
-      "code": "PHASE_INVALID",
-      "detail": "invalid declared phase RESEARCH_ONLY",
-      "display_name": "Dilution Short Candidate",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "dilution_short_candidate",
-      "severity": "FAIL"
-    },
-    {
-      "code": "PHASE_INVALID",
-      "detail": "invalid declared phase CONTROL",
-      "display_name": "Execution Truth",
-      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
-      "panel_id": "execution_truth",
-      "severity": "FAIL"
-    },
-    {
-      "code": "PHASE_INVALID",
       "detail": "invalid declared phase EXIT_CONTROL",
       "display_name": "Runner Exit Decision",
       "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
@@ -1839,39 +1951,39 @@
       "severity": "FAIL"
     },
     {
+      "code": "PHASE_INVALID",
+      "detail": "invalid declared phase CONTEXT_SOURCE",
+      "display_name": "Daily Liquid 120",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "daily_liquid_120",
+      "severity": "FAIL"
+    },
+    {
+      "code": "PHASE_INVALID",
+      "detail": "invalid declared phase RESEARCH_ONLY",
+      "display_name": "Dilution Short Candidate",
+      "next_action": "Add experiment_phase using one of RESEARCH_NOTE, SHADOW_PANEL, BOT_CANDIDATE, PAPER_LIVE, PROMOTED, RETIRED.",
+      "panel_id": "dilution_short_candidate",
+      "severity": "FAIL"
+    },
+    {
       "code": "REGISTRY_STATUS_WARN",
       "detail": "panel registry row is warning",
-      "display_name": "Decision Receipts",
+      "display_name": "Contract Spine",
       "next_action": "Inspect registry warnings before promotion.",
-      "panel_id": "decision_receipts",
+      "panel_id": "contract_spine",
       "severity": "WARN"
     },
     {
       "code": "SOURCE_STALE",
       "detail": "required source artifact is stale",
-      "display_name": "Decision Receipts",
+      "display_name": "Contract Spine",
       "next_action": "Run the source builder before this panel can influence decisions.",
-      "panel_id": "decision_receipts",
-      "severity": "WARN"
-    },
-    {
-      "code": "REGISTRY_STATUS_WARN",
-      "detail": "panel registry row is warning",
-      "display_name": "Gap Eat Staircase",
-      "next_action": "Inspect registry warnings before promotion.",
-      "panel_id": "gap_eat_staircase",
-      "severity": "WARN"
-    },
-    {
-      "code": "SOURCE_STALE",
-      "detail": "required source artifact is stale",
-      "display_name": "Gap Eat Staircase",
-      "next_action": "Run the source builder before this panel can influence decisions.",
-      "panel_id": "gap_eat_staircase",
+      "panel_id": "contract_spine",
       "severity": "WARN"
     }
   ],
-  "trade_date": "2026-09-14",
+  "trade_date": "2026-09-15",
   "unregistered_strategies": [
     {
       "in_funnel": true,
