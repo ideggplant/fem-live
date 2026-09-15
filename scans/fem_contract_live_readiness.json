@@ -2,7 +2,7 @@
   "bot_status": {
     "available": true,
     "broker_open_orders": 2,
-    "generated_at": "2026-09-15T08:30:51",
+    "generated_at": "2026-09-15T09:00:46",
     "mode": "TRIGGER_LIVE",
     "n_positions": 1,
     "position_source": "broker_reconcile",
@@ -15,7 +15,7 @@
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-09-15T15:30:51+00:00",
+    "generated_at": "2026-09-15T16:00:58+00:00",
     "open_orders": 2,
     "operator_read": "Order safety is OK: 2 working order(s) and 1 live position(s) reconciled against the spine.",
     "overall": "OK",
@@ -25,19 +25,19 @@
   },
   "checks": [
     {
-      "detail": "restart_required=0, missing_required=0",
-      "drift_overall": "OK",
+      "detail": "restart_required=1, missing_required=0",
+      "drift_overall": "FAIL",
       "drift_run": {
         "returncode": 0,
         "stderr": "",
-        "stdout": "runtime_drift: overall=OK restart_required=0 missing_required=0 roles ok/warn/fail=3/0/0"
+        "stdout": "runtime_drift: overall=FAIL restart_required=1 missing_required=0 roles ok/warn/fail=2/0/1"
       },
       "id": "runtime_drift_clean",
       "label": "Runtime drift clean",
       "missing_required": 0,
       "required": true,
-      "restart_required": 0,
-      "status": "OK"
+      "restart_required": 1,
+      "status": "FAIL"
     },
     {
       "detail": "required live processes visible",
@@ -59,81 +59,81 @@
       "status": "OK"
     },
     {
-      "age_seconds": 17,
+      "age_seconds": 27,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-09-15T15:30:37+00:00",
+      "mtime_utc": "2026-09-15T16:00:31+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 375065,
+      "size_bytes": 369473,
       "status": "OK"
     },
     {
-      "age_seconds": 10,
+      "age_seconds": 22,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-09-15T15:30:44+00:00",
+      "mtime_utc": "2026-09-15T16:00:36+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 2247,
+      "size_bytes": 2252,
       "status": "OK"
     },
     {
-      "age_seconds": 0,
+      "age_seconds": 11,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-09-15T15:30:53+00:00",
+      "mtime_utc": "2026-09-15T16:00:47+00:00",
       "path": "fem_bot_status.json",
       "required": true,
       "schema": null,
-      "size_bytes": 15021,
+      "size_bytes": 15621,
       "status": "OK"
     },
     {
-      "age_seconds": 1101,
+      "age_seconds": 397,
       "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
-      "mtime_utc": "2026-09-15T15:12:32+00:00",
+      "mtime_utc": "2026-09-15T15:54:21+00:00",
       "path": "_DAILY\\executions_2026-09-15.csv",
       "required": true,
-      "size_bytes": 3363,
+      "size_bytes": 4760,
       "status": "OK"
     },
     {
-      "age_seconds": 1118,
+      "age_seconds": 398,
       "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
-      "mtime_utc": "2026-09-15T15:12:16+00:00",
+      "mtime_utc": "2026-09-15T15:54:21+00:00",
       "path": "_DAILY\\order_strategy_2026-09-15.jsonl",
       "required": true,
-      "size_bytes": 13922,
+      "size_bytes": 20903,
       "status": "OK"
     },
     {
-      "age_seconds": 10,
+      "age_seconds": 2,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-09-15T15:30:43+00:00",
+      "mtime_utc": "2026-09-15T16:00:57+00:00",
       "path": "_DAILY\\contract_events_2026-09-15.jsonl",
       "required": true,
-      "size_bytes": 2495319464,
+      "size_bytes": 2764772169,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-09-15T15:30:54+00:00",
-  "generated_at_et": "2026-09-15T11:30:54-04:00",
+  "generated_at": "2026-09-15T16:00:59+00:00",
+  "generated_at_et": "2026-09-15T12:00:59-04:00",
   "next_actions": [
-    "Live readiness blockers are clear."
+    "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
   ],
-  "overall": "OK",
+  "overall": "FAIL",
   "processes": [
     {
       "command_line": "cmd  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && py -3.12 fem_live_fire_grade.py --loop 60\"",
@@ -182,9 +182,9 @@
   "session": "rth",
   "summary": {
     "checks": 9,
-    "fail": 0,
-    "live_ready": true,
-    "ok": 9,
+    "fail": 1,
+    "live_ready": false,
+    "ok": 8,
     "warn": 0,
     "warning_only": false
   },
