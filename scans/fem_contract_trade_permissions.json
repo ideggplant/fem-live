@@ -15,7 +15,6 @@
       "dump_short",
       "execution_truth",
       "gap_eat",
-      "gap_eat_staircase_long",
       "live_takeoffs",
       "live_trust_executor",
       "live_trust_recovery",
@@ -49,6 +48,7 @@
       "daily_120_short_grade",
       "daily_120_short_lower_high",
       "daily_120_short_vwap_reject",
+      "gap_eat_staircase_long",
       "gap_reject_short",
       "gap_wall_roundtrip_shadow",
       "live_fire_dump",
@@ -299,8 +299,8 @@
       },
       "gap_eat_staircase_long": {
         "allowed_to_trade": false,
-        "panel_id": "watchlist_gap_eat",
-        "permission": "BLOCK",
+        "panel_id": "gap_eat_staircase",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -871,6 +871,17 @@
       "side": "LONG",
       "strategies": 1
     },
+    "gap_eat_staircase": {
+      "allowed_strategies": [],
+      "max_route_weight": 0.0,
+      "panel_id": "gap_eat_staircase",
+      "panel_name": "Gap Eat Staircase",
+      "permissions": {
+        "TRACK_ONLY": 1
+      },
+      "side": "LONG",
+      "strategies": 1
+    },
     "gap_reject_short": {
       "allowed_strategies": [],
       "max_route_weight": 0.0,
@@ -1232,14 +1243,14 @@
       "panel_id": "watchlist_gap_eat",
       "panel_name": "Watchlist Gap-Eat",
       "permissions": {
-        "BLOCK": 4
+        "BLOCK": 3
       },
       "side": "LONG",
-      "strategies": 4
+      "strategies": 3
     }
   },
-  "generated_at": "2026-09-15T01:51:31+00:00",
-  "generated_at_et": "2026-09-14T21:51:31-04:00",
+  "generated_at": "2026-09-15T01:56:50+00:00",
+  "generated_at_et": "2026-09-14T21:56:50-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1459,7 +1470,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 1,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2265,21 +2276,21 @@
     },
     "gap_eat_staircase_long": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2287,7 +2298,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 262,
+        "ghost_fires": 307,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -2295,14 +2306,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
-      "panel_id": "watchlist_gap_eat",
-      "panel_name": "Watchlist Gap-Eat",
-      "permission": "BLOCK",
+      "panel_id": "gap_eat_staircase",
+      "panel_name": "Gap Eat Staircase",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3995,7 +4006,7 @@
         "actual_realized_pnl": 0.0,
         "actual_trades": 0,
         "ghost_avg_target_r": null,
-        "ghost_fires": 0,
+        "ghost_fires": 30,
         "ghost_graded": 0,
         "ghost_run_rate": null,
         "ghost_skip_avg_r": null,
@@ -4423,13 +4434,6 @@
       "panel_id": "watchlist_gap_eat",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
-      "strategy_id": "gap_eat_staircase_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "watchlist_gap_eat",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
       "strategy_id": "live_takeoffs"
     },
     {
@@ -4550,6 +4554,13 @@
       "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "SHORT",
       "strategy_id": "upside_down_cow_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "watchlist_gap_eat",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "LONG",
+      "strategy_id": "watchlist_gap_eat"
     }
   ],
   "route_policy": {
@@ -4706,14 +4717,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 31,
+    "block": 30,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 41,
     "permission_counts": {
-      "BLOCK": 31,
-      "TRACK_ONLY": 36
+      "BLOCK": 30,
+      "TRACK_ONLY": 37
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4728,7 +4739,7 @@
       "UNTAGGED": 26
     },
     "strategies": 67,
-    "track_only": 36,
+    "track_only": 37,
     "watch_only": 0
   },
   "trade_date": "2026-09-14"
