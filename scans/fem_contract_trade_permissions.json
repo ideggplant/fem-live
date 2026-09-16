@@ -16,7 +16,6 @@
       "execution_truth",
       "gap_eat",
       "gap_eat_staircase_long",
-      "gap_wall_roundtrip_shadow",
       "live_takeoffs",
       "live_trust_executor",
       "live_trust_recovery",
@@ -30,7 +29,6 @@
       "short_genesis",
       "short_mid",
       "state_lookup",
-      "surge_micro_scout",
       "surge_probe",
       "surge_watch_probe",
       "timesfm_shadow",
@@ -52,6 +50,7 @@
       "daily_120_short_lower_high",
       "daily_120_short_vwap_reject",
       "gap_reject_short",
+      "gap_wall_roundtrip_shadow",
       "live_fire_dump",
       "live_fire_gap_eat",
       "live_fire_gap_fail_short",
@@ -73,6 +72,7 @@
       "software_exit",
       "stock_clock_shadow",
       "surge_chase",
+      "surge_micro_scout",
       "value_area_fortress"
     ],
     "watch_only": [],
@@ -320,7 +320,7 @@
       "gap_wall_roundtrip_shadow": {
         "allowed_to_trade": false,
         "panel_id": "gap_wall_roundtrip",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -670,7 +670,7 @@
       "surge_micro_scout": {
         "allowed_to_trade": false,
         "panel_id": "surge_micro",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -888,7 +888,7 @@
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "MIXED",
       "strategies": 1
@@ -1165,7 +1165,8 @@
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permissions": {
-        "BLOCK": 2
+        "BLOCK": 1,
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 2
@@ -1237,8 +1238,8 @@
       "strategies": 4
     }
   },
-  "generated_at": "2026-09-16T01:05:39+00:00",
-  "generated_at_et": "2026-09-15T21:05:39-04:00",
+  "generated_at": "2026-09-16T01:11:09+00:00",
+  "generated_at_et": "2026-09-15T21:11:09-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -2172,21 +2173,21 @@
     },
     "execution_truth": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2202,14 +2203,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:UNTAGGED"
       ],
       "panel_id": "execution_truth",
       "panel_name": "Execution Truth",
       "permission": "BLOCK",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -2356,21 +2357,21 @@
     },
     "gap_wall_roundtrip_shadow": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -2386,14 +2387,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "gap_wall_roundtrip",
       "panel_name": "Gap Wall Roundtrip",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -3973,21 +3974,21 @@
     },
     "surge_micro_scout": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "FAIL",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -4002,14 +4003,15 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "score_consumer_lock:EXPERIMENT"
+      ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "panel registry status FAIL",
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4065,21 +4067,21 @@
     },
     "surge_watch_probe": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": true,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "FAIL",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "strategy permission had no score-provenance row",
         "score_consumption_permission": "UNTAGGED_ONLY",
         "score_ok": true,
         "score_partition": "UNTAGGED",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -4094,14 +4096,15 @@
         "ghost_skip_verdict": null,
         "ghost_target_hit_rate": null
       },
-      "evidence_flags": [],
+      "evidence_flags": [
+        "score_consumer_lock:UNTAGGED"
+      ],
       "panel_id": "surge_micro",
       "panel_name": "Surge Micro",
       "permission": "BLOCK",
       "reasons": [
-        "panel registry status FAIL",
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4406,7 +4409,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "execution_truth",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "BOTH",
       "strategy_id": "execution_truth"
     },
@@ -4423,13 +4426,6 @@
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
       "strategy_id": "gap_eat_staircase_long"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "gap_wall_roundtrip",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "MIXED",
-      "strategy_id": "gap_wall_roundtrip_shadow"
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
@@ -4524,13 +4520,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "surge_micro",
-      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "surge_micro_scout"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "surge_probe_shadow",
       "reason": "required score missing; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4539,7 +4528,7 @@
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "surge_micro",
-      "reason": "panel registry status FAIL; required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "LONG",
       "strategy_id": "surge_watch_probe"
     },
@@ -4549,6 +4538,20 @@
       "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
       "side": "MIXED",
       "strategy_id": "timesfm_shadow"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "state_lookup",
+      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
+      "side": "SHORT",
+      "strategy_id": "trapped_short"
+    },
+    {
+      "action": "FIX_CONTRACT_BEFORE_TRADING",
+      "panel_id": "upside_down_cow",
+      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
+      "side": "SHORT",
+      "strategy_id": "upside_down_cow_short"
     }
   ],
   "route_policy": {
@@ -4705,14 +4708,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 33,
+    "block": 31,
     "ghost_good_skip_groups": 0,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 41,
     "permission_counts": {
-      "BLOCK": 33,
-      "TRACK_ONLY": 34
+      "BLOCK": 31,
+      "TRACK_ONLY": 36
     },
     "registry_overall": "FAIL",
     "research_only": 0,
@@ -4727,7 +4730,7 @@
       "UNTAGGED": 26
     },
     "strategies": 67,
-    "track_only": 34,
+    "track_only": 36,
     "watch_only": 0
   },
   "trade_date": "2026-09-15"
