@@ -4,15 +4,15 @@
     {
       "next_action": "Make strategy ownership one-to-one; do not let two panels claim the same strategy_id.",
       "owners": [
-        "gap_eat_staircase",
-        "watchlist_gap_eat"
+        "watchlist_gap_eat",
+        "gap_eat_staircase"
       ],
       "severity": "FAIL",
       "strategy_id": "gap_eat_staircase_long"
     }
   ],
-  "generated_at": "2026-09-17T04:39:35.456962+00:00",
-  "generated_at_et": "2026-09-17T00:39:35.456962-04:00",
+  "generated_at": "2026-09-17T11:05:45.014365+00:00",
+  "generated_at_et": "2026-09-17T07:05:45.014365-04:00",
   "operator_read": "2 strategy id(s) still have no explicit fate. They are illegal until mapped.",
   "overall": "FAIL",
   "pending_registry": [],
@@ -1927,12 +1927,12 @@
         "trace_id"
       ],
       "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
-      "owner_display_name": "Gap Eat Staircase",
-      "owner_panel_id": "gap_eat_staircase",
+      "owner_display_name": "Watchlist Gap-Eat",
+      "owner_panel_id": "watchlist_gap_eat",
       "phase": "SHADOW_PANEL",
       "resolution_status": "REGISTERED",
       "score_mode": "SHADOW_ONLY",
-      "score_partition": "shadow_panel::gap_eat_staircase",
+      "score_partition": "shadow_panel::watchlist_gap_eat",
       "source": "panel_registry",
       "stats": {
         "broken_traces": 0,
@@ -1942,8 +1942,8 @@
         "live_traces": 0,
         "order_traces": 0,
         "score_actual_trades": 0,
-        "score_ghost_fires": 253,
-        "score_ghost_graded": 152,
+        "score_ghost_fires": 248,
+        "score_ghost_graded": 0,
         "simulated_traces": 0
       },
       "strategy_id": "gap_eat_staircase_long"
@@ -3222,29 +3222,35 @@
       "strategy_id": "short_universe_vwap_reject"
     },
     {
-      "bot_allowed": false,
+      "bot_allowed": true,
       "context_contract": [
         "gap_channel_context"
       ],
       "evidence_required": [
+        "bot_decision",
         "channel_location",
+        "entry_price",
         "is_live",
         "is_simulated",
         "nearest_gap_above",
         "nearest_gap_below",
         "panel_id",
+        "risk_dollars",
+        "route_permission",
         "side",
         "signal_timestamp",
+        "stop_price",
         "strategy_id",
         "symbol",
+        "target_price",
         "trace_id"
       ],
-      "next_action": "Owned; keep in its declared phase/partition until promotion gates clear.",
+      "next_action": "Owned and allowed by current admission state.",
       "owner_display_name": "SMA Reclaim",
       "owner_panel_id": "sma_reclaim",
       "phase": "PAPER_LIVE",
       "resolution_status": "REGISTERED",
-      "score_mode": "BLOCKED",
+      "score_mode": "NORMAL",
       "score_partition": "paper_live::sma_reclaim",
       "source": "panel_registry",
       "stats": {
@@ -3734,10 +3740,10 @@
   ],
   "strategy_registry_file": "fem_contract_strategy_registry.json",
   "summary": {
-    "blocked_score": 10,
-    "bot_allowed": 2,
+    "blocked_score": 9,
+    "bot_allowed": 3,
     "duplicate_owner_conflicts": 1,
-    "normal_score": 2,
+    "normal_score": 3,
     "phase_counts": {
       "ILLEGAL_ORPHAN": 2,
       "PAPER_LIVE": 9,
@@ -3750,8 +3756,8 @@
     "resolved_pending_registry": 0,
     "retired_or_illegal": 3,
     "score_mode_counts": {
-      "BLOCKED": 10,
-      "NORMAL": 2,
+      "BLOCKED": 9,
+      "NORMAL": 3,
       "RESEARCH_ONLY": 22,
       "SHADOW_ONLY": 33
     },
