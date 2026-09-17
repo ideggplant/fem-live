@@ -25,9 +25,9 @@
   "can_affect_bot": false,
   "can_affect_scores": false,
   "card_title": "Live LLM Call",
-  "code_version": "18dca2a3",
-  "generated_at": "2026-09-16T03:50:03+00:00",
-  "generated_at_et": "2026-09-15T23:50:03-04:00",
+  "code_version": "5c83fb0a",
+  "generated_at": "2026-09-17T04:39:36+00:00",
+  "generated_at_et": "2026-09-17T00:39:36-04:00",
   "llm_call": {
     "agent_reviews": [],
     "called_at": null,
@@ -35,7 +35,7 @@
     "confidence": "PENDING",
     "do_not_change_yet": [],
     "model": "codex_recurring_agent",
-    "next_due_et": "2026-09-17T23:50:03-04:00",
+    "next_due_et": "2026-09-19T00:39:36-04:00",
     "priority_actions": [],
     "status": "SCHEDULED_NOT_RUN",
     "synthesis": "The recurring Live LLM Call is wired but has not posted its first review yet.",
@@ -85,9 +85,9 @@
         "label": "Auction + Options Agent"
       }
     ],
-    "code_version": "18dca2a3",
-    "generated_at": "2026-09-16T03:50:03+00:00",
-    "generated_at_et": "2026-09-15T23:50:03-04:00",
+    "code_version": "5c83fb0a",
+    "generated_at": "2026-09-17T04:39:36+00:00",
+    "generated_at_et": "2026-09-17T00:39:36-04:00",
     "review_questions": [
       "What is the single most money-relevant thing to fix or watch before the next session?",
       "Which current hypothesis deserves more samples, and which deserves deletion/tightening?",
@@ -121,7 +121,7 @@
           "score provenance says normal_score_eligible=false",
           "experiment admission has failing rows"
         ],
-        "operator_read": "AI learning produced 19 research hypotheses; none can affect the bot without admission and certified forward evidence.",
+        "operator_read": "AI learning produced 48 research hypotheses; none can affect the bot without admission and certified forward evidence.",
         "overall": "WARN",
         "summary": {
           "blocked_reasons": 3,
@@ -132,16 +132,18 @@
           "direction_counts": {
             "CONFIRM_WINNER": 3,
             "DEFINE_SHADOW_TEST": 6,
-            "DELETE_OR_TIGHTEN": 10
+            "DELETE_OR_TIGHTEN": 9,
+            "KEEP_OR_TIGHTEN": 30
           },
           "evidence_partition_counts": {
-            "EXPERIMENT": 13,
+            "EXPERIMENT": 12,
+            "GHOST_LEDGER": 30,
             "RESEARCH_NOTE": 6
           },
           "high_priority": 9,
           "human_seed_hypotheses": 6,
-          "hypotheses": 19,
-          "needs_experiment_admission": 19
+          "hypotheses": 48,
+          "needs_experiment_admission": 48
         },
         "top_queue": [
           {
@@ -288,28 +290,20 @@
         "agreement_counts": null,
         "overall": null,
         "summary": {
-          "actual_fills": 5,
-          "actual_trades": 8,
-          "agreement_counts": {
-            "GAPS_ONLY_NOT_FULLY_CHECKED": 13567,
-            "NO_MAPS": 2241
-          },
+          "actual_fills": 0,
+          "actual_trades": 0,
+          "agreement_counts": {},
           "avg_max_up_pct": null,
-          "count": 15808,
+          "count": 0,
           "fully_checked": 0,
-          "gaps_missing": 2208,
-          "options_missing": 13154,
-          "options_not_fresh": 2654,
-          "options_stale": 2654,
+          "gaps_missing": 0,
+          "options_missing": 0,
+          "options_not_fresh": 0,
+          "options_stale": 0,
           "ran": 0,
-          "symbols": 1752,
-          "traces": 15808,
-          "trade_bias_counts": {
-            "block": 827,
-            "clear": 12706,
-            "mixed": 34,
-            "unknown": 2241
-          }
+          "symbols": 0,
+          "traces": 0,
+          "trade_bias_counts": {}
         },
         "top_agreements": [],
         "top_conflicts": []
@@ -806,69 +800,57 @@
         "actions": [],
         "bad_checks": [
           {
-            "detail": "306 warning breach(es) in current validator output",
-            "id": "contract_break_warnings",
-            "label": "Contract validator warnings",
+            "detail": "no contract event JSONL file for today",
+            "id": "contract_event_stream",
+            "label": "Contract event stream",
+            "status": "FAIL"
+          },
+          {
+            "detail": "fem_contract_breaks.json is stamped 2026-09-16, not 2026-09-17; ignoring stale breach counts for current health",
+            "id": "contract_break_ledger_stale",
+            "label": "Contract breach ledger stale",
             "status": "WARN"
           },
           {
-            "detail": "1 active panel registry failure(s)",
+            "detail": "5 active panel registry failure(s)",
             "id": "panel_registry_contracts",
             "label": "Panel registry contract failures",
             "status": "FAIL"
           },
           {
-            "detail": "31 strategy permission(s) are blocked by contract failures",
+            "detail": "48 strategy permission(s) are blocked by contract failures",
             "id": "trade_permissions_blocked",
             "label": "Blocked strategy permissions",
             "status": "WARN"
           },
           {
-            "detail": "8 unaccounted pick group(s); raw unaccounted picks=8",
-            "id": "decision_obligation_failures",
-            "label": "Picks without explicit bot accounting",
-            "status": "FAIL"
-          },
-          {
-            "detail": "176 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-            "id": "decision_obligation_time_order_warnings",
-            "label": "Decision obligation timestamp ordering warnings",
+            "detail": "checks ok/warn/fail=6/3/0",
+            "id": "live_readiness_warn",
+            "label": "Live readiness warnings",
             "status": "WARN"
           },
           {
-            "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=a1416e6a7d5e53d2",
+            "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=2f7ad6da365cdd33",
             "id": "session_context_dirty_data",
             "label": "Session provenance dirty-data warning",
             "status": "WARN"
           },
           {
-            "detail": "partition=EXPERIMENT, actual_trades=30, ghost_graded=204561, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+            "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=206275, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
             "id": "score_provenance_quarantine",
             "label": "Score provenance partition guard",
             "status": "WARN"
           },
           {
-            "detail": "experiment/review evidence=204591, experiment_strategies=40, review_strategies=0",
+            "detail": "experiment/review evidence=206275, experiment_strategies=39, review_strategies=0",
             "id": "score_partitions_no_normal",
             "label": "Normal score leaderboard empty",
             "status": "WARN"
           },
           {
-            "detail": "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
+            "detail": "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=39, review=0",
             "id": "score_consumer_lock_active",
             "label": "Score consumer lock active",
-            "status": "WARN"
-          },
-          {
-            "detail": "missed=2115, no_decision=10, slow_decisions=64, slow_orders=3, order_after_peak=0",
-            "id": "latency_missed_move_warnings",
-            "label": "Latency / missed move warnings",
-            "status": "WARN"
-          },
-          {
-            "detail": "30 historical order(s) predate the current score/permission lock and would be blocked or track-only now",
-            "id": "order_permission_pre_lock_review",
-            "label": "Pre-lock orders now disallowed",
             "status": "WARN"
           },
           {
@@ -876,9 +858,21 @@
             "id": "bot_gate_failures",
             "label": "Bot gate structural failures",
             "status": "FAIL"
+          },
+          {
+            "detail": "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
+            "id": "evidence_cleanliness_failed",
+            "label": "Evidence cleanliness failed",
+            "status": "FAIL"
+          },
+          {
+            "detail": "15 high-pressure exit rule group(s) need review",
+            "id": "exit_rules_learning_pressure",
+            "label": "Exit-rules learning review queue",
+            "status": "WARN"
           }
         ],
-        "generated_at": "2026-09-16T03:49:18+00:00",
+        "generated_at": "2026-09-17T04:38:59+00:00",
         "overall": "FAIL"
       },
       "live_gate_conformance": {
@@ -895,12 +889,12 @@
           "fills_checked": 0,
           "gate_router_enforce": true,
           "legacy_trade_permission_enforce": false,
-          "nontradable_routes": 67,
+          "nontradable_routes": 66,
           "orders_checked": 0,
           "orphan_fills": 0,
-          "permission_routes": 67,
+          "permission_routes": 66,
           "route_lock_enforce": false,
-          "router_routes": 67,
+          "router_routes": 66,
           "source_freshness_enforce": true,
           "warnings": 3
         }
@@ -1674,14 +1668,14 @@
       "panel_score": {
         "overall": null,
         "summary": {
-          "actual_closed": 9,
-          "actual_realized_pnl": -64.0025,
-          "actual_trades": 30,
-          "ghost_fires": 226146,
-          "ghost_graded": 204561,
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_fires": 206697,
+          "ghost_graded": 206275,
           "ghost_run_rate": 39.53,
-          "ghost_runners": 80853,
-          "strategies": 40
+          "ghost_runners": 81549,
+          "strategies": 39
         },
         "top": []
       },
@@ -1718,20 +1712,10 @@
             "strategy_id": "mustard_mixed_research"
           },
           {
-            "actual_trades": 30,
-            "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.0719,
-            "ghost_graded": 123814,
-            "panel_name": "Gap Reject Short",
-            "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
-            "score_partition": "EXPERIMENT",
-            "strategy_id": "gap_reject_short"
-          },
-          {
             "actual_trades": 0,
             "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.0395,
-            "ghost_graded": 50871,
+            "edge_r": -0.0398,
+            "ghost_graded": 51071,
             "panel_name": "Short Genesis",
             "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
             "score_partition": "EXPERIMENT",
@@ -1740,12 +1724,12 @@
           {
             "actual_trades": 0,
             "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.158,
-            "ghost_graded": 3313,
+            "edge_r": -0.172,
+            "ghost_graded": 2474,
             "panel_name": "Short Universe",
             "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
             "score_partition": "EXPERIMENT",
-            "strategy_id": "short_universe_vwap_reject"
+            "strategy_id": "short_universe_lower_high"
           },
           {
             "actual_trades": 0,
@@ -1760,18 +1744,8 @@
           {
             "actual_trades": 0,
             "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.184,
-            "ghost_graded": 2448,
-            "panel_name": "Short Universe",
-            "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
-            "score_partition": "EXPERIMENT",
-            "strategy_id": "short_universe_lower_high"
-          },
-          {
-            "actual_trades": 0,
-            "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.327,
-            "ghost_graded": 446,
+            "edge_r": -0.321,
+            "ghost_graded": 449,
             "panel_name": "Short Universe",
             "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
             "score_partition": "EXPERIMENT",
@@ -1780,12 +1754,22 @@
           {
             "actual_trades": 0,
             "decision": "DEMOTE_RESEARCH_CANDIDATE",
-            "edge_r": -0.07,
-            "ghost_graded": 118,
+            "edge_r": -0.08,
+            "ghost_graded": 115,
             "panel_name": "Value Area Fortress",
             "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
             "score_partition": "EXPERIMENT",
             "strategy_id": "value_area_fortress"
+          },
+          {
+            "actual_trades": 0,
+            "decision": "DEMOTE_RESEARCH_CANDIDATE",
+            "edge_r": -0.8453,
+            "ghost_graded": 152,
+            "panel_name": "Gap Eat Staircase",
+            "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
+            "score_partition": "EXPERIMENT",
+            "strategy_id": "gap_eat_staircase_long"
           },
           {
             "actual_trades": 0,
@@ -1806,6 +1790,16 @@
             "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
             "score_partition": "EXPERIMENT",
             "strategy_id": "daily_120_short_grade"
+          },
+          {
+            "actual_trades": 0,
+            "decision": "DEMOTE_RESEARCH_CANDIDATE",
+            "edge_r": -0.583,
+            "ghost_graded": 6,
+            "panel_name": "Daily 120 Short Shadow",
+            "reason": "EXPERIMENT_ONLY day; weak evidence can be reviewed for deletion/demotion, not normal learning",
+            "score_partition": "EXPERIMENT",
+            "strategy_id": "daily_120_short_vwap_reject"
           }
         ],
         "certification": "EXPERIMENT_ONLY",
@@ -1815,73 +1809,73 @@
           "blocked_promotion_candidates": 3,
           "certification": "EXPERIMENT_ONLY",
           "certification_allows_promotion": false,
-          "demotion_review_allowed": 10,
+          "demotion_review_allowed": 9,
           "fail": 0,
           "forward_order_breaches": 0,
           "normal_partition_leaks": 0,
-          "ok": 12,
+          "ok": 13,
           "promotion_review_allowed": 0,
           "strategies": 25,
-          "warn": 13
+          "warn": 12
         }
       }
     },
     "sources": {
       "ai_learning": {
-        "age_seconds": 2.0,
-        "bytes": 76744,
+        "age_seconds": 0.3,
+        "bytes": 221337,
         "exists": true,
-        "modified_at": "2026-09-16T03:50:01+00:00",
+        "modified_at": "2026-09-17T04:39:36+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_ai_learning_layer.json"
       },
       "daily_certification": {
-        "age_seconds": 2.7,
-        "bytes": 4506,
+        "age_seconds": 0.8,
+        "bytes": 4182,
         "exists": true,
-        "modified_at": "2026-09-16T03:50:00+00:00",
+        "modified_at": "2026-09-17T04:39:35+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_daily_certification.json"
       },
       "gap_options": {
-        "age_seconds": 93317.8,
-        "bytes": 105535522,
+        "age_seconds": 86633.0,
+        "bytes": 2939,
         "exists": true,
-        "modified_at": "2026-09-15T01:54:45+00:00",
+        "modified_at": "2026-09-16T04:35:43+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gap_options_agreement.json"
       },
       "gate_effectiveness": {
-        "age_seconds": 6616936.3,
+        "age_seconds": 6706309.4,
         "bytes": 1592767,
         "exists": true,
         "modified_at": "2026-07-01T13:47:47+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_gate_effectiveness_ledger.json"
       },
       "giveback": {
-        "age_seconds": 93480.3,
+        "age_seconds": 86638.3,
         "bytes": 3458,
         "exists": true,
-        "modified_at": "2026-09-15T01:52:03+00:00",
+        "modified_at": "2026-09-16T04:35:38+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_giveback_counterfactual_ledger.json"
       },
       "health": {
-        "age_seconds": 45.1,
-        "bytes": 38320,
+        "age_seconds": 37.6,
+        "bytes": 36954,
         "exists": true,
-        "modified_at": "2026-09-16T03:49:18+00:00",
+        "modified_at": "2026-09-17T04:38:59+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_health.json"
       },
       "mustard_forward": {
         "exists": false,
-        "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_mustard_forward_score_2026-09-15.json"
+        "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\fem_mustard_forward_score_2026-09-17.json"
       },
       "promotion_gate": {
-        "age_seconds": 2.5,
-        "bytes": 58151,
+        "age_seconds": 0.7,
+        "bytes": 55694,
         "exists": true,
-        "modified_at": "2026-09-16T03:50:01+00:00",
+        "modified_at": "2026-09-17T04:39:36+00:00",
         "path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_promotion_gate.json"
       }
     },
-    "trade_date": "2026-09-15"
+    "trade_date": "2026-09-17"
   },
-  "trade_date": "2026-09-15"
+  "trade_date": "2026-09-17"
 }
