@@ -1,20 +1,25 @@
 {
   "bot_status": {
     "available": true,
-    "generated_at": "2026-09-18T07:00:30",
-    "mode": "TRIGGER_BROKER_RECONNECTING",
-    "n_positions": 0,
-    "positions_count": 0,
-    "sample_modes": []
+    "broker_open_orders": 4,
+    "generated_at": "2026-09-18T07:30:12",
+    "mode": "TRIGGER_LIVE",
+    "n_positions": 2,
+    "position_source": "broker_reconcile",
+    "positions_count": 2,
+    "sample_modes": [
+      "gap_reject_short"
+    ],
+    "stale_bot_status_positions": 2
   },
   "broker_reconcile": {
     "available": true,
-    "broker_connected": false,
-    "generated_at": "2026-09-18T14:00:55+00:00",
-    "open_orders": 0,
-    "operator_read": "Order safety could not inspect live broker state because TWS/Gateway was unavailable. Start TWS paper on port 7497 and rerun the reconcile before trusting open orders.",
-    "overall": "BROKER_UNAVAILABLE",
-    "positions": 0,
+    "broker_connected": true,
+    "generated_at": "2026-09-18T14:31:03+00:00",
+    "open_orders": 4,
+    "operator_read": "Order safety is OK: 4 working order(s) and 2 live position(s) reconciled against the spine.",
+    "overall": "OK",
+    "positions": 2,
     "trade_date": "2026-09-18",
     "unprotected_positions": 0
   },
@@ -47,82 +52,88 @@
       "trade_bot": true
     },
     {
-      "detail": "TWS paper port unavailable: timed out",
+      "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
       "required": true,
-      "status": "FAIL"
+      "status": "OK"
     },
     {
-      "age_seconds": 58,
+      "age_seconds": 6,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-09-18T14:00:01+00:00",
+      "mtime_utc": "2026-09-18T14:31:01+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 378118,
+      "size_bytes": 383542,
       "status": "OK"
     },
     {
-      "age_seconds": 9,
+      "age_seconds": 1,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-09-18T14:00:49+00:00",
+      "mtime_utc": "2026-09-18T14:31:06+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 2389,
+      "size_bytes": 2256,
       "status": "OK"
     },
     {
-      "age_seconds": 28,
+      "age_seconds": 54,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-09-18T14:00:31+00:00",
+      "mtime_utc": "2026-09-18T14:30:13+00:00",
       "path": "fem_bot_status.json",
       "required": true,
       "schema": null,
-      "size_bytes": 8841,
+      "size_bytes": 12756,
       "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 328,
+      "detail": "present",
       "id": "executions_feed",
       "label": "Execution CSV feed",
+      "mtime_utc": "2026-09-18T14:25:39+00:00",
       "path": "_DAILY\\executions_2026-09-18.csv",
-      "required": false,
-      "status": "WARN"
+      "required": true,
+      "size_bytes": 323,
+      "status": "OK"
     },
     {
-      "detail": "missing",
+      "age_seconds": 328,
+      "detail": "present",
       "id": "order_strategy_map",
       "label": "Order strategy map",
+      "mtime_utc": "2026-09-18T14:25:39+00:00",
       "path": "_DAILY\\order_strategy_2026-09-18.jsonl",
-      "required": false,
-      "status": "WARN"
+      "required": true,
+      "size_bytes": 4662,
+      "status": "OK"
     },
     {
-      "age_seconds": 42,
+      "age_seconds": 4,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-09-18T14:00:17+00:00",
+      "mtime_utc": "2026-09-18T14:31:03+00:00",
       "path": "_DAILY\\contract_events_2026-09-18.jsonl",
-      "required": false,
-      "size_bytes": 1321419349,
+      "required": true,
+      "size_bytes": 1372188692,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-09-18T14:00:59+00:00",
-  "generated_at_et": "2026-09-18T10:00:59-04:00",
+  "generated_at": "2026-09-18T14:31:08+00:00",
+  "generated_at_et": "2026-09-18T10:31:08-04:00",
   "next_actions": [
-    "Start TWS paper account and confirm API port 7497 is enabled."
+    "Live readiness blockers are clear."
   ],
-  "overall": "FAIL",
+  "overall": "OK",
   "processes": [
     {
       "command_line": "cmd  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && py -3.12 fem_live_fire_grade.py --loop 60\"",
@@ -177,10 +188,10 @@
   "session": "rth",
   "summary": {
     "checks": 9,
-    "fail": 1,
-    "live_ready": false,
-    "ok": 6,
-    "warn": 2,
+    "fail": 0,
+    "live_ready": true,
+    "ok": 9,
+    "warn": 0,
     "warning_only": false
   },
   "trade_date": "2026-09-18"
