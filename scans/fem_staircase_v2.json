@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-09-18T12:09:56-04:00",
+ "generated_at": "2026-09-18T12:20:08-04:00",
  "trade_date": "2026-09-18",
  "staircase_source": "fem_gap_eat_staircase_long_2026-09-18.json",
  "staircase_is_today": true,
@@ -24,7 +24,7 @@
   "3_road": 27,
   "6_floors": 27,
   "4_volume": 28,
-  "5_momentum": 31
+  "5_momentum": 29
  },
  "rows": [
   {
@@ -6522,55 +6522,39 @@
     "2_accepted": false,
     "3_road": false,
     "4_volume": false,
-    "5_momentum": false,
+    "5_momentum": true,
     "6_floors": false
    },
    "state": "WATCHING",
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
-    "state": "BELOW_LARGE_BEAR_GAP",
+    "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
+    "large_bear_gap": {
+     "bottom": 1.33,
+     "top": 1.385,
+     "timeframe": "1m",
+     "type": "gap",
+     "source_key": "full_gap_contract.overhead.top",
+     "distance_pct": 0.76,
+     "tick_width": 6.0,
+     "genesis_rank_pct": 0.3,
+     "creation_vol": 404.0,
+     "conviction_tier": "MINOR"
+    },
+    "last_15m": {
+     "close": 1.3355,
+     "high": 1.3355,
+     "low": 1.33,
+     "volume": 1709.55,
+     "relvol_20": 1.59,
+     "volume_ok": false,
+     "entered_from_below": true,
+     "closed_inside_gap": true,
+     "closed_above_gap": false
+    },
     "research_only": true,
     "live_behavior_changed": false,
-    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
-    "large_bear_overheads": [
-     {
-      "bottom": 1.33,
-      "top": 1.385,
-      "timeframe": "1m",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 0.76,
-      "tick_width": 6.0,
-      "genesis_rank_pct": 0.3,
-      "creation_vol": 404.0,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 1.34,
-      "top": 1.39,
-      "timeframe": "1m",
-      "type": "gap",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 1.52,
-      "tick_width": 5.0,
-      "genesis_rank_pct": 0.138,
-      "creation_vol": 300.0,
-      "conviction_tier": "MINOR"
-     },
-     {
-      "bottom": 1.38,
-      "top": 1.405,
-      "timeframe": "daily",
-      "type": "vi",
-      "source_key": "full_gap_contract.overhead.top",
-      "distance_pct": 4.55,
-      "tick_width": 3.0,
-      "genesis_rank_pct": 0.863,
-      "creation_vol": 106232.739473,
-      "conviction_tier": "MINOR"
-     }
-    ],
     "coverage": {
      "state_timeframes": [
       "weekly",
@@ -6599,9 +6583,35 @@
     "bull_gap_build_15m_below": {
      "checked": true,
      "state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-     "count_15m_bull_gaps_below": 1,
+     "count_15m_bull_gaps_below": 3,
      "high_volume_count": 0,
      "top_15m_bull_gaps_below": [
+      {
+       "bottom": 1.2655,
+       "top": 1.31,
+       "timeframe": "15m",
+       "type": "gap",
+       "source_key": null,
+       "distance_pct": 0.76,
+       "tick_width": 5.0,
+       "genesis_rank_pct": 0.275,
+       "creation_vol": 442.0,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
+      {
+       "bottom": 1.29,
+       "top": 1.31,
+       "timeframe": "15m",
+       "type": "gap",
+       "source_key": null,
+       "distance_pct": 0.76,
+       "tick_width": 3.0,
+       "genesis_rank_pct": 0.125,
+       "creation_vol": 391.0,
+       "conviction_tier": "MINOR",
+       "high_volume": false
+      },
       {
        "bottom": 1.2806,
        "top": 1.2815,
@@ -6645,11 +6655,12 @@
      "research_only": true,
      "live_behavior_changed": false,
      "operator_note": "no high-volume 15m bullish floors below price were exposed in the full gap contract"
-    }
+    },
+    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
    },
    "fractal_channel_gap_context": {
     "checked": true,
-    "state": "NO_FRACTAL_TRANSFER_READ",
+    "state": "RED_GAP_ACCEPTANCE_NEEDS_FLOORS",
     "symbol": "AHMA",
     "channel": {
      "available": true,
@@ -6661,7 +6672,7 @@
      "rail_width": 0.04,
      "score": 60.0
     },
-    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
+    "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
     "large_bear_gap": {
      "bottom": 1.33,
      "top": 1.385,
@@ -6675,7 +6686,7 @@
      "conviction_tier": "MINOR"
     },
     "bull_gap_build_15m_below_state": "NO_HIGH_VOLUME_15M_FLOORS_BELOW",
-    "bull_15m_floor_count": 1.0,
+    "bull_15m_floor_count": 3.0,
     "high_volume_15m_floor_count": 0,
     "coverage": {
      "contract_symbol_present": true,
@@ -6698,24 +6709,23 @@
      ],
      "live_tracks_all_research_timeframes": false
     },
-    "operator_note": "no higher-timeframe red-gap transfer plus floor-building pattern was proven",
+    "operator_note": "red overhead gap is being accepted, but 15m floor support is not strong enough yet",
     "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
     "research_only": true,
     "live_behavior_changed": false
    },
    "road_pct": 0.38,
-   "relvol": 0.1,
-   "rsi": 53.0,
+   "relvol": 2.54,
+   "rsi": 61.1,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
     "3_road",
     "4_volume",
-    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 0
+   "conditions_met": 1
   },
   {
    "ticker": "ALTO",
@@ -7120,7 +7130,7 @@
     "2_accepted": false,
     "3_road": true,
     "4_volume": false,
-    "5_momentum": false,
+    "5_momentum": true,
     "6_floors": false
    },
    "state": "WATCHING",
@@ -7301,17 +7311,16 @@
     "live_behavior_changed": false
    },
    "road_pct": null,
-   "relvol": 0.16,
-   "rsi": 59.2,
+   "relvol": 1.35,
+   "rsi": 70.9,
    "floors": [],
    "blockers": [
     "1_eaten",
     "2_accepted",
     "4_volume",
-    "5_momentum",
     "6_floors"
    ],
-   "conditions_met": 1
+   "conditions_met": 2
   },
   {
    "ticker": "APP",
