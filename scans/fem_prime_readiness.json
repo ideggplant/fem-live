@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.031001567840576172,
+    "age_sec": 0.03699183464050293,
     "alist_fillable_count": 6,
     "alist_proven_moo_candidate_count": 6,
     "alist_row_count": 6,
@@ -16,24 +16,31 @@
   },
   "blockers": [
     {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 2 critical/panic alert(s).",
+      "action": "Run morning health/scanner check.",
+      "code": "MORNING_SCANS_NOT_CONFIRMED",
+      "impact": "Universe may be stale or incomplete.",
+      "message": "Morning scanner/TWS health is not confirmed OK.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Refresh short scan before relying on trading.",
+      "code": "SHORT_SCAN_NOT_CURRENT",
+      "impact": "Short opportunities may be invisible.",
+      "message": "Short watchlist is empty or not current.",
       "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 22.623044967651367,
-    "alive": true,
-    "generated_at": "2026-09-21T05:29:57",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 5.53162956237793,
+    "alive": false,
+    "generated_at": "2026-09-21T12:48:31",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.2040104866027832,
+    "age_sec": 1.5760064125061035,
     "connected": true,
-    "generated_at": "2026-09-21T12:30:19+00:00",
+    "generated_at": "2026-09-21T19:48:35+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -43,10 +50,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-09-21T12:30:22+00:00",
-  "generated_at_et": "2026-09-21T08:30:18-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-09-21T19:48:38+00:00",
+  "generated_at_et": "2026-09-21T15:48:34-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,27 +64,27 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.15000033378601074,
-    "fail": 0,
-    "generated_at": "2026-09-21T12:30:21+00:00",
-    "live_ready": true,
+    "age_sec": 0.18200469017028809,
+    "fail": 1,
+    "generated_at": "2026-09-21T19:48:37+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "WARN",
-    "session": "pre",
-    "warn": 2
+    "overall": "FAIL",
+    "session": "rth",
+    "warn": 1
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 293.76613879203796,
+    "age_sec": 2.9480092525482178,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-09-21",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": null,
-    "rth_status": null,
+    "rth_bot": "TRIGGER_RETRY",
+    "rth_status": "OK",
     "scanner": null,
     "scanner_status": null,
     "scanner_tws": null,
@@ -116,7 +123,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=pre ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=7/1/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -135,9 +142,9 @@
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "09/18/2026 06:17:17",
+        "last_run_time": "09/21/2026 06:17:17",
         "last_task_result": 0,
-        "next_run_time": "09/21/2026 06:17:17",
+        "next_run_time": "09/22/2026 06:17:17",
         "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
@@ -167,13 +174,13 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 2.703007221221924,
+    "age_sec": 10294.774808645248,
     "overall": "WARN",
-    "rankings_count": 26,
+    "rankings_count": 25,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.007999181747436523,
+    "snapshot_age_seconds": 0.008997917175292969,
     "snapshot_fresh": true,
-    "unknown_symbol_count": 12,
+    "unknown_symbol_count": 13,
     "unknown_symbols": [
       "AAOX",
       "AAOZ",
@@ -181,24 +188,36 @@
       "AEHG",
       "AENT",
       "AFRU",
+      "AMAU",
       "AMDL",
       "AMZU",
-      "ARKB",
+      "APPX",
       "NEUTRAL",
       "SURGE",
       "UNKNOWN"
     ]
   },
-  "session": "pre",
+  "session": "rth",
   "state": "NOT_TRADE_READY",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
   "title": "FEM Blocked",
   "trade_ready": false,
   "watch_items": [
     {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
+    {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
-      "message": "12 active symbol(s) have no sector mapping: AAOX, AAOZ, AAPU, AEHG, AENT, AFRU, AMDL, AMZU.",
+      "message": "13 active symbol(s) have no sector mapping: AAOX, AAOZ, AAPU, AEHG, AENT, AFRU, AMAU, AMDL.",
       "severity": "WARN"
     },
     {
@@ -217,21 +236,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 29.472602605819702,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 63.26895213127136,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 2,
+    "critical_or_panic_count": 4,
     "morning_scanner": null,
     "morning_tws": null,
     "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
-    "rth_handoff_status": null,
+    "rth_handoff_status": "OK",
     "short_watchlist_count": 112,
     "short_watchlist_is_today": false,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
