@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.10400032997131348,
+    "age_sec": 0.03900265693664551,
     "alist_fillable_count": 3,
     "alist_proven_moo_candidate_count": 3,
     "alist_row_count": 3,
@@ -16,16 +16,16 @@
   },
   "blockers": [],
   "bot": {
-    "age_sec": 43.62271165847778,
-    "alive": true,
-    "generated_at": "2026-09-22T05:29:23",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 4.919008493423462,
+    "alive": false,
+    "generated_at": "2026-09-22T12:48:27",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 2.5620033740997314,
+    "age_sec": 1.161001443862915,
     "connected": true,
-    "generated_at": "2026-09-22T12:30:05+00:00",
+    "generated_at": "2026-09-22T19:48:31+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -35,10 +35,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-09-22T12:30:10+00:00",
-  "generated_at_et": "2026-09-22T08:30:04-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-09-22T19:48:33+00:00",
+  "generated_at_et": "2026-09-22T15:48:30-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,27 +49,27 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.5840017795562744,
-    "fail": 0,
-    "generated_at": "2026-09-22T12:30:07+00:00",
-    "live_ready": true,
+    "age_sec": 0.1490025520324707,
+    "fail": 1,
+    "generated_at": "2026-09-22T19:48:32+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "WARN",
-    "session": "pre",
-    "warn": 2
+    "overall": "FAIL",
+    "session": "rth",
+    "warn": 1
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 4960.520097732544,
+    "age_sec": 2.5310068130493164,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-09-22",
     "precheck_status": "OK",
     "precheck_tws": "OK",
-    "rth_bot": null,
-    "rth_status": null,
+    "rth_bot": "STARTED",
+    "rth_status": "OK",
     "scanner": "OK",
     "scanner_status": "OK",
     "scanner_tws": "OK",
@@ -108,7 +108,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=pre ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=7/1/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -127,9 +127,9 @@
         "task_name": "FEM 0400 Scanner And Stack"
       },
       {
-        "last_run_time": "09/21/2026 06:17:17",
+        "last_run_time": "09/22/2026 06:17:17",
         "last_task_result": 0,
-        "next_run_time": "09/22/2026 06:17:17",
+        "next_run_time": "09/23/2026 06:17:17",
         "state": "Ready",
         "task_name": "FEM 0627 RTH Bot Handoff"
       },
@@ -159,11 +159,11 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 5308.221722841263,
+    "age_sec": 23445.307158708572,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
-    "snapshot_age_seconds": 0.015996217727661133,
+    "snapshot_age_seconds": 0.019006013870239258,
     "snapshot_fresh": true,
     "unknown_symbol_count": 12,
     "unknown_symbols": [
@@ -176,16 +176,27 @@
       "AMZU",
       "ARKB",
       "ARKG",
+      "ARKK",
       "NEUTRAL",
-      "SURGE",
       "UNKNOWN"
     ]
   },
-  "session": "pre",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "session": "rth",
+  "state": "SAFE_BUT_WAITING",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
+  "title": "FEM Waiting",
+  "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -201,13 +212,6 @@
       "severity": "WARN"
     },
     {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
-      "severity": "WARN"
-    },
-    {
       "action": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
       "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
       "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
@@ -216,21 +220,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 26.21767783164978,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 40.26109981536865,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 0,
+    "critical_or_panic_count": 2,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
-    "rth_handoff_status": null,
+    "rth_handoff_status": "OK",
     "short_watchlist_count": 90,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
