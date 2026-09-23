@@ -8,7 +8,7 @@
     {
       "detail": "Restart stale runtime and restore live readiness.",
       "label": "Clear live trust failures",
-      "status": "DONE",
+      "status": "OPEN",
       "step": 1
     },
     {
@@ -30,15 +30,15 @@
       "step": 4
     }
   ],
-  "code_version": "7754eefb",
+  "code_version": "3b389533",
   "first_action": {
-    "blocks_live_trust": false,
-    "blocks_normal_learning": false,
+    "blocks_live_trust": true,
+    "blocks_normal_learning": true,
     "can_auto_run": false,
     "category": "MISC",
     "certification_effect": "operator_review",
     "check_ids": [
-      "contract_break_ledger_stale",
+      "contract_event_stream",
       "panel_registry_contracts",
       "live_readiness_warn",
       "bot_gate_failures",
@@ -47,9 +47,9 @@
     ],
     "command": null,
     "evidence": [
-      "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-09-21, not 2026-09-22; ignoring stale breach counts for current health",
+      "FAIL Contract event stream: no contract event JSONL file for today",
       "FAIL Panel registry contract failures: 6 active panel registry failure(s)",
-      "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
+      "WARN Live readiness warnings: checks ok/warn/fail=6/3/0",
       "FAIL Bot gate structural failures: 1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
       "FAIL Evidence cleanliness failed: hard_failures=1, partition=UNTAGGED, normal_allowed=False",
       "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
@@ -62,21 +62,21 @@
     "severity": "FAIL",
     "title": "Miscellaneous health follow-up"
   },
-  "generated_at": "2026-09-22T04:16:29.570517+00:00",
-  "generated_at_et": "2026-09-22T00:16:29.570517-04:00",
+  "generated_at": "2026-09-23T04:22:14.553004+00:00",
+  "generated_at_et": "2026-09-23T00:22:14.553004-04:00",
   "inputs": {
-    "certification_generated_at": "2026-09-22T04:16:29.057507+00:00",
-    "health_generated_at": "2026-09-22T04:15:37+00:00",
-    "live_readiness_generated_at": "2026-09-22T04:15:34+00:00",
-    "remediation_plan_generated_at": "2026-09-22T04:15:37+00:00",
-    "runtime_generated_at": "2026-09-22T04:15:34+00:00"
+    "certification_generated_at": "2026-09-23T04:22:14.229006+00:00",
+    "health_generated_at": "2026-09-23T04:22:07+00:00",
+    "live_readiness_generated_at": "2026-09-23T04:22:04+00:00",
+    "remediation_plan_generated_at": "2026-09-23T04:22:07+00:00",
+    "runtime_generated_at": "2026-09-23T04:22:03+00:00"
   },
   "negative_checks": [
     {
-      "detail": "fem_contract_breaks.json is stamped 2026-09-21, not 2026-09-22; ignoring stale breach counts for current health",
-      "id": "contract_break_ledger_stale",
-      "label": "Contract breach ledger stale",
-      "status": "WARN"
+      "detail": "no contract event JSONL file for today",
+      "id": "contract_event_stream",
+      "label": "Contract event stream",
+      "status": "FAIL"
     },
     {
       "detail": "6 active panel registry failure(s)",
@@ -85,31 +85,31 @@
       "status": "FAIL"
     },
     {
-      "detail": "45 strategy permission(s) are blocked by contract failures",
+      "detail": "49 strategy permission(s) are blocked by contract failures",
       "id": "trade_permissions_blocked",
       "label": "Blocked strategy permissions",
       "status": "WARN"
     },
     {
-      "detail": "checks ok/warn/fail=7/2/0",
+      "detail": "checks ok/warn/fail=6/3/0",
       "id": "live_readiness_warn",
       "label": "Live readiness warnings",
       "status": "WARN"
     },
     {
-      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=2979d6bc8faef5e8",
+      "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=f0ce46139c1905cb",
       "id": "session_context_dirty_data",
       "label": "Session provenance dirty-data warning",
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=213262, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+      "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=248117, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
       "id": "score_provenance_quarantine",
       "label": "Score provenance partition guard",
       "status": "WARN"
     },
     {
-      "detail": "experiment/review evidence=213262, experiment_strategies=40, review_strategies=0",
+      "detail": "experiment/review evidence=248117, experiment_strategies=40, review_strategies=0",
       "id": "score_partitions_no_normal",
       "label": "Normal score leaderboard empty",
       "status": "WARN"
@@ -157,9 +157,9 @@
       ],
       "command": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat; _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat; _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat; _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
       "evidence": [
-        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=2979d6bc8faef5e8",
-        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=0, ghost_graded=213262, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "WARN Normal score leaderboard empty: experiment/review evidence=213262, experiment_strategies=40, review_strategies=0",
+        "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=f0ce46139c1905cb",
+        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=0, ghost_graded=248117, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "WARN Normal score leaderboard empty: experiment/review evidence=248117, experiment_strategies=40, review_strategies=0",
         "WARN Score consumer lock active: 66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0"
       ],
       "evidence_count": 4,
@@ -181,7 +181,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "WARN Blocked strategy permissions: 45 strategy permission(s) are blocked by contract failures"
+        "WARN Blocked strategy permissions: 49 strategy permission(s) are blocked by contract failures"
       ],
       "evidence_count": 1,
       "group_id": "clean_route_policy_permissions",
@@ -192,13 +192,13 @@
       "title": "Clean route policy and permission ambiguity"
     },
     {
-      "blocks_live_trust": false,
-      "blocks_normal_learning": false,
+      "blocks_live_trust": true,
+      "blocks_normal_learning": true,
       "can_auto_run": false,
       "category": "MISC",
       "certification_effect": "operator_review",
       "check_ids": [
-        "contract_break_ledger_stale",
+        "contract_event_stream",
         "panel_registry_contracts",
         "live_readiness_warn",
         "bot_gate_failures",
@@ -207,9 +207,9 @@
       ],
       "command": null,
       "evidence": [
-        "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-09-21, not 2026-09-22; ignoring stale breach counts for current health",
+        "FAIL Contract event stream: no contract event JSONL file for today",
         "FAIL Panel registry contract failures: 6 active panel registry failure(s)",
-        "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
+        "WARN Live readiness warnings: checks ok/warn/fail=6/3/0",
         "FAIL Bot gate structural failures: 1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
         "FAIL Evidence cleanliness failed: hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
@@ -227,13 +227,13 @@
   "schema": "fem_contract_live_trust_recovery.v1",
   "summary": {
     "auto_runnable_groups": 2,
-    "blocks_live_trust": 0,
-    "blocks_normal_learning": 2,
+    "blocks_live_trust": 1,
+    "blocks_normal_learning": 3,
     "daily_certification": "EXPERIMENT_ONLY",
     "fail_groups": 1,
-    "health_fail": 3,
+    "health_fail": 4,
     "health_overall": "FAIL",
-    "health_warn": 8,
+    "health_warn": 7,
     "live_ready": true,
     "manual_groups": 1,
     "negative_checks": 11,
@@ -242,5 +242,5 @@
     "restart_queue": 0,
     "warn_groups": 2
   },
-  "trade_date": "2026-09-22"
+  "trade_date": "2026-09-23"
 }
