@@ -1,19 +1,22 @@
 {
   "bot_status": {
     "available": true,
+    "broker_open_orders": 0,
     "generated_at": "2026-09-26T06:15:05",
     "mode": "TRIGGER_DONE",
     "n_positions": 0,
+    "position_source": "broker_reconcile",
     "positions_count": 0,
-    "sample_modes": []
+    "sample_modes": [],
+    "stale_bot_status_positions": 0
   },
   "broker_reconcile": {
     "available": true,
-    "broker_connected": false,
-    "generated_at": "2026-09-28T10:55:56+00:00",
+    "broker_connected": true,
+    "generated_at": "2026-09-28T11:20:56+00:00",
     "open_orders": 0,
-    "operator_read": "Order safety could not inspect live broker state because TWS/Gateway was unavailable. Start TWS paper on port 7497 and rerun the reconcile before trusting open orders.",
-    "overall": "BROKER_UNAVAILABLE",
+    "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
+    "overall": "OK",
     "positions": 0,
     "trade_date": "2026-09-28",
     "unprotected_positions": 0
@@ -47,22 +50,22 @@
       "trade_bot": false
     },
     {
-      "detail": "TWS paper port unavailable: timed out",
+      "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
       "required": true,
-      "status": "FAIL"
+      "status": "OK"
     },
     {
-      "age_seconds": 58,
+      "age_seconds": 111,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-09-28T10:55:01+00:00",
+      "mtime_utc": "2026-09-28T11:19:05+00:00",
       "path": "_DAILY\\fem_live_signals.json",
       "required": true,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 382073,
+      "size_bytes": 30572,
       "status": "OK"
     },
     {
@@ -70,16 +73,16 @@
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-09-28T10:55:43+00:00",
+      "mtime_utc": "2026-09-28T11:20:42+00:00",
       "path": "_DAILY\\fem_regime_live.json",
       "required": true,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 2238,
+      "size_bytes": 2245,
       "status": "OK"
     },
     {
-      "age_seconds": 164453,
-      "detail": "stale: 164453s old, limit 240s",
+      "age_seconds": 165951,
+      "detail": "stale: 165951s old, limit 240s",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
       "mtime_utc": "2026-09-26T13:15:06+00:00",
@@ -106,22 +109,21 @@
       "status": "WARN"
     },
     {
-      "age_seconds": 1258,
+      "age_seconds": 292,
       "detail": "present",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-09-28T10:35:01+00:00",
+      "mtime_utc": "2026-09-28T11:16:04+00:00",
       "path": "_DAILY\\contract_events_2026-09-28.jsonl",
       "required": false,
-      "size_bytes": 412682,
+      "size_bytes": 426365,
       "status": "OK"
     }
   ],
-  "generated_at": "2026-09-28T10:55:59+00:00",
-  "generated_at_et": "2026-09-28T06:55:59-04:00",
+  "generated_at": "2026-09-28T11:20:57+00:00",
+  "generated_at_et": "2026-09-28T07:20:57-04:00",
   "next_actions": [
     "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-    "Start TWS paper account and confirm API port 7497 is enabled.",
     "Run _DAILY\\5_TRADE_BOT.bat; it should launch the runner/watchdog and short refresher.",
     "Start or restart _DAILY\\5_TRADE_BOT.bat so fem_bot_status.json refreshes."
   ],
@@ -134,31 +136,31 @@
       "process_id": 11536
     },
     {
-      "command_line": "C:\\Windows\\system32\\cmd.exe /c C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat",
-      "creation_date": "2026-09-28T01:05:11.0583190-07:00",
+      "command_line": "C:\\Windows\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\_runner_watchdog.bat\"",
+      "creation_date": "2026-09-28T04:17:50.8697020-07:00",
       "name": "cmd.exe",
-      "process_id": 8948
+      "process_id": 2492
     },
     {
       "command_line": "py  -3.12 fem_live_runner.py",
-      "creation_date": "2026-09-28T01:05:11.1500910-07:00",
+      "creation_date": "2026-09-28T04:17:50.9721910-07:00",
       "name": "py.exe",
-      "process_id": 10064
+      "process_id": 12936
     },
     {
       "command_line": "\"C:\\Program Files\\Python312\\python.exe\" fem_live_runner.py",
-      "creation_date": "2026-09-28T01:05:11.1621240-07:00",
+      "creation_date": "2026-09-28T04:17:50.9871100-07:00",
       "name": "python.exe",
-      "process_id": 10476
+      "process_id": 11408
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
   "session": "pre",
   "summary": {
     "checks": 9,
-    "fail": 4,
+    "fail": 3,
     "live_ready": false,
-    "ok": 3,
+    "ok": 4,
     "warn": 2,
     "warning_only": false
   },
