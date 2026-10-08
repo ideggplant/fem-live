@@ -44,6 +44,26 @@
       },
       "start_line": 11581,
       "structurally_gated": true
+    },
+    "place_standing_long_bracket": {
+      "end_line": 11505,
+      "missing": [
+        "_contract_health_gate(",
+        "_trade_permission_gate(",
+        "_trade_permission_sized_quantity(",
+        "_contract_emit_order("
+      ],
+      "present": true,
+      "required_checks": {
+        "_contract_emit_order(": false,
+        "_contract_health_gate(": false,
+        "_log_order_strategy(": true,
+        "_trade_permission_gate(": false,
+        "_trade_permission_sized_quantity(": false,
+        "self.placeOrder(": true
+      },
+      "start_line": 11302,
+      "structurally_gated": false
     }
   },
   "code_version": "1ff01fbb",
@@ -136,28 +156,14 @@
   },
   "failures": [
     {
-      "code": "UNKNOWN_DIRECT_PLACEORDER",
-      "count": 3,
-      "detail": "one or more direct placeOrder calls could not be classified as entry chokepoint or exit/flatten",
-      "examples": [
-        {
-          "classification": "UNKNOWN_DIRECT_ORDER",
-          "function": "place_standing_long_bracket",
-          "line": 11489,
-          "snippet": "bol, 'LONG', role='PROTECTIVE_STOP', emit_contract=False) _log_order_strategy(tgt_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': in"
-        },
-        {
-          "classification": "UNKNOWN_DIRECT_ORDER",
-          "function": "place_standing_long_bracket",
-          "line": 11490,
-          "snippet": "ract=False) _log_order_strategy(tgt_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': int(qty), 'strategy_id': strateg"
-        },
-        {
-          "classification": "UNKNOWN_DIRECT_ORDER",
-          "function": "place_standing_long_bracket",
-          "line": 11491,
-          "snippet": "t_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': int(qty), 'strategy_id': strategy_id, 'parent_order_id': parent_id, 'place"
-        }
+      "code": "ENTRY_CHOKEPOINT_UNGATED",
+      "detail": "place_standing_long_bracket is missing required gate/order tokens",
+      "function": "place_standing_long_bracket",
+      "missing": [
+        "_contract_health_gate(",
+        "_trade_permission_gate(",
+        "_trade_permission_sized_quantity(",
+        "_contract_emit_order("
       ]
     }
   ],
@@ -259,8 +265,8 @@
     "start_line": 2315,
     "structurally_gated": true
   },
-  "generated_at": "2026-10-08T06:06:35+00:00",
-  "generated_at_et": "2026-10-08T02:06:35-04:00",
+  "generated_at": "2026-10-08T14:37:54+00:00",
+  "generated_at_et": "2026-10-08T10:37:54-04:00",
   "inputs": {
     "bot_exists": true,
     "bot_path": "C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_auto_trade.py",
@@ -281,9 +287,8 @@
   "operator_read": "Bot gate audit failed: at least one entry order path is structurally ungated or untagged.",
   "overall": "FAIL",
   "raw_place_order_counts": {
-    "ENTRY_CHOKEPOINT": 9,
-    "EXIT_OR_FLATTEN": 11,
-    "UNKNOWN_DIRECT_ORDER": 3
+    "ENTRY_CHOKEPOINT": 12,
+    "EXIT_OR_FLATTEN": 11
   },
   "raw_place_order_sites": [
     {
@@ -353,19 +358,19 @@
       "snippet": "arent_id, strategy_id=strategy_id, entry_order_id=parent_id, detail='native MOO bracket child target', oca_group=oca, ) self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) return parent_id, stop_id, tgt_id def place_standing_long_bracket(self, symbol, qty, trigger_px, limit_px, stop_px, target_px, strategy_id='reclaim_standing'): \"\"\"Jul29 (Gill, approved list #2): parked STP-LMT long entry AT a pre-computed reclaim level with the full OCA bracket attached bro"
     },
     {
-      "classification": "UNKNOWN_DIRECT_ORDER",
+      "classification": "ENTRY_CHOKEPOINT",
       "function": "place_standing_long_bracket",
       "line": 11489,
       "snippet": "bol, 'LONG', role='PROTECTIVE_STOP', emit_contract=False) _log_order_strategy(tgt_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': in"
     },
     {
-      "classification": "UNKNOWN_DIRECT_ORDER",
+      "classification": "ENTRY_CHOKEPOINT",
       "function": "place_standing_long_bracket",
       "line": 11490,
       "snippet": "ract=False) _log_order_strategy(tgt_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': int(qty), 'strategy_id': strateg"
     },
     {
-      "classification": "UNKNOWN_DIRECT_ORDER",
+      "classification": "ENTRY_CHOKEPOINT",
       "function": "place_standing_long_bracket",
       "line": 11491,
       "snippet": "t_id, strategy_id, symbol, 'LONG', role='TARGET', emit_contract=False) for _oid in (parent_id, stop_id, tgt_id): self._order_sym[_oid] = symbol self.placeOrder(parent_id, c, parent) self.placeOrder(stop_id, c, stop) self.placeOrder(tgt_id, c, tgt) try: _STANDING_PENDING[str(symbol).upper()] = { 'entry': float(limit_px), 'stop': float(stop_px), 'target': float(target_px), 'stop_order_id': stop_id, 'target_order_id': tgt_id, 'qty': int(qty), 'strategy_id': strategy_id, 'parent_order_id': parent_id, 'place"
@@ -426,11 +431,11 @@
     }
   ],
   "schema": "fem_contract_bot_gate_audit.v1",
-  "session": "closed",
+  "session": "rth",
   "summary": {
     "active_entry_enforcement": false,
     "allows_fire_override": false,
-    "chokepoints_structurally_gated": true,
+    "chokepoints_structurally_gated": false,
     "contract_health_enforce": true,
     "daily_pnl_guard_enforce": true,
     "direct_place_order_calls": 23,
@@ -448,7 +453,7 @@
     "trade_permission_block_unknown": false,
     "trade_permission_enforce": false,
     "trigger_launcher_active": true,
-    "unknown_direct_place_order_calls": 3,
+    "unknown_direct_place_order_calls": 0,
     "warnings": 3
   },
   "trade_date": "2026-10-08",
