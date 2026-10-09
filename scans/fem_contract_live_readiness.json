@@ -1,23 +1,24 @@
 {
   "bot_status": {
     "available": true,
-    "generated_at": "2026-10-08T08:00:09",
-    "mode": "TRIGGER_LIVE",
-    "n_positions": 1,
-    "positions_count": 1,
-    "sample_modes": [
-      "BROKER_ONLY"
-    ]
+    "broker_open_orders": 0,
+    "generated_at": "2026-10-08T12:48:30",
+    "mode": "EOD_FLATTENED",
+    "n_positions": 0,
+    "position_source": "broker_reconcile",
+    "positions_count": 0,
+    "sample_modes": [],
+    "stale_bot_status_positions": 0
   },
   "broker_reconcile": {
     "available": true,
     "broker_connected": true,
-    "generated_at": "2026-10-08T15:01:00+00:00",
-    "open_orders": 2,
-    "operator_read": "Order safety is FAIL: one or more live-order contract breaches. Mode is AUDIT_ONLY; cancelled 0. Inspect before starting or continuing the bot.",
-    "overall": "FAIL",
-    "positions": 1,
-    "trade_date": "2026-10-08",
+    "generated_at": "2026-10-09T04:54:57+00:00",
+    "open_orders": 0,
+    "operator_read": "Order safety is OK: 0 working order(s) and 0 live position(s) reconciled against the spine.",
+    "overall": "OK",
+    "positions": 0,
+    "trade_date": "2026-10-09",
     "unprotected_positions": 0
   },
   "checks": [
@@ -42,9 +43,9 @@
       "label": "Live runtime processes",
       "live_fire_grade": true,
       "live_runner": true,
-      "process_count": 8,
-      "required": true,
-      "session": "rth",
+      "process_count": 5,
+      "required": false,
+      "session": "closed",
       "status": "OK",
       "trade_bot": true
     },
@@ -52,97 +53,82 @@
       "detail": "TWS paper port connected",
       "id": "tws_paper_port",
       "label": "TWS paper API port 7497",
-      "required": true,
+      "required": false,
       "status": "OK"
     },
     {
-      "age_seconds": 3,
+      "age_seconds": 3919,
       "detail": "fresh",
       "id": "live_signals_fresh",
       "label": "Live signals JSON",
-      "mtime_utc": "2026-10-08T15:01:03+00:00",
+      "mtime_utc": "2026-10-09T04:01:35+00:00",
       "path": "_DAILY\\fem_live_signals.json",
-      "required": true,
+      "required": false,
       "schema": "fem_live_signals/v1",
-      "size_bytes": 360291,
+      "size_bytes": 20499,
       "status": "OK"
     },
     {
-      "age_seconds": 19,
+      "age_seconds": 24,
       "detail": "fresh",
       "id": "regime_live_fresh",
       "label": "Live regime JSON",
-      "mtime_utc": "2026-10-08T15:00:46+00:00",
+      "mtime_utc": "2026-10-09T05:06:30+00:00",
       "path": "_DAILY\\fem_regime_live.json",
-      "required": true,
+      "required": false,
       "schema": "fem_regime_live/v1",
-      "size_bytes": 2245,
+      "size_bytes": 1003,
       "status": "OK"
     },
     {
-      "age_seconds": 54,
+      "age_seconds": 33504,
       "detail": "fresh",
       "id": "bot_status_fresh",
       "label": "Bot status JSON",
-      "mtime_utc": "2026-10-08T15:00:12+00:00",
+      "mtime_utc": "2026-10-08T19:48:31+00:00",
       "path": "fem_bot_status.json",
-      "required": true,
+      "required": false,
       "schema": null,
-      "size_bytes": 10650,
+      "size_bytes": 9164,
       "status": "OK"
     },
     {
-      "detail": "missing while bot has positions",
+      "detail": "missing",
       "id": "executions_feed",
       "label": "Execution CSV feed",
-      "path": "_DAILY\\executions_2026-10-08.csv",
-      "required": true,
-      "status": "FAIL"
+      "path": "_DAILY\\executions_2026-10-09.csv",
+      "required": false,
+      "status": "WARN"
     },
     {
-      "detail": "missing while bot has positions",
+      "detail": "missing",
       "id": "order_strategy_map",
       "label": "Order strategy map",
-      "path": "_DAILY\\order_strategy_2026-10-08.jsonl",
-      "required": true,
-      "status": "FAIL"
+      "path": "_DAILY\\order_strategy_2026-10-09.jsonl",
+      "required": false,
+      "status": "WARN"
     },
     {
-      "age_seconds": 2,
-      "detail": "present",
+      "detail": "missing",
       "id": "contract_event_stream_live",
       "label": "Contract event stream",
-      "mtime_utc": "2026-10-08T15:01:04+00:00",
-      "path": "_DAILY\\contract_events_2026-10-08.jsonl",
-      "required": true,
-      "size_bytes": 2091016318,
-      "status": "OK"
+      "path": "_DAILY\\contract_events_2026-10-09.jsonl",
+      "required": false,
+      "status": "WARN"
     }
   ],
-  "generated_at": "2026-10-08T15:01:06+00:00",
-  "generated_at_et": "2026-10-08T11:01:06-04:00",
+  "generated_at": "2026-10-09T05:06:55+00:00",
+  "generated_at_et": "2026-10-09T01:06:55-04:00",
   "next_actions": [
     "Live readiness blockers are clear."
   ],
-  "overall": "FAIL",
+  "overall": "WARN",
   "processes": [
     {
       "command_line": "cmd  /k \"cd /d C:\\Users\\Gill\\Desktop\\FEM_TOOLS && py -3.12 fem_live_fire_grade.py --loop 60\"",
       "creation_date": "2026-10-08T04:05:02.0578680-07:00",
       "name": "cmd.exe",
       "process_id": 14532
-    },
-    {
-      "command_line": "py  -3.12 fem_live_fire_grade.py --loop 60",
-      "creation_date": "2026-10-08T04:05:02.1642650-07:00",
-      "name": "py.exe",
-      "process_id": 11676
-    },
-    {
-      "command_line": "\"C:\\Program Files\\Python312\\python.exe\" fem_live_fire_grade.py --loop 60",
-      "creation_date": "2026-10-08T04:05:02.1832070-07:00",
-      "name": "python.exe",
-      "process_id": 15156
     },
     {
       "command_line": "C:\\Windows\\system32\\cmd.exe  /K \"C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\_DAILY\\5_TRADE_BOT.bat\"",
@@ -167,23 +153,17 @@
       "creation_date": "2026-10-08T06:17:08.9517170-07:00",
       "name": "python.exe",
       "process_id": 16612
-    },
-    {
-      "command_line": "\"C:\\Users\\Gill\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\"  fem_auto_trade.py --mode trigger --until 15:45",
-      "creation_date": "2026-10-08T06:17:55.0303430-07:00",
-      "name": "python.exe",
-      "process_id": 10868
     }
   ],
   "schema": "fem_contract_live_readiness.v1",
-  "session": "rth",
+  "session": "closed",
   "summary": {
     "checks": 9,
-    "fail": 2,
-    "live_ready": false,
-    "ok": 7,
-    "warn": 0,
-    "warning_only": false
+    "fail": 0,
+    "live_ready": true,
+    "ok": 6,
+    "warn": 3,
+    "warning_only": true
   },
-  "trade_date": "2026-10-08"
+  "trade_date": "2026-10-09"
 }
