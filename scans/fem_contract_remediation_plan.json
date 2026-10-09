@@ -7,15 +7,16 @@
       "reason": "Clean invalid route-policy overrides"
     }
   ],
-  "code_version": "1ff01fbb",
+  "code_version": "a8a43ef6",
   "execution_order": [
     "repair_contract_breaks",
+    "restore_bot_enforcement",
     "keep_evidence_quarantined",
     "clean_route_policy",
     "misc_contract_followup"
   ],
-  "generated_at": "2026-10-08T06:06:36+00:00",
-  "generated_at_et": "2026-10-08T02:06:36-04:00",
+  "generated_at": "2026-10-09T05:06:57+00:00",
+  "generated_at_et": "2026-10-09T01:06:57-04:00",
   "groups": [
     {
       "batch_path": null,
@@ -40,6 +41,28 @@
     },
     {
       "batch_path": null,
+      "blocks_live_trading": true,
+      "blocks_normal_scoring": true,
+      "can_auto_run": false,
+      "category": "BOT_GATES",
+      "check_ids": [
+        "bot_gate_enforcement_disabled"
+      ],
+      "command": null,
+      "evidence": [
+        "active_entry_enforcement=False, permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
+        "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False"
+      ],
+      "evidence_count": 2,
+      "group_id": "restore_bot_enforcement",
+      "next_action": "Turn enforcement switches back on when the experiment is over: TRADE_PERMISSION_ENFORCE, CONTRACT_HEALTH_ENFORCE, and TRADE_PERMISSION_BLOCK_UNKNOWN.",
+      "priority": 45,
+      "root_cause": "Orders placed while enforcement switches are off are experiment evidence by definition.",
+      "severity": "WARN",
+      "title": "Restore bot permission enforcement before normal scoring"
+    },
+    {
+      "batch_path": null,
       "blocks_live_trading": false,
       "blocks_normal_scoring": true,
       "can_auto_run": false,
@@ -48,22 +71,24 @@
         "session_context_dirty_data",
         "score_provenance_quarantine",
         "score_partitions_no_normal",
-        "score_consumer_lock_active"
+        "score_consumer_lock_active",
+        "evidence_cleanliness_quarantine"
       ],
       "command": null,
       "evidence": [
-        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=c00139a112f15fcd",
-        "partition=EXPERIMENT, actual_trades=0, ghost_graded=244802, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "experiment/review evidence=244802, experiment_strategies=39, review_strategies=0",
+        "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=ae59dd8de64b99f4",
+        "partition=EXPERIMENT, actual_trades=0, ghost_graded=185566, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "experiment/review evidence=185566, experiment_strategies=39, review_strategies=0",
         "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=39, review=0",
+        "partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=0",
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=244802, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=185566, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=48, track_only=18",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL"
       ],
-      "evidence_count": 10,
+      "evidence_count": 11,
       "group_id": "keep_evidence_quarantined",
       "next_action": "Use the experiment leaderboard for research only; wait for a clean NORMAL session before promoting routes.",
       "priority": 50,
@@ -103,20 +128,16 @@
         "contract_event_stream",
         "contract_break_ledger_stale",
         "live_readiness_warn",
-        "bot_gate_failures",
-        "evidence_cleanliness_failed",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
         "no contract event JSONL file for today",
-        "fem_contract_breaks.json is stamped 2026-10-07, not 2026-10-08; ignoring stale breach counts for current health",
+        "fem_contract_breaks.json is stamped 2026-10-08, not 2026-10-09; ignoring stale breach counts for current health",
         "checks ok/warn/fail=6/3/0",
-        "1 structural bot gate failure(s); missing_strategy_id=0, unknown_direct_place_order=3",
-        "hard_failures=1, partition=UNTAGGED, normal_allowed=False",
         "15 high-pressure exit rule group(s) need review"
       ],
-      "evidence_count": 6,
+      "evidence_count": 4,
       "group_id": "misc_contract_followup",
       "next_action": "Inspect fem_contract_health.json for remaining checks.",
       "priority": 90,
@@ -152,16 +173,16 @@
   "session": "closed",
   "summary": {
     "auto_runnable": 1,
-    "blocks_live_trading": 1,
-    "blocks_normal_scoring": 4,
-    "evidence_overall": "FAIL",
-    "evidence_partition": "UNTAGGED",
+    "blocks_live_trading": 2,
+    "blocks_normal_scoring": 5,
+    "evidence_overall": "WARN",
+    "evidence_partition": "EXPERIMENT",
     "fail_groups": 2,
-    "groups": 4,
+    "groups": 5,
     "health_overall": "FAIL",
-    "manual": 3,
+    "manual": 4,
     "normal_evidence_allowed": false,
-    "warn_groups": 2
+    "warn_groups": 3
   },
-  "trade_date": "2026-10-08"
+  "trade_date": "2026-10-09"
 }
