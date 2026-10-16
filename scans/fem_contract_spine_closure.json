@@ -6,12 +6,11 @@
   ],
   "blocking_normal_scoring_gates": [
     "CONTRACT_ERRORS_CLEAR",
-    "DECISION_ACCOUNTING_CLEAN",
     "EVIDENCE_NORMAL_ALLOWED",
     "BOT_ENFORCEMENT_ON",
     "ROUTE_POLICY_CLEAN"
   ],
-  "code_version": "67f5e1b0",
+  "code_version": "92a6e951",
   "gates": [
     {
       "blocking_live_trading": false,
@@ -75,19 +74,18 @@
     },
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": true,
+      "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Decision obligation timestamp ordering warnings: 1201 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "WARN Latency / missed move warnings: missed=3636, no_decision=0, slow_decisions=5413, slow_orders=0, order_after_peak=0"
+        "No decision-accounting gaps are visible."
       ],
-      "evidence_count": 2,
+      "evidence_count": 1,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
-      "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
+      "next_action": "No action required.",
       "priority": 50,
-      "severity": "WARN",
+      "severity": "OK",
       "source": "decision obligation/live-fire/latency reports",
-      "status": "REVIEW"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": false,
@@ -95,13 +93,14 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=213102, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=229769, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
         "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=27, track_only=39",
+        "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
-      "evidence_count": 7,
+      "evidence_count": 8,
       "gate_id": "EVIDENCE_NORMAL_ALLOWED",
       "label": "Evidence can enter normal scoring",
       "next_action": "Keep this session quarantined as EXPERIMENT until the listed blockers clear.",
@@ -184,8 +183,8 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-10-15T02:00:27+00:00",
-  "generated_at_et": "2026-10-14T22:00:27-04:00",
+  "generated_at": "2026-10-16T04:04:03+00:00",
+  "generated_at_et": "2026-10-16T00:04:03-04:00",
   "next_gate": {
     "blocking_live_trading": true,
     "blocking_normal_scoring": true,
@@ -205,23 +204,23 @@
   "overall": "FAIL",
   "schema": "fem_contract_spine_closure.v1",
   "session": "closed",
-  "spine_stage": "BOOTSTRAP",
+  "spine_stage": "REPAIR_READY",
   "summary": {
     "blocking_live_trading": 3,
-    "blocking_normal_scoring": 5,
-    "closed_gates": 4,
-    "closure_percent": 40.0,
+    "blocking_normal_scoring": 4,
+    "closed_gates": 5,
+    "closure_percent": 50.0,
     "evidence_overall": "WARN",
     "evidence_partition": "EXPERIMENT",
     "gates": 10,
-    "health_overall": "WARN",
+    "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
     "open_gates": 2,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
-    "review_gates": 4
+    "review_gates": 3
   },
-  "trade_date": "2026-10-14"
+  "trade_date": "2026-10-16"
 }
