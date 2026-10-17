@@ -1,14 +1,16 @@
 {
   "category_counts": {
+    "DECISION_ACCOUNTING": 1,
     "EVIDENCE": 1,
     "MISC": 1,
+    "RESEARCH": 1,
     "ROUTE_POLICY": 1
   },
   "certification_path": [
     {
       "detail": "Restart stale runtime and restore live readiness.",
       "label": "Clear live trust failures",
-      "status": "OPEN",
+      "status": "DONE",
       "step": 1
     },
     {
@@ -30,26 +32,26 @@
       "step": 4
     }
   ],
-  "code_version": "92a6e951",
+  "code_version": "c2e15a45",
   "first_action": {
-    "blocks_live_trust": true,
-    "blocks_normal_learning": true,
+    "blocks_live_trust": false,
+    "blocks_normal_learning": false,
     "can_auto_run": false,
     "category": "MISC",
     "certification_effect": "operator_review",
     "check_ids": [
-      "contract_event_stream",
-      "contract_break_ledger_stale",
+      "contract_break_warnings",
       "panel_registry_contracts",
+      "decision_obligation_failures",
       "live_readiness_warn",
       "exit_rules_learning_pressure"
     ],
     "command": null,
     "evidence": [
-      "FAIL Contract event stream: no contract event JSONL file for today",
-      "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-10-15, not 2026-10-16; ignoring stale breach counts for current health",
-      "WARN Panel registry contract warnings: 7 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19",
-      "WARN Live readiness warnings: checks ok/warn/fail=6/3/0",
+      "WARN Contract validator warnings: 495 warning breach(es) in current validator output",
+      "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=16",
+      "FAIL Picks without explicit bot accounting: 398 unaccounted pick group(s); raw unaccounted picks=398",
+      "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
       "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
     ],
     "evidence_count": 5,
@@ -60,42 +62,54 @@
     "severity": "FAIL",
     "title": "Miscellaneous health follow-up"
   },
-  "generated_at": "2026-10-16T04:04:18.052193+00:00",
-  "generated_at_et": "2026-10-16T00:04:18.052193-04:00",
+  "generated_at": "2026-10-17T01:56:31.809885+00:00",
+  "generated_at_et": "2026-10-16T21:56:31.809885-04:00",
   "inputs": {
-    "certification_generated_at": "2026-10-16T04:04:17.393533+00:00",
-    "health_generated_at": "2026-10-16T04:04:03+00:00",
-    "live_readiness_generated_at": "2026-10-16T04:04:00+00:00",
-    "remediation_plan_generated_at": "2026-10-16T04:04:03+00:00",
-    "runtime_generated_at": "2026-10-16T04:03:59+00:00"
+    "certification_generated_at": "2026-10-17T01:56:31.513266+00:00",
+    "health_generated_at": "2026-10-17T01:56:21+00:00",
+    "live_readiness_generated_at": "2026-10-17T01:56:19+00:00",
+    "remediation_plan_generated_at": "2026-10-17T01:56:22+00:00",
+    "runtime_generated_at": "2026-10-17T01:56:19+00:00"
   },
   "negative_checks": [
     {
-      "detail": "no contract event JSONL file for today",
-      "id": "contract_event_stream",
-      "label": "Contract event stream",
-      "status": "FAIL"
-    },
-    {
-      "detail": "fem_contract_breaks.json is stamped 2026-10-15, not 2026-10-16; ignoring stale breach counts for current health",
-      "id": "contract_break_ledger_stale",
-      "label": "Contract breach ledger stale",
+      "detail": "495 warning breach(es) in current validator output",
+      "id": "contract_break_warnings",
+      "label": "Contract validator warnings",
       "status": "WARN"
     },
     {
-      "detail": "7 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19",
+      "detail": "5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=16",
       "id": "panel_registry_contracts",
       "label": "Panel registry contract warnings",
       "status": "WARN"
     },
     {
-      "detail": "27 strategy permission(s) are blocked by contract failures",
+      "detail": "1 skipped/ghost group(s) show positive forward evidence",
+      "id": "ghost_ledger_opportunities",
+      "label": "Skipped ghost opportunity groups",
+      "status": "WARN"
+    },
+    {
+      "detail": "28 strategy permission(s) are blocked by contract failures",
       "id": "trade_permissions_blocked",
       "label": "Blocked strategy permissions",
       "status": "WARN"
     },
     {
-      "detail": "checks ok/warn/fail=6/3/0",
+      "detail": "398 unaccounted pick group(s); raw unaccounted picks=398",
+      "id": "decision_obligation_failures",
+      "label": "Picks without explicit bot accounting",
+      "status": "FAIL"
+    },
+    {
+      "detail": "1368 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+      "id": "decision_obligation_time_order_warnings",
+      "label": "Decision obligation timestamp ordering warnings",
+      "status": "WARN"
+    },
+    {
+      "detail": "checks ok/warn/fail=7/2/0",
       "id": "live_readiness_warn",
       "label": "Live readiness warnings",
       "status": "WARN"
@@ -107,21 +121,27 @@
       "status": "WARN"
     },
     {
-      "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=229769, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+      "detail": "partition=EXPERIMENT, actual_trades=0, ghost_graded=215840, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
       "id": "score_provenance_quarantine",
       "label": "Score provenance partition guard",
       "status": "WARN"
     },
     {
-      "detail": "experiment/review evidence=229769, experiment_strategies=40, review_strategies=0",
+      "detail": "experiment/review evidence=215840, experiment_strategies=38, review_strategies=0",
       "id": "score_partitions_no_normal",
       "label": "Normal score leaderboard empty",
       "status": "WARN"
     },
     {
-      "detail": "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
+      "detail": "66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=38, review=0",
       "id": "score_consumer_lock_active",
       "label": "Score consumer lock active",
+      "status": "WARN"
+    },
+    {
+      "detail": "missed=3087, no_decision=398, slow_decisions=6230, slow_orders=0, order_after_peak=0",
+      "id": "latency_missed_move_warnings",
+      "label": "Latency / missed move warnings",
       "status": "WARN"
     },
     {
@@ -164,9 +184,9 @@
       "command": "_DAILY\\0W_CONTRACT_SESSION_CONTEXT.bat; _DAILY\\0X_CONTRACT_SCORE_PROVENANCE.bat; _DAILY\\0Y_CONTRACT_SCORE_PARTITIONS.bat; _DAILY\\0Z_CONTRACT_SCORE_CONSUMER_LOCK.bat",
       "evidence": [
         "WARN Session provenance dirty-data warning: profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=2c42c25ef6a39d21",
-        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=0, ghost_graded=229769, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "WARN Normal score leaderboard empty: experiment/review evidence=229769, experiment_strategies=40, review_strategies=0",
-        "WARN Score consumer lock active: 66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=40, review=0",
+        "WARN Score provenance partition guard: partition=EXPERIMENT, actual_trades=0, ghost_graded=215840, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
+        "WARN Normal score leaderboard empty: experiment/review evidence=215840, experiment_strategies=38, review_strategies=0",
+        "WARN Score consumer lock active: 66 score-consuming strategy route(s) locked to research/display; normal=0, experiment=38, review=0",
         "WARN Bot gate enforcement disabled: active_entry_enforcement=False, permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "WARN Evidence cleanliness quarantine: partition=EXPERIMENT, normal_blockers=7, review_flags=1, actual_trades=0"
       ],
@@ -182,6 +202,29 @@
       "blocks_live_trust": false,
       "blocks_normal_learning": true,
       "can_auto_run": true,
+      "category": "DECISION_ACCOUNTING",
+      "certification_effect": "required_for_clean_forward_day",
+      "check_ids": [
+        "decision_obligation_time_order_warnings",
+        "latency_missed_move_warnings"
+      ],
+      "command": "_DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat; _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat; _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat; _DAILY\\0P_CONTRACT_ROUTE_READINESS.bat",
+      "evidence": [
+        "WARN Decision obligation timestamp ordering warnings: 1368 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=3087, no_decision=398, slow_decisions=6230, slow_orders=0, order_after_peak=0"
+      ],
+      "evidence_count": 2,
+      "group_id": "repair_real_time_decision_accounting",
+      "priority": 50,
+      "recovery_action": "Run decision obligation, live-fire accounting, latency audit, and route readiness after the runtime restart.",
+      "root_cause": "Backfilled/inferred decisions are useful for research, but not equivalent to a clean real-time contract link.",
+      "severity": "WARN",
+      "title": "Make live picks accountable in real time"
+    },
+    {
+      "blocks_live_trust": false,
+      "blocks_normal_learning": true,
+      "can_auto_run": true,
       "category": "ROUTE_POLICY",
       "certification_effect": "required_for_normal_certification",
       "check_ids": [
@@ -189,7 +232,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "WARN Blocked strategy permissions: 27 strategy permission(s) are blocked by contract failures"
+        "WARN Blocked strategy permissions: 28 strategy permission(s) are blocked by contract failures"
       ],
       "evidence_count": 1,
       "group_id": "clean_route_policy_permissions",
@@ -200,24 +243,45 @@
       "title": "Clean route policy and permission ambiguity"
     },
     {
-      "blocks_live_trust": true,
-      "blocks_normal_learning": true,
+      "blocks_live_trust": false,
+      "blocks_normal_learning": false,
+      "can_auto_run": false,
+      "category": "RESEARCH",
+      "certification_effect": "research_only_until_normal_day",
+      "check_ids": [
+        "ghost_ledger_opportunities"
+      ],
+      "command": null,
+      "evidence": [
+        "WARN Skipped ghost opportunity groups: 1 skipped/ghost group(s) show positive forward evidence"
+      ],
+      "evidence_count": 1,
+      "group_id": "review_positive_skips",
+      "priority": 70,
+      "recovery_action": "After plumbing is fresh, inspect fem_contract_ghost_ledger.json for loosening candidates.",
+      "root_cause": "Some skipped/ghost groups show positive evidence, but this only becomes actionable after contract trust is restored.",
+      "severity": "WARN",
+      "title": "Review positive skipped opportunities"
+    },
+    {
+      "blocks_live_trust": false,
+      "blocks_normal_learning": false,
       "can_auto_run": false,
       "category": "MISC",
       "certification_effect": "operator_review",
       "check_ids": [
-        "contract_event_stream",
-        "contract_break_ledger_stale",
+        "contract_break_warnings",
         "panel_registry_contracts",
+        "decision_obligation_failures",
         "live_readiness_warn",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
-        "FAIL Contract event stream: no contract event JSONL file for today",
-        "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-10-15, not 2026-10-16; ignoring stale breach counts for current health",
-        "WARN Panel registry contract warnings: 7 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=19",
-        "WARN Live readiness warnings: checks ok/warn/fail=6/3/0",
+        "WARN Contract validator warnings: 495 warning breach(es) in current validator output",
+        "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=16",
+        "FAIL Picks without explicit bot accounting: 398 unaccounted pick group(s); raw unaccounted picks=398",
+        "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
         "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
       ],
       "evidence_count": 5,
@@ -232,21 +296,21 @@
   "restart_queue": [],
   "schema": "fem_contract_live_trust_recovery.v1",
   "summary": {
-    "auto_runnable_groups": 2,
-    "blocks_live_trust": 1,
+    "auto_runnable_groups": 3,
+    "blocks_live_trust": 0,
     "blocks_normal_learning": 3,
     "daily_certification": "EXPERIMENT_ONLY",
     "fail_groups": 1,
     "health_fail": 1,
     "health_overall": "FAIL",
-    "health_warn": 11,
+    "health_warn": 14,
     "live_ready": true,
-    "manual_groups": 1,
-    "negative_checks": 12,
-    "recovery_groups": 3,
+    "manual_groups": 2,
+    "negative_checks": 15,
+    "recovery_groups": 5,
     "remediation_plan_overall": "FAIL",
     "restart_queue": 0,
-    "warn_groups": 2
+    "warn_groups": 4
   },
   "trade_date": "2026-10-16"
 }
