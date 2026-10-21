@@ -5,39 +5,34 @@
     "BOT_ENFORCEMENT_ON"
   ],
   "blocking_normal_scoring_gates": [
-    "ARTIFACTS_FRESH",
     "CONTRACT_ERRORS_CLEAR",
     "DECISION_ACCOUNTING_CLEAN",
     "EVIDENCE_NORMAL_ALLOWED",
     "BOT_ENFORCEMENT_ON",
     "ROUTE_POLICY_CLEAN"
   ],
-  "code_version": "50ad8f06",
+  "code_version": "b4bca637",
   "gates": [
     {
       "blocking_live_trading": false,
-      "blocking_normal_scoring": true,
+      "blocking_normal_scoring": false,
       "evidence": [
-        "FAIL Contract daily spine certification: stale during rth: 46595s old, limit 2700s",
-        "FAIL Contract promotion/demotion gate: stale during rth: 46595s old, limit 2700s",
-        "FAIL Contract live trust recovery: stale during rth: 46594s old, limit 2700s",
-        "FAIL Contract live trust executor: stale during rth: 46594s old, limit 2700s",
-        "FAIL Contract auction truth shadow score: stale during rth: 46588s old, limit 2700s"
+        "Health found no stale or missing contract artifacts."
       ],
-      "evidence_count": 5,
+      "evidence_count": 1,
       "gate_id": "ARTIFACTS_FRESH",
       "label": "Contract artifacts are fresh",
-      "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
+      "next_action": "No action required.",
       "priority": 10,
-      "severity": "FAIL",
+      "severity": "OK",
       "source": "fem_contract_health.json",
-      "status": "OPEN"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Panel registry contract warnings: 10 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=24"
+        "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=15"
       ],
       "evidence_count": 1,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -82,10 +77,11 @@
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "FAIL Picks without explicit bot accounting: 42 unaccounted pick group(s); raw unaccounted picks=42",
-        "WARN Latency / missed move warnings: missed=351, no_decision=42, slow_decisions=93, slow_orders=0, order_after_peak=0"
+        "FAIL Picks without explicit bot accounting: 546 unaccounted pick group(s); raw unaccounted picks=546",
+        "WARN Decision obligation timestamp ordering warnings: 1630 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=11000, no_decision=546, slow_decisions=9046, slow_orders=0, order_after_peak=0"
       ],
-      "evidence_count": 2,
+      "evidence_count": 3,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
       "label": "Panel picks have explicit bot accounting",
       "next_action": "Run _DAILY\\0R_CONTRACT_DECISION_OBLIGATION.bat, _DAILY\\0S_CONTRACT_LIVE_FIRE_ACCOUNTING.bat, and _DAILY\\0Q_CONTRACT_LATENCY_AUDIT.bat.",
@@ -100,9 +96,9 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=197842, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=232252, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=28, track_only=38",
+        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=26, track_only=40",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
         "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
@@ -190,44 +186,40 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-10-20T13:55:29+00:00",
-  "generated_at_et": "2026-10-20T09:55:29-04:00",
+  "generated_at": "2026-10-21T03:50:31+00:00",
+  "generated_at_et": "2026-10-20T23:50:31-04:00",
   "next_gate": {
-    "blocking_live_trading": false,
+    "blocking_live_trading": true,
     "blocking_normal_scoring": true,
     "evidence": [
-      "FAIL Contract daily spine certification: stale during rth: 46595s old, limit 2700s",
-      "FAIL Contract promotion/demotion gate: stale during rth: 46595s old, limit 2700s",
-      "FAIL Contract live trust recovery: stale during rth: 46594s old, limit 2700s",
-      "FAIL Contract live trust executor: stale during rth: 46594s old, limit 2700s",
-      "FAIL Contract auction truth shadow score: stale during rth: 46588s old, limit 2700s"
+      "WARN Panel registry contract warnings: 3 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=15"
     ],
-    "evidence_count": 5,
-    "gate_id": "ARTIFACTS_FRESH",
-    "label": "Contract artifacts are fresh",
-    "next_action": "Run _DAILY\\0D_RUN_CONTRACT_PIPELINE.bat, then rerun _DAILY\\0ZF_CONTRACT_SPINE_CLOSURE.bat.",
-    "priority": 10,
-    "severity": "FAIL",
+    "evidence_count": 1,
+    "gate_id": "CONTRACT_ERRORS_CLEAR",
+    "label": "No explicit contract break errors",
+    "next_action": "Open fem_contract_breaks.json and fem_contract_accountability.json; fix the largest repeated lifecycle breach.",
+    "priority": 20,
+    "severity": "WARN",
     "source": "fem_contract_health.json",
-    "status": "OPEN"
+    "status": "REVIEW"
   },
-  "operator_read": "Spine is not closed. First rebuild the stale contract artifacts so every later verdict is based on current data.",
+  "operator_read": "Spine is not closed. First open gate: No explicit contract break errors.",
   "overall": "FAIL",
   "schema": "fem_contract_spine_closure.v1",
-  "session": "rth",
+  "session": "closed",
   "spine_stage": "BOOTSTRAP",
   "summary": {
     "blocking_live_trading": 3,
-    "blocking_normal_scoring": 6,
-    "closed_gates": 3,
-    "closure_percent": 30.0,
+    "blocking_normal_scoring": 5,
+    "closed_gates": 4,
+    "closure_percent": 40.0,
     "evidence_overall": "WARN",
     "evidence_partition": "EXPERIMENT",
     "gates": 10,
     "health_overall": "FAIL",
     "live_trading_trust_allowed": false,
     "normal_scoring_allowed": false,
-    "open_gates": 4,
+    "open_gates": 3,
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
