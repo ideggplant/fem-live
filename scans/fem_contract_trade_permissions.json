@@ -4,7 +4,6 @@
     "allow_probe": [],
     "bench": [],
     "block": [
-      "bull_bounce_pending",
       "contract_spine",
       "daily_liquid_120",
       "decision_audit",
@@ -30,7 +29,6 @@
       "timesfm_shadow",
       "trapped_short",
       "upside_down_cow_short",
-      "value_area_fortress",
       "watchlist_gap_eat"
     ],
     "research_only": [],
@@ -38,6 +36,7 @@
       "all_time_high_long",
       "ath_long",
       "bear_rejection_pending",
+      "bull_bounce_pending",
       "channel_shelf_reclaim_swing",
       "clock_long",
       "clock_short",
@@ -72,7 +71,8 @@
       "state_lookup",
       "stock_clock_shadow",
       "surge_chase",
-      "surge_micro_scout"
+      "surge_micro_scout",
+      "value_area_fortress"
     ],
     "watch_only": [],
     "weights": {
@@ -109,11 +109,11 @@
       "bull_bounce_pending": {
         "allowed_to_trade": false,
         "panel_id": "state_lookup",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "side": "LONG"
       },
       "channel_shelf_reclaim_swing": {
@@ -719,7 +719,7 @@
       "value_area_fortress": {
         "allowed_to_trade": false,
         "panel_id": "value_area_fortress",
-        "permission": "BLOCK",
+        "permission": "TRACK_ONLY",
         "risk_multiplier": 0.0,
         "route_weight": 0.0,
         "score_consumer_locked": true,
@@ -1132,8 +1132,8 @@
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
       "permissions": {
-        "BLOCK": 2,
-        "TRACK_ONLY": 2
+        "BLOCK": 1,
+        "TRACK_ONLY": 3
       },
       "side": "SHORT",
       "strategies": 4
@@ -1211,7 +1211,7 @@
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
       "permissions": {
-        "BLOCK": 1
+        "TRACK_ONLY": 1
       },
       "side": "LONG",
       "strategies": 1
@@ -1228,8 +1228,8 @@
       "strategies": 3
     }
   },
-  "generated_at": "2026-10-21T00:44:08+00:00",
-  "generated_at_et": "2026-10-20T20:44:08-04:00",
+  "generated_at": "2026-10-21T00:52:47+00:00",
+  "generated_at_et": "2026-10-20T20:52:47-04:00",
   "inputs": {
     "contract_health_schema": "fem_contract_health.v1",
     "ghost_ledger_schema": "fem_contract_ghost_ledger.v1",
@@ -1391,10 +1391,10 @@
         "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
-        "score_consumer_reason": "strategy permission had no score-provenance row",
-        "score_consumption_permission": "UNTAGGED_ONLY",
+        "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
+        "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
-        "score_partition": "UNTAGGED",
+        "score_partition": "EXPERIMENT",
         "source_ok": true
       },
       "evidence": {
@@ -1411,14 +1411,14 @@
         "ghost_target_hit_rate": null
       },
       "evidence_flags": [
-        "score_consumer_lock:UNTAGGED"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "state_lookup",
       "panel_name": "State Lookup",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
         "system health was FAIL at build; bot runtime health gate still enforces entries",
-        "score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence"
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4193,21 +4193,21 @@
     },
     "value_area_fortress": {
       "allowed_to_trade": false,
-      "confidence": "CONTRACT_BROKEN",
+      "confidence": "SCORE_CONSUMER_LOCK",
       "contract": {
         "bot_required": false,
         "bot_route_ok": true,
         "dashboard_ok": true,
         "health_overall": "FAIL",
         "normal_score_eligible": false,
-        "panel_status": "WARN",
+        "panel_status": "OK",
         "publisher_ok": true,
         "score_consumer_locked": true,
         "score_consumer_reason": "experiment score evidence is visible but cannot feed bot permissions",
         "score_consumption_permission": "EXPERIMENT_ONLY",
         "score_ok": true,
         "score_partition": "EXPERIMENT",
-        "source_ok": false
+        "source_ok": true
       },
       "evidence": {
         "actual_avg_r": null,
@@ -4223,14 +4223,14 @@
         "ghost_target_hit_rate": 3.45
       },
       "evidence_flags": [
-        "SOURCE_STALE"
+        "score_consumer_lock:EXPERIMENT"
       ],
       "panel_id": "value_area_fortress",
       "panel_name": "Value Area Fortress",
-      "permission": "BLOCK",
+      "permission": "TRACK_ONLY",
       "reasons": [
-        "required source missing/stale",
-        "system health was FAIL at build; bot runtime health gate still enforces entries"
+        "system health was FAIL at build; bot runtime health gate still enforces entries",
+        "score consumer lock: partition=EXPERIMENT, permission=EXPERIMENT_ONLY; bot score consumption requires NORMAL evidence"
       ],
       "risk_multiplier": 0.0,
       "route_weight": 0.0,
@@ -4285,13 +4285,6 @@
     }
   },
   "recommendations": [
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "state_lookup",
-      "reason": "system health was FAIL at build; bot runtime health gate still enforces entries; score consumer lock: partition=UNTAGGED, permission=UNTAGGED_ONLY; bot score consumption requires NORMAL evidence",
-      "side": "LONG",
-      "strategy_id": "bull_bounce_pending"
-    },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "contract_spine",
@@ -4469,13 +4462,6 @@
     },
     {
       "action": "FIX_CONTRACT_BEFORE_TRADING",
-      "panel_id": "value_area_fortress",
-      "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
-      "side": "LONG",
-      "strategy_id": "value_area_fortress"
-    },
-    {
-      "action": "FIX_CONTRACT_BEFORE_TRADING",
       "panel_id": "watchlist_gap_eat",
       "reason": "required source missing/stale; system health was FAIL at build; bot runtime health gate still enforces entries",
       "side": "LONG",
@@ -4636,14 +4622,14 @@
     "allowed_short": 0,
     "allowed_to_trade": 0,
     "bench": 0,
-    "block": 28,
+    "block": 26,
     "ghost_good_skip_groups": 12,
     "ghost_opportunity_groups": 0,
     "health_overall": "FAIL",
     "panel_score_strategies": 40,
     "permission_counts": {
-      "BLOCK": 28,
-      "TRACK_ONLY": 38
+      "BLOCK": 26,
+      "TRACK_ONLY": 40
     },
     "registry_overall": "WARN",
     "research_only": 0,
@@ -4654,11 +4640,11 @@
     "score_consumer_lock_overall": "WARN",
     "score_consumer_locked": 66,
     "score_partition_counts": {
-      "EXPERIMENT": 39,
-      "UNTAGGED": 27
+      "EXPERIMENT": 40,
+      "UNTAGGED": 26
     },
     "strategies": 66,
-    "track_only": 38,
+    "track_only": 40,
     "watch_only": 0
   },
   "trade_date": "2026-10-20"
