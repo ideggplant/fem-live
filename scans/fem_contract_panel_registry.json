@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T00:52:34+00:00",
+  "generated_at": "2026-10-22T00:56:01+00:00",
   "overall": "WARN",
   "panels": [
     {
@@ -36,7 +36,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 84317,
+          "age_seconds": 84524,
           "count": 5,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -95,7 +95,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 8458912,
+          "age_seconds": 8459119,
           "count": 7,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -121,183 +121,6 @@
       "status": "WARN",
       "strategy_ids": [
         "decision_receipts"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Execution Truth",
-      "experiment_phase": "CONTROL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 1,
-      "next_action": "Regenerate today's source output for Execution Truth; stale source data cannot be trusted.",
-      "notes": "Single execution truth ledger: reconstructs parent orders, fills, exits, and realized PnL.",
-      "operator_role": "CONTROL",
-      "panel_id": "execution_truth",
-      "primary_source": "fem_execution_truth.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": false,
-      "score_partition": "control::execution_truth",
-      "score_required": false,
-      "score_rows": [],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 0,
-        "ghost_graded": 0
-      },
-      "side": "BOTH",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 75739,
-          "count": 0,
-          "date_source": "payload.trade_date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.trade_date date 2026-10-20 != 2026-10-21",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-10-21T03:50:12+00:00",
-          "path": "fem_execution_truth.json",
-          "pattern": "fem_execution_truth.json",
-          "size_bytes": 614,
-          "source_date": "2026-10-20"
-        }
-      ],
-      "stale_source_count": 1,
-      "status": "WARN",
-      "strategy_ids": [
-        "execution_truth"
-      ],
-      "truth_label": "SOURCE STALE",
-      "truth_reason": "source file is missing or stale; refresh before trusting this panel",
-      "warnings": [
-        "SOURCE_STALE"
-      ]
-    },
-    {
-      "bot_required": false,
-      "bot_route_ok": true,
-      "context_contract": [
-        "gap_channel_context",
-        "options_context"
-      ],
-      "dashboard_ok": true,
-      "display_default_hidden": false,
-      "display_name": "Gap Wall Roundtrip",
-      "experiment_phase": "SHADOW_PANEL",
-      "failures": [],
-      "mode": "tracked",
-      "money_priority": 9,
-      "next_action": "Regenerate today's source output for Gap Wall Roundtrip; stale source data cannot be trusted.",
-      "notes": "Shadow only: every surge gets a gap-wall plan, then wall touch is scored as eat/acceptance versus rejection short.",
-      "operator_role": "SHADOW_TRADER",
-      "panel_id": "gap_wall_roundtrip",
-      "primary_source": "fem_gap_wall_roundtrip.json",
-      "primary_source_freshness": "STALE",
-      "publisher_ok": true,
-      "score_ok": true,
-      "score_partition": "shadow_panel::gap_wall_roundtrip",
-      "score_required": true,
-      "score_rows": [
-        {
-          "actual_closed": 0,
-          "actual_realized_pnl": 0.0,
-          "actual_trades": 0,
-          "ghost_avg_target_r": -0.9482,
-          "ghost_fires": 10808,
-          "ghost_graded": 927,
-          "ghost_run_rate": 2.91,
-          "ghost_runners": 27,
-          "panel_name": "Gap Wall Roundtrip",
-          "strategy_id": "gap_wall_roundtrip_shadow",
-          "verdict": "CUT_GHOST"
-        }
-      ],
-      "score_summary": {
-        "actual_trades": 0,
-        "ghost_fires": 10808,
-        "ghost_graded": 927
-      },
-      "side": "MIXED",
-      "source_fresh_ok": false,
-      "source_ok": false,
-      "source_present_ok": true,
-      "source_required": true,
-      "sources": [
-        {
-          "age_seconds": 84378,
-          "count": 10808,
-          "date_source": "payload.date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.date date 2026-10-20 != 2026-10-21",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-10-21T01:26:14+00:00",
-          "path": "fem_gap_wall_roundtrip.json",
-          "pattern": "fem_gap_wall_roundtrip.json",
-          "size_bytes": 28625493,
-          "source_date": "2026-10-20"
-        },
-        {
-          "age_seconds": 961,
-          "count": 30705,
-          "date_source": "pattern",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
-          "path": "_DAILY/live_fires_2026-10-21.jsonl",
-          "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
-          "source_date": "2026-10-21"
-        },
-        {
-          "age_seconds": 75497,
-          "count": 14,
-          "date_source": "payload.date",
-          "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.date date 2026-10-20 != 2026-10-21",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-10-21T03:54:15+00:00",
-          "path": "fem_gap_timeframe_contract.json",
-          "pattern": "fem_gap_timeframe_contract.json",
-          "size_bytes": 42502619,
-          "source_date": "2026-10-20"
-        },
-        {
-          "age_seconds": 75496,
-          "count": 1846,
-          "date_source": "payload.generated_at",
-          "exists": true,
-          "fresh": true,
-          "freshness_detail": "payload.generated_at date 2026-10-21 matches 2026-10-21",
-          "freshness_status": "OK",
-          "mtime_utc": "2026-10-21T03:54:17+00:00",
-          "path": "fem_gap_staircase_lens.json",
-          "pattern": "fem_gap_staircase_lens.json",
-          "size_bytes": 6047148,
-          "source_date": "2026-10-21"
-        }
-      ],
-      "stale_source_count": 2,
-      "status": "WARN",
-      "strategy_ids": [
-        "gap_wall_roundtrip_shadow"
       ],
       "truth_label": "SOURCE STALE",
       "truth_reason": "source file is missing or stale; refresh before trusting this panel",
@@ -342,7 +165,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 9782972,
+          "age_seconds": 9783179,
           "count": 8,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -356,7 +179,7 @@
           "source_date": "2026-06-30"
         },
         {
-          "age_seconds": 8938420,
+          "age_seconds": 8938627,
           "count": 13,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -416,7 +239,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 75728,
+          "age_seconds": 75934,
           "count": 8,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -438,17 +261,17 @@
           "pattern": "_DAILY/fem_runner_exit_decision_{date}.json"
         },
         {
-          "age_seconds": 955,
+          "age_seconds": 42,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -499,7 +322,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 5,
+          "age_seconds": 211,
           "count": 7755,
           "date_source": "payload.day",
           "exists": true,
@@ -513,7 +336,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 40042,
+          "age_seconds": 40248,
           "count": 3,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -527,17 +350,17 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 955,
+          "age_seconds": 42,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -604,7 +427,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 8847749,
+          "age_seconds": 8847956,
           "count": 843,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -618,7 +441,7 @@
           "source_date": "2026-07-10"
         },
         {
-          "age_seconds": 38,
+          "age_seconds": 245,
           "count": 1396,
           "date_source": "payload.date",
           "exists": true,
@@ -632,17 +455,17 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 960,
+          "age_seconds": 48,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -696,7 +519,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 42941,
+          "age_seconds": 43147,
           "count": 21,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -710,7 +533,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 42941,
+          "age_seconds": 43147,
           "count": 0,
           "date_source": "mtime_et",
           "exists": true,
@@ -796,7 +619,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 49508,
+          "age_seconds": 49715,
           "count": 5,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -818,7 +641,7 @@
           "pattern": "fem_ath_scan.json"
         },
         {
-          "age_seconds": 43123,
+          "age_seconds": 43330,
           "count": 56,
           "date_source": "mtime_et",
           "exists": true,
@@ -876,7 +699,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 74001,
+          "age_seconds": 74207,
           "count": 18,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -890,7 +713,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 74020,
+          "age_seconds": 74226,
           "count": 7,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -904,7 +727,7 @@
           "source_date": "2026-10-20"
         },
         {
-          "age_seconds": 75608,
+          "age_seconds": 75815,
           "count": 14,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -918,7 +741,7 @@
           "source_date": "2026-10-20"
         },
         {
-          "age_seconds": 75608,
+          "age_seconds": 75815,
           "count": 11,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1058,7 +881,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 8672559,
+          "age_seconds": 8672765,
           "count": 18,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1072,7 +895,7 @@
           "source_date": "2026-07-13"
         },
         {
-          "age_seconds": 8672559,
+          "age_seconds": 8672765,
           "count": 167,
           "date_source": "payload.date",
           "exists": true,
@@ -1086,7 +909,7 @@
           "source_date": "2026-07-13"
         },
         {
-          "age_seconds": 49683,
+          "age_seconds": 49889,
           "count": 120,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1148,7 +971,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 49683,
+          "age_seconds": 49889,
           "count": 120,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1162,7 +985,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 49683,
+          "age_seconds": 49889,
           "count": 120,
           "date_source": "mtime_et",
           "exists": true,
@@ -1176,7 +999,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 49683,
+          "age_seconds": 49889,
           "count": 120,
           "date_source": "pattern",
           "exists": true,
@@ -1247,6 +1070,63 @@
     {
       "bot_required": false,
       "bot_route_ok": true,
+      "context_contract": [],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Execution Truth",
+      "experiment_phase": "CONTROL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 1,
+      "next_action": "No immediate registry action required.",
+      "notes": "Single execution truth ledger: reconstructs parent orders, fills, exits, and realized PnL.",
+      "operator_role": "CONTROL",
+      "panel_id": "execution_truth",
+      "primary_source": "fem_execution_truth.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": false,
+      "score_partition": "control::execution_truth",
+      "score_required": false,
+      "score_rows": [],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 0,
+        "ghost_graded": 0
+      },
+      "side": "BOTH",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 16,
+          "count": 0,
+          "date_source": "payload.trade_date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.trade_date date 2026-10-21 matches 2026-10-21",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-10-22T00:55:42+00:00",
+          "path": "fem_execution_truth.json",
+          "pattern": "fem_execution_truth.json",
+          "size_bytes": 614,
+          "source_date": "2026-10-21"
+        }
+      ],
+      "stale_source_count": 0,
+      "status": "OK",
+      "strategy_ids": [
+        "execution_truth"
+      ],
+      "truth_label": "CONTROL",
+      "truth_reason": "operator control panel; explains decisions, trust, and breaks but is not a trader",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
       "context_contract": [
         "gap_channel_context",
         "options_context",
@@ -1296,7 +1176,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 192,
+          "age_seconds": 399,
           "count": 1,
           "date_source": "payload.date",
           "exists": true,
@@ -1370,7 +1250,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 38,
+          "age_seconds": 245,
           "count": 1396,
           "date_source": "payload.date",
           "exists": true,
@@ -1384,7 +1264,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 75494,
+          "age_seconds": 75701,
           "count": 1846,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1398,7 +1278,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 48,
+          "age_seconds": 255,
           "count": 12,
           "date_source": "payload.date",
           "exists": true,
@@ -1412,7 +1292,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 75497,
+          "age_seconds": 75704,
           "count": 14,
           "date_source": "payload.date",
           "exists": true,
@@ -1486,7 +1366,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 49503,
+          "age_seconds": 49710,
           "count": 9,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1500,7 +1380,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 49504,
+          "age_seconds": 49711,
           "count": 148056,
           "date_source": "payload.date",
           "exists": true,
@@ -1518,6 +1398,122 @@
       "status": "OK",
       "strategy_ids": [
         "gap_reject_short"
+      ],
+      "truth_label": "SHADOW ONLY",
+      "truth_reason": "candidate source is tracked and scored, but not allowed to trade live yet",
+      "warnings": []
+    },
+    {
+      "bot_required": false,
+      "bot_route_ok": true,
+      "context_contract": [
+        "gap_channel_context",
+        "options_context"
+      ],
+      "dashboard_ok": true,
+      "display_default_hidden": false,
+      "display_name": "Gap Wall Roundtrip",
+      "experiment_phase": "SHADOW_PANEL",
+      "failures": [],
+      "mode": "tracked",
+      "money_priority": 9,
+      "next_action": "No immediate registry action required.",
+      "notes": "Shadow only: every surge gets a gap-wall plan, then wall touch is scored as eat/acceptance versus rejection short.",
+      "operator_role": "SHADOW_TRADER",
+      "panel_id": "gap_wall_roundtrip",
+      "primary_source": "fem_gap_wall_roundtrip.json",
+      "primary_source_freshness": "OK",
+      "publisher_ok": true,
+      "score_ok": true,
+      "score_partition": "shadow_panel::gap_wall_roundtrip",
+      "score_required": true,
+      "score_rows": [
+        {
+          "actual_closed": 0,
+          "actual_realized_pnl": 0.0,
+          "actual_trades": 0,
+          "ghost_avg_target_r": -0.901,
+          "ghost_fires": 7762,
+          "ghost_graded": 869,
+          "ghost_run_rate": 10.36,
+          "ghost_runners": 90,
+          "panel_name": "Gap Wall Roundtrip",
+          "strategy_id": "gap_wall_roundtrip_shadow",
+          "verdict": "CUT_GHOST"
+        }
+      ],
+      "score_summary": {
+        "actual_trades": 0,
+        "ghost_fires": 7762,
+        "ghost_graded": 869
+      },
+      "side": "MIXED",
+      "source_fresh_ok": true,
+      "source_ok": true,
+      "source_present_ok": true,
+      "source_required": true,
+      "sources": [
+        {
+          "age_seconds": 18,
+          "count": 7762,
+          "date_source": "payload.date",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.date date 2026-10-21 matches 2026-10-21",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-10-22T00:55:42+00:00",
+          "path": "fem_gap_wall_roundtrip.json",
+          "pattern": "fem_gap_wall_roundtrip.json",
+          "size_bytes": 22019245,
+          "source_date": "2026-10-21"
+        },
+        {
+          "age_seconds": 49,
+          "count": 30705,
+          "date_source": "pattern",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
+          "path": "_DAILY/live_fires_2026-10-21.jsonl",
+          "pattern": "_DAILY/live_fires_{date}.jsonl",
+          "size_bytes": 10181476,
+          "source_date": "2026-10-21"
+        },
+        {
+          "age_seconds": 75704,
+          "count": 14,
+          "date_source": "payload.date",
+          "exists": true,
+          "fresh": false,
+          "freshness_detail": "payload.date date 2026-10-20 != 2026-10-21",
+          "freshness_status": "STALE",
+          "mtime_utc": "2026-10-21T03:54:15+00:00",
+          "path": "fem_gap_timeframe_contract.json",
+          "pattern": "fem_gap_timeframe_contract.json",
+          "size_bytes": 42502619,
+          "source_date": "2026-10-20"
+        },
+        {
+          "age_seconds": 75702,
+          "count": 1846,
+          "date_source": "payload.generated_at",
+          "exists": true,
+          "fresh": true,
+          "freshness_detail": "payload.generated_at date 2026-10-21 matches 2026-10-21",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-10-21T03:54:17+00:00",
+          "path": "fem_gap_staircase_lens.json",
+          "pattern": "fem_gap_staircase_lens.json",
+          "size_bytes": 6047148,
+          "source_date": "2026-10-21"
+        }
+      ],
+      "stale_source_count": 1,
+      "status": "OK",
+      "strategy_ids": [
+        "gap_wall_roundtrip_shadow"
       ],
       "truth_label": "SHADOW ONLY",
       "truth_reason": "candidate source is tracked and scored, but not allowed to trade live yet",
@@ -1557,7 +1553,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 61,
+          "age_seconds": 268,
           "count": 14,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1614,7 +1610,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 61,
+          "age_seconds": 268,
           "count": 16,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1727,7 +1723,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 28,
+          "age_seconds": 235,
           "count": 9,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -1803,7 +1799,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 49874,
+          "age_seconds": 50081,
           "count": 5,
           "date_source": "payload.date",
           "exists": true,
@@ -1817,7 +1813,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 49874,
+          "age_seconds": 50081,
           "count": 1964,
           "date_source": "payload.date",
           "exists": true,
@@ -1831,7 +1827,7 @@
           "source_date": "2026-06-17"
         },
         {
-          "age_seconds": 17348,
+          "age_seconds": 17555,
           "count": 248,
           "date_source": "pattern",
           "exists": true,
@@ -1888,7 +1884,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 1936,
+          "age_seconds": 2141,
           "count": 12,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -1902,7 +1898,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 1936,
+          "age_seconds": 2141,
           "count": 12,
           "date_source": "pattern",
           "exists": true,
@@ -1916,7 +1912,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 1938,
+          "age_seconds": 2143,
           "count": 28,
           "date_source": "mtime_et",
           "exists": true,
@@ -1989,7 +1985,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 17349,
+          "age_seconds": 17556,
           "count": 248,
           "date_source": "pattern",
           "exists": true,
@@ -2003,7 +1999,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 42668,
+          "age_seconds": 42875,
           "count": 30,
           "date_source": "mtime_et",
           "exists": true,
@@ -2017,7 +2013,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 472,
+          "age_seconds": 679,
           "count": 11,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -2103,7 +2099,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2117,7 +2113,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 24125,
           "date_source": "payload.date",
           "exists": true,
@@ -2131,7 +2127,7 @@
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 49912,
+          "age_seconds": 50119,
           "count": 21,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2207,7 +2203,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2221,7 +2217,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 24125,
           "date_source": "payload.date",
           "exists": true,
@@ -2235,7 +2231,7 @@
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 49912,
+          "age_seconds": 50119,
           "count": 21,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2309,7 +2305,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2323,7 +2319,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 24125,
           "date_source": "payload.date",
           "exists": true,
@@ -2337,7 +2333,7 @@
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 49912,
+          "age_seconds": 50119,
           "count": 21,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2411,7 +2407,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2425,7 +2421,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 24125,
           "date_source": "payload.date",
           "exists": true,
@@ -2439,7 +2435,7 @@
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 49912,
+          "age_seconds": 50119,
           "count": 21,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2513,7 +2509,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 12,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2527,7 +2523,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 450,
+          "age_seconds": 657,
           "count": 24125,
           "date_source": "payload.date",
           "exists": true,
@@ -2541,7 +2537,7 @@
           "source_date": "2026-06-04"
         },
         {
-          "age_seconds": 49912,
+          "age_seconds": 50119,
           "count": 21,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2640,7 +2636,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 17351,
+          "age_seconds": 17557,
           "count": 14,
           "date_source": "payload.day",
           "exists": true,
@@ -2654,7 +2650,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 17351,
+          "age_seconds": 17557,
           "count": 248,
           "date_source": "pattern",
           "exists": true,
@@ -2668,7 +2664,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 17356,
+          "age_seconds": 17563,
           "count": 118,
           "date_source": "pattern",
           "exists": true,
@@ -2751,31 +2747,31 @@
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 0,
+          "ghost_fires": 544,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
           "panel_name": "Stock Clock",
           "strategy_id": "stock_clock_shadow",
-          "verdict": "NO_DATA"
+          "verdict": "PENDING_GRADE"
         },
         {
           "actual_closed": 0,
           "actual_realized_pnl": 0.0,
           "actual_trades": 0,
           "ghost_avg_target_r": null,
-          "ghost_fires": 0,
+          "ghost_fires": 10,
           "ghost_graded": 0,
           "ghost_run_rate": null,
           "ghost_runners": 0,
           "panel_name": "Micro Clocks",
           "strategy_id": "micro_clock_buy_zone",
-          "verdict": "NO_DATA"
+          "verdict": "PENDING_GRADE"
         }
       ],
       "score_summary": {
         "actual_trades": 0,
-        "ghost_fires": 5612,
+        "ghost_fires": 6166,
         "ghost_graded": 5612
       },
       "side": "LONG",
@@ -2785,35 +2781,35 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 445,
+          "age_seconds": 16,
           "count": 9,
           "date_source": "payload.generated_at",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.generated_at date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:45:08+00:00",
+          "mtime_utc": "2026-10-22T00:55:44+00:00",
           "path": "fem_clock_trade_grade.json",
           "pattern": "fem_clock_trade_grade.json",
-          "size_bytes": 18084,
+          "size_bytes": 18083,
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 86207,
-          "count": 355,
+          "age_seconds": 17,
+          "count": 554,
           "date_source": "payload.date",
           "exists": true,
-          "fresh": false,
-          "freshness_detail": "payload.date date 2026-10-20 != 2026-10-21",
-          "freshness_status": "STALE",
-          "mtime_utc": "2026-10-21T00:55:46+00:00",
+          "fresh": true,
+          "freshness_detail": "payload.date date 2026-10-21 matches 2026-10-21",
+          "freshness_status": "OK",
+          "mtime_utc": "2026-10-22T00:55:42+00:00",
           "path": "fem_clock_contract_bridge.json",
           "pattern": "fem_clock_contract_bridge.json",
-          "size_bytes": 718365,
-          "source_date": "2026-10-20"
+          "size_bytes": 1055963,
+          "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 662,
+          "age_seconds": 869,
           "count": 9,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2827,7 +2823,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 42745,
+          "age_seconds": 42952,
           "count": 3021,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2841,7 +2837,7 @@
           "source_date": "2026-10-21"
         }
       ],
-      "stale_source_count": 1,
+      "stale_source_count": 0,
       "status": "OK",
       "strategy_ids": [
         "clock_long",
@@ -2903,7 +2899,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 5,
+          "age_seconds": 211,
           "count": 7755,
           "date_source": "payload.day",
           "exists": true,
@@ -2917,7 +2913,7 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 40043,
+          "age_seconds": 40248,
           "count": 3,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -2931,17 +2927,17 @@
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 955,
+          "age_seconds": 42,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -2992,21 +2988,21 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 42484,
+          "age_seconds": 0,
           "count": 0,
           "date_source": "payload.trade_date",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.trade_date date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-21T13:04:22+00:00",
+          "mtime_utc": "2026-10-22T00:55:52+00:00",
           "path": "latest_moo_radar_manifest.json",
           "pattern": "latest_moo_radar_manifest.json",
           "size_bytes": 967,
           "source_date": "2026-10-21"
         },
         {
-          "age_seconds": 42941,
+          "age_seconds": 43147,
           "count": 21,
           "date_source": "payload.trade_date",
           "exists": true,
@@ -3079,7 +3075,7 @@
       "source_required": true,
       "sources": [
         {
-          "age_seconds": 438,
+          "age_seconds": 645,
           "count": 4,
           "date_source": "payload.day",
           "exists": true,
@@ -3136,7 +3132,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 75552,
+          "age_seconds": 75759,
           "count": 9,
           "date_source": "payload.date",
           "exists": true,
@@ -3209,17 +3205,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 960,
+          "age_seconds": 48,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3283,17 +3279,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 960,
+          "age_seconds": 48,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3356,17 +3352,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 962,
+          "age_seconds": 50,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3429,17 +3425,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 962,
+          "age_seconds": 50,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3502,17 +3498,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 960,
+          "age_seconds": 48,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3559,17 +3555,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 78,
+          "age_seconds": 40,
           "count": 10,
           "date_source": "payload.day",
           "exists": true,
           "fresh": true,
           "freshness_detail": "payload.day date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:51:15+00:00",
+          "mtime_utc": "2026-10-22T00:55:20+00:00",
           "path": "fem_meta_confluence_score.json",
           "pattern": "fem_meta_confluence_score.json",
-          "size_bytes": 233312,
+          "size_bytes": 234668,
           "source_date": "2026-10-21"
         }
       ],
@@ -3618,7 +3614,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 8938420,
+          "age_seconds": 8938627,
           "count": 13,
           "date_source": "payload.generated_at",
           "exists": true,
@@ -3691,17 +3687,17 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 955,
+          "age_seconds": 41,
           "count": 30705,
           "date_source": "pattern",
           "exists": true,
           "fresh": true,
           "freshness_detail": "pattern date 2026-10-21 matches 2026-10-21",
           "freshness_status": "OK",
-          "mtime_utc": "2026-10-22T00:36:31+00:00",
+          "mtime_utc": "2026-10-22T00:55:10+00:00",
           "path": "_DAILY/live_fires_2026-10-21.jsonl",
           "pattern": "_DAILY/live_fires_{date}.jsonl",
-          "size_bytes": 11133892,
+          "size_bytes": 10181476,
           "source_date": "2026-10-21"
         }
       ],
@@ -3750,7 +3746,7 @@
       "source_required": false,
       "sources": [
         {
-          "age_seconds": 10805230,
+          "age_seconds": 10805436,
           "count": 8,
           "date_source": "payload.day",
           "exists": true,
@@ -3777,20 +3773,20 @@
   "schema": "fem_contract_panel_registry.v1",
   "summary": {
     "active_fail": 0,
-    "active_warn": 7,
+    "active_warn": 5,
     "bot_required": 6,
     "bot_routed": 6,
-    "fresh_sourced": 31,
+    "fresh_sourced": 33,
     "panels": 43,
     "scored": 25,
-    "sourced": 35,
-    "stale_source_panels": 21,
-    "stale_sources": 26,
+    "sourced": 37,
+    "stale_source_panels": 19,
+    "stale_sources": 23,
     "status_counts": {
       "FAIL": 0,
-      "OK": 25,
+      "OK": 27,
       "RESEARCH": 10,
-      "WARN": 8
+      "WARN": 6
     }
   },
   "trade_date": "2026-10-21"
