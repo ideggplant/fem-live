@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.03699970245361328,
+    "age_sec": 0.04900050163269043,
     "alist_fillable_count": 7,
     "alist_proven_moo_candidate_count": 6,
     "alist_row_count": 7,
@@ -14,26 +14,18 @@
     "source_file": "fem_abook_2026-10-22_0404.csv",
     "source_same_day": true
   },
-  "blockers": [
-    {
-      "action": "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
-      "code": "LIVE_READINESS_BLOCKED",
-      "impact": "FEM may be alive but unable to trade valid scalps.",
-      "message": "Live readiness is blocked.",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 110.42661619186401,
-    "alive": true,
-    "generated_at": "2026-10-22T12:32:32",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 6.355145692825317,
+    "alive": false,
+    "generated_at": "2026-10-22T12:48:34",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.28952956199646,
+    "age_sec": 1.4001398086547852,
     "connected": true,
-    "generated_at": "2026-10-22T19:34:26+00:00",
+    "generated_at": "2026-10-22T19:48:40+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -43,10 +35,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-10-22T19:34:28+00:00",
-  "generated_at_et": "2026-10-22T15:34:25-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-10-22T19:48:42+00:00",
+  "generated_at_et": "2026-10-22T15:48:39-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,9 +49,9 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.18769478797912598,
+    "age_sec": 0.2276322841644287,
     "fail": 1,
-    "generated_at": "2026-10-22T19:34:27+00:00",
+    "generated_at": "2026-10-22T19:48:41+00:00",
     "live_ready": false,
     "next_actions": [
       "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
@@ -70,7 +62,7 @@
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 22519.220633268356,
+    "age_sec": 2.888474941253662,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-10-22",
@@ -167,7 +159,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 22556.6903963089,
+    "age_sec": 23410.612493753433,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -199,10 +191,21 @@
     ]
   },
   "session": "rth",
-  "state": "NOT_TRADE_READY",
-  "title": "FEM Blocked",
+  "state": "SAFE_BUT_WAITING",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
+  "title": "FEM Waiting",
   "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -218,13 +221,6 @@
       "severity": "WARN"
     },
     {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
-      "severity": "WARN"
-    },
-    {
       "action": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
       "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
       "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
@@ -233,21 +229,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 8.859968423843384,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 32.95439863204956,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 0,
+    "critical_or_panic_count": 2,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 84,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
