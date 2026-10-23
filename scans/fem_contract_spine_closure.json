@@ -1,7 +1,6 @@
 {
   "blocking_live_trading_gates": [
     "CONTRACT_ERRORS_CLEAR",
-    "RUNTIME_READY",
     "BOT_ENFORCEMENT_ON"
   ],
   "blocking_normal_scoring_gates": [
@@ -11,7 +10,7 @@
     "BOT_ENFORCEMENT_ON",
     "ROUTE_POLICY_CLEAN"
   ],
-  "code_version": "545bf133",
+  "code_version": "e34ea638",
   "gates": [
     {
       "blocking_live_trading": false,
@@ -32,7 +31,7 @@
       "blocking_live_trading": true,
       "blocking_normal_scoring": true,
       "evidence": [
-        "WARN Panel registry contract warnings: 4 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=18"
+        "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=18"
       ],
       "evidence_count": 1,
       "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -44,19 +43,19 @@
       "status": "REVIEW"
     },
     {
-      "blocking_live_trading": true,
+      "blocking_live_trading": false,
       "blocking_normal_scoring": false,
       "evidence": [
-        "WARN Live readiness overall:"
+        "Runtime drift and live readiness are OK."
       ],
       "evidence_count": 1,
       "gate_id": "RUNTIME_READY",
       "label": "Live/bot runtime matches disk code",
-      "next_action": "Restart stale/missing runtime windows, then run _DAILY\\0T_CONTRACT_RUNTIME_DRIFT.bat and _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "next_action": "No action required.",
       "priority": 30,
-      "severity": "WARN",
+      "severity": "OK",
       "source": "fem_contract_runtime_drift.json + fem_contract_live_readiness.json",
-      "status": "REVIEW"
+      "status": "CLOSED"
     },
     {
       "blocking_live_trading": false,
@@ -77,9 +76,9 @@
       "blocking_live_trading": false,
       "blocking_normal_scoring": true,
       "evidence": [
-        "FAIL Picks without explicit bot accounting: 472 unaccounted pick group(s); raw unaccounted picks=472",
-        "WARN Decision obligation timestamp ordering warnings: 1261 accounted pick(s) had accounting timestamps earlier than pick timestamps",
-        "WARN Latency / missed move warnings: missed=7833, no_decision=472, slow_decisions=8011, slow_orders=0, order_after_peak=0"
+        "FAIL Picks without explicit bot accounting: 571 unaccounted pick group(s); raw unaccounted picks=571",
+        "WARN Decision obligation timestamp ordering warnings: 1834 accounted pick(s) had accounting timestamps earlier than pick timestamps",
+        "WARN Latency / missed move warnings: missed=8968, no_decision=571, slow_decisions=10919, slow_orders=1, order_after_peak=1"
       ],
       "evidence_count": 3,
       "gate_id": "DECISION_ACCOUNTING_CLEAN",
@@ -96,14 +95,15 @@
       "evidence": [
         "SESSION_DIRTY_HIGH: session profile is not normal: profile=EXPERIMENT_OPEN_GATES, dirty_data_risk=HIGH, score_policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
         "SCORE_PROVENANCE_NOT_NORMAL: score provenance says normal_score_eligible=false; partition=EXPERIMENT, reason=EXPERIMENT_OPEN_GATES; risk=HIGH; policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES",
-        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=230887, review=0",
+        "SCORE_PARTITIONS_NO_NORMAL_EVIDENCE: normal leaderboard is empty while non-normal evidence exists: experiment=232102, review=0",
         "SCORE_CONSUMER_LOCK_ACTIVE: 66 score-consuming route(s) are locked to research/display and no normal score routes are available",
-        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=26, track_only=40",
+        "TRADE_PERMISSIONS_NO_ALLOWED_ROUTES: trade permission manifest allows zero bot routes: allow_full=0, allow_probe=0, block=27, track_only=39",
         "TRADE_PERMISSIONS_HEALTH_FAIL: trade permissions were built while contract health was FAIL",
+        "ORDER_PERMISSION_PRE_LOCK_DISALLOWED: 20 historical order(s) predate the current permission lock and would be blocked or track-only now",
         "BOT_GATE_ENFORCEMENT_DISABLED: bot runtime gates are not fully enforcing: permission_enforce=False, health_enforce=True, block_unknown=False, allows_fire_override=False",
         "BOT_GATE_LEGACY_MOO_REVIEW: legacy MOO launcher is active, but entry sites are structurally gated; keep MOO evidence reviewed until forward samples prove compliance"
       ],
-      "evidence_count": 8,
+      "evidence_count": 9,
       "gate_id": "EVIDENCE_NORMAL_ALLOWED",
       "label": "Evidence can enter normal scoring",
       "next_action": "Keep this session quarantined as EXPERIMENT until the listed blockers clear.",
@@ -186,13 +186,13 @@
       "status": "CLOSED"
     }
   ],
-  "generated_at": "2026-10-22T03:20:29+00:00",
-  "generated_at_et": "2026-10-21T23:20:29-04:00",
+  "generated_at": "2026-10-23T03:35:25+00:00",
+  "generated_at_et": "2026-10-22T23:35:25-04:00",
   "next_gate": {
     "blocking_live_trading": true,
     "blocking_normal_scoring": true,
     "evidence": [
-      "WARN Panel registry contract warnings: 4 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=18"
+      "WARN Panel registry contract warnings: 5 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=18"
     ],
     "evidence_count": 1,
     "gate_id": "CONTRACT_ERRORS_CLEAR",
@@ -207,12 +207,12 @@
   "overall": "FAIL",
   "schema": "fem_contract_spine_closure.v1",
   "session": "closed",
-  "spine_stage": "BOOTSTRAP",
+  "spine_stage": "REPAIR_READY",
   "summary": {
-    "blocking_live_trading": 3,
+    "blocking_live_trading": 2,
     "blocking_normal_scoring": 5,
-    "closed_gates": 4,
-    "closure_percent": 40.0,
+    "closed_gates": 5,
+    "closure_percent": 50.0,
     "evidence_overall": "WARN",
     "evidence_partition": "EXPERIMENT",
     "gates": 10,
@@ -223,7 +223,7 @@
     "remediation_executor_mode": "DRY_RUN",
     "remediation_executor_overall": "OK",
     "remediation_plan_overall": "FAIL",
-    "review_gates": 3
+    "review_gates": 2
   },
-  "trade_date": "2026-10-21"
+  "trade_date": "2026-10-22"
 }
