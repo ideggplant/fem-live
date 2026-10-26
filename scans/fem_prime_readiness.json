@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.04200124740600586,
+    "age_sec": 0.051541805267333984,
     "alist_fillable_count": 7,
     "alist_proven_moo_candidate_count": 3,
     "alist_row_count": 7,
@@ -16,37 +16,65 @@
   },
   "blockers": [
     {
+      "action": "Reconnect TWS/broker and rerun prime readiness.",
+      "code": "BROKER_NOT_OK",
+      "impact": "Cannot trust entries, exits, or flat state.",
+      "message": "Broker reconcile is FAIL connected=True.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Run broker reconcile and clean the named order issue.",
+      "code": "ORDER_SAFETY_NOT_CLEAN",
+      "impact": "Scalping can create uncontrolled exposure.",
+      "message": "Broker order/position safety is not clean.",
+      "severity": "CRITICAL"
+    },
+    {
       "action": "Open fem_watchdog_status.json and resolve the critical alert.",
       "code": "WATCHDOG_CRITICAL",
       "impact": "A money-readiness condition is failing.",
       "message": "Watchdog has 2 critical/panic alert(s).",
       "severity": "CRITICAL"
+    },
+    {
+      "action": "Run morning health/scanner check.",
+      "code": "MORNING_SCANS_NOT_CONFIRMED",
+      "impact": "Universe may be stale or incomplete.",
+      "message": "Morning scanner/TWS health is not confirmed OK.",
+      "severity": "CRITICAL"
+    },
+    {
+      "action": "Refresh short scan before relying on trading.",
+      "code": "SHORT_SCAN_NOT_CURRENT",
+      "impact": "Short opportunities may be invisible.",
+      "message": "Short watchlist is empty or not current.",
+      "severity": "CRITICAL"
     }
   ],
   "bot": {
-    "age_sec": 12.97611927986145,
+    "age_sec": 33.1488995552063,
     "alive": true,
-    "generated_at": "2026-10-26T06:18:19",
+    "generated_at": "2026-10-26T06:30:00",
     "mode": "TRIGGER_LIVE",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.8706820011138916,
+    "age_sec": 1.5197126865386963,
     "connected": true,
-    "generated_at": "2026-10-26T13:18:30+00:00",
-    "invalid_entry_like_orders": 0,
-    "open_orders": 0,
-    "order_fail": 0,
+    "generated_at": "2026-10-26T13:30:33+00:00",
+    "invalid_entry_like_orders": 1,
+    "open_orders": 5,
+    "order_fail": 5,
     "orphan_exit_orders": 0,
-    "overall": "OK",
+    "overall": "FAIL",
     "position_fail": 0,
-    "positions": 0,
+    "positions": 3,
     "unprotected_positions": 0
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-10-26T13:18:33+00:00",
-  "generated_at_et": "2026-10-26T09:18:29-04:00",
+  "generated_at": "2026-10-26T13:30:36+00:00",
+  "generated_at_et": "2026-10-26T09:30:32-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,20 +85,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.21062612533569336,
+    "age_sec": 0.22770261764526367,
     "fail": 0,
-    "generated_at": "2026-10-26T13:18:32+00:00",
+    "generated_at": "2026-10-26T13:30:34+00:00",
     "live_ready": true,
     "next_actions": [
       "Live readiness blockers are clear."
     ],
     "overall": "WARN",
-    "session": "pre",
+    "session": "rth",
     "warn": 2
   },
-  "money_safe": true,
+  "money_safe": false,
   "morning": {
-    "age_sec": 24.58369541168213,
+    "age_sec": 747.0897881984711,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-10-26",
@@ -86,8 +114,8 @@
   "next_session_startup": {
     "alist_fillable_count": 7,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 0,
-    "carryover_position_count": 0,
+    "carryover_open_order_count": 5,
+    "carryover_position_count": 3,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -110,13 +138,13 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-10-26 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-10-26 overall=FAIL orders=5 positions=3 order_fail=5 pos_fail=0 cancelled=0\n  MISSING_EXIT_INTENT_FOR_CHILD: 4\n  MISSING_ORDER_STRATEGY: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=pre ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -167,7 +195,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 24.75198984146118,
+    "age_sec": 747.2566215991974,
     "overall": "WARN",
     "rankings_count": 25,
     "refresh_error": null,
@@ -196,12 +224,8 @@
       "UNKNOWN"
     ]
   },
-  "session": "pre",
+  "session": "rth",
   "state": "NOT_TRADE_READY",
-  "telegram": {
-    "enabled": false,
-    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
-  },
   "title": "FEM Blocked",
   "trade_ready": false,
   "watch_items": [
@@ -228,8 +252,8 @@
     }
   ],
   "watchdog": {
-    "age_sec": 22.765589237213135,
-    "bot_mode": "TRIGGER_DONE",
+    "age_sec": 60.24087429046631,
+    "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
