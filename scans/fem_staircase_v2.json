@@ -1,7 +1,7 @@
 {
  "schema": "fem_staircase_v2/v1",
  "panel_id": "staircase_v2",
- "generated_at": "2026-10-27T09:26:01-04:00",
+ "generated_at": "2026-10-27T09:36:18-04:00",
  "trade_date": "2026-10-27",
  "staircase_source": "fem_gap_eat_staircase_long_2026-10-27.json",
  "staircase_is_today": true,
@@ -1627,12 +1627,6 @@
    "floors": [
     {
      "tf": "5m",
-     "top": 8.69,
-     "bottom": 8.665,
-     "weight": 1
-    },
-    {
-     "tf": "5m",
      "top": 8.68,
      "bottom": 8.665,
      "weight": 1
@@ -1647,6 +1641,12 @@
      "tf": "5m",
      "top": 8.675,
      "bottom": 8.66,
+     "weight": 1
+    },
+    {
+     "tf": "5m",
+     "top": 8.68,
+     "bottom": 8.59,
      "weight": 1
     }
    ],
@@ -7606,32 +7606,48 @@
    "plan": null,
    "bear_gap_transfer_15m": {
     "checked": true,
-    "state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
-    "large_bear_gap": {
-     "bottom": 3.24,
-     "top": 3.4001,
-     "timeframe": "5m",
-     "type": "gap",
-     "source_key": "full_gap_contract.overhead.top",
-     "distance_pct": 1.25,
-     "tick_width": 17.0,
-     "genesis_rank_pct": 0.414,
-     "creation_vol": 1475.0,
-     "conviction_tier": "MINOR"
-    },
-    "last_15m": {
-     "close": 3.2457,
-     "high": 3.3,
-     "low": 3.23,
-     "volume": 2326.0,
-     "relvol_20": 1.63,
-     "volume_ok": false,
-     "entered_from_below": true,
-     "closed_inside_gap": true,
-     "closed_above_gap": false
-    },
+    "state": "BELOW_LARGE_BEAR_GAP",
     "research_only": true,
     "live_behavior_changed": false,
+    "operator_note": "price has not yet pushed into a large bearish overhead gap on the 15m read",
+    "large_bear_overheads": [
+     {
+      "bottom": 3.24,
+      "top": 3.4001,
+      "timeframe": "5m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.25,
+      "tick_width": 17.0,
+      "genesis_rank_pct": 0.414,
+      "creation_vol": 1475.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 3.25,
+      "top": 3.3319,
+      "timeframe": "10m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.56,
+      "tick_width": 9.0,
+      "genesis_rank_pct": 0.302,
+      "creation_vol": 1979.0,
+      "conviction_tier": "MINOR"
+     },
+     {
+      "bottom": 3.25,
+      "top": 3.3319,
+      "timeframe": "5m",
+      "type": "gap",
+      "source_key": "full_gap_contract.overhead.top",
+      "distance_pct": 1.56,
+      "tick_width": 9.0,
+      "genesis_rank_pct": 0.241,
+      "creation_vol": 1000.0,
+      "conviction_tier": "MINOR"
+     }
+    ],
     "coverage": {
      "state_timeframes": [
       "weekly",
@@ -7720,12 +7736,11 @@
      "research_only": true,
      "live_behavior_changed": false,
      "operator_note": "15m bullish floors are being built below price; this supports the red-gap transfer thesis"
-    },
-    "operator_note": "large bearish overhead gap was touched; wait for 15m close plus volume before treating it as transfer"
+    }
    },
    "fractal_channel_gap_context": {
     "checked": true,
-    "state": "RED_GAP_ACCEPTANCE_WITH_15M_FLOORS",
+    "state": "FLOORS_BUILDING_BELOW_BUT_NO_RED_GAP_TRANSFER",
     "symbol": "CMCT",
     "channel": {
      "available": true,
@@ -7737,7 +7752,7 @@
      "rail_width": 0.24,
      "score": 60.0
     },
-    "bear_gap_transfer_15m_state": "BEAR_GAP_ACCEPTING_15M_NEEDS_VOLUME",
+    "bear_gap_transfer_15m_state": "BELOW_LARGE_BEAR_GAP",
     "large_bear_gap": {
      "bottom": 3.24,
      "top": 3.4001,
@@ -7774,14 +7789,14 @@
      ],
      "live_tracks_all_research_timeframes": false
     },
-    "operator_note": "price is accepting into/through red overhead traffic while 15m green floors build below",
+    "operator_note": "15m green floors are building below, but price has not proven red-gap transfer",
     "gill_read_template": "start from daily/HTF channel; then test whether price is accepting into a large red gap with volume and 15m green gaps/floors building below. In that case red overhead can be transfer/eat, not a hard blocker.",
     "research_only": true,
     "live_behavior_changed": false
    },
    "road_pct": 1.56,
-   "relvol": 1.68,
-   "rsi": 57.2,
+   "relvol": 0.38,
+   "rsi": 63.6,
    "floors": [],
    "blockers": [
     "1_eaten",
@@ -8537,7 +8552,7 @@
     "live_behavior_changed": false
    },
    "road_pct": 10.16,
-   "relvol": 0.13,
+   "relvol": 1.07,
    "rsi": 38.1,
    "floors": [],
    "blockers": [
