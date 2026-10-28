@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.060534000396728516,
+    "age_sec": 0.6916911602020264,
     "alist_fillable_count": 3,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 3,
@@ -14,39 +14,31 @@
     "source_file": "fem_abook_2026-10-28_0405.csv",
     "source_same_day": true
   },
-  "blockers": [
-    {
-      "action": "Start the scheduled bot handoff or trade bot.",
-      "code": "TRIGGER_BOT_NOT_VISIBLE",
-      "impact": "FEM cannot enter/manage intended scalps.",
-      "message": "No trigger bot process is visible during a trading session.",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 149.32023286819458,
-    "alive": true,
-    "generated_at": "2026-10-28T11:31:06",
-    "mode": "TRIGGER_LIVE",
-    "n_positions": 1
+    "age_sec": 174.68649291992188,
+    "alive": false,
+    "generated_at": "2026-10-28T12:55:13",
+    "mode": "EOD_FLATTENED",
+    "n_positions": 0
   },
   "broker": {
-    "age_sec": 8.987529754638672,
+    "age_sec": 67.30157256126404,
     "connected": true,
-    "generated_at": "2026-10-28T18:33:26+00:00",
+    "generated_at": "2026-10-28T19:57:32+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 2,
+    "open_orders": 0,
     "order_fail": 0,
     "orphan_exit_orders": 0,
     "overall": "OK",
     "position_fail": 0,
-    "positions": 1,
+    "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-10-28T18:33:40+00:00",
-  "generated_at_et": "2026-10-28T14:33:22-04:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-10-28T19:59:26+00:00",
+  "generated_at_et": "2026-10-28T15:57:16-04:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -57,20 +49,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.7098565101623535,
-    "fail": 0,
-    "generated_at": "2026-10-28T18:33:34+00:00",
-    "live_ready": true,
+    "age_sec": 10.587019681930542,
+    "fail": 1,
+    "generated_at": "2026-10-28T19:58:29+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "WARN",
+    "overall": "FAIL",
     "session": "rth",
-    "warn": 1
+    "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 198.02495503425598,
+    "age_sec": 108.38903999328613,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-10-28",
@@ -86,8 +78,8 @@
   "next_session_startup": {
     "alist_fillable_count": 3,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 2,
-    "carryover_position_count": 1,
+    "carryover_open_order_count": 0,
+    "carryover_position_count": 0,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -110,64 +102,39 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-10-28 overall=OK orders=2 positions=1 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-10-28 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=8/1/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
+    "errors": [
+      {
+        "error": "Command '['powershell', '-NoProfile', '-Command', \"\\n    $names = @('FEM_0355_TWS_PRECHECK','FEM 0400 Scanner And Stack','FEM 0627 RTH Bot Handoff','FEM 1305 AH Trade Bot','FEM Independent Watchdog')\\n    Get-ScheduledTask | Where-Object { $names -contains $_.TaskName } | ForEach-Object {\\n      $info = Get-ScheduledTaskInfo -TaskName $_.TaskName -TaskPath $_.TaskPath\\n      [pscustomobject]@{\\n        task_name = $_.TaskName\\n        state = [string]$_.State\\n        last_run_time = [string]$info.LastRunTime\\n        last_task_result = [int64]$info.LastTaskResult\\n        next_run_time = [string]$info.NextRunTime\\n      }\\n    } | ConvertTo-Json -Compress\\n    \"]' timed out after 45 seconds",
+        "state": "ERROR",
+        "task_name": "__schedule_query_error__"
+      }
+    ],
     "missing": [],
     "no_next_run": [],
-    "not_ready": [
-      "FEM 1305 AH Trade Bot"
-    ],
+    "not_ready": [],
     "ok": false,
     "rows": [
       {
-        "last_run_time": "10/28/2026 04:00:00",
-        "last_task_result": 0,
-        "next_run_time": "10/29/2026 04:00:00",
-        "state": "Ready",
-        "task_name": "FEM 0400 Scanner And Stack"
-      },
-      {
-        "last_run_time": "10/28/2026 06:17:17",
-        "last_task_result": 0,
-        "next_run_time": "10/29/2026 06:17:17",
-        "state": "Ready",
-        "task_name": "FEM 0627 RTH Bot Handoff"
-      },
-      {
-        "last_run_time": "08/07/2026 12:50:50",
-        "last_task_result": 0,
-        "next_run_time": "10/28/2026 12:50:50",
-        "state": "Disabled",
-        "task_name": "FEM 1305 AH Trade Bot"
-      },
-      {
-        "last_run_time": "10/28/2026 03:55:55",
-        "last_task_result": 2147946720,
-        "next_run_time": "10/29/2026 03:55:55",
-        "state": "Running",
-        "task_name": "FEM Independent Watchdog"
-      },
-      {
-        "last_run_time": "10/28/2026 03:55:55",
-        "last_task_result": 0,
-        "next_run_time": "10/29/2026 03:55:55",
-        "state": "Ready",
-        "task_name": "FEM_0355_TWS_PRECHECK"
+        "error": "Command '['powershell', '-NoProfile', '-Command', \"\\n    $names = @('FEM_0355_TWS_PRECHECK','FEM 0400 Scanner And Stack','FEM 0627 RTH Bot Handoff','FEM 1305 AH Trade Bot','FEM Independent Watchdog')\\n    Get-ScheduledTask | Where-Object { $names -contains $_.TaskName } | ForEach-Object {\\n      $info = Get-ScheduledTaskInfo -TaskName $_.TaskName -TaskPath $_.TaskPath\\n      [pscustomobject]@{\\n        task_name = $_.TaskName\\n        state = [string]$_.State\\n        last_run_time = [string]$info.LastRunTime\\n        last_task_result = [int64]$info.LastTaskResult\\n        next_run_time = [string]$info.NextRunTime\\n      }\\n    } | ConvertTo-Json -Compress\\n    \"]' timed out after 45 seconds",
+        "state": "ERROR",
+        "task_name": "__schedule_query_error__"
       }
     ],
-    "unknown": false
+    "unknown": true
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 18911.173763990402,
+    "age_sec": 24015.40677833557,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -251,15 +218,19 @@
     ]
   },
   "session": "rth",
-  "state": "NOT_TRADE_READY",
-  "title": "FEM Blocked",
+  "state": "SAFE_BUT_WAITING",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
+  "title": "FEM Waiting",
   "trade_ready": false,
   "watch_items": [
     {
-      "action": "Inspect remaining non-carryover alerts if entries are not firing.",
-      "code": "WATCHDOG_CARRYOVER_WARNINGS",
-      "impact": "Watchdog is still useful, but carryover warnings should not imply the trigger bot is off.",
-      "message": "Watchdog has 1 critical/panic alert(s), including acknowledged carryover risk.",
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
       "severity": "WARN"
     },
     {
@@ -270,10 +241,10 @@
       "severity": "WARN"
     },
     {
-      "action": "Repair the named scheduled task before depending on automation.",
-      "code": "SCHEDULE_NOT_ARMED",
-      "impact": "Tomorrow or next-session startup may fail silently.",
-      "message": "Schedule issue: missing=[] not_ready=['FEM 1305 AH Trade Bot'] no_next=[].",
+      "action": "Run CHECK_SCHEDULED_TASKS.bat or rerun prime readiness.",
+      "code": "SCHEDULE_QUERY_UNKNOWN",
+      "impact": "Startup schedule truth is unknown from this wrapper.",
+      "message": "Scheduled-task query did not return a clean answer.",
       "severity": "WARN"
     },
     {
@@ -285,13 +256,13 @@
     }
   ],
   "watchdog": {
-    "age_sec": 21.913471460342407,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 77.98682928085327,
+    "bot_mode": "EOD_FLATTENED",
     "broker_connected": true,
-    "broker_open_orders": 2,
+    "broker_open_orders": 0,
     "broker_overall": "OK",
-    "broker_positions": 1,
-    "critical_or_panic_count": 1,
+    "broker_positions": 0,
+    "critical_or_panic_count": 3,
     "morning_scanner": "OK",
     "morning_tws": "OK",
     "overall": "CRITICAL",
