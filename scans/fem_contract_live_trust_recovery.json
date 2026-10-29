@@ -2,13 +2,14 @@
   "category_counts": {
     "EVIDENCE": 1,
     "MISC": 1,
-    "ROUTE_POLICY": 1
+    "ROUTE_POLICY": 1,
+    "RUNTIME": 1
   },
   "certification_path": [
     {
       "detail": "Restart stale runtime and restore live readiness.",
       "label": "Clear live trust failures",
-      "status": "DONE",
+      "status": "OPEN",
       "step": 1
     },
     {
@@ -20,7 +21,7 @@
     {
       "detail": "End open-gate experiment profile and generate a fresh normal session.",
       "label": "Restore normal evidence profile",
-      "status": "OPEN",
+      "status": "DONE",
       "step": 3
     },
     {
@@ -32,42 +33,240 @@
   ],
   "code_version": "e34ea638",
   "first_action": {
-    "blocks_live_trust": false,
+    "blocks_live_trust": true,
     "blocks_normal_learning": false,
-    "can_auto_run": false,
-    "category": "MISC",
-    "certification_effect": "operator_review",
+    "can_auto_run": true,
+    "category": "RUNTIME",
+    "certification_effect": "required_for_live_trust",
     "check_ids": [
-      "contract_break_ledger_stale",
-      "panel_registry_contracts",
-      "live_readiness_warn",
-      "exit_rules_learning_pressure"
+      "live_readiness_not_ready"
     ],
-    "command": null,
+    "command": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
     "evidence": [
-      "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-10-27, not 2026-10-28; ignoring stale breach counts for current health",
-      "FAIL Panel registry contract failures: 6 active panel registry failure(s)",
-      "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
-      "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
+      "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=5/1/3, bot_mode=TRIGGER_LIVE, positions=1"
     ],
-    "evidence_count": 4,
-    "group_id": "misc_health_followup",
-    "priority": 90,
-    "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
-    "root_cause": "A health check was not mapped to a specific recovery group.",
+    "evidence_count": 1,
+    "group_id": "restore_live_readiness",
+    "priority": 15,
+    "recovery_action": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+    "root_cause": "The live readiness light is false, so the bot/runtime state cannot be trusted for current trading.",
     "severity": "FAIL",
-    "title": "Miscellaneous health follow-up"
+    "title": "Restore live readiness"
   },
-  "generated_at": "2026-10-28T05:09:03.484581+00:00",
-  "generated_at_et": "2026-10-28T01:09:03.484581-04:00",
+  "generated_at": "2026-10-29T00:55:49.570916+00:00",
+  "generated_at_et": "2026-10-28T20:55:49.570916-04:00",
   "inputs": {
-    "certification_generated_at": "2026-10-28T05:09:02.941871+00:00",
-    "health_generated_at": "2026-10-28T05:08:43+00:00",
-    "live_readiness_generated_at": "2026-10-28T05:08:40+00:00",
+    "certification_generated_at": "2026-10-29T00:55:48.451908+00:00",
+    "health_generated_at": "2026-10-28T19:55:31+00:00",
+    "live_readiness_generated_at": "2026-10-29T00:55:46+00:00",
     "remediation_plan_generated_at": "2026-10-28T05:08:44+00:00",
-    "runtime_generated_at": "2026-10-28T05:08:39+00:00"
+    "runtime_generated_at": "2026-10-29T00:55:45+00:00"
   },
   "negative_checks": [
+    {
+      "detail": "stale during rth: 52182s old, limit 2700s",
+      "id": "contract_dashboard",
+      "label": "Contract dashboard payload",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 52205s old, limit 2700s",
+      "id": "contract_breaks",
+      "label": "Contract breach ledger",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53333s old, limit 2700s",
+      "id": "contract_accountability",
+      "label": "Contract accountability queue",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 23687s old, limit 2700s",
+      "id": "contract_source_refresh",
+      "label": "Contract source refresh report",
+      "status": "WARN"
+    },
+    {
+      "detail": "stale during rth: 53348s old, limit 2700s",
+      "id": "contract_fill_reconcile",
+      "label": "Contract fill reconciliation",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53344s old, limit 2700s",
+      "id": "contract_exit_reconcile",
+      "label": "Contract exit reconciliation",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53548s old, limit 2700s",
+      "id": "contract_ghost_ledger",
+      "label": "Contract ghost/skipped trade ledger",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 4064s old, limit 2700s",
+      "id": "contract_trade_permissions",
+      "label": "Contract trade permission manifest",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 31588s old, limit 2700s",
+      "id": "contract_route_readiness",
+      "label": "Contract bot route readiness audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53241s old, limit 2700s",
+      "id": "contract_decision_obligation",
+      "label": "Contract decision obligation audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53261s old, limit 2700s",
+      "id": "contract_live_fire_accounting",
+      "label": "Contract live-fire accounting backfill",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 959s old, limit 720s",
+      "id": "contract_live_readiness",
+      "label": "Contract live readiness",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53201s old, limit 720s",
+      "id": "contract_session_context",
+      "label": "Contract session context / dirty-data guard",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53200s old, limit 720s",
+      "id": "contract_score_provenance",
+      "label": "Contract score provenance / score partition guard",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53200s old, limit 720s",
+      "id": "contract_score_partitions",
+      "label": "Contract score partitioned leaderboards",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 4065s old, limit 720s",
+      "id": "contract_score_consumer_lock",
+      "label": "Contract score consumer lock",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53224s old, limit 2700s",
+      "id": "contract_latency_audit",
+      "label": "Contract latency/missed-move audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53203s old, limit 2700s",
+      "id": "contract_order_sizing_audit",
+      "label": "Contract order sizing audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53199s old, limit 2700s",
+      "id": "contract_order_permission_audit",
+      "label": "Contract order permission audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53199s old, limit 2700s",
+      "id": "contract_bot_gate_audit",
+      "label": "Contract bot gate audit",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53199s old, limit 2700s",
+      "id": "contract_evidence_cleanliness",
+      "label": "Contract evidence cleanliness gate",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53344s old, limit 2700s",
+      "id": "contract_realized_result",
+      "label": "Contract realized-result attribution",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53343s old, limit 2700s",
+      "id": "contract_exit_rules_learning",
+      "label": "Contract exit-rules learning ledger",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 4066s old, limit 2700s",
+      "id": "contract_strategy_resolver",
+      "label": "Contract strategy resolver",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 4065s old, limit 2700s",
+      "id": "contract_strategy_registry",
+      "label": "Contract canonical strategy registry",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53179s old, limit 2700s",
+      "id": "contract_strategy_backfill",
+      "label": "Contract strategy backfill closure",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53179s old, limit 2700s",
+      "id": "contract_strategy_enforcement",
+      "label": "Contract strategy registry enforcement",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53179s old, limit 2700s",
+      "id": "contract_daily_certification",
+      "label": "Contract daily spine certification",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53179s old, limit 2700s",
+      "id": "contract_promotion_gate",
+      "label": "Contract promotion/demotion gate",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53178s old, limit 2700s",
+      "id": "contract_live_trust_recovery",
+      "label": "Contract live trust recovery",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53178s old, limit 2700s",
+      "id": "contract_live_trust_executor",
+      "label": "Contract live trust executor",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 4050s old, limit 2700s",
+      "id": "contract_ai_learning_layer",
+      "label": "Contract AI learning hypothesis ledger",
+      "status": "FAIL"
+    },
+    {
+      "detail": "stale during rth: 53175s old, limit 2700s",
+      "id": "contract_auction_truth_shadow",
+      "label": "Contract auction truth shadow score",
+      "status": "FAIL"
+    },
+    {
+      "detail": "trading bot process not detected during tradable session",
+      "id": "runtime_processes",
+      "label": "Runtime processes",
+      "status": "FAIL"
+    },
     {
       "detail": "fem_contract_breaks.json is stamped 2026-10-27, not 2026-10-28; ignoring stale breach counts for current health",
       "id": "contract_break_ledger_stale",
@@ -75,22 +274,28 @@
       "status": "WARN"
     },
     {
-      "detail": "6 active panel registry failure(s)",
+      "detail": "8 active panel(s) need source freshness/score/bot/publish cleanup; stale_source_panels=21",
       "id": "panel_registry_contracts",
-      "label": "Panel registry contract failures",
-      "status": "FAIL"
+      "label": "Panel registry contract warnings",
+      "status": "WARN"
     },
     {
-      "detail": "45 strategy permission(s) are blocked by contract failures",
+      "detail": "33 strategy permission(s) are blocked by contract failures",
       "id": "trade_permissions_blocked",
       "label": "Blocked strategy permissions",
       "status": "WARN"
     },
     {
-      "detail": "checks ok/warn/fail=7/2/0",
-      "id": "live_readiness_warn",
-      "label": "Live readiness warnings",
-      "status": "WARN"
+      "detail": "3 required runtime role(s) missing during rth",
+      "id": "runtime_drift_missing_required",
+      "label": "Required runtime process missing",
+      "status": "FAIL"
+    },
+    {
+      "detail": "live_ready=False, checks ok/warn/fail=5/1/3, bot_mode=TRIGGER_LIVE, positions=1",
+      "id": "live_readiness_not_ready",
+      "label": "Live readiness blocked",
+      "status": "FAIL"
     },
     {
       "detail": "profile=EXPERIMENT_OPEN_GATES, policy=TAG_AND_QUARANTINE_FROM_NORMAL_SCORES, loosened=8, hard_safety=4, positions=0, context=9b59e4b29de47721",
@@ -135,10 +340,31 @@
       "status": "WARN"
     }
   ],
-  "next_action": "Inspect the check detail and add a classifier if this repeats.",
-  "operator_read": "First recovery action: Miscellaneous health follow-up.",
+  "next_action": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+  "operator_read": "First recovery action: Restore live readiness.",
   "overall": "FAIL",
   "recovery_groups": [
+    {
+      "blocks_live_trust": true,
+      "blocks_normal_learning": false,
+      "can_auto_run": true,
+      "category": "RUNTIME",
+      "certification_effect": "required_for_live_trust",
+      "check_ids": [
+        "live_readiness_not_ready"
+      ],
+      "command": "_DAILY\\0V_CONTRACT_LIVE_READINESS.bat",
+      "evidence": [
+        "FAIL Live readiness blocked: live_ready=False, checks ok/warn/fail=5/1/3, bot_mode=TRIGGER_LIVE, positions=1"
+      ],
+      "evidence_count": 1,
+      "group_id": "restore_live_readiness",
+      "priority": 15,
+      "recovery_action": "Inspect fem_contract_live_readiness.json, fix the failing readiness item, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.",
+      "root_cause": "The live readiness light is false, so the bot/runtime state cannot be trusted for current trading.",
+      "severity": "FAIL",
+      "title": "Restore live readiness"
+    },
     {
       "blocks_live_trust": false,
       "blocks_normal_learning": true,
@@ -181,7 +407,7 @@
       ],
       "command": "_DAILY\\0N0_CONTRACT_ROUTE_POLICY.bat; _DAILY\\0N_CONTRACT_TRADE_PERMISSIONS.bat",
       "evidence": [
-        "WARN Blocked strategy permissions: 45 strategy permission(s) are blocked by contract failures"
+        "WARN Blocked strategy permissions: 33 strategy permission(s) are blocked by contract failures"
       ],
       "evidence_count": 1,
       "group_id": "clean_route_policy_permissions",
@@ -192,25 +418,69 @@
       "title": "Clean route policy and permission ambiguity"
     },
     {
-      "blocks_live_trust": false,
-      "blocks_normal_learning": false,
+      "blocks_live_trust": true,
+      "blocks_normal_learning": true,
       "can_auto_run": false,
       "category": "MISC",
       "certification_effect": "operator_review",
       "check_ids": [
+        "contract_dashboard",
+        "contract_breaks",
+        "contract_accountability",
+        "contract_source_refresh",
+        "contract_fill_reconcile",
+        "contract_exit_reconcile",
+        "contract_ghost_ledger",
+        "contract_trade_permissions",
+        "contract_route_readiness",
+        "contract_decision_obligation",
+        "contract_live_fire_accounting",
+        "contract_live_readiness",
+        "contract_session_context",
+        "contract_score_provenance",
+        "contract_score_partitions",
+        "contract_score_consumer_lock",
+        "contract_latency_audit",
+        "contract_order_sizing_audit",
+        "contract_order_permission_audit",
+        "contract_bot_gate_audit",
+        "contract_evidence_cleanliness",
+        "contract_realized_result",
+        "contract_exit_rules_learning",
+        "contract_strategy_resolver",
+        "contract_strategy_registry",
+        "contract_strategy_backfill",
+        "contract_strategy_enforcement",
+        "contract_daily_certification",
+        "contract_promotion_gate",
+        "contract_live_trust_recovery",
+        "contract_live_trust_executor",
+        "contract_ai_learning_layer",
+        "contract_auction_truth_shadow",
+        "runtime_processes",
         "contract_break_ledger_stale",
         "panel_registry_contracts",
-        "live_readiness_warn",
+        "runtime_drift_missing_required",
         "exit_rules_learning_pressure"
       ],
       "command": null,
       "evidence": [
-        "WARN Contract breach ledger stale: fem_contract_breaks.json is stamped 2026-10-27, not 2026-10-28; ignoring stale breach counts for current health",
-        "FAIL Panel registry contract failures: 6 active panel registry failure(s)",
-        "WARN Live readiness warnings: checks ok/warn/fail=7/2/0",
-        "WARN Exit-rules learning review queue: 15 high-pressure exit rule group(s) need review"
+        "FAIL Contract dashboard payload: stale during rth: 52182s old, limit 2700s",
+        "FAIL Contract breach ledger: stale during rth: 52205s old, limit 2700s",
+        "FAIL Contract accountability queue: stale during rth: 53333s old, limit 2700s",
+        "WARN Contract source refresh report: stale during rth: 23687s old, limit 2700s",
+        "FAIL Contract fill reconciliation: stale during rth: 53348s old, limit 2700s",
+        "FAIL Contract exit reconciliation: stale during rth: 53344s old, limit 2700s",
+        "FAIL Contract ghost/skipped trade ledger: stale during rth: 53548s old, limit 2700s",
+        "FAIL Contract trade permission manifest: stale during rth: 4064s old, limit 2700s",
+        "FAIL Contract bot route readiness audit: stale during rth: 31588s old, limit 2700s",
+        "FAIL Contract decision obligation audit: stale during rth: 53241s old, limit 2700s",
+        "FAIL Contract live-fire accounting backfill: stale during rth: 53261s old, limit 2700s",
+        "FAIL Contract live readiness: stale during rth: 959s old, limit 720s",
+        "FAIL Contract session context / dirty-data guard: stale during rth: 53201s old, limit 720s",
+        "FAIL Contract score provenance / score partition guard: stale during rth: 53200s old, limit 720s"
       ],
-      "evidence_count": 4,
+      "evidence_count": 38,
       "group_id": "misc_health_followup",
       "priority": 90,
       "recovery_action": "Inspect the check detail and add a classifier if this repeats.",
@@ -222,18 +492,18 @@
   "restart_queue": [],
   "schema": "fem_contract_live_trust_recovery.v1",
   "summary": {
-    "auto_runnable_groups": 2,
-    "blocks_live_trust": 0,
-    "blocks_normal_learning": 2,
-    "daily_certification": "EXPERIMENT_ONLY",
-    "fail_groups": 1,
-    "health_fail": 1,
+    "auto_runnable_groups": 3,
+    "blocks_live_trust": 2,
+    "blocks_normal_learning": 3,
+    "daily_certification": "REJECTED",
+    "fail_groups": 2,
+    "health_fail": 35,
     "health_overall": "FAIL",
-    "health_warn": 10,
+    "health_warn": 11,
     "live_ready": true,
     "manual_groups": 1,
-    "negative_checks": 11,
-    "recovery_groups": 3,
+    "negative_checks": 46,
+    "recovery_groups": 4,
     "remediation_plan_overall": "FAIL",
     "restart_queue": 0,
     "warn_groups": 2
