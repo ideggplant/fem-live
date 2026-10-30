@@ -1,30 +1,29 @@
 {
-  "certification": "REJECTED",
+  "certification": "EXPERIMENT_ONLY",
   "code_version": "e34ea638",
   "decision_matrix": {
     "bot_route_permission_learning": "BLOCK",
-    "experiment_research": "BLOCK",
+    "experiment_research": "ALLOW",
     "normal_panel_score": "BLOCK",
     "panel_promotion": "BLOCK"
   },
-  "generated_at": "2026-10-30T00:59:29.574647+00:00",
-  "generated_at_et": "2026-10-29T20:59:29.574647-04:00",
+  "generated_at": "2026-10-30T03:55:35.354018+00:00",
+  "generated_at_et": "2026-10-29T23:55:35.354018-04:00",
   "inputs": {
-    "closure_generated_at": "2026-10-29T03:56:46+00:00",
-    "enforcement_generated_at": "2026-10-29T03:57:01.605690+00:00",
-    "evidence_generated_at": "2026-10-30T00:59:29+00:00",
-    "health_generated_at": "2026-10-29T19:48:30+00:00",
-    "lock_generated_at": "2026-10-30T00:57:07+00:00",
-    "partitions_generated_at": "2026-10-30T00:57:06+00:00"
+    "closure_generated_at": "2026-10-30T03:55:19+00:00",
+    "enforcement_generated_at": "2026-10-30T03:55:35.126016+00:00",
+    "evidence_generated_at": "2026-10-30T03:55:17+00:00",
+    "health_generated_at": "2026-10-30T03:55:18+00:00",
+    "lock_generated_at": "2026-10-30T03:55:16+00:00",
+    "partitions_generated_at": "2026-10-30T03:55:16+00:00"
   },
-  "next_action": "Fix rejecting contract breaches before using today's data for learning.",
-  "operator_read": "Daily spine rejected: critical registry/score/order contract breaches are present.",
-  "overall": "FAIL",
+  "next_action": "Run 0ZO promotion gate for research ranking only; keep all promotions blocked.",
+  "operator_read": "Daily spine is experiment-only: keep evidence visible for research, but do not train normal edge or promote panels.",
+  "overall": "WARN",
   "reason_counts": {
-    "CRITICAL_HEALTH_FAILURE": 5,
     "EVIDENCE_PARTITION_EXPERIMENT": 1,
     "HEALTH_WARNINGS_PRESENT": 1,
-    "NONCRITICAL_HEALTH_FAILURE": 2,
+    "NONCRITICAL_HEALTH_FAILURE": 1,
     "NO_NORMAL_LEADERBOARD": 1,
     "PRELOCK_OR_NONNORMAL_ORDER_EVIDENCE": 1,
     "REVIEW_FLAGS_PRESENT": 1,
@@ -32,43 +31,8 @@
   },
   "reasons": [
     {
-      "code": "CRITICAL_HEALTH_FAILURE",
-      "detail": "contract_panel_registry: stale during rth: 21633s old, limit 2700s",
-      "effect": "reject_day",
-      "severity": "FAIL",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "CRITICAL_HEALTH_FAILURE",
-      "detail": "contract_score_partitions: stale during rth: 57106s old, limit 720s",
-      "effect": "reject_day",
-      "severity": "FAIL",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "CRITICAL_HEALTH_FAILURE",
-      "detail": "contract_score_consumer_lock: stale during rth: 26846s old, limit 720s",
-      "effect": "reject_day",
-      "severity": "FAIL",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "CRITICAL_HEALTH_FAILURE",
-      "detail": "contract_strategy_registry: stale during rth: 21632s old, limit 2700s",
-      "effect": "reject_day",
-      "severity": "FAIL",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "CRITICAL_HEALTH_FAILURE",
-      "detail": "contract_strategy_enforcement: stale during rth: 57088s old, limit 2700s",
-      "effect": "reject_day",
-      "severity": "FAIL",
-      "source": "fem_contract_health"
-    },
-    {
       "code": "EVIDENCE_PARTITION_EXPERIMENT",
-      "detail": "Evidence cleanliness FAILED: missing, broken, or breached contract inputs prevent trustworthy scoring.",
+      "detail": "Today's evidence is EXPERIMENT-ONLY. Keep it visible for research, but do not let it train normal panel edge or bot route permissions.",
       "effect": "experiment_only",
       "severity": "WARN",
       "source": "fem_contract_evidence_cleanliness"
@@ -82,28 +46,21 @@
     },
     {
       "code": "PRELOCK_OR_NONNORMAL_ORDER_EVIDENCE",
-      "detail": "9 historical/pre-lock order row(s) need review",
+      "detail": "6 historical/pre-lock order row(s) need review",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_strategy_enforcement"
     },
     {
       "code": "SPINE_BLOCKS_NORMAL_SCORING",
-      "detail": "6 closure gate(s) block normal scoring",
+      "detail": "5 closure gate(s) block normal scoring",
       "effect": "experiment_only",
       "severity": "WARN",
       "source": "fem_contract_spine_closure"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_dashboard: stale during rth: 55925s old, limit 2700s",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_breaks: stale during rth: 55945s old, limit 2700s",
+      "detail": "decision_obligation_failures: 11 unaccounted pick group(s); raw unaccounted picks=11",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -117,7 +74,7 @@
     },
     {
       "code": "HEALTH_WARNINGS_PRESENT",
-      "detail": "16 warning check(s) present",
+      "detail": "14 warning check(s) present",
       "effect": "partial_review",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -125,26 +82,25 @@
   ],
   "schema": "fem_contract_daily_certification.v1",
   "severity_counts": {
-    "FAIL": 5,
-    "WARN": 8
+    "WARN": 7
   },
   "summary": {
     "actual_realized_pnl": -45.01,
     "bot_promotion_allowed": false,
-    "certification": "REJECTED",
-    "evidence_partition": "UNTAGGED",
+    "certification": "EXPERIMENT_ONLY",
+    "evidence_partition": "EXPERIMENT",
     "experiment_actual_trades": 9,
-    "experiment_learning_allowed": false,
-    "experiment_reasons": 12,
-    "health_fail": 35,
+    "experiment_learning_allowed": true,
+    "experiment_reasons": 5,
+    "health_fail": 1,
     "health_overall": "FAIL",
-    "health_warn": 16,
+    "health_warn": 14,
     "normal_actual_trades": 0,
     "normal_learning_allowed": false,
     "partial_reasons": 2,
-    "reason_count": 13,
-    "rejecting_reasons": 5,
-    "review_required": false
+    "reason_count": 7,
+    "rejecting_reasons": 0,
+    "review_required": true
   },
   "trade_date": "2026-10-29"
 }
