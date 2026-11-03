@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.03643989562988281,
+    "age_sec": 0.03699946403503418,
     "alist_fillable_count": 9,
     "alist_proven_moo_candidate_count": 7,
     "alist_row_count": 9,
@@ -16,16 +16,16 @@
   },
   "blockers": [],
   "bot": {
-    "age_sec": 47.38932180404663,
-    "alive": true,
-    "generated_at": "2026-11-03T12:31:32",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 5.214034557342529,
+    "alive": false,
+    "generated_at": "2026-11-03T12:48:26",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 1.2920105457305908,
+    "age_sec": 1.106999158859253,
     "connected": true,
-    "generated_at": "2026-11-03T20:32:19+00:00",
+    "generated_at": "2026-11-03T20:48:30+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -35,10 +35,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-11-03T20:32:22+00:00",
-  "generated_at_et": "2026-11-03T15:32:18-05:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-11-03T20:48:32+00:00",
+  "generated_at_et": "2026-11-03T15:48:29-05:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,20 +49,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.18899941444396973,
-    "fail": 0,
-    "generated_at": "2026-11-03T20:32:21+00:00",
-    "live_ready": true,
+    "age_sec": 0.178999662399292,
+    "fail": 1,
+    "generated_at": "2026-11-03T20:48:31+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "WARN",
+    "overall": "FAIL",
     "session": "rth",
     "warn": 2
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 22405.3922393322,
+    "age_sec": 2.4750189781188965,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-11-03",
@@ -108,7 +108,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=6/2/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -159,7 +159,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 22460.97476029396,
+    "age_sec": 23431.706135749817,
     "overall": "WARN",
     "rankings_count": 25,
     "refresh_error": null,
@@ -192,10 +192,21 @@
     ]
   },
   "session": "rth",
-  "state": "TRADE_READY",
-  "title": "FEM Ready",
-  "trade_ready": true,
+  "state": "SAFE_BUT_WAITING",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
+  "title": "FEM Waiting",
+  "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -211,13 +222,6 @@
       "severity": "WARN"
     },
     {
-      "action": "Review after readiness-critical checks.",
-      "code": "WATCHDOG_NON_BLOCKING_WARN",
-      "impact": "Not a direct money-safety blocker.",
-      "message": "Watchdog has non-blocking warnings.",
-      "severity": "WARN"
-    },
-    {
       "action": "Proven MOO candidates exist in A-list, but latest MOO manifest has zero executable tickets.",
       "code": "ALIST_FILLED_BUT_MOO_NOT_EXECUTABLE",
       "impact": "The scan-fed panel may be alive while the opening-auction sleeve has no orders.",
@@ -226,21 +230,21 @@
     }
   ],
   "watchdog": {
-    "age_sec": 22.35715365409851,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 50.43340468406677,
+    "bot_mode": "TRIGGER_DONE",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 0,
+    "critical_or_panic_count": 2,
     "morning_scanner": "OK",
     "morning_tws": "OK",
-    "overall": "WARN",
+    "overall": "CRITICAL",
     "penny_morning_count": 370,
     "penny_morning_is_today": true,
     "rth_handoff_status": "OK",
     "short_watchlist_count": 68,
     "short_watchlist_is_today": true,
-    "trigger_process_count": 1
+    "trigger_process_count": 0
   }
 }
