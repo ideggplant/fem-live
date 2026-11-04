@@ -1,35 +1,71 @@
 {
-  "certification": "EXPERIMENT_ONLY",
+  "certification": "REJECTED",
   "code_version": "e34ea638",
   "decision_matrix": {
     "bot_route_permission_learning": "BLOCK",
-    "experiment_research": "ALLOW",
+    "experiment_research": "BLOCK",
     "normal_panel_score": "BLOCK",
     "panel_promotion": "BLOCK"
   },
-  "generated_at": "2026-11-03T02:00:17.207881+00:00",
-  "generated_at_et": "2026-11-02T21:00:17.207881-05:00",
+  "generated_at": "2026-11-04T01:59:11.352787+00:00",
+  "generated_at_et": "2026-11-03T20:59:11.352787-05:00",
   "inputs": {
     "closure_generated_at": "2026-11-03T02:00:06+00:00",
     "enforcement_generated_at": "2026-11-03T02:00:17.041880+00:00",
-    "evidence_generated_at": "2026-11-03T02:00:05+00:00",
-    "health_generated_at": "2026-11-03T02:00:06+00:00",
-    "lock_generated_at": "2026-11-03T02:00:05+00:00",
-    "partitions_generated_at": "2026-11-03T02:00:04+00:00"
+    "evidence_generated_at": "2026-11-04T01:59:10+00:00",
+    "health_generated_at": "2026-11-03T20:48:26+00:00",
+    "lock_generated_at": "2026-11-04T01:55:36+00:00",
+    "partitions_generated_at": "2026-11-04T01:55:35+00:00"
   },
-  "next_action": "Run 0ZO promotion gate for research ranking only; keep all promotions blocked.",
-  "operator_read": "Daily spine is experiment-only: keep evidence visible for research, but do not train normal edge or promote panels.",
-  "overall": "WARN",
+  "next_action": "Fix rejecting contract breaches before using today's data for learning.",
+  "operator_read": "Daily spine rejected: critical registry/score/order contract breaches are present.",
+  "overall": "FAIL",
   "reason_counts": {
+    "CRITICAL_HEALTH_FAILURE": 5,
     "EVIDENCE_PARTITION_EXPERIMENT": 1,
     "HEALTH_WARNINGS_PRESENT": 1,
-    "NONCRITICAL_HEALTH_FAILURE": 3,
+    "NONCRITICAL_HEALTH_FAILURE": 2,
     "NO_NORMAL_LEADERBOARD": 1,
     "PRELOCK_OR_NONNORMAL_ORDER_EVIDENCE": 1,
     "REVIEW_FLAGS_PRESENT": 1,
     "SPINE_BLOCKS_NORMAL_SCORING": 1
   },
   "reasons": [
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_panel_registry: stale during rth: 23439s old, limit 2700s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_score_partitions: stale during rth: 67701s old, limit 720s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_score_consumer_lock: stale during rth: 67701s old, limit 720s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_strategy_registry: stale during rth: 23447s old, limit 2700s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
+    {
+      "code": "CRITICAL_HEALTH_FAILURE",
+      "detail": "contract_strategy_enforcement: stale during rth: 67689s old, limit 2700s",
+      "effect": "reject_day",
+      "severity": "FAIL",
+      "source": "fem_contract_health"
+    },
     {
       "code": "EVIDENCE_PARTITION_EXPERIMENT",
       "detail": "Today's evidence is EXPERIMENT-ONLY. Keep it visible for research, but do not let it train normal panel edge or bot route permissions.",
@@ -60,21 +96,14 @@
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "contract_break_errors: 6 ERROR breach(es) in current validator output",
+      "detail": "contract_dashboard: stale during rth: 65815s old, limit 2700s",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
     },
     {
       "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "panel_registry_contracts: 1 active panel registry failure(s)",
-      "effect": "review_only",
-      "severity": "WARN",
-      "source": "fem_contract_health"
-    },
-    {
-      "code": "NONCRITICAL_HEALTH_FAILURE",
-      "detail": "decision_obligation_failures: 1 unaccounted pick group(s); raw unaccounted picks=1",
+      "detail": "contract_breaks: stale during rth: 65832s old, limit 2700s",
       "effect": "review_only",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -88,7 +117,7 @@
     },
     {
       "code": "HEALTH_WARNINGS_PRESENT",
-      "detail": "11 warning check(s) present",
+      "detail": "15 warning check(s) present",
       "effect": "partial_review",
       "severity": "WARN",
       "source": "fem_contract_health"
@@ -96,25 +125,26 @@
   ],
   "schema": "fem_contract_daily_certification.v1",
   "severity_counts": {
-    "WARN": 9
+    "FAIL": 5,
+    "WARN": 8
   },
   "summary": {
     "actual_realized_pnl": 40.28,
     "bot_promotion_allowed": false,
-    "certification": "EXPERIMENT_ONLY",
+    "certification": "REJECTED",
     "evidence_partition": "EXPERIMENT",
     "experiment_actual_trades": 20,
-    "experiment_learning_allowed": true,
-    "experiment_reasons": 7,
-    "health_fail": 3,
+    "experiment_learning_allowed": false,
+    "experiment_reasons": 12,
+    "health_fail": 35,
     "health_overall": "FAIL",
-    "health_warn": 11,
+    "health_warn": 15,
     "normal_actual_trades": 0,
     "normal_learning_allowed": false,
     "partial_reasons": 2,
-    "reason_count": 9,
-    "rejecting_reasons": 0,
-    "review_required": true
+    "reason_count": 13,
+    "rejecting_reasons": 5,
+    "review_required": false
   },
-  "trade_date": "2026-11-02"
+  "trade_date": "2026-11-03"
 }
