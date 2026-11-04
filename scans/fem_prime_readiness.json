@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.036000967025756836,
+    "age_sec": 0.03299975395202637,
     "alist_fillable_count": 2,
     "alist_proven_moo_candidate_count": 1,
     "alist_row_count": 2,
@@ -16,29 +16,29 @@
   },
   "blockers": [],
   "bot": {
-    "age_sec": 55.22697448730469,
+    "age_sec": 30.5552875995636,
     "alive": true,
-    "generated_at": "2026-11-04T06:59:24",
+    "generated_at": "2026-11-04T07:29:52",
     "mode": "TRIGGER_LIVE",
-    "n_positions": 0
+    "n_positions": 1
   },
   "broker": {
-    "age_sec": 1.3690087795257568,
+    "age_sec": 1.2730064392089844,
     "connected": true,
-    "generated_at": "2026-11-04T15:00:18+00:00",
+    "generated_at": "2026-11-04T15:30:22+00:00",
     "invalid_entry_like_orders": 0,
-    "open_orders": 0,
+    "open_orders": 1,
     "order_fail": 0,
     "orphan_exit_orders": 0,
-    "overall": "OK",
+    "overall": "WARN",
     "position_fail": 0,
-    "positions": 0,
+    "positions": 1,
     "unprotected_positions": 0
   },
   "expected_bot": true,
   "flat_required": false,
-  "generated_at": "2026-11-04T15:00:21+00:00",
-  "generated_at_et": "2026-11-04T10:00:17-05:00",
+  "generated_at": "2026-11-04T15:30:25+00:00",
+  "generated_at_et": "2026-11-04T10:30:21-05:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -49,20 +49,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.23099923133850098,
-    "fail": 0,
-    "generated_at": "2026-11-04T15:00:20+00:00",
-    "live_ready": true,
+    "age_sec": 0.23000168800354004,
+    "fail": 2,
+    "generated_at": "2026-11-04T15:30:23+00:00",
+    "live_ready": false,
     "next_actions": [
       "Live readiness blockers are clear."
     ],
-    "overall": "WARN",
+    "overall": "FAIL",
     "session": "rth",
-    "warn": 2
+    "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 2233.1342108249664,
+    "age_sec": 4036.9390943050385,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-11-04",
@@ -78,8 +78,8 @@
   "next_session_startup": {
     "alist_fillable_count": 2,
     "carryover_blocks_scheduled_start": false,
-    "carryover_open_order_count": 0,
-    "carryover_position_count": 0,
+    "carryover_open_order_count": 1,
+    "carryover_position_count": 1,
     "moo_executable_ticket_count": 0,
     "moo_tradeable_now": false,
     "read": "Scheduled PRE/RTH/AH startup does not require flat when launched; carryover is reported as money-safety risk, not a scheduler/MOO hard stop.",
@@ -102,13 +102,13 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "FEM LIVE BROKER RECONCILE 2026-11-04 overall=OK orders=0 positions=0 order_fail=0 pos_fail=0 cancelled=0\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
+      "stdout": "FEM LIVE BROKER RECONCILE 2026-11-04 overall=WARN orders=1 positions=1 order_fail=0 pos_fail=0 cancelled=0\n  EXIT_LIKE_MISSING_INTENT: 1\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_broker_reconcile.json"
     },
     "live_readiness": {
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=WARN session=rth ok/warn/fail=7/2/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=7/0/2\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -159,7 +159,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 2531.424049139023,
+    "age_sec": 4335.226931810379,
     "overall": "WARN",
     "rankings_count": 25,
     "refresh_error": null,
@@ -195,6 +195,20 @@
   "trade_ready": true,
   "watch_items": [
     {
+      "action": "Manage the carryover separately; keep trading stack live.",
+      "code": "ACKNOWLEDGED_CARRYOVER_POSITION_RISK",
+      "impact": "Carryover risk exists, but scheduled/trigger trading is not hard-blocked when flat_required=no.",
+      "message": "Broker reconcile is WARN because carryover position(s) are unprotected.",
+      "severity": "WARN"
+    },
+    {
+      "action": "Keep trading stack live; manage carryover separately.",
+      "code": "LIVE_READINESS_CARRYOVER_DISPLAY_WARN",
+      "impact": "Bot process, runner, TWS, and live signals are present.",
+      "message": "Live readiness is FAIL due carryover/accounting display checks, but live blockers are clear.",
+      "severity": "WARN"
+    },
+    {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
       "impact": "Those names may lose sector alignment context.",
@@ -224,12 +238,12 @@
     }
   ],
   "watchdog": {
-    "age_sec": 14.61809754371643,
+    "age_sec": 54.16517782211304,
     "bot_mode": "TRIGGER_LIVE",
     "broker_connected": true,
-    "broker_open_orders": 0,
-    "broker_overall": "OK",
-    "broker_positions": 0,
+    "broker_open_orders": 1,
+    "broker_overall": "WARN",
+    "broker_positions": 1,
     "critical_or_panic_count": 0,
     "morning_scanner": "OK",
     "morning_tws": "OK",
