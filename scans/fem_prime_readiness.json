@@ -1,7 +1,7 @@
 {
   "advisory_only": true,
   "alist_tradeability": {
-    "age_sec": 0.11599230766296387,
+    "age_sec": 0.0410003662109375,
     "alist_fillable_count": 4,
     "alist_proven_moo_candidate_count": 4,
     "alist_row_count": 4,
@@ -14,33 +14,18 @@
     "source_file": "fem_abook_2026-11-05_0404.csv",
     "source_same_day": false
   },
-  "blockers": [
-    {
-      "action": "Open fem_watchdog_status.json and resolve the critical alert.",
-      "code": "WATCHDOG_CRITICAL",
-      "impact": "A money-readiness condition is failing.",
-      "message": "Watchdog has 1 critical/panic alert(s).",
-      "severity": "CRITICAL"
-    },
-    {
-      "action": "Start the scheduled bot handoff or trade bot.",
-      "code": "TRIGGER_BOT_NOT_VISIBLE",
-      "impact": "FEM cannot enter/manage intended scalps.",
-      "message": "No trigger bot process is visible during a trading session.",
-      "severity": "CRITICAL"
-    }
-  ],
+  "blockers": [],
   "bot": {
-    "age_sec": 78.45375967025757,
-    "alive": true,
-    "generated_at": "2026-11-06T12:34:02",
-    "mode": "TRIGGER_LIVE",
+    "age_sec": 22.630218267440796,
+    "alive": false,
+    "generated_at": "2026-11-06T12:48:49",
+    "mode": "EOD_FLATTENED",
     "n_positions": 0
   },
   "broker": {
-    "age_sec": 20.89717721939087,
+    "age_sec": 4.639031648635864,
     "connected": true,
-    "generated_at": "2026-11-06T20:35:00+00:00",
+    "generated_at": "2026-11-06T20:49:11+00:00",
     "invalid_entry_like_orders": 0,
     "open_orders": 0,
     "order_fail": 0,
@@ -50,10 +35,10 @@
     "positions": 0,
     "unprotected_positions": 0
   },
-  "expected_bot": true,
-  "flat_required": false,
-  "generated_at": "2026-11-06T20:35:29+00:00",
-  "generated_at_et": "2026-11-06T15:34:52-05:00",
+  "expected_bot": false,
+  "flat_required": true,
+  "generated_at": "2026-11-06T20:49:17+00:00",
+  "generated_at_et": "2026-11-06T15:49:10-05:00",
   "guarantees": [
     "does_not_modify_bot_config",
     "does_not_change_route_policy",
@@ -64,20 +49,20 @@
     "does_not_flatten_positions"
   ],
   "live_readiness": {
-    "age_sec": 0.5550022125244141,
-    "fail": 0,
-    "generated_at": "2026-11-06T20:35:21+00:00",
-    "live_ready": true,
+    "age_sec": 0.8060050010681152,
+    "fail": 1,
+    "generated_at": "2026-11-06T20:49:15+00:00",
+    "live_ready": false,
     "next_actions": [
-      "Live readiness blockers are clear."
+      "Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat."
     ],
-    "overall": "OK",
+    "overall": "FAIL",
     "session": "rth",
     "warn": 0
   },
   "money_safe": true,
   "morning": {
-    "age_sec": 22641.69180870056,
+    "age_sec": 6.1480395793914795,
     "ah_bot": null,
     "ah_status": null,
     "date": "2026-11-06",
@@ -123,7 +108,7 @@
       "ran": true,
       "returncode": 0,
       "stderr": "",
-      "stdout": "live_readiness: overall=OK session=rth ok/warn/fail=9/0/0\nNEXT: Live readiness blockers are clear.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
+      "stdout": "live_readiness: overall=FAIL session=rth ok/warn/fail=8/0/1\nNEXT: Run _DAILY\\0U_RUNTIME_RESTART_PREFLIGHT.bat --apply, then rerun _DAILY\\0V_CONTRACT_LIVE_READINESS.bat.\nwrote C:\\Users\\Gill\\Desktop\\FEM_TOOLS\\fem_contract_live_readiness.json"
     }
   },
   "schedules": {
@@ -174,7 +159,7 @@
   },
   "schema": "fem_prime_readiness.v1",
   "sector_context": {
-    "age_sec": 22641.827811717987,
+    "age_sec": 23476.14458656311,
     "overall": "WARN",
     "rankings_count": 26,
     "refresh_error": null,
@@ -207,10 +192,21 @@
     ]
   },
   "session": "rth",
-  "state": "NOT_TRADE_READY",
-  "title": "FEM Blocked",
+  "state": "SAFE_BUT_WAITING",
+  "telegram": {
+    "enabled": false,
+    "reason": "missing FEM_TELEGRAM_BOT_TOKEN or FEM_TELEGRAM_CHAT_ID"
+  },
+  "title": "FEM Waiting",
   "trade_ready": false,
   "watch_items": [
+    {
+      "action": "Review before market if it persists.",
+      "code": "LIVE_READINESS_DISPLAY_WARN",
+      "impact": "Likely display/audit noise unless next session start is affected.",
+      "message": "Live readiness has closed-session warnings.",
+      "severity": "WARN"
+    },
     {
       "action": "Hydrate/override the unmapped symbols.",
       "code": "SECTOR_SYMBOLS_UNMAPPED",
@@ -227,13 +223,13 @@
     }
   ],
   "watchdog": {
-    "age_sec": 6.791057348251343,
-    "bot_mode": "TRIGGER_LIVE",
+    "age_sec": 15.385169744491577,
+    "bot_mode": "EOD_FLATTENED",
     "broker_connected": true,
     "broker_open_orders": 0,
     "broker_overall": "OK",
     "broker_positions": 0,
-    "critical_or_panic_count": 1,
+    "critical_or_panic_count": 2,
     "morning_scanner": "OK",
     "morning_tws": "OK",
     "overall": "CRITICAL",
